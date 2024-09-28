@@ -136,7 +136,21 @@ export default function ModalScreen() {
         </View>
       </ScrollView>
 
-      <Link href={"players_names"} asChild>
+      <Link
+        href={{
+          pathname: "players_names",
+          params: {
+            total_players: playerCount,
+            characters_data: JSON.stringify(
+              characters.map((character) => ({
+                type: character.name,
+                amount: character.amount,
+              }))
+            ),
+          },
+        }}
+        asChild
+      >
         <TouchableOpacity
           onPress={confirmPlayers}
           className="bg-slate-300 items-center justify-center absolute bottom-10 p-4 w-[90%] mx-3 rounded-xl"
