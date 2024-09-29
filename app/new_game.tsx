@@ -81,7 +81,7 @@ export default function ModalScreen() {
     );
   };
 
-  function confirmPlayers() {}
+  function confirmCharacters() {}
 
   return (
     <SafeAreaView className="flex-1 items-center">
@@ -152,7 +152,7 @@ export default function ModalScreen() {
         asChild
       >
         <TouchableOpacity
-          onPress={confirmPlayers}
+          onPress={confirmCharacters}
           className="bg-slate-300 items-center justify-center absolute bottom-10 p-4 w-[90%] mx-3 rounded-xl"
         >
           <Text className="text-[16px] font-bold">Continue</Text>
