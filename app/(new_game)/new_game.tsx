@@ -10,22 +10,22 @@ export default function ModalScreen() {
   const [characters, setCharacters] = useState([
     {
       name: "Villager",
-      image: require("../assets/images/characters/villager.jpeg"),
+      image: require("../../assets/images/characters/villager.jpeg"),
       amount: 3,
     },
     {
       name: "Werewolf",
-      image: require("../assets/images/characters/werewolf.jpeg"),
+      image: require("../../assets/images/characters/werewolf.jpeg"),
       amount: 1,
     },
     {
       name: "Seer",
-      image: require("../assets/images/characters/seer2.jpeg"),
+      image: require("../../assets/images/characters/seer2.jpeg"),
       amount: 1,
     },
     {
       name: "Doctor",
-      image: require("../assets/images/characters/doctor.jpeg"),
+      image: require("../../assets/images/characters/doctor.jpeg"),
       amount: 1,
     },
   ]);

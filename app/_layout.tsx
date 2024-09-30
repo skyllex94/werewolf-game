@@ -47,14 +47,21 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={DefaultTheme}>
       <Stack>
+        {/*
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen
-          name="new_game"
+          name="(new_game)/new_game"
           options={{ headerShown: false, presentation: "card" }}
         />
         <Stack.Screen
-          name="players_names"
-          options={{ headerShown: false, presentation: "card" }}
+          name="(new_game)/players_names"
+          options={{ headerShown: false }}
+        />
+        */}
+
+        <Stack.Screen
+          name="(new_game)/scan_intro"
+          options={{ headerShown: false }}
         />
       </Stack>
     </ThemeProvider>
