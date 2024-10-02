@@ -10,15 +10,12 @@ import {
 import React, { useState } from "react";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
+import { showMessage } from "react-native-flash-message";
 
 export default function PlayersNames() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { total_players, characters_data } = params;
-
-  const characters = characters_data
-    ? JSON.parse(characters_data as string)
-    : [];
 
   const players = parseInt(total_players as string);
 
@@ -47,8 +44,10 @@ export default function PlayersNames() {
       // Iterate through player names to check for empty strings
       for (let i = 0; i < playerNames.length; i++) {
         if (!playerNames[i] || playerNames[i].trim() === "") {
-          console.log(`Player ${i + 1} has not entered a name.`);
-          // Optionally, show an alert or set an error state to inform the user
+          showMessage({
+            message: `You have not entered a name for Player ${i + 1}.`,
+            type: "danger",
+          });
           return;
         }
       }
@@ -60,7 +59,11 @@ export default function PlayersNames() {
 
     router.push({
       pathname: "(new_game)/scan_intro",
-      params: { total_players, characters_data },
+      params: {
+        total_players,
+        characters_data: characters_data, // Already stringified
+        players_names: JSON.stringify(playerNames),
+      },
     });
   }
 

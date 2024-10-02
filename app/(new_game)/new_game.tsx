@@ -11,7 +11,7 @@ export default function ModalScreen() {
     {
       name: "Villager",
       image: require("../../assets/images/characters/villager.jpeg"),
-      amount: 3,
+      amount: 2,
     },
     {
       name: "Werewolf",
@@ -21,12 +21,12 @@ export default function ModalScreen() {
     {
       name: "Seer",
       image: require("../../assets/images/characters/seer2.jpeg"),
-      amount: 1,
+      amount: 0,
     },
     {
       name: "Doctor",
       image: require("../../assets/images/characters/doctor.jpeg"),
-      amount: 1,
+      amount: 0,
     },
   ]);
 
