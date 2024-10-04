@@ -25,7 +25,6 @@ export default function PlayersNames() {
   const [playerNames, setPlayerNames] = useState<string[]>(
     Array(players).fill("")
   );
-  console.log("playerNames:", playerNames);
 
   function playerNamesChange(idx: number, text: string) {
     const updatedPlayerNames = [...playerNames];
@@ -57,8 +56,17 @@ export default function PlayersNames() {
 
     console.log("All players' names are filled in:", playerNames);
 
+    try {
+    } catch (err) {
+      showMessage({
+        message: `Error occured while confirming players. Please try again.`,
+        type: "danger",
+      });
+      console.error("Error while confirming players: ", err);
+    }
+
     router.push({
-      pathname: "(new_game)/scan_intro",
+      pathname: "/scan_intro",
       params: {
         total_players,
         characters_data: characters_data, // Already stringified
@@ -68,7 +76,7 @@ export default function PlayersNames() {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="flex-1">
       <Text className="text-center font-bold text-[20px] py-4">
         Players ({players})
       </Text>
@@ -76,52 +84,52 @@ export default function PlayersNames() {
       <ScrollView showsVerticalScrollIndicator={false}>
         {Array.from({ length: players }).map((player, idx: number) => (
           <View key={idx}>
-            <View className="flex-row flex-wrap items-center justify-center gap-2 my-1">
-              <View className="h-28 w-[25%] ">
+            <View className="flex-row flex-wrap items-center justify-center gap-x-2 my-1.5">
+              <View className="h-12 w-12 border border-slate-500 rounded-xl overflow-hidden">
                 <Image
-                  className="h-[100%] w-[100%] border border-b-2 border-slate-500 rounded-xl"
-                  resizeMode="contain"
-                  source={require("../../assets/images/placeholders/placeholder.jpg")}
+                  className="h-[100%] w-[100%]"
+                  resizeMode="cover"
+                  source={require("../../assets/images/placeholders/placeholder2.jpg")}
                 />
               </View>
-              <View className="w-[65%]">
+              <View className="w-[75%] h-12">
                 <TextInput
-                  className="p-3 w-[100%] rounded-lg border border-b-2 border-slate-500 my-1"
+                  className="w-[100%] h-12 pl-3 rounded-xl border border-slate-500"
                   key={idx}
                   placeholder={`Player ${idx + 1}`}
                   value={playerNames[idx]}
                   onChangeText={(text) => playerNamesChange(idx, text)}
                 />
 
+                {/*
                 <View className="flex-row justify-between pt-1">
-                  <TouchableOpacity className="w-[49%] items-center p-3 border border-b-2 border-slate-500 rounded-lg">
-                    <Entypo name="camera" size={20} color="black" />
-                    <Text className="">Camera</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity className="w-[49%] items-center p-3 border border-b-2 border-slate-500 rounded-lg">
-                    <MaterialIcons
-                      name="photo-size-select-actual"
-                      size={20}
-                      color="black"
-                    />
-                    <Text className="">Library</Text>
-                  </TouchableOpacity>
-                </View>
+                    <TouchableOpacity className="w-[49%] items-center p-3 border border-b-2 border-slate-500 rounded-lg">
+                      <Entypo name="camera" size={20} color="black" />
+                      <Text className="">Camera</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity className="w-[49%] items-center p-3 border border-b-2 border-slate-500 rounded-lg">
+                      <MaterialIcons
+                        name="photo-size-select-actual"
+                        size={20}
+                        color="black"
+                      />
+                      <Text className="">Library</Text>
+                    </TouchableOpacity>
+                  </View>
+                */}
               </View>
             </View>
           </View>
         ))}
       </ScrollView>
 
-      <View className="h-[35%]">
-        <View className="items-center justify-center mt-4">
-          <TouchableOpacity
-            onPress={confirmPlayers}
-            className="bg-slate-300 p-4 w-[90%] rounded-xl"
-          >
-            <Text className="text-center text-[16px] font-bold">Continue</Text>
-          </TouchableOpacity>
-        </View>
+      <View className="continue-button w-[100%] items-center absolute bottom-10">
+        <TouchableOpacity
+          onPress={confirmPlayers}
+          className="bg-slate-300 items-center justify-center p-4 w-[90%] rounded-xl z-10"
+        >
+          <Text className="text-[16px] font-bold">Continue</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

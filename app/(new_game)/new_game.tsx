@@ -64,7 +64,7 @@ export default function ModalScreen() {
               newAmount = character.amount - 1;
             }
           } else {
-            // No stopper for other characters (Villager)
+            // No stopper for other characters
             newAmount =
               action === "increase"
                 ? character.amount + 1
@@ -138,7 +138,7 @@ export default function ModalScreen() {
 
       <Link
         href={{
-          pathname: "players_names",
+          pathname: "/players_names",
           params: {
             total_players: playerCount,
             characters_data: JSON.stringify(
