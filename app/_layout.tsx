@@ -8,6 +8,9 @@ import FlashMessage from "react-native-flash-message";
 import "react-native-reanimated";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
+// Global async-stored sound control
+import { SoundProvider } from "./../contexts/SoundContext";
+
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -49,20 +52,23 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <GestureHandlerRootView className="flex-1">
-      <ThemeProvider value={DefaultTheme}>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" />
-          <Stack.Screen
-            name="(new_game)/new_game"
-            options={{ presentation: "card" }}
-          />
-          <Stack.Screen name="(new_game)/players_names" />
+      <SoundProvider>
+        <ThemeProvider value={DefaultTheme}>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="index" />
+            <Stack.Screen
+              name="(new_game)/new_game"
+              options={{ presentation: "card" }}
+            />
+            <Stack.Screen name="(new_game)/players_names" />
 
-          <Stack.Screen name="(new_game)/scan_intro" />
-          <Stack.Screen name="(new_game)/players_scans" />
-        </Stack>
-        <FlashMessage position="top" />
-      </ThemeProvider>
+            <Stack.Screen name="(new_game)/scan_intro" />
+            <Stack.Screen name="(new_game)/players_scans" />
+            <Stack.Screen name="(new_game)/view_roles" />
+          </Stack>
+          <FlashMessage position="top" />
+        </ThemeProvider>
+      </SoundProvider>
     </GestureHandlerRootView>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { View, Text, TouchableOpacity, Dimensions, Image } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 // Swipable carousel imports
@@ -9,9 +9,17 @@ import Carousel from "react-native-reanimated-carousel";
 // QR code generator
 import QRCode from "react-fancy-qrcode";
 
+interface Item {
+  order: number;
+  name: string;
+  link: string;
+  role: string;
+}
+
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
 export default function PlayerScanCodesScreen() {
+  const router = useRouter();
   const params = useLocalSearchParams();
   const { players_roles } = params;
 
@@ -20,9 +28,9 @@ export default function PlayerScanCodesScreen() {
 
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const carouselRef = useRef(null);
+  const carouselRef = useRef<any>(null);
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item }: { item: Item }) => {
     return (
       <View className="flex-1 items-center justify-start pt-16 bg-slate-100 px-5 rounded-2xl shadow-lg">
         <View className="bg-slate-200 h-20 w-20 rounded-lg">
@@ -63,7 +71,10 @@ export default function PlayerScanCodesScreen() {
     if (activeIndex < playersRoles.length - 1) {
       carouselRef.current?.scrollTo({ index: activeIndex + 1, animated: true });
     } else {
-      console.log("Hit the end of the stack");
+      router.push({
+        pathname: "/view_roles",
+        params: { players_roles },
+      });
     }
   }
 
@@ -76,18 +87,16 @@ export default function PlayerScanCodesScreen() {
         Swipe to let each player scan their barcode with their phone.
       </Text>
 
-      <Carousel
+      <Carousel<Item>
         ref={carouselRef}
         width={screenWidth}
         height={screenHeight / 1.4}
         data={playersRoles}
-        renderItem={({ item, index }) => renderItem({ item, index })}
+        renderItem={renderItem}
         onSnapToItem={(index) => setActiveIndex(index)}
         mode="parallax"
         modeConfig={{
-          snapDirection: "left",
           parallaxScrollingScale: 0.85,
-          stackInterval: 10,
         }}
         loop={false}
         pagingEnabled={true}
@@ -103,7 +112,11 @@ export default function PlayerScanCodesScreen() {
           onPress={moveToNextBarcode}
           className="bg-slate-300 items-center justify-center p-4 w-[90%] rounded-xl z-10"
         >
-          <Text className="text-[16px] font-bold">Next</Text>
+          {activeIndex === playersRoles.length - 1 ? (
+            <Text className="text-[16px] font-bold">Start Game</Text>
+          ) : (
+            <Text className="text-[16px] font-bold">Next</Text>
+          )}
         </TouchableOpacity>
       </View>
     </SafeAreaView>

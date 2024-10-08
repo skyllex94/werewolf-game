@@ -63,6 +63,20 @@ export default function ModalScreen() {
             } else if (action === "decrease" && character.amount > 2) {
               newAmount = character.amount - 1;
             }
+          } else if (name === "Seer") {
+            // Apply stopper for Seer at 1 per game
+            if (action === "increase" && character.amount < 1) {
+              newAmount = character.amount + 1;
+            } else if (action === "decrease" && character.amount > 0) {
+              newAmount = character.amount - 1;
+            }
+          } else if (name === "Doctor") {
+            // Apply stopper for Seer at 1 per game
+            if (action === "increase" && character.amount < 1) {
+              newAmount = character.amount + 1;
+            } else if (action === "decrease" && character.amount > 0) {
+              newAmount = character.amount - 1;
+            }
           } else {
             // No stopper for other characters
             newAmount =

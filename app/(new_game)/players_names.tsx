@@ -76,12 +76,12 @@ export default function PlayersNames() {
   }
 
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="flex-1 ">
       <Text className="text-center font-bold text-[20px] py-4">
         Players ({players})
       </Text>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView className="mb-20" showsVerticalScrollIndicator={false}>
         {Array.from({ length: players }).map((player, idx: number) => (
           <View key={idx}>
             <View className="flex-row flex-wrap items-center justify-center gap-x-2 my-1.5">

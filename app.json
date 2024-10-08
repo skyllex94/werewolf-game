@@ -4,7 +4,7 @@
     "slug": "werewolf-game",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/characters/werewolf.jpeg",
+    "icon": "./assets/icon/werewolf.jpeg",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {

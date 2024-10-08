@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity, Switch } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { Entypo, MaterialIcons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 
 export default function TopPane() {
   const [soundEnabled, setSoundEnabled] = useState(true);
