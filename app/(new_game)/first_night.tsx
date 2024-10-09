@@ -7,6 +7,7 @@ import TopPaneInGame from "@/components/TopPaneInGame";
 // Sound imports
 import { Audio } from "expo-av";
 import SoundContext from "@/contexts/SoundContext";
+import { ScrollView } from "react-native-gesture-handler";
 
 interface Item {
   order: number;
@@ -32,16 +33,27 @@ export default function FirstNight() {
     null
   );
 
-  const [rolePrompts, setRolePrompts] = useState<string[]>([]);
   const [werewolvesOutnumber, setWerewolvesOutnumber] =
     useState<boolean>(false);
 
-  // Generate prompts and check werewolves count when the component mounts
+  // Parse the playersRoles array from JSON
+  const playersRoles: Item[] = players_roles
+    ? JSON.parse(players_roles as string)
+    : [];
+
+  // Define role components mapping
+  const roleComponents: { [key: string]: () => JSX.Element } = {
+    Werewolf: WakeWerewolfUI,
+    Seer: WakeSeerUI,
+    Doctor: WakeDoctorUI,
+  };
+
+  // Check werewolves count when the component mounts and start audio
   useEffect(() => {
-    const prompts = generateRolePrompts();
-    setRolePrompts(prompts);
     playWolfHowling();
     playNightBackground();
+
+    gameChecks();
   }, []);
 
   // Load and play the wolf howling sound
@@ -61,6 +73,7 @@ export default function FirstNight() {
 
   // Load and play the night background sound
   async function playNightBackground() {
+    console.log("Loading Night BG Sound");
     const { sound } = await Audio.Sound.createAsync(
       require("../../assets/audio/night-background.mp3"),
       { isLooping: true, volume: soundEnabled ? 0.1 : 0.0 }
@@ -96,9 +109,8 @@ export default function FirstNight() {
   useEffect(() => {
     return () => {
       if (werewolfAssist) {
-        console.log("Unloading Night Background Sound");
+        console.log("Unloading Werewolf Assist Sound");
         werewolfAssist.unloadAsync();
-        setNightBackgroundSound(null);
       }
     };
   }, [werewolfAssist]);
@@ -119,52 +131,14 @@ export default function FirstNight() {
     }
   }, [soundEnabled, wolfHowling, nightBackgroundSound, werewolfAssist]);
 
-  // Parse the playersRoles array from JSON
-  const playersRoles: Item[] = players_roles
-    ? JSON.parse(players_roles as string)
-    : [];
-
   // Function to count the roles and generate prompts
-  const generateRolePrompts = () => {
+  const gameChecks = () => {
     const roleCounts: { [role: string]: number } = {};
 
     // Count occurrences of each role
     playersRoles.forEach((player) => {
       roleCounts[player.role] = (roleCounts[player.role] || 0) + 1;
     });
-
-    const prompts: string[] = [];
-
-    // Werewolf prompt
-    if (roleCounts["Werewolf"]) {
-      prompts.push(
-        `Wake up the Werewolves and let them decide collectively who to eliminate this night.`
-      );
-    }
-
-    // Seer prompt
-    if (roleCounts["Seer"]) {
-      prompts.push(
-        `- Wake up the Seer and let him choose someone from the village. You will let the Seer know if the chosen person is a good or a bad role.`
-      );
-    }
-
-    // Doctor prompt
-    if (roleCounts["Doctor"]) {
-      prompts.push(
-        `Wake up the Doctor and let him choose a person to protect, including himself. Cannot repeat the same person 2 times in a row.`
-      );
-    }
-
-    // Hunter prompt
-    if (roleCounts["Hunter"]) {
-      prompts.push(`There is a Hunter.`);
-    }
-
-    // Villager prompt
-    if (roleCounts["Villager"]) {
-      console.log("Villagers: ", roleCounts["Villager"]);
-    }
 
     // Check if werewolves outnumber villagers, doctors, and seers combined
     const werewolfCount = roleCounts["Werewolf"] || 0;
@@ -175,9 +149,8 @@ export default function FirstNight() {
 
     if (werewolfCount > othersCount) {
       setWerewolvesOutnumber(true);
+      console.log("Werewolves are more than the Good guys");
     }
-
-    return prompts;
   };
 
   async function playWerewolfAssistance() {
@@ -190,6 +163,114 @@ export default function FirstNight() {
     if (sound) await sound.playAsync();
   }
 
+  async function playSeerAssistance() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/assists/seer-assist.mp3"),
+      { volume: soundEnabled ? 0.7 : 0.0 }
+    );
+    setWerewolfAssist(sound);
+    // Check if the sound is loaded before playing
+    if (sound) await sound.playAsync();
+  }
+
+  async function playDoctorAssistance() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/assists/doctor-assist.mp3"),
+      { volume: soundEnabled ? 0.7 : 0.0 }
+    );
+    setWerewolfAssist(sound);
+    // Check if the sound is loaded before playing
+    if (sound) await sound.playAsync();
+  }
+
+  function WakeWerewolfUI() {
+    return (
+      <View className="">
+        <Text className="text-start text-white font-[16px]">
+          - Wake up the Werewolves and let them decide collectively who to
+          eliminate this night.
+        </Text>
+
+        {/* Voice Assistance Button */}
+        <View className="items-start m-2">
+          <Pressable
+            className="bg-gray-700 p-3 rounded-md mt-2"
+            onPress={playWerewolfAssistance}
+          >
+            {({ pressed }) => (
+              <Text
+                className={`text-[14px] font-bold text-white ${
+                  pressed ? "opacity-70" : "opacity-100"
+                }`}
+              >
+                Voice Assistance (Werewolves)
+              </Text>
+            )}
+          </Pressable>
+        </View>
+      </View>
+    );
+  }
+
+  function WakeSeerUI() {
+    return (
+      <View className="">
+        <Text className="text-start text-white font-[16px]">
+          - Wake up the Seer and let him choose someone from the village. You
+          will let the Seer know if the chosen person is a good or bad role with
+          thumbs up or down.
+        </Text>
+
+        {/* Voice Assistance Button */}
+        <View className="items-start m-2">
+          <Pressable
+            className="bg-gray-700 items-center justify-center p-3 rounded-md"
+            onPress={playSeerAssistance} // Play Seer Voice Assistance
+          >
+            {({ pressed }) => (
+              <Text
+                className={`text-[14px] font-bold text-white ${
+                  pressed ? "opacity-70" : "opacity-100"
+                }`}
+              >
+                Voice Assistance (Seer)
+              </Text>
+            )}
+          </Pressable>
+        </View>
+      </View>
+    );
+  }
+
+  function WakeDoctorUI() {
+    return (
+      <View className="justify-start">
+        <Text className="text-start text-white font-[16px]">
+          Wake up the Doctor and let him choose a person to protect, including
+          himself. Cannot repeat the same person 2 times in a row.
+        </Text>
+
+        {/* Voice Assistance Button */}
+        <View className="items-start m-2">
+          <Pressable
+            className="bg-gray-700 items-center justify-center p-3 rounded-md mt-2"
+            onPress={playDoctorAssistance} // Play Doctor Voice Assistance
+          >
+            {({ pressed }) => (
+              <Text
+                className={`text-[14px] font-bold text-white ${
+                  pressed ? "opacity-70" : "opacity-100"
+                }`}
+              >
+                Voice Assistance (Doctor)
+              </Text>
+            )}
+          </Pressable>
+        </View>
+      </View>
+    );
+  }
+
   return (
     <SafeAreaView className="flex-1 relative">
       {/* Background Image */}
@@ -200,44 +281,29 @@ export default function FirstNight() {
       />
       <TopPaneInGame />
 
-      {/* Header */}
-      <View className="items-center justify-center mt-8"></View>
-
       {/* Heading Text */}
-      <Text className="text-center text-white font-bold text-[20px] py-4">
-        It's Night Time
+      <Text className="text-center text-white font-bold text-[20px] mt-8 pb-4">
+        The Night Has Started
       </Text>
-      <Text className="text-center text-slate-300 font-light text-[15px] px-10">
-        As the operator, guide the village through their first night. Here are
-        the roles in play:
+      <Text className="text-start text-white text-[16px] px-10">
+        As the operator, guide the village through the night. Here are the roles
+        to wake up at night:
       </Text>
 
-      {/* Display role-based prompts */}
-      <View className="mt-4 px-10">
-        {rolePrompts.map((prompt, index) => (
-          <View key={index} className="mb-4">
-            <Text className="text-white text-[16px] py-2">{prompt}</Text>
-
-            <View className="flex-row">
-              {/* Voice Assistance Button */}
-              <Pressable
-                className="bg-gray-700 items-center justify-center p-3 rounded-md mt-2"
-                onPress={playWerewolfAssistance}
-              >
-                {({ pressed }) => (
-                  <Text
-                    className={`text-[14px] font-bold text-white ${
-                      pressed ? "opacity-70" : "opacity-100"
-                    }`}
-                  >
-                    Voice Assistance
-                  </Text>
-                )}
-              </Pressable>
-            </View>
-          </View>
-        ))}
+      <View className="items-center justify-center">
+        <View className="seperator bg-slate-400 mt-5 h-[0.5px] w-[80%]" />
       </View>
+
+      <ScrollView showsVerticalScrollIndicator={false} className="mb-20">
+        {/* Display role-based prompts dynamically */}
+        <View className="mt-4 px-10">
+          {playersRoles.map((player) => {
+            const RoleUI = roleComponents[player.role];
+            // Only render if the component exists
+            return RoleUI ? <RoleUI key={player.name} /> : null;
+          })}
+        </View>
+      </ScrollView>
 
       {/* Werewolves Outnumber Warning */}
       {werewolvesOutnumber && (
@@ -250,7 +316,7 @@ export default function FirstNight() {
       )}
 
       {/* Continue Button */}
-      <View className="w-full items-center absolute bottom-10">
+      <View className="w-full items-center absolute bottom-10 z-10">
         <Pressable
           className="bg-gray-800 items-center justify-center p-4 w-[90%] rounded-xl"
           onPress={() => console.log("Continue pressed")}
