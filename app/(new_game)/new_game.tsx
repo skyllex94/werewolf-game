@@ -6,6 +6,9 @@ import { Image, ScrollView, TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { Link } from "expo-router";
 
+// New Game Context
+import NewGameContext from "../../contexts/NewGameContext";
+
 export default function ModalScreen() {
   const [characters, setCharacters] = useState([
     {

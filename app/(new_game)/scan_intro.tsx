@@ -1,18 +1,17 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { assignRolesToPlayers } from "@/functions/functions";
 import { showMessage } from "react-native-flash-message";
+import NewGameContext from "@/contexts/NewGameContext";
 
 export default function IntroScanScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
 
   const { characters_data, players_names } = params;
-  const [playersRoles, setPlayersRoles] = useState<object[]>([]);
-
-  // Params incoming data format and type
+  const { playersRoles, setPlayersRoles } = useContext(NewGameContext);
 
   // players_names - ["Lilly", "Michael", "Lucy", "Mary", "Nige", "Garf"] - string
   // characters_data - [{"type":"Villager","amount":3},{"type":"Werewolf","amount":1},

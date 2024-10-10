@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, Pressable, Image } from "react-native";
-import { useLocalSearchParams } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Text, Pressable, Image, Alert } from "react-native";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import TopPaneInGame from "@/components/TopPaneInGame";
 
 // Sound imports
 import { Audio } from "expo-av";
 import SoundContext from "@/contexts/SoundContext";
 import { ScrollView } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface Item {
   order: number;
@@ -18,6 +18,7 @@ interface Item {
 
 export default function FirstNight() {
   // Passed param object
+  const router = useRouter();
   const params = useLocalSearchParams();
   const { players_roles } = params;
 
@@ -271,6 +272,24 @@ export default function FirstNight() {
     );
   }
 
+  const wakeUpAlertMessage = () =>
+    Alert.alert(
+      "Ready for the Day?",
+      "Are you sure you woke up all the roles through the night?",
+      [
+        {
+          text: "Yes",
+          onPress: () => {
+            return router.push({
+              pathname: "/day_time",
+              params: { players_roles },
+            });
+          },
+        },
+        { text: "No", onPress: () => null },
+      ]
+    );
+
   return (
     <SafeAreaView className="flex-1 relative">
       {/* Background Image */}
@@ -319,7 +338,7 @@ export default function FirstNight() {
       <View className="w-full items-center absolute bottom-10 z-10">
         <Pressable
           className="bg-gray-800 items-center justify-center p-4 w-[90%] rounded-xl"
-          onPress={() => console.log("Continue pressed")}
+          onPress={wakeUpAlertMessage}
         >
           {({ pressed }) => (
             <Text

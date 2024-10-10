@@ -8,6 +8,7 @@ import Carousel from "react-native-reanimated-carousel";
 
 // QR code generator
 import QRCode from "react-fancy-qrcode";
+import NewGameContext from "@/contexts/NewGameContext";
 
 interface Item {
   order: number;
@@ -25,6 +26,7 @@ export default function PlayerScanCodesScreen() {
 
   // Parse the playersRoles array from JSON
   const playersRoles = players_roles ? JSON.parse(players_roles as string) : [];
+  console.log("playersRoles:", playersRoles);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
