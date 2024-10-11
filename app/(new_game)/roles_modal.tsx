@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesome5 } from "@expo/vector-icons";
 import NewGameContext from "@/contexts/NewGameContext";
@@ -14,7 +14,6 @@ interface Item {
 
 export default function ViewRolesModal() {
   const router = useRouter();
-  const params = useLocalSearchParams();
   const { playersRoles } = useContext(NewGameContext);
   console.log("playersRoles:", playersRoles);
 

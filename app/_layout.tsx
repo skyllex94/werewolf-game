@@ -3,7 +3,7 @@ import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import FlashMessage from "react-native-flash-message";
 import "react-native-reanimated";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -11,6 +11,9 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 // Global async-stored sound control
 import { SoundProvider } from "./../contexts/SoundContext";
 import NewGameContext from "@/contexts/NewGameContext";
+
+// Bottom sheet imports
+import BottomSheet, { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -57,28 +60,30 @@ function RootLayoutNav() {
   return (
     <GestureHandlerRootView className="flex-1">
       <SoundProvider>
-        <NewGameContext.Provider value={{ playersRoles, setPlayersRoles }}>
-          <ThemeProvider value={DefaultTheme}>
-            <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="index" />
+        <BottomSheetModalProvider>
+          <NewGameContext.Provider value={{ playersRoles, setPlayersRoles }}>
+            <ThemeProvider value={DefaultTheme}>
+              <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="index" />
 
-              <Stack.Screen
-                name="(new_game)/new_game"
-                options={{ presentation: "card" }}
-              />
-              <Stack.Screen name="(new_game)/players_names" />
+                <Stack.Screen
+                  name="(new_game)/new_game"
+                  options={{ presentation: "card" }}
+                />
+                <Stack.Screen name="(new_game)/players_names" />
 
-              <Stack.Screen name="(new_game)/scan_intro" />
-              <Stack.Screen name="(new_game)/players_scans" />
-              <Stack.Screen name="(new_game)/view_roles" />
-              <Stack.Screen
-                name="(new_game)/roles_modal"
-                options={{ presentation: "modal" }}
-              />
-            </Stack>
-            <FlashMessage position="top" />
-          </ThemeProvider>
-        </NewGameContext.Provider>
+                <Stack.Screen name="(new_game)/scan_intro" />
+                <Stack.Screen name="(new_game)/players_scans" />
+                <Stack.Screen name="(new_game)/view_roles" />
+                <Stack.Screen
+                  name="(new_game)/roles_modal"
+                  options={{ presentation: "modal" }}
+                />
+              </Stack>
+              <FlashMessage position="top" />
+            </ThemeProvider>
+          </NewGameContext.Provider>
+        </BottomSheetModalProvider>
       </SoundProvider>
     </GestureHandlerRootView>
   );
