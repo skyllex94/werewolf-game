@@ -6,8 +6,6 @@ import { Audio } from "expo-av";
 import SoundContext from "@/contexts/SoundContext";
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-import BottomSheet from "@gorhom/bottom-sheet";
-import NewGameContext from "@/contexts/NewGameContext";
 import RoleEliminatedBS from "@/components/NewGame/RoleEliminatedBS";
 import {
   WakeWerewolfUI,
@@ -17,6 +15,7 @@ import {
   playSeerAssistance,
   playDoctorAssistance,
 } from "../../components/NewGame/VoiceAssistanceFunctions";
+import { StatusBar } from "expo-status-bar";
 
 interface Item {
   order: number;
@@ -25,7 +24,7 @@ interface Item {
   role: string;
 }
 
-export default function FirstNight() {
+export default function NightTime() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { players_roles } = params;
@@ -34,13 +33,11 @@ export default function FirstNight() {
   const [wolfHowling, setWolfHowling] = useState<Audio.Sound | null>(null);
   const [nightBackgroundSound, setNightBackgroundSound] =
     useState<Audio.Sound | null>(null);
-  const [werewolfAssist, setWerewolfAssist] = useState<Audio.Sound | null>(
-    null
-  );
+
   const [werewolvesOutnumber, setWerewolvesOutnumber] =
     useState<boolean>(false);
 
-  const playersRoles: Item[] = players_roles
+  const allPlayersInGame: Item[] = players_roles
     ? JSON.parse(players_roles as string)
     : [];
 
@@ -100,15 +97,7 @@ export default function FirstNight() {
     };
   }, [nightBackgroundSound]);
 
-  useEffect(() => {
-    return () => {
-      if (werewolfAssist) {
-        werewolfAssist.unloadAsync();
-      }
-    };
-  }, [werewolfAssist]);
-
-  // Adjust volume based on soundEnabled changes
+  // Adjust volume based on soundEnabled changed
   useEffect(() => {
     if (wolfHowling) {
       wolfHowling.setVolumeAsync(soundEnabled ? 0.3 : 0.0);
@@ -116,16 +105,13 @@ export default function FirstNight() {
     if (nightBackgroundSound) {
       nightBackgroundSound.setVolumeAsync(soundEnabled ? 0.1 : 0.0);
     }
-    if (werewolfAssist) {
-      werewolfAssist.setVolumeAsync(soundEnabled ? 0.7 : 0.0);
-    }
-  }, [soundEnabled, wolfHowling, nightBackgroundSound, werewolfAssist]);
+  }, [soundEnabled]);
 
   // Function to count the roles and generate prompts
   const gameChecks = () => {
     const roleCounts: { [role: string]: number } = {};
 
-    playersRoles.forEach((player) => {
+    allPlayersInGame.forEach((player) => {
       roleCounts[player.role] = (roleCounts[player.role] || 0) + 1;
     });
 
@@ -142,7 +128,7 @@ export default function FirstNight() {
 
   // Get unique roles for rendering unique components
   const uniqueRoles = Array.from(
-    new Set(playersRoles.map((player) => player.role))
+    new Set(allPlayersInGame.map((player) => player.role))
   );
 
   // Bottom Sheet setup
@@ -152,26 +138,21 @@ export default function FirstNight() {
     eliminatedRoleBSRef.current?.snapToIndex(0);
   };
 
-  const wakeUpAlertMessage = () =>
-    Alert.alert(
-      "Ready for the Day?",
-      "Are you sure you woke up all the roles through the night?",
-      [
-        {
-          text: "Yes",
-          onPress: () => {
-            return router.push({
-              pathname: "/day_time",
-              params: { players_roles },
-            });
-          },
-        },
-        { text: "No", onPress: () => null },
-      ]
-    );
+  // Stop all night sounds
+  function stopNightSounds() {
+    if (wolfHowling) {
+      wolfHowling.stopAsync() || undefined;
+      wolfHowling.unloadAsync() || undefined;
+    }
+    if (nightBackgroundSound) {
+      nightBackgroundSound.stopAsync() || undefined;
+      nightBackgroundSound.unloadAsync() || undefined;
+    }
+  }
 
   return (
     <SafeAreaView className="flex-1 relative">
+      <StatusBar style={"light"} />
       <Image
         className="absolute top-0 left-0 w-full h-[111%] z-[-1]"
         resizeMode="cover"
@@ -213,7 +194,10 @@ export default function FirstNight() {
         </View>
       )}
 
-      <RoleEliminatedBS ref={eliminatedRoleBSRef} />
+      <RoleEliminatedBS
+        ref={eliminatedRoleBSRef}
+        stopNightSounds={stopNightSounds}
+      />
 
       <View className="w-full items-center absolute bottom-10 z-[-1]">
         <Pressable

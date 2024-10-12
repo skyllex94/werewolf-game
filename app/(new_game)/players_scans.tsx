@@ -24,9 +24,11 @@ export default function PlayerScanCodesScreen() {
   const params = useLocalSearchParams();
   const { players_roles } = params;
 
-  // Parse the playersRoles array from JSON
-  const playersRoles = players_roles ? JSON.parse(players_roles as string) : [];
-  console.log("playersRoles:", playersRoles);
+  // Parse the allPlayersInGame array from JSON
+  const allPlayersInGame = players_roles
+    ? JSON.parse(players_roles as string)
+    : [];
+  console.log("allPlayersInGame:", allPlayersInGame);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -70,7 +72,7 @@ export default function PlayerScanCodesScreen() {
   // Function to handle the Next button press
   function moveToNextBarcode() {
     // Ensure we're not going beyond the last item
-    if (activeIndex < playersRoles.length - 1) {
+    if (activeIndex < allPlayersInGame.length - 1) {
       carouselRef.current?.scrollTo({ index: activeIndex + 1, animated: true });
     } else {
       router.push({
@@ -93,7 +95,7 @@ export default function PlayerScanCodesScreen() {
         ref={carouselRef}
         width={screenWidth}
         height={screenHeight / 1.4}
-        data={playersRoles}
+        data={allPlayersInGame}
         renderItem={renderItem}
         onSnapToItem={(index) => setActiveIndex(index)}
         mode="parallax"
@@ -107,14 +109,14 @@ export default function PlayerScanCodesScreen() {
       <View className="continue-button w-[100%] items-center absolute bottom-10">
         <View className="justify-center my-3">
           <Text className="text-center font-light text-[16px]">
-            {activeIndex + 1} / {playersRoles.length}
+            {activeIndex + 1} / {allPlayersInGame.length}
           </Text>
         </View>
         <TouchableOpacity
           onPress={moveToNextBarcode}
           className="bg-slate-300 items-center justify-center p-4 w-[90%] rounded-xl z-10"
         >
-          {activeIndex === playersRoles.length - 1 ? (
+          {activeIndex === allPlayersInGame.length - 1 ? (
             <Text className="text-[16px] font-bold">Start Game</Text>
           ) : (
             <Text className="text-[16px] font-bold">Next</Text>

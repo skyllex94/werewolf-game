@@ -4,7 +4,13 @@ import { Entypo, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import SoundContext from "@/contexts/SoundContext";
 
-export default function TopPaneInGame() {
+interface TopPaneInGameProps {
+  iconColor?: "black" | "white"; // Optional prop for icon color, default is white
+}
+
+export default function TopPaneInGame({
+  iconColor = "white",
+}: TopPaneInGameProps) {
   const router = useRouter();
   const { soundEnabled, setSoundEnabled } = useContext(SoundContext);
 
@@ -16,7 +22,7 @@ export default function TopPaneInGame() {
     <View className="flex-row justify-between">
       <View>
         <TouchableOpacity onPress={goBack} className="m-3 w-10 p-2">
-          <Ionicons name="arrow-back" size={24} color="white" />
+          <Ionicons name="arrow-back" size={24} color={iconColor} />
         </TouchableOpacity>
       </View>
 
@@ -29,7 +35,7 @@ export default function TopPaneInGame() {
             })
           }
         >
-          <FontAwesome5 name="users" size={24} color="white" />
+          <FontAwesome5 name="users" size={24} color={iconColor} />
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -37,9 +43,9 @@ export default function TopPaneInGame() {
           className="my-3 mx-5 w-10 p-2"
         >
           {soundEnabled ? (
-            <Entypo name="sound" size={24} color="white" />
+            <Entypo name="sound" size={24} color={iconColor} />
           ) : (
-            <Entypo name="sound-mute" size={24} color="white" />
+            <Entypo name="sound-mute" size={24} color={iconColor} />
           )}
         </TouchableOpacity>
       </View>

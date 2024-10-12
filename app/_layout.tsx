@@ -54,14 +54,27 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  // NewGameContext state - only initialized - defined in scan_intro
-  const [playersRoles, setPlayersRoles] = useState<object[]>([]);
+  // NewGameContext state - defined in scan_intro
+  const [allPlayersInGame, setAllPlayersInGame] = useState<object[]>([]);
+  // NewGameContext - defined in scan_intro
+  const [playersLeft, setPlayersLeft] = useState<object[]>([]);
+  // NewGameContext - defined in RoleEliminatedBS
+  const [eliminatedPlayers, setEliminatedPlayers] = useState<object[]>([]);
 
   return (
     <GestureHandlerRootView className="flex-1">
       <SoundProvider>
         <BottomSheetModalProvider>
-          <NewGameContext.Provider value={{ playersRoles, setPlayersRoles }}>
+          <NewGameContext.Provider
+            value={{
+              allPlayersInGame,
+              setAllPlayersInGame,
+              eliminatedPlayers,
+              setEliminatedPlayers,
+              playersLeft,
+              setPlayersLeft,
+            }}
+          >
             <ThemeProvider value={DefaultTheme}>
               <Stack screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="index" />
@@ -71,7 +84,6 @@ function RootLayoutNav() {
                   options={{ presentation: "card" }}
                 />
                 <Stack.Screen name="(new_game)/players_names" />
-
                 <Stack.Screen name="(new_game)/scan_intro" />
                 <Stack.Screen name="(new_game)/players_scans" />
                 <Stack.Screen name="(new_game)/view_roles" />

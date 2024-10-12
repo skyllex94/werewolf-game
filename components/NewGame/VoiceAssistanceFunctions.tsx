@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import { Audio } from "expo-av";
 
@@ -38,10 +38,31 @@ export async function playDoctorAssistance(
   if (sound) await sound.playAsync();
 }
 
-export function WakeWerewolfUI({
-  playWerewolfAssistance,
-  soundEnabled,
-}: WakeUIProps) {
+// Wake Werewolf voice assistance
+export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
+  useEffect(() => {
+    return () => {
+      sound?.unloadAsync();
+    };
+  }, [sound]);
+
+  useEffect(() => {
+    if (sound) {
+      sound.setVolumeAsync(soundEnabled ? 0.7 : 0.0);
+    }
+  }, [soundEnabled]);
+
+  const handlePlayWerewolfAssistance = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/assists/werewolf-assist.mp3"),
+      { volume: soundEnabled ? 0.7 : 0.0 }
+    );
+    setSound(sound);
+    await sound.playAsync();
+  };
+
   return (
     <View>
       <Text className="text-start text-white font-[16px]">
@@ -51,9 +72,7 @@ export function WakeWerewolfUI({
       <View className="items-start m-2">
         <Pressable
           className="bg-gray-700 p-3 rounded-md mt-2"
-          onPress={() =>
-            playWerewolfAssistance && playWerewolfAssistance(soundEnabled)
-          }
+          onPress={handlePlayWerewolfAssistance}
         >
           {({ pressed }) => (
             <Text
@@ -70,7 +89,31 @@ export function WakeWerewolfUI({
   );
 }
 
-export function WakeSeerUI({ playSeerAssistance, soundEnabled }: WakeUIProps) {
+// Wake Seer voice assistance
+export function WakeSeerUI({ soundEnabled }: WakeUIProps) {
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
+  useEffect(() => {
+    return () => {
+      sound?.unloadAsync();
+    };
+  }, [sound]);
+
+  useEffect(() => {
+    if (sound) {
+      sound.setVolumeAsync(soundEnabled ? 0.7 : 0.0);
+    }
+  }, [soundEnabled]);
+
+  const handlePlaySeerAssistance = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/assists/seer-assist.mp3"),
+      { volume: soundEnabled ? 0.7 : 0.0 }
+    );
+    setSound(sound);
+    await sound.playAsync();
+  };
+
   return (
     <View>
       <Text className="text-start text-white font-[16px]">
@@ -80,7 +123,7 @@ export function WakeSeerUI({ playSeerAssistance, soundEnabled }: WakeUIProps) {
       <View className="items-start m-2">
         <Pressable
           className="bg-gray-700 p-3 rounded-md"
-          onPress={() => playSeerAssistance && playSeerAssistance(soundEnabled)}
+          onPress={handlePlaySeerAssistance}
         >
           {({ pressed }) => (
             <Text
@@ -97,10 +140,33 @@ export function WakeSeerUI({ playSeerAssistance, soundEnabled }: WakeUIProps) {
   );
 }
 
-export function WakeDoctorUI({
-  playDoctorAssistance,
-  soundEnabled,
-}: WakeUIProps) {
+// Wake Doctor voice assistance
+export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
+  // Unloading sound
+  useEffect(() => {
+    return () => {
+      sound?.unloadAsync();
+    };
+  }, [sound]);
+
+  // Adjusting volume if global volume is changed
+  useEffect(() => {
+    if (sound) {
+      sound.setVolumeAsync(soundEnabled ? 0.7 : 0.0);
+    }
+  }, [soundEnabled]);
+
+  const handlePlayDoctorAssistance = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/assists/doctor-assist.mp3"),
+      { volume: soundEnabled ? 0.7 : 0.0 }
+    );
+    setSound(sound);
+    await sound.playAsync();
+  };
+
   return (
     <View>
       <Text className="text-start text-white font-[16px]">
@@ -110,9 +176,7 @@ export function WakeDoctorUI({
       <View className="items-start m-2">
         <Pressable
           className="bg-gray-700 p-3 rounded-md mt-2"
-          onPress={() =>
-            playDoctorAssistance && playDoctorAssistance(soundEnabled)
-          }
+          onPress={handlePlayDoctorAssistance}
         >
           {({ pressed }) => (
             <Text

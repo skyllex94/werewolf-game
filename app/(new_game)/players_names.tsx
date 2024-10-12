@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import { showMessage } from "react-native-flash-message";
 
 export default function PlayersNames() {
@@ -19,11 +18,11 @@ export default function PlayersNames() {
 
   const players = parseInt(total_players as string);
 
-  // console.log("total_players:", players, typeof players);
-  // console.log("characters:", characters);
-
   const [playerNames, setPlayerNames] = useState<string[]>(
-    Array(players).fill("")
+    // Array(players).fill("")
+
+    // Only Placeholders - Remove later *
+    ["Kamen", "Mikey", "Rossy"] //"Johnny", "Ponny", "Ronny", "Bonbonny"
   );
 
   function playerNamesChange(idx: number, text: string) {

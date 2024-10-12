@@ -17,8 +17,8 @@ export default function OperatorViewRoles() {
 
   const [rolesShown, setRolesShown] = useState<boolean>(false);
 
-  // Parse the playersRoles array from JSON
-  const playersRoles: Item[] = players_roles
+  // Parse the allPlayersInGame array from JSON
+  const allPlayersInGame: Item[] = players_roles
     ? JSON.parse(players_roles as string)
     : [];
 
@@ -28,7 +28,7 @@ export default function OperatorViewRoles() {
 
   function toFirstNight() {
     router.push({
-      pathname: "/first_night",
+      pathname: "/night_time",
       params: { players_roles },
     });
   }
@@ -65,7 +65,7 @@ export default function OperatorViewRoles() {
           className="flex-1 px-5 mb-20"
           showsVerticalScrollIndicator={false}
         >
-          {playersRoles.map((player, index) => (
+          {allPlayersInGame.map((player, index) => (
             <View
               key={index}
               className={`flex-row items-center py-2 px-4 ${

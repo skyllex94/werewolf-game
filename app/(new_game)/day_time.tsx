@@ -1,102 +1,120 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
+import TopPaneInGame from "@/components/TopPaneInGame";
 
-interface Item {
-  order: number;
-  name: string;
-  link: string;
-  role: string;
-}
+import CircularProgress from "react-native-circular-progress-indicator";
+import RoleEliminatedBS from "@/components/NewGame/RoleEliminatedBS";
 
 export default function DayTimeScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { players_roles } = params;
 
-  const [rolesShown, setRolesShown] = useState<boolean>(false);
+  // Bottom Sheet setup
+  const eliminatedRoleBSRef = useRef<any>(null);
 
-  // Parse the playersRoles array from JSON
-  const playersRoles: Item[] = players_roles
-    ? JSON.parse(players_roles as string)
-    : [];
+  const openEliminatedBottomSheet = () => {
+    eliminatedRoleBSRef.current?.snapToIndex(0);
+  };
 
-  function showAllRoles() {
-    setRolesShown(true);
-  }
+  const [time, setTime] = useState(300); // 300 seconds = 5 minutes
 
-  function toFirstNight() {
-    router.push({
-      pathname: "/first_night",
-      params: { players_roles },
-    });
-  }
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    if (time === 0) clearInterval(timer);
+
+    return () => clearInterval(timer); // Clean up the timer on unmount
+  }, [time]);
+
+  const handleContinuePress = () => {
+    if (time > 0) {
+      Alert.alert(
+        "Timer is not finished!",
+        "Do you want to continue to continue regardless?",
+        [
+          {
+            text: "Yes",
+            onPress: () => {
+              // Action to continue to the next night
+              Alert.alert("Continuing to the next phase...");
+              // Navigate to the next screen or perform your desired action here
+            },
+          },
+          {
+            text: "No",
+            onPress: () => console.log("Cancelled"),
+          },
+        ]
+      );
+    } else {
+      // Action to continue to the next night
+      Alert.alert("Continuing to the next phase...");
+      // Navigate to the next screen or perform your desired action here
+    }
+  };
+
+  // Stop all night sounds
+  function stopNightSounds() {}
 
   return (
     <SafeAreaView className="flex-1 h-[100%]">
-      {/* Header Image */}
-      <View className="items-center justify-center mt-8">
-        <Image
-          className="h-48 w-48"
-          source={require("../../assets/images/new_game/zzz.png")}
-        />
-      </View>
+      <StatusBar style={"dark"} />
+      <TopPaneInGame iconColor="black" />
 
       {/* Heading Text */}
       <Text className="text-center font-bold text-[20px] py-4">
-        It's Day Time
+        Day Time is Here
       </Text>
-      <Text className="text-center font-light text-[15px] px-10">
-        As the operator, you will get the village ready for their first night.
-        View each player's role below.
+      <Text className="text-start font-light text-[15px] px-10 mb-1">
+        The Village has 5 minutes to decide whether they can agree on a player
+        to vote out.
+      </Text>
+      <Text className="text-start font-light text-[15px] px-10">
+        There needs to be at least half of the Village to agree on a single
+        person in order to be agreed upon to be voted out.
       </Text>
 
-      {/* Table Header with vertical separator */}
-      <View className="flex-row items-center bg-slate-200 m-5 p-4 rounded-2xl">
-        <Text className="font-bold text-left flex-1">Player:</Text>
-        <View className="w-[0px] bg-gray-500 h-full mx-4" />
-        <Text className="font-bold text-left flex-1">Role:</Text>
+      <View className="items-center justify-center mt-24 shadow">
+        <CircularProgress
+          value={0}
+          radius={120}
+          maxValue={300}
+          initialValue={time}
+          activeStrokeWidth={35}
+          duration={time * 1000}
+          onAnimationComplete={() => alert("Time out!")}
+          progressValueStyle={{ display: "none" }} // Hide progress value text
+          activeStrokeSecondaryColor="teal" // Color for the active stroke
+          inActiveStrokeColor="black" // Color for the inactive stroke
+          dashedStrokeConfig={{
+            count: 150,
+            width: 2,
+          }}
+        />
+        <Text
+          className="absolute"
+          style={{ marginTop: 20, fontSize: 40, fontWeight: "bold" }}
+        >
+          {`${Math.floor(time / 60)}:${String(time % 60).padStart(2, "0")}`}
+        </Text>
       </View>
 
-      {rolesShown ? (
-        // Table Content: Players' roles
-        <ScrollView
-          className="flex-1 px-5 mb-20"
-          showsVerticalScrollIndicator={false}
-        >
-          {playersRoles.map((player, index) => (
-            <View
-              key={index}
-              className={`flex-row items-center py-2 px-4 ${
-                index % 2 === 0 ? "bg-slate-100" : "bg-slate-200"
-              } rounded-lg mb-2`}
-            >
-              <Text className="text-left flex-1">
-                {player.order}. {player.name}
-              </Text>
-              <View className="w-[0px] bg-gray-400 h-full mx-4" />
-              <Text className="text-left flex-1">{player.role}</Text>
-            </View>
-          ))}
-        </ScrollView>
-      ) : (
-        // View Roles Button
-        <View className="">
-          <TouchableOpacity
-            className="mx-5 p-3 bg-blue-700 rounded-xl w-[40%] shadow-md"
-            onPress={showAllRoles}
-          >
-            <Text className="text-center text-white">View Roles</Text>
-          </TouchableOpacity>
-        </View>
-      )}
+      <RoleEliminatedBS
+        ref={eliminatedRoleBSRef}
+        stopNightSounds={stopNightSounds}
+      />
 
       {/* Continue Button */}
-      <View className="continue-button w-[100%] items-center absolute bottom-10">
+      <View className="continue-button w-[100%] items-center absolute bottom-10 z-[-1]">
         <TouchableOpacity
-          onPress={toFirstNight}
           className="bg-slate-300 items-center justify-center p-4 w-[90%] rounded-xl z-10"
+          onPress={openEliminatedBottomSheet}
         >
           <Text className="text-[16px] font-bold">Continue</Text>
         </TouchableOpacity>

@@ -11,13 +11,12 @@ export default function IntroScanScreen() {
   const params = useLocalSearchParams();
 
   const { characters_data, players_names } = params;
-  const { playersRoles, setPlayersRoles } = useContext(NewGameContext);
+  const { allPlayersInGame, setAllPlayersInGame, setPlayersLeft } =
+    useContext(NewGameContext);
 
   // players_names - ["Lilly", "Michael", "Lucy", "Mary", "Nige", "Garf"] - string
   // characters_data - [{"type":"Villager","amount":3},{"type":"Werewolf","amount":1},
   //  {"type":"Seer","amount":1},{"type":"Doctor","amount":1}] - string
-
-  console.log(playersRoles);
 
   useEffect(() => {
     // Prepare and execute assigning roles to players
@@ -37,7 +36,11 @@ export default function IntroScanScreen() {
       }
 
       // Assign random roles to each player
-      setPlayersRoles(assignRolesToPlayers(characters, playersNames));
+      const rolesAssigned = assignRolesToPlayers(characters, playersNames);
+
+      // Initially the players left is the same as allPlayersInGame
+      setAllPlayersInGame(rolesAssigned);
+      setPlayersLeft(rolesAssigned);
     } catch (err) {
       console.error("Error while assigning the roles to players: ", err);
       showMessage({
@@ -48,14 +51,12 @@ export default function IntroScanScreen() {
   }, [characters_data, players_names]);
 
   function showPlayersCodes() {
-    console.log(playersRoles, typeof playersRoles);
-
     try {
-      if (playersRoles.length > 0) {
+      if (allPlayersInGame.length > 0) {
         router.push({
           pathname: "/players_scans",
           params: {
-            players_roles: JSON.stringify(playersRoles),
+            players_roles: JSON.stringify(allPlayersInGame),
           },
         });
       } else {

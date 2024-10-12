@@ -14,8 +14,8 @@ interface Item {
 
 export default function ViewRolesModal() {
   const router = useRouter();
-  const { playersRoles } = useContext(NewGameContext);
-  console.log("playersRoles:", playersRoles);
+  const { allPlayersInGame } = useContext(NewGameContext);
+  console.log("allPlayersInGame:", allPlayersInGame);
 
   return (
     <SafeAreaView className="flex-1 h-[100%]">
@@ -42,7 +42,7 @@ export default function ViewRolesModal() {
           className="flex-1 px-5 mb-20"
           showsVerticalScrollIndicator={false}
         >
-          {playersRoles.map((player: Item, index: number) => (
+          {allPlayersInGame.map((player: Item, index: number) => (
             <View
               key={index}
               className={`flex-row items-center py-2 px-4 ${

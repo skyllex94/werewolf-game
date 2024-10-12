@@ -1,27 +1,34 @@
-import { View, Text, Pressable } from "react-native";
-import React, {
-  useCallback,
-  useMemo,
-  forwardRef,
-  useContext,
-  useState,
-} from "react";
+import { View, Text, Pressable, Alert } from "react-native";
+import React, { useCallback, useMemo, forwardRef, useContext } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import NewGameContext from "@/contexts/NewGameContext";
 import { truncate } from "@/functions/functions";
+import { useRouter } from "expo-router";
 
-type RoleEliminatedBSProps = {};
+type RoleEliminatedBSProps = {
+  stopNightSounds: () => void; // Accept stopAllSounds as a prop
+};
 
 const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
   (props, eliminatedRoleBSRef) => {
-    const { playersRoles } = useContext(NewGameContext);
+    const {
+      // Total players for this game
+      allPlayersInGame,
+      // Eliminated players by the werewolves
+      eliminatedPlayers,
+      setEliminatedPlayers,
+      // allPlayersInGame - eliminatedPlayers = playersLeft
+      playersLeft,
+      setPlayersLeft,
+    } = useContext(NewGameContext);
 
-    // State to keep track of selected eliminated players and players left
-    const [eliminatedPlayers, setEliminatedPlayers] = useState<any[]>([]);
-    const [playersLeft, setPlayersLeft] = useState<any[]>(playersRoles); // Initially, all players are left
+    const router = useRouter();
 
+    // Bottom sheet properties
     const snapPoints = useMemo(() => ["50%"], []);
+
+    const { stopNightSounds } = props;
 
     const openEliminatedBottomSheet = () => {
       if (eliminatedRoleBSRef && "current" in eliminatedRoleBSRef) {
@@ -38,10 +45,10 @@ const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
 
     // Function to toggle player selection
     const togglePlayerSelection = (player: any) => {
-      if (eliminatedPlayers.find((p) => p.order === player.order)) {
+      if (eliminatedPlayers.find((p: any) => p.order === player.order)) {
         // If already selected, remove from selection
         setEliminatedPlayers(
-          eliminatedPlayers.filter((p) => p.order !== player.order)
+          eliminatedPlayers.filter((p: any) => p.order !== player.order)
         );
       } else {
         // Otherwise, add to selection
@@ -51,12 +58,41 @@ const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
 
     // Function to confirm the eliminations and update playersLeft
     const confirmEliminations = () => {
-      const remainingPlayers = playersRoles.filter(
-        (player: any) => !eliminatedPlayers.includes(player)
-      );
-      setPlayersLeft(remainingPlayers);
-      console.log("Players left:", remainingPlayers);
+      confirmActions();
     };
+
+    function confirmActions() {
+      const eliminatedPlayerNames = eliminatedPlayers
+        .map((player: any) => player.name)
+        .join(", ");
+
+      // Determine if it's "Player" or "Players"
+      const playerLabel = eliminatedPlayers.length === 1 ? "Player" : "Players";
+
+      // If no players are eliminated, show a different message
+      const eliminationMessage = eliminatedPlayerNames
+        ? `${playerLabel}: ${eliminatedPlayerNames} will be removed from the game.`
+        : "No players will be removed from the game.";
+
+      return Alert.alert("Ready for the Day?", eliminationMessage, [
+        {
+          text: "Yes",
+          onPress: () => {
+            const remainingPlayers = playersLeft.filter(
+              (player: any) => !eliminatedPlayers.includes(player)
+            );
+            setPlayersLeft(remainingPlayers);
+            console.log("Players left:", remainingPlayers);
+
+            stopNightSounds();
+            router.push({
+              pathname: "/day_time",
+            });
+          },
+        },
+        { text: "No", onPress: () => null },
+      ]);
+    }
 
     return (
       <BottomSheet
@@ -76,7 +112,7 @@ const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
 
           <ScrollView showsVerticalScrollIndicator={false} className="mb-24">
             <View className="flex-row flex-wrap justify-start p-2 w-full">
-              {playersRoles
+              {playersLeft
                 // Filter out Werewolves
                 .filter((player: any) => player.role !== "Werewolf")
                 .map((player: any) => (
@@ -84,7 +120,9 @@ const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                     <TouchableOpacity
                       onPress={() => togglePlayerSelection(player)}
                       className={`rounded-lg p-3 m-1 mb-2 items-center ${
-                        eliminatedPlayers.find((p) => p.order === player.order)
+                        eliminatedPlayers.find(
+                          (p: any) => p.order === player.order
+                        )
                           ? "bg-green-300"
                           : "bg-gray-300"
                       }`}
@@ -115,7 +153,7 @@ const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
             </View>
           </ScrollView>
 
-          {/* Continue Button */}
+          {/* Confirm Button */}
           <View className="w-full items-center absolute bottom-10 z-[-1]">
             <Pressable
               className="bg-green-300 items-center justify-center p-4 w-[95%] rounded-xl"
