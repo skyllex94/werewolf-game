@@ -56,6 +56,7 @@ export default function NightTime() {
 
   // Load and play the wolf howling sound
   async function playWolfHowling() {
+    console.log("playWolfHowling:", playWolfHowling);
     const { sound } = await Audio.Sound.createAsync(
       require("../../assets/audio/wolf-howling.mp3"),
       { volume: soundEnabled ? 0.3 : 0.0 }
@@ -67,7 +68,9 @@ export default function NightTime() {
   }
 
   // Load and play the night background sound
+  // TODO: Decide whether or not to play the sound when silent mode on
   async function playNightBackground() {
+    console.log("playNightBackground:", playNightBackground);
     const { sound } = await Audio.Sound.createAsync(
       require("../../assets/audio/night-background.mp3"),
       { isLooping: true, volume: soundEnabled ? 0.1 : 0.0 }

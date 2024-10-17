@@ -6,12 +6,15 @@ import { StatusBar } from "expo-status-bar";
 import TopPaneInGame from "@/components/TopPaneInGame";
 
 import CircularProgress from "react-native-circular-progress-indicator";
-import RoleEliminatedBS from "@/components/NewGame/RoleEliminatedBS";
+
+import { FontAwesome } from "@expo/vector-icons";
+import SoundManager from "@/components/NewGame/DaySoundManager";
+import DayEliminationBottomSheet from "@/components/NewGame/DayRoleEliminationBS";
 
 export default function DayTimeScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
-  const { players_roles } = params;
+  const [dayTimeSounds, setDayTimeSounds] = useState<boolean>(true);
 
   // Bottom Sheet setup
   const eliminatedRoleBSRef = useRef<any>(null);
@@ -21,29 +24,39 @@ export default function DayTimeScreen() {
   };
 
   const [time, setTime] = useState(300); // 300 seconds = 5 minutes
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Ref to control CircularProgress
+  const circularProgressRef = useRef<any>(null);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
+    let timer: NodeJS.Timeout | undefined;
 
-    if (time === 0) clearInterval(timer);
+    if (!isPaused) {
+      timer = setInterval(() => {
+        setTime((prev) => (prev > 0 ? prev - 1 : 0));
+      }, 1000);
+    }
 
-    return () => clearInterval(timer); // Clean up the timer on unmount
-  }, [time]);
+    // Only clear the timer if it exists
+    if (time === 0 && timer) clearInterval(timer);
+
+    // Clean up the timer on unmount if it exists
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [time, isPaused]);
 
   const handleContinuePress = () => {
     if (time > 0) {
       Alert.alert(
         "Timer is not finished!",
-        "Do you want to continue to continue regardless?",
+        "Do you want to continue regardless?",
         [
           {
             text: "Yes",
             onPress: () => {
-              // Action to continue to the next night
               Alert.alert("Continuing to the next phase...");
-              // Navigate to the next screen or perform your desired action here
             },
           },
           {
@@ -53,19 +66,29 @@ export default function DayTimeScreen() {
         ]
       );
     } else {
-      // Action to continue to the next night
       Alert.alert("Continuing to the next phase...");
-      // Navigate to the next screen or perform your desired action here
     }
   };
 
-  // Stop all night sounds
-  function stopNightSounds() {}
+  // Handle play/pause toggle
+  const togglePausePlay = () => {
+    setIsPaused((prev) => !prev);
+
+    if (circularProgressRef.current) {
+      if (isPaused) {
+        circularProgressRef.current.play();
+      } else {
+        circularProgressRef.current.pause();
+      }
+    }
+  };
 
   return (
     <SafeAreaView className="flex-1 h-[100%]">
       <StatusBar style={"dark"} />
       <TopPaneInGame iconColor="black" />
+      {/* Add SoundManager to loop day-bg-sound */}
+      <SoundManager dayTimeSounds={dayTimeSounds} />
 
       {/* Heading Text */}
       <Text className="text-center font-bold text-[20px] py-4">
@@ -77,11 +100,12 @@ export default function DayTimeScreen() {
       </Text>
       <Text className="text-start font-light text-[15px] px-10">
         There needs to be at least half of the Village to agree on a single
-        person in order to be agreed upon to be voted out.
+        person in order for that person to be voted out.
       </Text>
-
-      <View className="items-center justify-center mt-24 shadow">
+      <View className="items-center justify-center mt-24">
         <CircularProgress
+          // Ref controlling the animation
+          ref={circularProgressRef}
           value={0}
           radius={120}
           maxValue={300}
@@ -89,9 +113,9 @@ export default function DayTimeScreen() {
           activeStrokeWidth={35}
           duration={time * 1000}
           onAnimationComplete={() => alert("Time out!")}
-          progressValueStyle={{ display: "none" }} // Hide progress value text
-          activeStrokeSecondaryColor="teal" // Color for the active stroke
-          inActiveStrokeColor="black" // Color for the inactive stroke
+          progressValueStyle={{ display: "none" }}
+          activeStrokeSecondaryColor="teal"
+          inActiveStrokeColor="black"
           dashedStrokeConfig={{
             count: 150,
             width: 2,
@@ -105,10 +129,35 @@ export default function DayTimeScreen() {
         </Text>
       </View>
 
-      <RoleEliminatedBS
+      {/* Bottom Sheet Role Elimination  */}
+      <DayEliminationBottomSheet
         ref={eliminatedRoleBSRef}
-        stopNightSounds={stopNightSounds}
+        setDayTimeSounds={setDayTimeSounds}
       />
+
+      {/* Pause/Play Button */}
+      <View className="w-full items-center mt-10 z-[-1]">
+        <TouchableOpacity
+          className={`flex-row p-4 w-[30%] items-center justify-center rounded-xl ${
+            isPaused ? "bg-green-500" : "bg-transparent border border-gray-500"
+          }`}
+          onPress={togglePausePlay}
+        >
+          {isPaused ? (
+            <FontAwesome name="play" size={18} color="white" />
+          ) : (
+            <FontAwesome name="pause" size={18} color="black" />
+          )}
+
+          <Text
+            className={`text-[16px] font-bold ${
+              isPaused ? "text-white" : "text-black"
+            } mx-2`}
+          >
+            {isPaused ? "Play" : "Pause"}
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       {/* Continue Button */}
       <View className="continue-button w-[100%] items-center absolute bottom-10 z-[-1]">
