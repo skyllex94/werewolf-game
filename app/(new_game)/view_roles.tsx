@@ -29,7 +29,6 @@ export default function OperatorViewRoles() {
   function toFirstNight() {
     router.push({
       pathname: "/night_time",
-      params: { players_roles },
     });
   }
 

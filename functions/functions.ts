@@ -1,3 +1,5 @@
+import { router } from "expo-router";
+
 // Function to shuffle an array
 export function shuffleArray(array: any[]) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -25,6 +27,16 @@ export function assignRolesToPlayers(
     Werewolf:
       "https://werewolf-app.netlify.app/bbb3606b5cab898386e0d9590278068e", // Link for Werewolf role
     Seer: "https://werewolf-app.netlify.app/34b81f08e80d23ea2454472421070786", // Link for Seer role
+    Doctor: "https://werewolf-app.netlify.app/doctor-role-link", // Add Doctor link
+  };
+
+  // Define a mapping of roles to their types (good, bad or independent)
+  const roleTypes: { [key: string]: "good" | "bad" | "independent" } = {
+    Villager: "good",
+    Werewolf: "bad",
+    Seer: "good",
+    Doctor: "good",
+    Tanner: "independent",
   };
 
   // Ensure characters is a valid array
@@ -45,6 +57,7 @@ export function assignRolesToPlayers(
       order: idx + 1,
       role: role,
       link: roleLinks[role] || "https://example.com/no-role",
+      type: roleTypes[role] || "good",
     };
   });
 
@@ -56,4 +69,47 @@ export function truncate(text: string, maxLength: number = 10) {
     return text;
   }
   return text.slice(0, maxLength) + "...";
+}
+
+export function checkForWinner(remainingPlayers: any, isDay: boolean) {
+  // Count the number of good and bad players remaining
+  const goodRoles = ["Villager", "Seer", "Doctor"];
+  const badRoles = ["Werewolf"];
+  const goodPlayersCount = remainingPlayers.filter((player: any) =>
+    goodRoles.includes(player.role)
+  ).length;
+
+  console.log("goodPlayersCount:", goodPlayersCount);
+
+  const badPlayersCount = remainingPlayers.filter((player: any) =>
+    badRoles.includes(player.role)
+  ).length;
+
+  console.log("badPlayersCount:", badPlayersCount);
+
+  // Determine if the game is won
+  if (badPlayersCount >= goodPlayersCount) {
+    // Bad players win
+    router.push({
+      pathname: "/game_winner",
+      params: { winner: "bad" },
+    });
+  } else if (badPlayersCount === 0) {
+    // Good players win
+    router.push({
+      pathname: "/game_winner",
+      params: { winner: "good" },
+    });
+  } else {
+    // Continue the game if no winner yet
+    if (isDay) {
+      router.push({
+        pathname: "/night_time",
+      });
+    } else {
+      router.push({
+        pathname: "/day_time",
+      });
+    }
+  }
 }

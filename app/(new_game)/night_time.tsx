@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { View, Text, Pressable, Image, Alert } from "react-native";
-import { useRouter, useLocalSearchParams } from "expo-router";
 import TopPaneInGame from "@/components/TopPaneInGame";
 import { Audio } from "expo-av";
 import SoundContext from "@/contexts/SoundContext";
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-import RoleEliminatedBS from "@/components/NewGame/RoleEliminatedBS";
+import NightEliminationBottomSheet from "@/components/NewGame/NightEliminationBS";
 import {
   WakeWerewolfUI,
   WakeSeerUI,
@@ -16,6 +15,7 @@ import {
   playDoctorAssistance,
 } from "../../components/NewGame/VoiceAssistanceFunctions";
 import { StatusBar } from "expo-status-bar";
+import NewGameContext from "@/contexts/NewGameContext";
 
 interface Item {
   order: number;
@@ -25,10 +25,9 @@ interface Item {
 }
 
 export default function NightTime() {
-  const router = useRouter();
-  const params = useLocalSearchParams();
-  const { players_roles } = params;
+  // Context states
   const { soundEnabled } = useContext(SoundContext);
+  const { playersLeft } = useContext(NewGameContext);
 
   const [wolfHowling, setWolfHowling] = useState<Audio.Sound | null>(null);
   const [nightBackgroundSound, setNightBackgroundSound] =
@@ -37,9 +36,7 @@ export default function NightTime() {
   const [werewolvesOutnumber, setWerewolvesOutnumber] =
     useState<boolean>(false);
 
-  const allPlayersInGame: Item[] = players_roles
-    ? JSON.parse(players_roles as string)
-    : [];
+  const allPlayersInGame = playersLeft;
 
   // Mapping the roles to their corresponding UI component
   const roleComponents: { [key: string]: any } = {
@@ -51,12 +48,10 @@ export default function NightTime() {
   useEffect(() => {
     playWolfHowling();
     playNightBackground();
-    gameChecks();
   }, []);
 
   // Load and play the wolf howling sound
   async function playWolfHowling() {
-    console.log("playWolfHowling:", playWolfHowling);
     const { sound } = await Audio.Sound.createAsync(
       require("../../assets/audio/wolf-howling.mp3"),
       { volume: soundEnabled ? 0.3 : 0.0 }
@@ -70,7 +65,6 @@ export default function NightTime() {
   // Load and play the night background sound
   // TODO: Decide whether or not to play the sound when silent mode on
   async function playNightBackground() {
-    console.log("playNightBackground:", playNightBackground);
     const { sound } = await Audio.Sound.createAsync(
       require("../../assets/audio/night-background.mp3"),
       { isLooping: true, volume: soundEnabled ? 0.1 : 0.0 }
@@ -110,28 +104,9 @@ export default function NightTime() {
     }
   }, [soundEnabled]);
 
-  // Function to count the roles and generate prompts
-  const gameChecks = () => {
-    const roleCounts: { [role: string]: number } = {};
-
-    allPlayersInGame.forEach((player) => {
-      roleCounts[player.role] = (roleCounts[player.role] || 0) + 1;
-    });
-
-    const werewolfCount = roleCounts["Werewolf"] || 0;
-    const othersCount =
-      (roleCounts["Villager"] || 0) +
-      (roleCounts["Doctor"] || 0) +
-      (roleCounts["Seer"] || 0);
-
-    if (werewolfCount > othersCount) {
-      setWerewolvesOutnumber(true);
-    }
-  };
-
   // Get unique roles for rendering unique components
   const uniqueRoles = Array.from(
-    new Set(allPlayersInGame.map((player) => player.role))
+    new Set(allPlayersInGame.map((player: Item) => player.role))
   );
 
   // Bottom Sheet setup
@@ -173,7 +148,7 @@ export default function NightTime() {
 
       <ScrollView showsVerticalScrollIndicator={false} className="mb-20">
         <View className="mt-4 px-10">
-          {uniqueRoles.map((role) => {
+          {uniqueRoles.map((role: any) => {
             const RoleUI = roleComponents[role];
             return RoleUI ? (
               <RoleUI
@@ -197,7 +172,8 @@ export default function NightTime() {
         </View>
       )}
 
-      <RoleEliminatedBS
+      {/* Bottom Sheet - Continuing to Day time */}
+      <NightEliminationBottomSheet
         ref={eliminatedRoleBSRef}
         stopNightSounds={stopNightSounds}
       />

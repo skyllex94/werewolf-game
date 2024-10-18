@@ -8,13 +8,13 @@ import Carousel from "react-native-reanimated-carousel";
 
 // QR code generator
 import QRCode from "react-fancy-qrcode";
-import NewGameContext from "@/contexts/NewGameContext";
 
 interface Item {
   order: number;
   name: string;
   link: string;
   role: string;
+  type: string;
 }
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
@@ -23,12 +23,12 @@ export default function PlayerScanCodesScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { players_roles } = params;
+  console.log("players_roles:", players_roles);
 
   // Parse the allPlayersInGame array from JSON
   const allPlayersInGame = players_roles
     ? JSON.parse(players_roles as string)
     : [];
-  console.log("allPlayersInGame:", allPlayersInGame);
 
   const [activeIndex, setActiveIndex] = useState(0);
 

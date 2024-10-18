@@ -1,75 +1,66 @@
 import { View, Text, Pressable, Alert } from "react-native";
-import React, { useCallback, useMemo, forwardRef, useContext } from "react";
+import React, {
+  useCallback,
+  useMemo,
+  forwardRef,
+  useState,
+  useContext,
+} from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import NewGameContext from "@/contexts/NewGameContext";
-import { truncate } from "@/functions/functions";
-import { useRouter } from "expo-router";
+import { checkForWinner, truncate } from "@/functions/functions";
 
 type RoleEliminatedBSProps = {
-  stopNightSounds: () => void; // Accept stopAllSounds as a prop
+  stopNightSounds: () => void;
 };
 
-const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
+const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
   (props, eliminatedRoleBSRef) => {
     const {
-      // Total players for this game
       allPlayersInGame,
-      // Eliminated players by the werewolves
       eliminatedPlayers,
       setEliminatedPlayers,
-      // allPlayersInGame - eliminatedPlayers = playersLeft
       playersLeft,
       setPlayersLeft,
     } = useContext(NewGameContext);
 
-    const router = useRouter();
+    const [showAll, setShowAll] = useState(false); // State to toggle filtering
 
-    // Bottom sheet properties
     const snapPoints = useMemo(() => ["50%"], []);
 
     const { stopNightSounds } = props;
 
     const openEliminatedBottomSheet = () => {
       if (eliminatedRoleBSRef && "current" in eliminatedRoleBSRef) {
-        eliminatedRoleBSRef.current?.snapToIndex(0); // Open halfway
+        eliminatedRoleBSRef.current?.snapToIndex(0);
       }
     };
 
-    // Function to close the Bottom Sheet
     const closeEliminatedRoleBS = useCallback(() => {
       if (eliminatedRoleBSRef && "current" in eliminatedRoleBSRef) {
         eliminatedRoleBSRef.current?.close();
       }
     }, [eliminatedRoleBSRef]);
 
-    // Function to toggle player selection
     const togglePlayerSelection = (player: any) => {
       if (eliminatedPlayers.find((p: any) => p.order === player.order)) {
-        // If already selected, remove from selection
         setEliminatedPlayers(
           eliminatedPlayers.filter((p: any) => p.order !== player.order)
         );
       } else {
-        // Otherwise, add to selection
         setEliminatedPlayers([...eliminatedPlayers, player]);
       }
     };
 
-    // Function to confirm the eliminations and update playersLeft
-    const confirmEliminations = () => {
-      confirmActions();
-    };
-
-    function confirmActions() {
+    const confirmElimination = () => {
+      const isDay = false;
       const eliminatedPlayerNames = eliminatedPlayers
         .map((player: any) => player.name)
         .join(", ");
 
-      // Determine if it's "Player" or "Players"
       const playerLabel = eliminatedPlayers.length === 1 ? "Player" : "Players";
 
-      // If no players are eliminated, show a different message
       const eliminationMessage = eliminatedPlayerNames
         ? `${playerLabel}: ${eliminatedPlayerNames} will be removed from the game.`
         : "No players will be removed from the game.";
@@ -82,22 +73,23 @@ const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
               (player: any) => !eliminatedPlayers.includes(player)
             );
             setPlayersLeft(remainingPlayers);
-            console.log("Players left:", remainingPlayers);
-
             stopNightSounds();
-            router.push({
-              pathname: "/day_time",
-            });
+
+            checkForWinner(remainingPlayers, isDay);
           },
         },
         { text: "No", onPress: () => null },
       ]);
-    }
+    };
+
+    const toggleShowAll = () => {
+      setShowAll(!showAll);
+    };
 
     return (
       <BottomSheet
         ref={eliminatedRoleBSRef}
-        index={-1} // Initially closed
+        index={-1}
         snapPoints={snapPoints}
         enablePanDownToClose={true}
         enableOverDrag={true}
@@ -110,13 +102,16 @@ const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
             </Text>
           </View>
 
-          <ScrollView showsVerticalScrollIndicator={false} className="mb-24">
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            className="w-full mb-24"
+          >
             <View className="flex-row flex-wrap justify-start p-2 w-full">
               {playersLeft
-                // Filter out Werewolves
-                .filter((player: any) => player.role !== "Werewolf")
+                // Conditionally filter out Werewolves
+                .filter((player: any) => showAll || player.role !== "Werewolf")
                 .map((player: any) => (
-                  <View className="w-[33.3%]" key={player.order}>
+                  <View className="w-[33.3%] max-w-[33.3%]" key={player.order}>
                     <TouchableOpacity
                       onPress={() => togglePlayerSelection(player)}
                       className={`rounded-lg p-3 m-1 mb-2 items-center ${
@@ -133,8 +128,7 @@ const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                   </View>
                 ))}
 
-              {/* "No Role Eliminated" Button */}
-              <View className="w-[33.3%]">
+              <View className="w-[33.3%] max-w-[33.3%]">
                 <TouchableOpacity
                   onPress={() => {
                     setEliminatedPlayers([]);
@@ -153,11 +147,12 @@ const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
             </View>
           </ScrollView>
 
-          {/* Confirm Button */}
-          <View className="w-full items-center absolute bottom-10 z-[-1]">
+          {/* Buttons Section */}
+          <View className="w-full flex-row justify-between items-center absolute bottom-10 px-3 z-[-1]">
+            {/* Confirm Button */}
             <Pressable
-              className="bg-green-300 items-center justify-center p-4 w-[95%] rounded-xl"
-              onPress={confirmEliminations} // Confirm eliminations when pressed
+              className="bg-green-300 items-center justify-center border border-green-300 p-4 w-[65%] rounded-xl"
+              onPress={confirmElimination}
             >
               {({ pressed }) => (
                 <Text
@@ -169,6 +164,23 @@ const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                 </Text>
               )}
             </Pressable>
+
+            {/* Show All Button */}
+            <Pressable
+              className="bg-white items-center justify-center border 
+              border-transparent p-4 w-[32%] rounded-xl"
+              onPress={toggleShowAll}
+            >
+              {({ pressed }) => (
+                <Text
+                  className={`text-[16px] font-bold ${
+                    pressed ? "opacity-70" : "opacity-100"
+                  }`}
+                >
+                  {showAll ? "No Wolves" : "Show All"}
+                </Text>
+              )}
+            </Pressable>
           </View>
         </View>
       </BottomSheet>
@@ -176,4 +188,4 @@ const RoleEliminatedBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
   }
 );
 
-export default RoleEliminatedBS;
+export default NightEliminationBS;

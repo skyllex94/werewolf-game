@@ -13,7 +13,7 @@ import { SoundProvider } from "./../contexts/SoundContext";
 import NewGameContext from "@/contexts/NewGameContext";
 
 // Bottom sheet imports
-import BottomSheet, { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 export {
   // Catch any errors thrown by the Layout component.

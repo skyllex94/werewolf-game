@@ -3,7 +3,7 @@ import React, { useCallback, useMemo, forwardRef, useContext } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import NewGameContext from "@/contexts/NewGameContext";
-import { truncate } from "@/functions/functions";
+import { checkForWinner, truncate } from "@/functions/functions";
 import { useRouter } from "expo-router";
 
 type RoleEliminatedBSProps = {
@@ -15,7 +15,7 @@ const DayEliminationBottomSheet = forwardRef<
   RoleEliminatedBSProps
 >((props, eliminatedRoleBSRef) => {
   const {
-    // Eliminated players by the werewolves
+    // Total eliminated players from the game
     eliminatedPlayers,
     setEliminatedPlayers,
     // allPlayersInGame - eliminatedPlayers = playersLeft
@@ -56,11 +56,8 @@ const DayEliminationBottomSheet = forwardRef<
   };
 
   // Function to confirm the eliminations and update playersLeft
-  const confirmEliminations = () => {
-    confirmActions();
-  };
-
-  function confirmActions() {
+  function confirmElimination() {
+    const isDay = true;
     const eliminatedPlayerNames = eliminatedPlayers
       .map((player: any) => player.name)
       .join(", ");
@@ -86,9 +83,8 @@ const DayEliminationBottomSheet = forwardRef<
           // Shut down all audio from the day time
           setDayTimeSounds(false);
 
-          router.push({
-            pathname: "/night_time",
-          });
+          // Check for a winning condition
+          checkForWinner(remainingPlayers, isDay);
         },
       },
       { text: "No", onPress: () => null },
@@ -111,28 +107,26 @@ const DayEliminationBottomSheet = forwardRef<
           </Text>
         </View>
 
-        <ScrollView showsVerticalScrollIndicator={false} className="mb-24">
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          className="w-full mb-24"
+        >
           <View className="flex-row flex-wrap justify-start p-2 w-full">
-            {playersLeft
-              // Filter out Werewolves
-              .filter((player: any) => player.role !== "Werewolf")
-              .map((player: any) => (
-                <View className="w-[33.3%]" key={player.order}>
-                  <TouchableOpacity
-                    onPress={() => togglePlayerSelection(player)}
-                    className={`rounded-lg p-3 m-1 mb-2 items-center ${
-                      eliminatedPlayers.find(
-                        (p: any) => p.order === player.order
-                      )
-                        ? "bg-green-300"
-                        : "bg-gray-300"
-                    }`}
-                  >
-                    <Text className="font-bold">{truncate(player.name)}</Text>
-                    <Text className="text-xs">{player.role}</Text>
-                  </TouchableOpacity>
-                </View>
-              ))}
+            {playersLeft.map((player: any) => (
+              <View className="w-[33.3%]" key={player.order}>
+                <TouchableOpacity
+                  onPress={() => togglePlayerSelection(player)}
+                  className={`rounded-lg p-3 m-1 mb-2 items-center ${
+                    eliminatedPlayers.find((p: any) => p.order === player.order)
+                      ? "bg-green-300"
+                      : "bg-gray-300"
+                  }`}
+                >
+                  <Text className="font-bold">{truncate(player.name)}</Text>
+                  <Text className="text-xs">{player.role}</Text>
+                </TouchableOpacity>
+              </View>
+            ))}
 
             {/* "No Role Eliminated" Button */}
             <View className="w-[33.3%]">
@@ -158,7 +152,7 @@ const DayEliminationBottomSheet = forwardRef<
         <View className="w-full items-center absolute bottom-10 z-[-1]">
           <Pressable
             className="bg-green-300 items-center justify-center p-4 w-[95%] rounded-xl"
-            onPress={confirmEliminations} // Confirm eliminations when pressed
+            onPress={confirmElimination} // Confirm eliminations when pressed
           >
             {({ pressed }) => (
               <Text

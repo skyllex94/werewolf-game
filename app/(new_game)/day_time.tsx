@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
-import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import TopPaneInGame from "@/components/TopPaneInGame";
@@ -12,8 +11,6 @@ import SoundManager from "@/components/NewGame/DaySoundManager";
 import DayEliminationBottomSheet from "@/components/NewGame/DayRoleEliminationBS";
 
 export default function DayTimeScreen() {
-  const router = useRouter();
-  const params = useLocalSearchParams();
   const [dayTimeSounds, setDayTimeSounds] = useState<boolean>(true);
 
   // Bottom Sheet setup
@@ -61,7 +58,7 @@ export default function DayTimeScreen() {
           },
           {
             text: "No",
-            onPress: () => console.log("Cancelled"),
+            onPress: () => {},
           },
         ]
       );
