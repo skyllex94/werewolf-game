@@ -6,9 +6,6 @@ import { Image, ScrollView, TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { Link } from "expo-router";
 
-// New Game Context
-import NewGameContext from "../../contexts/NewGameContext";
-
 export default function ModalScreen() {
   const [characters, setCharacters] = useState([
     {
@@ -32,8 +29,28 @@ export default function ModalScreen() {
       amount: 0,
     },
     {
+      name: "Bodyguard",
+      image: require("../../assets/images/characters/bodyguard.jpeg"),
+      amount: 0,
+    },
+    {
+      name: "Hunter",
+      image: require("../../assets/images/characters/hunter21.jpg"),
+      amount: 0,
+    },
+    {
+      name: "Priest",
+      image: require("../../assets/images/characters/priest.jpg"),
+      amount: 0,
+    },
+    {
       name: "Prince",
       image: require("../../assets/images/characters/prince.jpeg"),
+      amount: 0,
+    },
+    {
+      name: "Witch",
+      image: require("../../assets/images/characters/witch.jpeg"),
       amount: 0,
     },
     {
@@ -42,8 +59,28 @@ export default function ModalScreen() {
       amount: 0,
     },
     {
-      name: "Hunter",
-      image: require("../../assets/images/characters/hunter21.jpg"),
+      name: "Alpha Werewolf",
+      image: require("../../assets/images/characters/alpha-werewolf.jpg"),
+      amount: 0,
+    },
+    {
+      name: "Lycan",
+      image: require("../../assets/images/characters/lycan.jpeg"),
+      amount: 0,
+    },
+    {
+      name: "Cursed Villager",
+      image: require("../../assets/images/characters/cursed-villager.jpeg"),
+      amount: 0,
+    },
+    {
+      name: "Cupid",
+      image: require("../../assets/images/characters/cupid.jpeg"),
+      amount: 0,
+    },
+    {
+      name: "Wolf Cub",
+      image: require("../../assets/images/characters/wolf-cub.jpeg"),
       amount: 0,
     },
   ]);
@@ -113,18 +150,15 @@ export default function ModalScreen() {
     );
   };
 
-  function confirmCharacters() {}
-
   return (
     <SafeAreaView className="flex-1 items-center">
       <StatusBar style={"auto"} />
 
-      <Text className="text-[20px] font-bold mt-8">Roles</Text>
+      <Text className="text-[20px] font-bold mt-8">Roles ({playerCount})</Text>
 
-      <View className="seperator bg-slate-200 my-5 h-[1px] w-[80%]" />
-      <Text>Number of players: {playerCount}</Text>
+      <View className="seperator bg-slate-200 mt-5 h-[1px] w-[80%]" />
 
-      <ScrollView className="w-[100%] ml-3">
+      <ScrollView className="w-[100%] ml-3 mt-4 mb-20 rounded-2xl">
         <View className="characters bg-[#f3f3f3] mr-3 flex-row flex-wrap pt-4 gap-2 ">
           {characters.map((character, idx) => (
             <View
@@ -145,12 +179,12 @@ export default function ModalScreen() {
                   onPress={() =>
                     updateCharacterAmount(character.name, "decrease")
                   }
-                  className="p-2 m-2 border border-white rounded-full"
+                  className="p-2 border border-white rounded-full"
                 >
                   <Entypo name="minus" size={24} color="white" />
                 </TouchableOpacity>
 
-                <Text className="text-center text-white font-bold">
+                <Text className="text-center w-[50%] text-white font-bold">
                   {character.name}
                 </Text>
 
@@ -158,7 +192,7 @@ export default function ModalScreen() {
                   onPress={() =>
                     updateCharacterAmount(character.name, "increase")
                   }
-                  className="p-2 m-2 border border-white rounded-full"
+                  className="p-2 my-2 border border-white rounded-full"
                 >
                   <Entypo name="plus" size={24} color="white" />
                 </TouchableOpacity>
@@ -183,10 +217,7 @@ export default function ModalScreen() {
         }}
         asChild
       >
-        <TouchableOpacity
-          onPress={confirmCharacters}
-          className="bg-slate-300 items-center justify-center absolute bottom-10 p-4 w-[90%] mx-3 rounded-xl"
-        >
+        <TouchableOpacity className="bg-slate-300 items-center justify-center absolute bottom-10 p-4 w-[90%] mx-3 rounded-xl">
           <Text className="text-[16px] font-bold">Continue</Text>
         </TouchableOpacity>
       </Link>

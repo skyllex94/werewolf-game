@@ -42,17 +42,27 @@ export default function MainMenu() {
               onPress={() => console.log(item.name)}
             >
               {item.icon}
-              <Text className="text-center">{item.name}</Text>
+              <Text
+                // style={{ fontFamily: "Bronzetti_Condensed", fontSize: 18 }}
+                className="text-center"
+              >
+                {item.name}
+              </Text>
             </TouchableOpacity>
           </Link>
         ) : (
           <TouchableOpacity
             key={idx}
             className="flex-row items-center justify-center bg-slate-200 p-3 w-[50%] rounded-lg"
-            onPress={() => console.log(item.name)}
+            onPress={() => {}}
           >
             {item.icon}
-            <Text className="text-center">{item.name}</Text>
+            <Text
+              // style={{ fontFamily: "Bronzetti_Condensed", fontSize: 14 }}
+              className="text-center"
+            >
+              {item.name}
+            </Text>
           </TouchableOpacity>
         )
       )}

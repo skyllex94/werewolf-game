@@ -16,6 +16,7 @@ import {
 } from "../../components/NewGame/VoiceAssistanceFunctions";
 import { StatusBar } from "expo-status-bar";
 import NewGameContext from "@/contexts/NewGameContext";
+import { useLocalSearchParams, useRouter } from "expo-router"; // added useRouter for navigation
 
 interface Item {
   order: number;
@@ -25,6 +26,13 @@ interface Item {
 }
 
 export default function NightTime() {
+  // Router params
+  const router = useRouter();
+  const params = useLocalSearchParams();
+
+  const { isFirstNight } = params;
+  console.log("isFirstNight:", isFirstNight);
+
   // Context states
   const { soundEnabled } = useContext(SoundContext);
   const { playersLeft } = useContext(NewGameContext);
@@ -63,7 +71,6 @@ export default function NightTime() {
   }
 
   // Load and play the night background sound
-  // TODO: Decide whether or not to play the sound when silent mode on
   async function playNightBackground() {
     const { sound } = await Audio.Sound.createAsync(
       require("../../assets/audio/night-background.mp3"),
@@ -127,6 +134,19 @@ export default function NightTime() {
       nightBackgroundSound.unloadAsync() || undefined;
     }
   }
+
+  // Logic for handling first night
+  // useEffect(() => {
+  //   if (isFirstNight === "true") {
+  //     // Custom logic for the first night (e.g., special actions)
+  //     console.log("This is the first night!");
+  //     // Update the param so it won't be the first night next time
+  //     router.replace({
+  //       pathname: "/night_time",
+  //       params: { isFirstNight: "false" },
+  //     });
+  //   }
+  // }, [isFirstNight]);
 
   return (
     <SafeAreaView className="flex-1 relative">

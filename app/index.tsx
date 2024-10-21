@@ -11,8 +11,17 @@ export default function MainScreen() {
       <TopPane />
 
       <View className="flex-1 justify-start items-center mt-12">
-        <Text className="text-[24px] font-bold">
-          Werewolf: Save the Village
+        <Text
+          style={{ fontFamily: "Bronzetti_SC_Condensed", fontSize: 34 }}
+          className="text-[24px] font-bold my-1"
+        >
+          Werewolf:
+        </Text>
+        <Text
+          style={{ fontFamily: "Bronzetti_SC_Condensed", fontSize: 26 }}
+          className="text-[24px] font-bold text-gray-600"
+        >
+          Save the Village
         </Text>
 
         <View className="seperator bg-slate-200 my-5 h-[1px] w-[80%]" />

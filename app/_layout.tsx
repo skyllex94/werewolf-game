@@ -31,6 +31,8 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [loaded, error] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    Bronzetti_SC_Condensed: require("../assets/fonts/Bronzetti-SC-Condensed-Bold.otf"),
+    Bronzetti_Condensed: require("../assets/fonts/Bronzetti-Condensed-Bold.otf"),
     ...FontAwesome.font,
   });
 
