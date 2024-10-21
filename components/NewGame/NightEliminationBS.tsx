@@ -151,7 +151,8 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
           <View className="w-full flex-row justify-between items-center absolute bottom-10 px-3 z-[-1]">
             {/* Confirm Button */}
             <Pressable
-              className="bg-green-300 items-center justify-center border border-green-300 p-4 w-[65%] rounded-xl"
+              className="bg-green-300 items-center justify-center border border-green-300 p-4
+               w-[70%] rounded-xl"
               onPress={confirmElimination}
             >
               {({ pressed }) => (
@@ -168,7 +169,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
             {/* Show All Button */}
             <Pressable
               className="bg-white items-center justify-center border 
-              border-transparent p-4 w-[32%] rounded-xl"
+              border-transparent p-4 w-[30%] rounded-xl"
               onPress={toggleShowAll}
             >
               {({ pressed }) => (

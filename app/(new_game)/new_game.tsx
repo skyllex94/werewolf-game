@@ -23,12 +23,27 @@ export default function ModalScreen() {
     },
     {
       name: "Seer",
-      image: require("../../assets/images/characters/seer2.jpeg"),
+      image: require("../../assets/images/characters/seer.jpeg"),
       amount: 0,
     },
     {
       name: "Doctor",
-      image: require("../../assets/images/characters/doctor.jpeg"),
+      image: require("../../assets/images/characters/doctor.jpg"),
+      amount: 0,
+    },
+    {
+      name: "Prince",
+      image: require("../../assets/images/characters/prince.jpeg"),
+      amount: 0,
+    },
+    {
+      name: "Lurker",
+      image: require("../../assets/images/characters/lurker3.jpeg"),
+      amount: 0,
+    },
+    {
+      name: "Hunter",
+      image: require("../../assets/images/characters/hunter21.jpg"),
       amount: 0,
     },
   ]);
@@ -60,7 +75,7 @@ export default function ModalScreen() {
               newAmount = character.amount - 1;
             }
           } else if (name === "Villager") {
-            // Apply stopper for Villager: between 2 and 25
+            // Apply stopper for Villager: between 3 and 25
             if (action === "increase" && character.amount < 25) {
               newAmount = character.amount + 1;
             } else if (action === "decrease" && character.amount > 2) {

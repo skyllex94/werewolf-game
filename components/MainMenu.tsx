@@ -18,17 +18,17 @@ export default function MainMenu() {
     {
       name: "Rules",
       icon: null,
-      link: null, // No link for this item
+      link: null,
     },
     {
       name: "Go Pro",
       icon: null,
-      link: null, // No link for this item
+      link: null,
     },
     {
       name: "Settings",
       icon: null,
-      link: null, // No link for this item
+      link: null,
     },
   ];
 
@@ -36,11 +36,7 @@ export default function MainMenu() {
     <View className="items-center w-[100%] gap-y-1">
       {menuItems.map((item, idx) =>
         item.link ? (
-          <Link
-            key={idx}
-            href={item.link as Href} // Explicitly cast the string to the Href type
-            asChild
-          >
+          <Link key={idx} href={item.link as Href} asChild>
             <TouchableOpacity
               className="flex-row items-center justify-center bg-slate-200 p-3 w-[50%] rounded-lg"
               onPress={() => console.log(item.name)}

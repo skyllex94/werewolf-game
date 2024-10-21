@@ -1,12 +1,16 @@
-import { View, Text, Pressable, Image } from "react-native";
-import React, { useRef } from "react";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { View, Text, Pressable, Image, BackHandler } from "react-native";
+import React, { useRef, useEffect } from "react";
+import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
+import { StatusBar } from "expo-status-bar";
 
 const GameWinner = () => {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { winner } = params;
+
+  // Navigation
+  const navigation = useNavigation();
 
   // Animation ref
   const animation = useRef<LottieView>(null);
@@ -23,8 +27,19 @@ const GameWinner = () => {
     router.replace("/");
   };
 
+  // Effect
+  useEffect(() => {
+    navigation.addListener("beforeRemove", (e) => {
+      e.preventDefault();
+      console.log("onback");
+      // Do your stuff here
+      navigation.dispatch(e.data.action);
+    });
+  }, []);
+
   return (
     <View className="items-center justify-center p-5">
+      <StatusBar style={"dark"} />
       <View className="lottie-animation">
         <LottieView
           autoPlay
@@ -34,7 +49,7 @@ const GameWinner = () => {
             width: 350,
             height: 350,
           }}
-          source={require("../../assets/animations/fire4.json")}
+          source={require("../../assets/animations/fireworks.json")}
         />
       </View>
 

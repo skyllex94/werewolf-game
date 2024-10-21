@@ -77,8 +77,12 @@ function RootLayoutNav() {
           >
             <ThemeProvider value={DefaultTheme}>
               <Stack screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="index" />
+                <Stack.Screen
+                  name="index"
+                  options={{ gestureEnabled: false }}
+                />
 
+                {/* New game screens */}
                 <Stack.Screen
                   name="(new_game)/new_game"
                   options={{ presentation: "card" }}
@@ -91,7 +95,12 @@ function RootLayoutNav() {
                   name="(new_game)/roles_modal"
                   options={{ presentation: "modal" }}
                 />
+                <Stack.Screen
+                  name="(new_game)/game_winner"
+                  options={{ gestureEnabled: false }}
+                />
               </Stack>
+
               <FlashMessage position="top" />
             </ThemeProvider>
           </NewGameContext.Provider>

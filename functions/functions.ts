@@ -90,13 +90,13 @@ export function checkForWinner(remainingPlayers: any, isDay: boolean) {
   // Determine if the game is won
   if (badPlayersCount >= goodPlayersCount) {
     // Bad players win
-    router.push({
+    router.replace({
       pathname: "/game_winner",
       params: { winner: "bad" },
     });
   } else if (badPlayersCount === 0) {
     // Good players win
-    router.push({
+    router.replace({
       pathname: "/game_winner",
       params: { winner: "good" },
     });

@@ -75,7 +75,7 @@ export default function PlayerScanCodesScreen() {
     if (activeIndex < allPlayersInGame.length - 1) {
       carouselRef.current?.scrollTo({ index: activeIndex + 1, animated: true });
     } else {
-      router.push({
+      router.replace({
         pathname: "/view_roles",
         params: { players_roles },
       });

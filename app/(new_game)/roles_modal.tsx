@@ -15,7 +15,6 @@ interface Item {
 export default function ViewRolesModal() {
   const router = useRouter();
   const { allPlayersInGame } = useContext(NewGameContext);
-  console.log("allPlayersInGame:", allPlayersInGame);
 
   return (
     <SafeAreaView className="flex-1 h-[100%]">
