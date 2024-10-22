@@ -13,10 +13,11 @@ import {
   playWerewolfAssistance,
   playSeerAssistance,
   playDoctorAssistance,
+  WakeBodyguardUI,
 } from "../../components/NewGame/VoiceAssistanceFunctions";
 import { StatusBar } from "expo-status-bar";
 import NewGameContext from "@/contexts/NewGameContext";
-import { useLocalSearchParams, useRouter } from "expo-router"; // added useRouter for navigation
+import { useLocalSearchParams } from "expo-router";
 
 interface Item {
   order: number;
@@ -27,22 +28,19 @@ interface Item {
 
 export default function NightTime() {
   // Router params
-  const router = useRouter();
   const params = useLocalSearchParams();
 
-  const { isFirstNight } = params;
-  console.log("isFirstNight:", isFirstNight);
+  const { firstNight } = params;
+  const isFirstNight = JSON.parse(firstNight as string);
 
   // Context states
   const { soundEnabled } = useContext(SoundContext);
   const { playersLeft } = useContext(NewGameContext);
+  console.log("playersLeft:", playersLeft);
 
   const [wolfHowling, setWolfHowling] = useState<Audio.Sound | null>(null);
   const [nightBackgroundSound, setNightBackgroundSound] =
     useState<Audio.Sound | null>(null);
-
-  const [werewolvesOutnumber, setWerewolvesOutnumber] =
-    useState<boolean>(false);
 
   const allPlayersInGame = playersLeft;
 
@@ -51,6 +49,8 @@ export default function NightTime() {
     Werewolf: WakeWerewolfUI,
     Seer: WakeSeerUI,
     Doctor: WakeDoctorUI,
+    // First night only roles
+    Bodyguard: isFirstNight ? WakeBodyguardUI : null,
   };
 
   useEffect(() => {
@@ -135,19 +135,6 @@ export default function NightTime() {
     }
   }
 
-  // Logic for handling first night
-  // useEffect(() => {
-  //   if (isFirstNight === "true") {
-  //     // Custom logic for the first night (e.g., special actions)
-  //     console.log("This is the first night!");
-  //     // Update the param so it won't be the first night next time
-  //     router.replace({
-  //       pathname: "/night_time",
-  //       params: { isFirstNight: "false" },
-  //     });
-  //   }
-  // }, [isFirstNight]);
-
   return (
     <SafeAreaView className="flex-1 relative">
       <StatusBar style={"light"} />
@@ -163,7 +150,7 @@ export default function NightTime() {
       </Text>
       <Text className="text-start text-white text-[16px] px-10">
         As the operator, guide the village through the night. Here are the roles
-        to wake up at night:
+        to wake up:
       </Text>
 
       <ScrollView showsVerticalScrollIndicator={false} className="mb-20">
@@ -183,18 +170,10 @@ export default function NightTime() {
         </View>
       </ScrollView>
 
-      {werewolvesOutnumber && (
-        <View className="mt-4 px-10">
-          <Text className="text-red-500 text-[16px] py-2">
-            Warning: Werewolves outnumber the remaining villagers, doctors, and
-            seers!
-          </Text>
-        </View>
-      )}
-
       {/* Bottom Sheet - Continuing to Day time */}
       <NightEliminationBottomSheet
         ref={eliminatedRoleBSRef}
+        isFirstNight={isFirstNight}
         stopNightSounds={stopNightSounds}
       />
 

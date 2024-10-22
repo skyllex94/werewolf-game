@@ -29,7 +29,7 @@ export default function OperatorViewRoles() {
   function toFirstNight() {
     router.push({
       pathname: "/night_time",
-      params: { isFirstNight: "true" },
+      params: { firstNight: "true" },
     });
   }
 

@@ -11,76 +11,106 @@ export default function ModalScreen() {
     {
       name: "Villager",
       image: require("../../assets/images/characters/villager.jpeg"),
+      min: 3,
+      max: 25,
       amount: 2,
     },
     {
       name: "Werewolf",
       image: require("../../assets/images/characters/werewolf.jpeg"),
+      min: 1,
+      max: 4,
       amount: 1,
     },
     {
       name: "Seer",
       image: require("../../assets/images/characters/seer.jpeg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
     {
       name: "Doctor",
       image: require("../../assets/images/characters/doctor.jpg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
     {
       name: "Bodyguard",
       image: require("../../assets/images/characters/bodyguard.jpeg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
     {
       name: "Hunter",
       image: require("../../assets/images/characters/hunter21.jpg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
     {
       name: "Priest",
       image: require("../../assets/images/characters/priest.jpg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
     {
       name: "Prince",
       image: require("../../assets/images/characters/prince.jpeg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
     {
       name: "Witch",
       image: require("../../assets/images/characters/witch.jpeg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
     {
-      name: "Lurker",
+      name: "Tanner",
       image: require("../../assets/images/characters/lurker3.jpeg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
     {
       name: "Alpha Werewolf",
       image: require("../../assets/images/characters/alpha-werewolf.jpg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
     {
       name: "Lycan",
       image: require("../../assets/images/characters/lycan.jpeg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
     {
       name: "Cursed Villager",
       image: require("../../assets/images/characters/cursed-villager.jpeg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
     {
       name: "Cupid",
       image: require("../../assets/images/characters/cupid.jpeg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
     {
       name: "Wolf Cub",
       image: require("../../assets/images/characters/wolf-cub.jpeg"),
+      min: 0,
+      max: 1,
       amount: 0,
     },
   ]);
@@ -104,40 +134,13 @@ export default function ModalScreen() {
         if (character.name === name) {
           let newAmount = character.amount;
 
-          if (name === "Werewolf") {
-            // Apply stopper for Werewolf: between 1 and 3
-            if (action === "increase" && character.amount < 3) {
-              newAmount = character.amount + 1;
-            } else if (action === "decrease" && character.amount > 1) {
-              newAmount = character.amount - 1;
-            }
-          } else if (name === "Villager") {
-            // Apply stopper for Villager: between 3 and 25
-            if (action === "increase" && character.amount < 25) {
-              newAmount = character.amount + 1;
-            } else if (action === "decrease" && character.amount > 2) {
-              newAmount = character.amount - 1;
-            }
-          } else if (name === "Seer") {
-            // Apply stopper for Seer at 1 per game
-            if (action === "increase" && character.amount < 1) {
-              newAmount = character.amount + 1;
-            } else if (action === "decrease" && character.amount > 0) {
-              newAmount = character.amount - 1;
-            }
-          } else if (name === "Doctor") {
-            // Apply stopper for Seer at 1 per game
-            if (action === "increase" && character.amount < 1) {
-              newAmount = character.amount + 1;
-            } else if (action === "decrease" && character.amount > 0) {
-              newAmount = character.amount - 1;
-            }
-          } else {
-            // No stopper for other characters
-            newAmount =
-              action === "increase"
-                ? character.amount + 1
-                : Math.max(0, character.amount - 1);
+          if (action === "increase" && character.amount < character.max) {
+            newAmount = character.amount + 1;
+          } else if (
+            action === "decrease" &&
+            character.amount > character.min
+          ) {
+            newAmount = character.amount - 1;
           }
 
           return {

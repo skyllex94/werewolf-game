@@ -192,3 +192,57 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
     </View>
   );
 }
+
+// Wake Bodyguard voice assistance
+export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
+  // Unloading sound
+  useEffect(() => {
+    return () => {
+      sound?.unloadAsync();
+    };
+  }, [sound]);
+
+  // Adjusting volume if global volume is changed
+  useEffect(() => {
+    if (sound) {
+      sound.setVolumeAsync(soundEnabled ? 0.7 : 0.0);
+    }
+  }, [soundEnabled]);
+
+  const handlePlayBodyguardAssistance = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/assists/bodyguard-assist.mp3"),
+      { volume: soundEnabled ? 0.7 : 0.0 }
+    );
+    setSound(sound);
+    await sound.playAsync();
+  };
+
+  return (
+    <View>
+      <Text className="text-start text-white font-[16px]">
+        - Wake up the Bodyguard. He will choose a player through the first night
+        to protect for the rest of the game. If this player gets attacked twice,
+        the Bodyguard will die instead of him.
+      </Text>
+      <View className="items-start m-2">
+        <Pressable
+          className="bg-gray-700 p-3 rounded-md mt-2"
+          onPress={handlePlayBodyguardAssistance}
+        >
+          {({ pressed }) => (
+            <Text
+              className={`text-[14px] font-bold text-white ${
+                pressed ? "opacity-70" : "opacity-100"
+              }`}
+            >
+              Voice Assistance (Bodyguard)
+            </Text>
+          )}
+        </Pressable>
+      </View>
+    </View>
+  );
+}

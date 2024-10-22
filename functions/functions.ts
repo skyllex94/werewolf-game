@@ -37,6 +37,15 @@ export function assignRolesToPlayers(
     Seer: "good",
     Doctor: "good",
     Tanner: "independent",
+    Cupid: "good",
+    Prince: "good",
+    Bodyguard: "good",
+    "Cursed Villager": "bad",
+    Priest: "good",
+    Hunter: "good",
+    Witch: "bad",
+    "Alpha Werewolf": "bad",
+    "Wolf Cub": "bad",
   };
 
   // Ensure characters is a valid array
@@ -73,16 +82,14 @@ export function truncate(text: string, maxLength: number = 10) {
 
 export function checkForWinner(remainingPlayers: any, isDay: boolean) {
   // Count the number of good and bad players remaining
-  const goodRoles = ["Villager", "Seer", "Doctor"];
-  const badRoles = ["Werewolf"];
-  const goodPlayersCount = remainingPlayers.filter((player: any) =>
-    goodRoles.includes(player.role)
+  const goodPlayersCount = remainingPlayers.filter(
+    (player: any) => player.type == "good"
   ).length;
 
   console.log("goodPlayersCount:", goodPlayersCount);
 
-  const badPlayersCount = remainingPlayers.filter((player: any) =>
-    badRoles.includes(player.role)
+  const badPlayersCount = remainingPlayers.filter(
+    (player: any) => player.type == "bad"
   ).length;
 
   console.log("badPlayersCount:", badPlayersCount);
@@ -105,6 +112,7 @@ export function checkForWinner(remainingPlayers: any, isDay: boolean) {
     if (isDay) {
       router.push({
         pathname: "/night_time",
+        params: { firstNight: "false" },
       });
     } else {
       router.push({

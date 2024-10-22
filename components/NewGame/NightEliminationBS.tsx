@@ -13,19 +13,20 @@ import { checkForWinner, truncate } from "@/functions/functions";
 
 type RoleEliminatedBSProps = {
   stopNightSounds: () => void;
+  isFirstNight: boolean | undefined;
 };
 
 const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
   (props, eliminatedRoleBSRef) => {
     const {
-      allPlayersInGame,
       eliminatedPlayers,
       setEliminatedPlayers,
       playersLeft,
       setPlayersLeft,
     } = useContext(NewGameContext);
 
-    const [showAll, setShowAll] = useState(false); // State to toggle filtering
+    // State to toggle filtering
+    const [showAll, setShowAll] = useState(false);
 
     const snapPoints = useMemo(() => ["50%"], []);
 
@@ -72,10 +73,10 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
             const remainingPlayers = playersLeft.filter(
               (player: any) => !eliminatedPlayers.includes(player)
             );
-            setPlayersLeft(remainingPlayers);
-            stopNightSounds();
 
+            stopNightSounds();
             checkForWinner(remainingPlayers, isDay);
+            setPlayersLeft(remainingPlayers);
           },
         },
         { text: "No", onPress: () => null },
