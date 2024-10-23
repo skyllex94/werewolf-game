@@ -60,8 +60,11 @@ function RootLayoutNav() {
   const [allPlayersInGame, setAllPlayersInGame] = useState<object[]>([]);
   // NewGameContext - defined in scan_intro
   const [playersLeft, setPlayersLeft] = useState<object[]>([]);
+
   // NewGameContext - defined in RoleEliminatedBS
   const [eliminatedPlayers, setEliminatedPlayers] = useState<object[]>([]);
+  const [selectedPlayersForElimination, setSelectedPlayersForElimination] =
+    useState<object[]>([]);
 
   return (
     <GestureHandlerRootView className="flex-1">
@@ -73,6 +76,8 @@ function RootLayoutNav() {
               setAllPlayersInGame,
               eliminatedPlayers,
               setEliminatedPlayers,
+              selectedPlayersForElimination,
+              setSelectedPlayersForElimination,
               playersLeft,
               setPlayersLeft,
             }}
@@ -87,7 +92,7 @@ function RootLayoutNav() {
                 {/* New game screens */}
                 <Stack.Screen
                   name="(new_game)/new_game"
-                  options={{ presentation: "card" }}
+                  options={{ presentation: "card", gestureEnabled: false }}
                 />
                 <Stack.Screen name="(new_game)/players_names" />
                 <Stack.Screen name="(new_game)/scan_intro" />

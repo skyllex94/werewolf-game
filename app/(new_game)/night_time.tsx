@@ -188,3 +188,5 @@ export default function NightTime() {
     </SafeAreaView>
   );
 }
+
+// alright another thing, I createad a new button Choose Player in the Bodyguard and I would like it when clicked to display an alert with all the players on each row so that way you can choose one player and confirm your selection. This will be the guarded player from the bodyguard, the chosen player should receive another key value pair called protectedByBodyguard: true and numberOfAttacks: 0 inside the player selected from the alert

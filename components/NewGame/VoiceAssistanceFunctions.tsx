@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, Pressable } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { View, Text, Pressable, Alert } from "react-native";
 import { Audio } from "expo-av";
+import { truncate } from "@/functions/functions";
+import NewGameContext from "@/contexts/NewGameContext";
 
 interface WakeUIProps {
   soundEnabled: boolean;
@@ -197,14 +199,14 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
 export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
-  // Unloading sound
+  const { playersLeft, setPlayersLeft } = useContext(NewGameContext);
+
   useEffect(() => {
     return () => {
       sound?.unloadAsync();
     };
   }, [sound]);
 
-  // Adjusting volume if global volume is changed
   useEffect(() => {
     if (sound) {
       sound.setVolumeAsync(soundEnabled ? 0.7 : 0.0);
@@ -220,6 +222,32 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
     await sound.playAsync();
   };
 
+  const chooseGuardedPlayer = () => {
+    // Filter out the Bodyguard from the playersLeft array
+    const availablePlayers = playersLeft.filter(
+      (player: any) => player.role !== "Bodyguard"
+    );
+
+    const playerOptions = availablePlayers.map((player: any) => ({
+      text: player.name,
+
+      // Adding protectedByBodyguard and numberOfAttacks props
+      onPress: () => {
+        player.protectedByBodyguard = true;
+        player.numberOfAttacks = 0;
+      },
+    }));
+
+    // Add a cancel button to the alert
+    playerOptions.push({
+      text: "Cancel",
+      style: "cancel",
+    });
+
+    // Show the alert
+    Alert.alert("Choose Player to Protect", "Select one player", playerOptions);
+  };
+
   return (
     <View>
       <Text className="text-start text-white font-[16px]">
@@ -227,7 +255,22 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
         to protect for the rest of the game. If this player gets attacked twice,
         the Bodyguard will die instead of him.
       </Text>
-      <View className="items-start m-2">
+      <View className="flex-row items-start m-2">
+        <Pressable
+          className="bg-gray-700 p-3 rounded-md mt-2"
+          onPress={chooseGuardedPlayer}
+        >
+          {({ pressed }) => (
+            <Text
+              className={`text-[14px] font-bold text-white ${
+                pressed ? "opacity-70" : "opacity-100"
+              }`}
+            >
+              Choose Player
+            </Text>
+          )}
+        </Pressable>
+
         <Pressable
           className="bg-gray-700 p-3 rounded-md mt-2"
           onPress={handlePlayBodyguardAssistance}
@@ -238,7 +281,7 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
                 pressed ? "opacity-70" : "opacity-100"
               }`}
             >
-              Voice Assistance (Bodyguard)
+              Voice Assistance
             </Text>
           )}
         </Pressable>
