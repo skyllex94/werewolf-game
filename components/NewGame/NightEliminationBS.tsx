@@ -1,16 +1,16 @@
 import { View, Text, Pressable, Alert } from "react-native";
 import React, {
-  useCallback,
   useMemo,
   forwardRef,
   useState,
   useContext,
+  useEffect,
 } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import NewGameContext from "@/contexts/NewGameContext";
 import { checkForWinner, truncate } from "@/functions/functions";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 
 type RoleEliminatedBSProps = {
   stopNightSounds: () => void;
@@ -28,12 +28,10 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
       setPlayersLeft,
     } = useContext(NewGameContext);
 
-    // State to toggle filtering
     const [showAll, setShowAll] = useState(false);
     const [hunterSelected, setHunterSelected] = useState<boolean>(false);
 
     const snapPoints = useMemo(() => ["50%"], []);
-
     const { stopNightSounds } = props;
 
     const togglePlayerSelection = (player: any) => {
@@ -54,19 +52,15 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
     };
 
     function checkIfBodyguardedPlayerAttacked() {
-      // Check if the Bodyguard is still in the game
       const isBodyguardAlive = playersLeft.some(
         (player: any) => player.role === "Bodyguard"
       );
 
       selectedPlayersForElimination.forEach((selectedPlayer: any) => {
-        // Check if the selected player for elimination is protected by the Bodyguard
         if (selectedPlayer.protectedByBodyguard) {
           if (isBodyguardAlive) {
-            // Increment the number of attacks on the protected player
             selectedPlayer.numberOfAttacks += 1;
 
-            // Alert message based on the number of attacks
             if (selectedPlayer.numberOfAttacks === 1) {
               Alert.alert(
                 "Bodyguard Protection",
@@ -79,22 +73,40 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
               );
             }
           } else {
-            // If the Bodyguard is no longer in the game, the protection is nullified
             Alert.alert(
               "Bodyguard No Longer Active",
               `${selectedPlayer.name} was attacked and killed. The Bodyguard is no longer in the game.`
             );
-            // Optionally, mark the player as fully eliminated here
             setEliminatedPlayers((prev: any) => [...prev, selectedPlayer]);
           }
         }
       });
     }
 
+    function checkIfDoctorProtected() {
+      const isDoctorAlive = playersLeft.some(
+        (player: any) => player.role === "Doctor"
+      );
+
+      selectedPlayersForElimination.forEach((selectedPlayer: any) => {
+        if (selectedPlayer.protectedByDoctor && isDoctorAlive) {
+          // Player protected by Doctor survives
+          Alert.alert(
+            "Doctor's Protection",
+            `${selectedPlayer.name} was attacked but protected by the Doctor and survives.`
+          );
+          // Remove the player from the elimination list
+          setSelectedPlayersForElimination(
+            selectedPlayersForElimination.filter(
+              (p: any) => p.order !== selectedPlayer.order
+            )
+          );
+        }
+      });
+    }
+
     function checkIfHunterSelected() {
-      // Check if Hunter Eliminated
       if (!hunterSelected) {
-        // Check if the eliminated role includes a Hunter
         const hunterEliminated = selectedPlayersForElimination.some(
           (player: any) => player.role === "Hunter"
         );
@@ -102,12 +114,10 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
         if (hunterEliminated) {
           setHunterSelected(true);
 
-          // Create an array of players left for selection
           const playersToChooseFrom = playersLeft.filter(
             (player: any) => player.role !== "Hunter"
           );
 
-          // Prepare an alert to choose a player to eliminate
           const playerNames = playersToChooseFrom.map((p: any) => p.name);
           Alert.alert(
             "Hunter was eliminated!",
@@ -116,7 +126,6 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
               ...playerNames.map((name: string, index: number) => ({
                 text: name,
                 onPress: () => {
-                  // Add selected player for elimination
                   setSelectedPlayersForElimination((prev: any) => [
                     ...prev,
                     playersToChooseFrom[index],
@@ -137,7 +146,6 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
     const confirmElimination = () => {
       const isDay = false;
 
-      // UI elements
       const eliminatedPlayerNames = selectedPlayersForElimination
         .map((player: any) => player.name)
         .join(", ");
@@ -151,41 +159,34 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
 
       return Alert.alert("Ready for the Day?", eliminationMessage, [
         {
-          // Logic of the Elimination
           text: "Yes",
           onPress: () => {
-            // Check if Bodyguard is still in the game
             const isBodyguardAlive = playersLeft.some(
               (player: any) => player.role === "Bodyguard"
             );
 
-            // Bodyguard role check
             checkIfBodyguardedPlayerAttacked();
+            checkIfDoctorProtected();
 
-            // Check player based on bodyguard protection and number of attacks
             const actualPlayersToBeEliminated =
               selectedPlayersForElimination.filter(
                 (player: any) =>
-                  !player.protectedByBodyguard ||
-                  player.numberOfAttacks >= 2 ||
-                  !isBodyguardAlive
+                  (!player.protectedByBodyguard ||
+                    player.numberOfAttacks >= 2 ||
+                    !isBodyguardAlive) &&
+                  !player.protectedByDoctor
               );
-
-            console.log("playersToEliminate:", actualPlayersToBeEliminated);
 
             const finalPlayersForElimination = playersLeft.filter(
               (player: any) => !actualPlayersToBeEliminated.includes(player)
             );
 
-            // Hunter role check
             const isHunterEliminated = checkIfHunterSelected();
             if (isHunterEliminated) {
-              // If a Hunter was eliminated, include their selected target
               setPlayersLeft(finalPlayersForElimination);
               return;
             }
 
-            // Clear selected players for the next round
             setSelectedPlayersForElimination([]);
 
             stopNightSounds();
@@ -206,6 +207,26 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
       setShowAll(!showAll);
     };
 
+    // Function to update shields (called when the sheet opens)
+    const updateShields = () => {
+      // This will refresh the protection information
+      playersLeft.forEach((player: any) => {
+        player.protectedByBodyguard = player.protectedByBodyguard || false;
+        player.protectedByDoctor = player.protectedByDoctor || false;
+        player.numberOfAttacks = player.numberOfAttacks || 0;
+      });
+    };
+
+    // Hook to trigger shield update when the sheet opens
+    useEffect(() => {
+      // `eliminatedRoleBSRef` represents the ref of the bottom sheet
+      const sheet = eliminatedRoleBSRef.current;
+      if (sheet) {
+        sheet.snapToIndex(0); // Show the sheet
+        updateShields();
+      }
+    }, [eliminatedRoleBSRef]);
+
     return (
       <BottomSheet
         ref={eliminatedRoleBSRef}
@@ -214,6 +235,11 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
         enablePanDownToClose={true}
         enableOverDrag={true}
         animateOnMount={true}
+        onChange={(index) => {
+          if (index >= 0) {
+            updateShields(); // Update shields when sheet opens
+          }
+        }}
       >
         <View className="flex-1 items-center">
           <View className="flex-row items-center justify-center px-3 py-2 w-full">
@@ -227,43 +253,11 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
             className="w-full mb-24"
           >
             <View className="flex-row flex-wrap justify-start p-2 w-full">
-              {playersLeft
-                // Conditionally filter out Werewolves
-                .filter((player: any) => showAll || player.role !== "Werewolf")
-                .map((player: any) => (
-                  <View className="w-[33.3%] max-w-[33.3%]" key={player.order}>
-                    <TouchableOpacity
-                      onPress={() => togglePlayerSelection(player)}
-                      className={`rounded-lg p-3 m-1 mb-2 items-center ${
-                        selectedPlayersForElimination.find(
-                          (p: any) => p.order === player.order
-                        )
-                          ? "bg-green-300"
-                          : "bg-gray-300"
-                      }`}
-                    >
-                      <View className="absolute left-2 top-[60%]">
-                        {/* Display Bodyguarded Status only if Bodyguard is in the game */}
-                        {playersLeft.some((p: any) => p.role === "Bodyguard") &&
-                          player.protectedByBodyguard && (
-                            <FontAwesome5
-                              name="shield-alt"
-                              size={18}
-                              color="#636363"
-                            />
-                          )}
-                      </View>
-                      <Text className="font-bold">{truncate(player.name)}</Text>
-
-                      <Text className="text-xs">{player.role}</Text>
-                    </TouchableOpacity>
-                  </View>
-                ))}
-
+              {/* No Role Eliminated Button */}
               <View className="w-[33.3%] max-w-[33.3%]">
                 <TouchableOpacity
                   onPress={() => {
-                    setSelectedPlayersForElimination([]);
+                    setSelectedPlayersForElimination([]); // Clear selections
                   }}
                   className={`rounded-lg p-3 m-1 mb-2 items-center ${
                     selectedPlayersForElimination.length === 0
@@ -276,6 +270,54 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                   </Text>
                 </TouchableOpacity>
               </View>
+
+              {/* Map through players and render them */}
+              {playersLeft
+                .filter((player: any) => showAll || player.role !== "Werewolf")
+                .map((player: any) => (
+                  <View className="w-[33.3%] max-w-[33.3%]" key={player.order}>
+                    <TouchableOpacity
+                      onPress={() => togglePlayerSelection(player)}
+                      className={`rounded-lg p-3 m-1 mb-2 items-center relative ${
+                        selectedPlayersForElimination.find(
+                          (p: any) => p.order === player.order
+                        )
+                          ? "bg-green-300"
+                          : "bg-gray-300"
+                      }`}
+                    >
+                      <View
+                        style={{
+                          alignItems: "center",
+                          position: "absolute",
+                          top: 10,
+                          left: "20%",
+                          transform: [{ translateX: -10 }],
+                        }}
+                      >
+                        {playersLeft.some((p: any) => p.role === "Bodyguard") &&
+                          player.protectedByBodyguard && (
+                            <FontAwesome5
+                              name="shield-alt"
+                              size={18}
+                              color="#636363"
+                              style={{ marginBottom: 2 }} // Space between shields if multiple
+                            />
+                          )}
+                        {playersLeft.some((p: any) => p.role === "Doctor") &&
+                          player.protectedByDoctor && (
+                            <FontAwesome5
+                              name="shield-alt"
+                              size={18}
+                              color="#0057FF"
+                            />
+                          )}
+                      </View>
+                      <Text className="font-bold">{truncate(player.name)}</Text>
+                      <Text className="text-xs">{player.role}</Text>
+                    </TouchableOpacity>
+                  </View>
+                ))}
             </View>
           </ScrollView>
 

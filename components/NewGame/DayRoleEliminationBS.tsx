@@ -1,11 +1,5 @@
 import { View, Text, Pressable, Alert } from "react-native";
-import React, {
-  useCallback,
-  useMemo,
-  forwardRef,
-  useContext,
-  useState,
-} from "react";
+import React, { useMemo, forwardRef, useContext, useState } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import NewGameContext from "@/contexts/NewGameContext";
@@ -35,8 +29,6 @@ const DayEliminationBottomSheet = forwardRef<
 
   const snapPoints = useMemo(() => ["50%"], []);
 
-  const { setDayTimeSounds } = props;
-
   const togglePlayerSelection = (player: any) => {
     if (
       selectedPlayersForElimination.find((p: any) => p.order === player.order)
@@ -53,44 +45,6 @@ const DayEliminationBottomSheet = forwardRef<
       ]);
     }
   };
-
-  function checkIfBodyguardedPlayerAttacked() {
-    // Check if the Bodyguard is still in the game
-    const isBodyguardAlive = playersLeft.some(
-      (player: any) => player.role === "Bodyguard"
-    );
-
-    selectedPlayersForElimination.forEach((selectedPlayer: any) => {
-      // Check if the selected player for elimination is protected by the Bodyguard
-      if (selectedPlayer.protectedByBodyguard) {
-        if (isBodyguardAlive) {
-          // Increment the number of attacks on the protected player
-          selectedPlayer.numberOfAttacks += 1;
-
-          // Alert message based on the number of attacks
-          if (selectedPlayer.numberOfAttacks === 1) {
-            Alert.alert(
-              "Bodyguard Protection",
-              `${selectedPlayer.name} is protected by the Bodyguard and survives the attack.`
-            );
-          } else if (selectedPlayer.numberOfAttacks >= 2) {
-            Alert.alert(
-              "Bodyguard Protection Expired",
-              `${selectedPlayer.name} has been attacked twice. The protection of the Bodyguard has expired.`
-            );
-          }
-        } else {
-          // If the Bodyguard is no longer in the game, the protection is nullified
-          Alert.alert(
-            "Bodyguard No Longer Active",
-            `${selectedPlayer.name} was attacked and killed. The Bodyguard is no longer in the game.`
-          );
-          // Optionally, mark the player as fully eliminated here
-          setEliminatedPlayers((prev: any) => [...prev, selectedPlayer]);
-        }
-      }
-    });
-  }
 
   function checkIfHunterSelected() {
     // Check if Hunter Eliminated
@@ -155,22 +109,9 @@ const DayEliminationBottomSheet = forwardRef<
         // Logic of the Elimination
         text: "Yes",
         onPress: () => {
-          // Check if Bodyguard is still in the game
-          const isBodyguardAlive = playersLeft.some(
-            (player: any) => player.role === "Bodyguard"
-          );
-
-          // Bodyguard role check
-          checkIfBodyguardedPlayerAttacked();
-
-          // Check player based on bodyguard protection and number of attacks
+          // Actual removal excluding some conditions
           const actualPlayersToBeEliminated =
-            selectedPlayersForElimination.filter(
-              (player: any) =>
-                !player.protectedByBodyguard ||
-                player.numberOfAttacks >= 2 ||
-                !isBodyguardAlive
-            );
+            selectedPlayersForElimination.filter();
 
           console.log("playersToEliminate:", actualPlayersToBeEliminated);
 
@@ -227,38 +168,35 @@ const DayEliminationBottomSheet = forwardRef<
           className="w-full mb-24"
         >
           <View className="flex-row flex-wrap justify-start p-2 w-full">
-            {playersLeft
-              // Conditionally filter out Werewolves
-              .filter((player: any) => showAll || player.role !== "Werewolf")
-              .map((player: any) => (
-                <View className="w-[33.3%] max-w-[33.3%]" key={player.order}>
-                  <TouchableOpacity
-                    onPress={() => togglePlayerSelection(player)}
-                    className={`rounded-lg p-3 m-1 mb-2 items-center ${
-                      selectedPlayersForElimination.find(
-                        (p: any) => p.order === player.order
-                      )
-                        ? "bg-green-300"
-                        : "bg-gray-300"
-                    }`}
-                  >
-                    <View className="absolute left-2 top-[60%]">
-                      {/* Display Bodyguarded Status only if Bodyguard is in the game */}
-                      {playersLeft.some((p: any) => p.role === "Bodyguard") &&
-                        player.protectedByBodyguard && (
-                          <FontAwesome5
-                            name="shield-alt"
-                            size={18}
-                            color="#636363"
-                          />
-                        )}
-                    </View>
-                    <Text className="font-bold">{truncate(player.name)}</Text>
+            {playersLeft.map((player: any) => (
+              <View className="w-[33.3%] max-w-[33.3%]" key={player.order}>
+                <TouchableOpacity
+                  onPress={() => togglePlayerSelection(player)}
+                  className={`rounded-lg p-3 m-1 mb-2 items-center ${
+                    selectedPlayersForElimination.find(
+                      (p: any) => p.order === player.order
+                    )
+                      ? "bg-green-300"
+                      : "bg-gray-300"
+                  }`}
+                >
+                  <View className="absolute left-2 top-[60%]">
+                    {/* Display Bodyguarded Status only if Bodyguard is in the game */}
+                    {playersLeft.some((p: any) => p.role === "Bodyguard") &&
+                      player.protectedByBodyguard && (
+                        <FontAwesome5
+                          name="shield-alt"
+                          size={18}
+                          color="#636363"
+                        />
+                      )}
+                  </View>
+                  <Text className="font-bold">{truncate(player.name)}</Text>
 
-                    <Text className="text-xs">{player.role}</Text>
-                  </TouchableOpacity>
-                </View>
-              ))}
+                  <Text className="text-xs">{player.role}</Text>
+                </TouchableOpacity>
+              </View>
+            ))}
 
             <View className="w-[33.3%] max-w-[33.3%]">
               <TouchableOpacity
@@ -284,7 +222,7 @@ const DayEliminationBottomSheet = forwardRef<
           {/* Confirm Button */}
           <Pressable
             className="bg-green-300 items-center justify-center border border-green-300 p-4
-               w-[70%] rounded-xl"
+               w-[100%] rounded-xl"
             onPress={confirmElimination}
           >
             {({ pressed }) => (
@@ -294,23 +232,6 @@ const DayEliminationBottomSheet = forwardRef<
                 }`}
               >
                 Confirm
-              </Text>
-            )}
-          </Pressable>
-
-          {/* Show All Button */}
-          <Pressable
-            className="bg-white items-center justify-center border 
-              border-transparent p-4 w-[30%] rounded-xl"
-            onPress={toggleShowAll}
-          >
-            {({ pressed }) => (
-              <Text
-                className={`text-[16px] font-bold ${
-                  pressed ? "opacity-70" : "opacity-100"
-                }`}
-              >
-                {showAll ? "Show Less" : "Show All"}
               </Text>
             )}
           </Pressable>
