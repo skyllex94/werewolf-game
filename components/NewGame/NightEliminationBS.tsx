@@ -217,16 +217,6 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
       });
     };
 
-    // Hook to trigger shield update when the sheet opens
-    useEffect(() => {
-      // `eliminatedRoleBSRef` represents the ref of the bottom sheet
-      const sheet = eliminatedRoleBSRef.current;
-      if (sheet) {
-        sheet.snapToIndex(0); // Show the sheet
-        updateShields();
-      }
-    }, [eliminatedRoleBSRef]);
-
     return (
       <BottomSheet
         ref={eliminatedRoleBSRef}
@@ -254,22 +244,6 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
           >
             <View className="flex-row flex-wrap justify-start p-2 w-full">
               {/* No Role Eliminated Button */}
-              <View className="w-[33.3%] max-w-[33.3%]">
-                <TouchableOpacity
-                  onPress={() => {
-                    setSelectedPlayersForElimination([]); // Clear selections
-                  }}
-                  className={`rounded-lg p-3 m-1 mb-2 items-center ${
-                    selectedPlayersForElimination.length === 0
-                      ? "bg-green-300"
-                      : "bg-gray-300"
-                  }`}
-                >
-                  <Text className="font-bold text-center">
-                    No Role Eliminated
-                  </Text>
-                </TouchableOpacity>
-              </View>
 
               {/* Map through players and render them */}
               {playersLeft
@@ -301,15 +275,16 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                               name="shield-alt"
                               size={18}
                               color="#636363"
-                              style={{ marginBottom: 2 }} // Space between shields if multiple
+                              // Space between shields if multiple
+                              style={{ marginBottom: 2 }}
                             />
                           )}
                         {playersLeft.some((p: any) => p.role === "Doctor") &&
                           player.protectedByDoctor && (
-                            <FontAwesome5
-                              name="shield-alt"
+                            <MaterialCommunityIcons
+                              name="shield-cross"
                               size={18}
-                              color="#0057FF"
+                              color="#636363"
                             />
                           )}
                       </View>
@@ -318,6 +293,23 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                     </TouchableOpacity>
                   </View>
                 ))}
+
+              <View className="w-[33.3%] max-w-[33.3%]">
+                <TouchableOpacity
+                  onPress={() => {
+                    setSelectedPlayersForElimination([]); // Clear selections
+                  }}
+                  className={`rounded-lg p-3 m-1 mb-2 items-center ${
+                    selectedPlayersForElimination.length === 0
+                      ? "bg-green-300"
+                      : "bg-gray-300"
+                  }`}
+                >
+                  <Text className="font-bold text-center">
+                    No Role Eliminated
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </ScrollView>
 

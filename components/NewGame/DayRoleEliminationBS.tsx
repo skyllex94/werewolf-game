@@ -110,13 +110,8 @@ const DayEliminationBottomSheet = forwardRef<
         text: "Yes",
         onPress: () => {
           // Actual removal excluding some conditions
-          const actualPlayersToBeEliminated =
-            selectedPlayersForElimination.filter();
-
-          console.log("playersToEliminate:", actualPlayersToBeEliminated);
-
           const finalPlayersForElimination = playersLeft.filter(
-            (player: any) => !actualPlayersToBeEliminated.includes(player)
+            (player: any) => !selectedPlayersForElimination.includes(player)
           );
 
           // Hunter role check
@@ -129,13 +124,12 @@ const DayEliminationBottomSheet = forwardRef<
 
           // Clear selected players for the next round
           setSelectedPlayersForElimination([]);
-
           checkForWinner(finalPlayersForElimination, isDay);
 
           setPlayersLeft(finalPlayersForElimination);
           setEliminatedPlayers([
             ...eliminatedPlayers,
-            ...actualPlayersToBeEliminated,
+            ...selectedPlayersForElimination,
           ]);
         },
       },

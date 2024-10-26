@@ -151,7 +151,7 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [selectedPlayerName, setSelectedPlayerName] =
     useState<string>("Choose Player");
-  const { playersLeft } = useContext(NewGameContext);
+  const { playersLeft, setPlayersLeft } = useContext(NewGameContext);
 
   useEffect(() => {
     return () => {
@@ -193,6 +193,12 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
 
         // Protect the new player
         player.protectedByDoctor = true;
+
+        const updatedPlayers = playersLeft.map((p: any) => ({
+          ...p,
+          protectedByDoctor: p.name === player.name,
+        }));
+        setPlayersLeft(updatedPlayers); // Update context state
 
         // Set the selected player's name in the state
         setSelectedPlayerName(`Protected: ${player.name}`);
@@ -265,7 +271,7 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [selectedPlayerName, setSelectedPlayerName] =
     useState<string>("Choose Player");
-  const { playersLeft } = useContext(NewGameContext);
+  const { playersLeft, setPlayersLeft } = useContext(NewGameContext);
 
   useEffect(() => {
     return () => {
@@ -309,6 +315,13 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
         // Protect the new player
         player.protectedByBodyguard = true;
         player.numberOfAttacks = 0;
+
+        // Updating the shield UI in the bottomSheet
+        const updatedPlayers = playersLeft.map((p: any) => ({
+          ...p,
+          protectedByBodyguard: p.name === player.name,
+        }));
+        setPlayersLeft(updatedPlayers);
 
         // Set the selected player's name in the state
         setSelectedPlayerName(`Protected: ${player.name}`);
