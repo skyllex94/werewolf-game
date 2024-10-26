@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, Pressable, Alert, TouchableOpacity } from "react-native";
+import { View, Text, Pressable, Alert } from "react-native";
 import { Audio } from "expo-av";
 import NewGameContext from "@/contexts/NewGameContext";
 import { Ionicons } from "@expo/vector-icons";
@@ -11,38 +11,12 @@ interface WakeUIProps {
   playDoctorAssistance?: (soundEnabled: boolean) => Promise<void>;
 }
 
-// Sound assistance functions
-export async function playWerewolfAssistance(
-  soundEnabled: boolean
-): Promise<void> {
-  const { sound } = await Audio.Sound.createAsync(
-    require("../../assets/audio/assists/werewolf-assist.mp3"),
-    { volume: soundEnabled ? 0.7 : 0.0 }
-  );
-  if (sound) await sound.playAsync();
-}
-
-export async function playSeerAssistance(soundEnabled: boolean): Promise<void> {
-  const { sound } = await Audio.Sound.createAsync(
-    require("../../assets/audio/assists/seer-assist.mp3"),
-    { volume: soundEnabled ? 0.7 : 0.0 }
-  );
-  if (sound) await sound.playAsync();
-}
-
-export async function playDoctorAssistance(
-  soundEnabled: boolean
-): Promise<void> {
-  const { sound } = await Audio.Sound.createAsync(
-    require("../../assets/audio/assists/doctor-assist.mp3"),
-    { volume: soundEnabled ? 0.7 : 0.0 }
-  );
-  if (sound) await sound.playAsync();
-}
-
 // Wake Werewolf voice assistance
 export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
+  const [attackedPlayer, setAttackedPlayer] = useState(null);
+  const { playersLeft, setPlayersLeft, setSelectedPlayersForElimination } =
+    useContext(NewGameContext);
 
   useEffect(() => {
     return () => {
@@ -64,19 +38,43 @@ export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
     setSound(sound);
     await sound.playAsync();
   };
+  const handleChoosePlayer = () => {
+    const playerNames = playersLeft.map((player: any) => player.name);
+
+    Alert.alert("Choose Player to Attack", "", [
+      ...playerNames.map((name: any) => ({
+        text: name,
+        onPress: () => {
+          setAttackedPlayer(name);
+          setPlayersLeft((prevPlayers: any) =>
+            prevPlayers.map((player: any) => {
+              const isAttacked = player.name === name;
+              // Update attackedByWerewolves property
+              return {
+                ...player,
+                attackedByWerewolves: isAttacked,
+              };
+            })
+          );
+        },
+      })),
+      { text: "Cancel", onPress: () => null },
+    ]);
+  };
 
   return (
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
-      <View className="flex-row items-center gap-3 justify-center mt-1 ">
-        <Text className="text-start text-white font-[16px]">
+      <View className="flex-row gap-3 justify-center mt-1">
+        <Text className="text-start w-[100%] text-white font-[16px] px-3">
           - Wake up the Werewolves and let them decide collectively who to
           eliminate this night.
         </Text>
       </View>
 
       <View className="flex-row items-center m-2">
+        {/* Button for Werewolf voice assistance */}
         <Pressable
-          className="bg-gray-700 p-2 rounded-lg mr-3"
+          className="bg-gray-700 p-2 rounded-lg mr-2"
           onPress={handlePlayWerewolfAssistance}
         >
           {({ pressed }) => (
@@ -88,6 +86,22 @@ export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
               size={24}
               color="white"
             />
+          )}
+        </Pressable>
+
+        {/* Button to choose attacked player this night */}
+        <Pressable
+          className="bg-gray-700 p-3 rounded-lg "
+          onPress={handleChoosePlayer}
+        >
+          {({ pressed }) => (
+            <Text
+              className={`text-[14px] font-bold text-white ${
+                pressed ? "opacity-70" : "opacity-100"
+              }`}
+            >
+              {attackedPlayer ? `Attacked: ${attackedPlayer}` : "Choose Player"}
+            </Text>
           )}
         </Pressable>
       </View>
@@ -121,24 +135,29 @@ export function WakeSeerUI({ soundEnabled }: WakeUIProps) {
   };
 
   return (
-    <View>
-      <Text className="text-start text-white font-[16px]">
-        - Wake up the Seer and let them choose someone from the village. You
-        will let the Seer know if the chosen person is a good or bad role.
-      </Text>
-      <View className="items-start m-2">
+    <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
+      <View className="flex-row items-center gap-3 justify-center mt-1">
+        <Text className="text-start w-[100%] text-white font-[16px] px-3">
+          - Wake up the Seer and let them choose someone from the village. You
+          will let the Seer know if the chosen person is a good or bad role.
+        </Text>
+      </View>
+
+      <View className="flex-row items-center m-2">
+        {/* Button for Seer voice assistance */}
         <Pressable
-          className="bg-gray-700 p-3 rounded-md"
+          className="bg-gray-700 p-2 rounded-lg mr-2"
           onPress={handlePlaySeerAssistance}
         >
           {({ pressed }) => (
-            <Text
+            <Ionicons
               className={`text-[14px] font-bold text-white ${
                 pressed ? "opacity-70" : "opacity-100"
               }`}
-            >
-              Voice Assistance (Seer)
-            </Text>
+              name="volume-high"
+              size={24}
+              color="white"
+            />
           )}
         </Pressable>
       </View>
@@ -222,7 +241,7 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
   return (
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
       <View className="flex-row items-center gap-3 justify-center mt-1">
-        <Text className="text-start text-white font-[16px]">
+        <Text className="text-start w-[100%] text-white font-[16px] px-3">
           - Wake up the Doctor and let them choose a person to protect,
           including themselves. Cannot repeat the same person 2 times in a row.
         </Text>
@@ -341,7 +360,7 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
   return (
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
       <View className="flex-row items-center gap-3 justify-center mt-1">
-        <Text className="text-start text-white font-[16px]">
+        <Text className="text-start w-[100%] text-white font-[16px] px-3">
           - Wake up the Bodyguard. He will choose a player through the first
           night to protect for the rest of the game. If this player gets
           attacked twice, the Bodyguard will die instead of them.

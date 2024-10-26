@@ -137,10 +137,6 @@ const DayEliminationBottomSheet = forwardRef<
     ]);
   };
 
-  const toggleShowAll = () => {
-    setShowAll(!showAll);
-  };
-
   return (
     <BottomSheet
       ref={eliminatedRoleBSRef}

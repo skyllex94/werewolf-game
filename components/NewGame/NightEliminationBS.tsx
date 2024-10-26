@@ -1,11 +1,5 @@
-import { View, Text, Pressable, Alert } from "react-native";
-import React, {
-  useMemo,
-  forwardRef,
-  useState,
-  useContext,
-  useEffect,
-} from "react";
+import { View, Text, Pressable, Alert, Image } from "react-native";
+import React, { useMemo, forwardRef, useState, useContext } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import NewGameContext from "@/contexts/NewGameContext";
@@ -52,32 +46,37 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
     };
 
     function checkIfBodyguardedPlayerAttacked() {
-      const isBodyguardAlive = playersLeft.some(
+      const bodyguard = playersLeft.find(
         (player: any) => player.role === "Bodyguard"
       );
 
       selectedPlayersForElimination.forEach((selectedPlayer: any) => {
-        if (selectedPlayer.protectedByBodyguard) {
-          if (isBodyguardAlive) {
-            selectedPlayer.numberOfAttacks += 1;
+        if (selectedPlayer.protectedByBodyguard && bodyguard) {
+          selectedPlayer.numberOfAttacks += 1;
 
-            if (selectedPlayer.numberOfAttacks === 1) {
-              Alert.alert(
-                "Bodyguard Protection",
-                `${selectedPlayer.name} is protected by the Bodyguard and survives the attack.`
-              );
-            } else if (selectedPlayer.numberOfAttacks >= 2) {
-              Alert.alert(
-                "Bodyguard Protection Expired",
-                `${selectedPlayer.name} has been attacked twice. The protection of the Bodyguard has expired.`
-              );
-            }
-          } else {
+          if (selectedPlayer.numberOfAttacks === 1) {
             Alert.alert(
-              "Bodyguard No Longer Active",
-              `${selectedPlayer.name} was attacked and killed. The Bodyguard is no longer in the game.`
+              "Bodyguard Protection",
+              `${selectedPlayer.name} is protected by the Bodyguard and survives the attack.`
             );
-            setEliminatedPlayers((prev: any) => [...prev, selectedPlayer]);
+          } else if (selectedPlayer.numberOfAttacks === 2) {
+            // Eliminate the Bodyguard instead of the protected player
+            Alert.alert(
+              "Bodyguard Sacrifice",
+              `${bodyguard.name} has sacrificed themselves to protect ${selectedPlayer.name} from a second attack.`
+            );
+
+            // Add Bodyguard to eliminated players
+            setEliminatedPlayers((prev: any) => [...prev, bodyguard]);
+
+            // Remove the Bodyguard from playersLeft
+            setPlayersLeft((prev: any) =>
+              prev.filter((player: any) => player.order !== bodyguard.order)
+            );
+
+            // Remove protection and attack tracking from the protected player
+            selectedPlayer.protectedByBodyguard = false;
+            delete selectedPlayer.numberOfAttacks;
           }
         }
       });
@@ -207,16 +206,6 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
       setShowAll(!showAll);
     };
 
-    // Function to update shields (called when the sheet opens)
-    const updateShields = () => {
-      // This will refresh the protection information
-      playersLeft.forEach((player: any) => {
-        player.protectedByBodyguard = player.protectedByBodyguard || false;
-        player.protectedByDoctor = player.protectedByDoctor || false;
-        player.numberOfAttacks = player.numberOfAttacks || 0;
-      });
-    };
-
     return (
       <BottomSheet
         ref={eliminatedRoleBSRef}
@@ -225,11 +214,6 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
         enablePanDownToClose={true}
         enableOverDrag={true}
         animateOnMount={true}
-        onChange={(index) => {
-          if (index >= 0) {
-            updateShields(); // Update shields when sheet opens
-          }
-        }}
       >
         <View className="flex-1 items-center">
           <View className="flex-row items-center justify-center px-3 py-2 w-full">
@@ -243,8 +227,6 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
             className="w-full mb-24"
           >
             <View className="flex-row flex-wrap justify-start p-2 w-full">
-              {/* No Role Eliminated Button */}
-
               {/* Map through players and render them */}
               {playersLeft
                 .filter((player: any) => showAll || player.role !== "Werewolf")
@@ -288,16 +270,36 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                             />
                           )}
                       </View>
+
+                      <View
+                        style={{
+                          alignItems: "center",
+                          position: "absolute",
+                          top: 10,
+                          right: "0%",
+                          transform: [{ translateX: -10 }],
+                        }}
+                      >
+                        {playersLeft.some((p: any) => p.role === "Werewolf") &&
+                          player.attackedByWerewolves && (
+                            <Image
+                              className="w-[20px] h-[20px]"
+                              style={{ tintColor: "#3b3b3b" }}
+                              source={require("../../assets/images/bottom_sheet/werewolf.png")}
+                            />
+                          )}
+                      </View>
                       <Text className="font-bold">{truncate(player.name)}</Text>
                       <Text className="text-xs">{player.role}</Text>
                     </TouchableOpacity>
                   </View>
                 ))}
 
+              {/* No Role Eliminated Button */}
               <View className="w-[33.3%] max-w-[33.3%]">
                 <TouchableOpacity
                   onPress={() => {
-                    setSelectedPlayersForElimination([]); // Clear selections
+                    setSelectedPlayersForElimination([]);
                   }}
                   className={`rounded-lg p-3 m-1 mb-2 items-center ${
                     selectedPlayersForElimination.length === 0

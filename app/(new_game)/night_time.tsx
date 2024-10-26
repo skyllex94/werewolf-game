@@ -10,11 +10,8 @@ import {
   WakeWerewolfUI,
   WakeSeerUI,
   WakeDoctorUI,
-  playWerewolfAssistance,
-  playSeerAssistance,
-  playDoctorAssistance,
   WakeBodyguardUI,
-} from "../../components/NewGame/VoiceAssistanceFunctions";
+} from "../../components/NewGame/NightRolesUI";
 import { StatusBar } from "expo-status-bar";
 import NewGameContext from "@/contexts/NewGameContext";
 import { useLocalSearchParams } from "expo-router";
@@ -35,7 +32,7 @@ export default function NightTime() {
 
   // Context states
   const { soundEnabled } = useContext(SoundContext);
-  const { playersLeft } = useContext(NewGameContext);
+  const { playersLeft, setPlayersLeft } = useContext(NewGameContext);
   console.log("playersLeft:", playersLeft);
 
   const [wolfHowling, setWolfHowling] = useState<Audio.Sound | null>(null);
@@ -56,6 +53,16 @@ export default function NightTime() {
   useEffect(() => {
     playWolfHowling();
     playNightBackground();
+
+    // Resetting night role states
+    const resetNightState = playersLeft.map((player: any) => ({
+      ...player,
+      attackedByWerewolves: false,
+      protectedByDoctor: false,
+    }));
+
+    // Apply the combined reset to playersLeft
+    setPlayersLeft(resetNightState);
   }, []);
 
   // Load and play the wolf howling sound
@@ -158,13 +165,7 @@ export default function NightTime() {
           {uniqueRoles.map((role: any) => {
             const RoleUI = roleComponents[role];
             return RoleUI ? (
-              <RoleUI
-                key={role}
-                soundEnabled={soundEnabled}
-                playWerewolfAssistance={playWerewolfAssistance}
-                playSeerAssistance={playSeerAssistance}
-                playDoctorAssistance={playDoctorAssistance}
-              />
+              <RoleUI key={role} soundEnabled={soundEnabled} />
             ) : null;
           })}
         </View>

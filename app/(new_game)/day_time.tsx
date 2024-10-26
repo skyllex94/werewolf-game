@@ -109,7 +109,6 @@ export default function DayTimeScreen() {
           initialValue={time}
           activeStrokeWidth={35}
           duration={time * 1000}
-          onAnimationComplete={() => alert("Time out!")}
           progressValueStyle={{ display: "none" }}
           activeStrokeSecondaryColor="teal"
           inActiveStrokeColor="black"
