@@ -11,7 +11,7 @@ export default function IntroScanScreen() {
   const params = useLocalSearchParams();
 
   const { characters_data, players_names } = params;
-  const { allPlayersInGame, setAllPlayersInGame, setPlayersLeft } =
+  const { allPlayersInGame, setAllPlayersInGame, setPlayersInGame } =
     useContext(NewGameContext);
 
   // players_names - ["Lilly", "Michael", "Lucy", "Mary", "Nige", "Garf"] - string
@@ -40,7 +40,7 @@ export default function IntroScanScreen() {
 
       // Initially the players left is the same as allPlayersInGame
       setAllPlayersInGame(rolesAssigned);
-      setPlayersLeft(rolesAssigned);
+      setPlayersInGame(rolesAssigned);
     } catch (err) {
       console.error("Error while assigning the roles to players: ", err);
       showMessage({

@@ -18,12 +18,17 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
       setEliminatedPlayers,
       selectedPlayersForElimination,
       setSelectedPlayersForElimination,
-      playersLeft,
-      setPlayersLeft,
+      playersInGame,
+      setPlayersInGame,
     } = useContext(NewGameContext);
 
     const [showAll, setShowAll] = useState(false);
     const [hunterSelected, setHunterSelected] = useState<boolean>(false);
+
+    console.log(
+      "selectedPlayersForElimination:",
+      selectedPlayersForElimination
+    );
 
     const snapPoints = useMemo(() => ["50%"], []);
     const { stopNightSounds } = props;
@@ -46,11 +51,11 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
     };
 
     function checkIfBodyguardedPlayerAttacked() {
-      const bodyguard = playersLeft.find(
+      const bodyguard = playersInGame.find(
         (player: any) => player.role === "Bodyguard"
       );
 
-      selectedPlayersForElimination.forEach((selectedPlayer: any) => {
+      playersInGame.forEach((selectedPlayer: any) => {
         if (selectedPlayer.protectedByBodyguard && bodyguard) {
           selectedPlayer.numberOfAttacks += 1;
 
@@ -66,11 +71,8 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
               `${bodyguard.name} has sacrificed themselves to protect ${selectedPlayer.name} from a second attack.`
             );
 
-            // Add Bodyguard to eliminated players
-            setEliminatedPlayers((prev: any) => [...prev, bodyguard]);
-
-            // Remove the Bodyguard from playersLeft
-            setPlayersLeft((prev: any) =>
+            // Remove the Bodyguard from playersInGame
+            setPlayersInGame((prev: any) =>
               prev.filter((player: any) => player.order !== bodyguard.order)
             );
 
@@ -83,7 +85,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
     }
 
     function checkIfDoctorProtected() {
-      const isDoctorAlive = playersLeft.some(
+      const isDoctorAlive = playersInGame.some(
         (player: any) => player.role === "Doctor"
       );
 
@@ -113,7 +115,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
         if (hunterEliminated) {
           setHunterSelected(true);
 
-          const playersToChooseFrom = playersLeft.filter(
+          const playersToChooseFrom = playersInGame.filter(
             (player: any) => player.role !== "Hunter"
           );
 
@@ -143,8 +145,6 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
     }
 
     const confirmElimination = () => {
-      const isDay = false;
-
       const eliminatedPlayerNames = selectedPlayersForElimination
         .map((player: any) => player.name)
         .join(", ");
@@ -160,11 +160,15 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
         {
           text: "Yes",
           onPress: () => {
-            const isBodyguardAlive = playersLeft.some(
+            const isBodyguardAlive = playersInGame.some(
               (player: any) => player.role === "Bodyguard"
             );
 
             checkIfBodyguardedPlayerAttacked();
+            console.log(
+              "setSelectedPlayersForEliminationBODY:",
+              setSelectedPlayersForElimination
+            );
             checkIfDoctorProtected();
 
             const actualPlayersToBeEliminated =
@@ -176,22 +180,24 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                   !player.protectedByDoctor
               );
 
-            const finalPlayersForElimination = playersLeft.filter(
+            const finalPlayersForElimination = playersInGame.filter(
               (player: any) => !actualPlayersToBeEliminated.includes(player)
             );
 
             const isHunterEliminated = checkIfHunterSelected();
             if (isHunterEliminated) {
-              setPlayersLeft(finalPlayersForElimination);
+              setPlayersInGame(finalPlayersForElimination);
               return;
             }
 
             setSelectedPlayersForElimination([]);
 
             stopNightSounds();
+
+            const isDay = false;
             checkForWinner(finalPlayersForElimination, isDay);
 
-            setPlayersLeft(finalPlayersForElimination);
+            setPlayersInGame(finalPlayersForElimination);
             setEliminatedPlayers([
               ...eliminatedPlayers,
               ...actualPlayersToBeEliminated,
@@ -228,7 +234,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
           >
             <View className="flex-row flex-wrap justify-start p-2 w-full">
               {/* Map through players and render them */}
-              {playersLeft
+              {playersInGame
                 .filter((player: any) => showAll || player.role !== "Werewolf")
                 .map((player: any) => (
                   <View className="w-[33.3%] max-w-[33.3%]" key={player.order}>
@@ -251,17 +257,19 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                           transform: [{ translateX: -10 }],
                         }}
                       >
-                        {playersLeft.some((p: any) => p.role === "Bodyguard") &&
+                        {playersInGame.some(
+                          (p: any) => p.role === "Bodyguard"
+                        ) &&
                           player.protectedByBodyguard && (
                             <FontAwesome5
                               name="shield-alt"
-                              size={18}
+                              size={17}
                               color="#636363"
                               // Space between shields if multiple
                               style={{ marginBottom: 2 }}
                             />
                           )}
-                        {playersLeft.some((p: any) => p.role === "Doctor") &&
+                        {playersInGame.some((p: any) => p.role === "Doctor") &&
                           player.protectedByDoctor && (
                             <MaterialCommunityIcons
                               name="shield-cross"
@@ -280,7 +288,9 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                           transform: [{ translateX: -10 }],
                         }}
                       >
-                        {playersLeft.some((p: any) => p.role === "Werewolf") &&
+                        {playersInGame.some(
+                          (p: any) => p.role === "Werewolf"
+                        ) &&
                           player.attackedByWerewolves && (
                             <Image
                               className="w-[20px] h-[20px]"

@@ -19,8 +19,8 @@ const DayEliminationBottomSheet = forwardRef<
     setEliminatedPlayers,
     selectedPlayersForElimination,
     setSelectedPlayersForElimination,
-    playersLeft,
-    setPlayersLeft,
+    playersInGame,
+    setPlayersInGame,
   } = useContext(NewGameContext);
 
   // State to toggle filtering
@@ -58,7 +58,7 @@ const DayEliminationBottomSheet = forwardRef<
         setHunterSelected(true);
 
         // Create an array of players left for selection
-        const playersToChooseFrom = playersLeft.filter(
+        const playersToChooseFrom = playersInGame.filter(
           (player: any) => player.role !== "Hunter"
         );
 
@@ -110,7 +110,7 @@ const DayEliminationBottomSheet = forwardRef<
         text: "Yes",
         onPress: () => {
           // Actual removal excluding some conditions
-          const finalPlayersForElimination = playersLeft.filter(
+          const finalPlayersForElimination = playersInGame.filter(
             (player: any) => !selectedPlayersForElimination.includes(player)
           );
 
@@ -118,7 +118,7 @@ const DayEliminationBottomSheet = forwardRef<
           const isHunterEliminated = checkIfHunterSelected();
           if (isHunterEliminated) {
             // If a Hunter was eliminated, include their selected target
-            setPlayersLeft(finalPlayersForElimination);
+            setPlayersInGame(finalPlayersForElimination);
             return;
           }
 
@@ -126,7 +126,7 @@ const DayEliminationBottomSheet = forwardRef<
           setSelectedPlayersForElimination([]);
           checkForWinner(finalPlayersForElimination, isDay);
 
-          setPlayersLeft(finalPlayersForElimination);
+          setPlayersInGame(finalPlayersForElimination);
           setEliminatedPlayers([
             ...eliminatedPlayers,
             ...selectedPlayersForElimination,
@@ -158,7 +158,7 @@ const DayEliminationBottomSheet = forwardRef<
           className="w-full mb-24"
         >
           <View className="flex-row flex-wrap justify-start p-2 w-full">
-            {playersLeft.map((player: any) => (
+            {playersInGame.map((player: any) => (
               <View className="w-[33.3%] max-w-[33.3%]" key={player.order}>
                 <TouchableOpacity
                   onPress={() => togglePlayerSelection(player)}
@@ -172,7 +172,7 @@ const DayEliminationBottomSheet = forwardRef<
                 >
                   <View className="absolute left-2 top-[60%]">
                     {/* Display Bodyguarded Status only if Bodyguard is in the game */}
-                    {playersLeft.some((p: any) => p.role === "Bodyguard") &&
+                    {playersInGame.some((p: any) => p.role === "Bodyguard") &&
                       player.protectedByBodyguard && (
                         <FontAwesome5
                           name="shield-alt"

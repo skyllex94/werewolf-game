@@ -15,8 +15,12 @@ interface WakeUIProps {
 export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [attackedPlayer, setAttackedPlayer] = useState(null);
-  const { playersLeft, setPlayersLeft, setSelectedPlayersForElimination } =
-    useContext(NewGameContext);
+  const {
+    playersInGame,
+    setPlayersInGame,
+    selectedPlayersForElimination,
+    setSelectedPlayersForElimination,
+  } = useContext(NewGameContext);
 
   useEffect(() => {
     return () => {
@@ -38,24 +42,38 @@ export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
     setSound(sound);
     await sound.playAsync();
   };
+
   const handleChoosePlayer = () => {
-    const playerNames = playersLeft.map((player: any) => player.name);
+    const eligiblePlayers = playersInGame.filter(
+      (player: any) =>
+        !["Werewolf", "Alpha Werewolf", "Wolf Cub", "Lycan"].includes(
+          player.role
+        )
+    );
+
+    const playerNames = eligiblePlayers.map((player: any) => player.name);
 
     Alert.alert("Choose Player to Attack", "", [
       ...playerNames.map((name: any) => ({
         text: name,
         onPress: () => {
           setAttackedPlayer(name);
-          setPlayersLeft((prevPlayers: any) =>
-            prevPlayers.map((player: any) => {
-              const isAttacked = player.name === name;
-              // Update attackedByWerewolves property
-              return {
-                ...player,
-                attackedByWerewolves: isAttacked,
-              };
-            })
+
+          // Update attackedByWerewolves status for playersInGame
+          setPlayersInGame((prevPlayers: any) =>
+            prevPlayers.map((player: any) => ({
+              ...player,
+              attackedByWerewolves: player.name === name,
+            }))
           );
+
+          // Update selectedPlayersForElimination to include the attacked player
+          const attackedPlayerObj = eligiblePlayers.find(
+            (player: any) => player.name === name
+          );
+          if (attackedPlayerObj) {
+            setSelectedPlayersForElimination([attackedPlayerObj]);
+          }
         },
       })),
       { text: "Cancel", onPress: () => null },
@@ -170,7 +188,7 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [selectedPlayerName, setSelectedPlayerName] =
     useState<string>("Choose Player");
-  const { playersLeft, setPlayersLeft } = useContext(NewGameContext);
+  const { playersInGame, setPlayersInGame } = useContext(NewGameContext);
 
   useEffect(() => {
     return () => {
@@ -194,8 +212,8 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
   };
 
   const choosePlayerProtectedByDoctor = () => {
-    // Filter out the Doctor from the playersLeft array
-    const availablePlayers = playersLeft.filter(
+    // Filter out the Doctor from the playersInGame array
+    const availablePlayers = playersInGame.filter(
       (player: any) => player.role !== "Doctor"
     );
 
@@ -204,7 +222,7 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
 
       onPress: () => {
         // Clear previous protection by the Doctor
-        playersLeft.forEach((p: any) => {
+        playersInGame.forEach((p: any) => {
           if (p.protectedByDoctor) {
             p.protectedByDoctor = false;
           }
@@ -213,11 +231,11 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
         // Protect the new player
         player.protectedByDoctor = true;
 
-        const updatedPlayers = playersLeft.map((p: any) => ({
+        const updatedPlayers = playersInGame.map((p: any) => ({
           ...p,
           protectedByDoctor: p.name === player.name,
         }));
-        setPlayersLeft(updatedPlayers); // Update context state
+        setPlayersInGame(updatedPlayers); // Update context state
 
         // Set the selected player's name in the state
         setSelectedPlayerName(`Protected: ${player.name}`);
@@ -290,7 +308,7 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [selectedPlayerName, setSelectedPlayerName] =
     useState<string>("Choose Player");
-  const { playersLeft, setPlayersLeft } = useContext(NewGameContext);
+  const { playersInGame, setPlayersInGame } = useContext(NewGameContext);
 
   useEffect(() => {
     return () => {
@@ -314,8 +332,8 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
   };
 
   const chooseGuardedPlayer = () => {
-    // Filter out the Bodyguard from the playersLeft array
-    const availablePlayers = playersLeft.filter(
+    // Filter out the Bodyguard from the playersInGame array
+    const availablePlayers = playersInGame.filter(
       (player: any) => player.role !== "Bodyguard"
     );
 
@@ -324,7 +342,7 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
 
       onPress: () => {
         // Clear any previous Bodyguard protection
-        playersLeft.forEach((p: any) => {
+        playersInGame.forEach((p: any) => {
           if (p.protectedByBodyguard) {
             p.protectedByBodyguard = false;
             p.numberOfAttacks = 0;
@@ -336,11 +354,11 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
         player.numberOfAttacks = 0;
 
         // Updating the shield UI in the bottomSheet
-        const updatedPlayers = playersLeft.map((p: any) => ({
+        const updatedPlayers = playersInGame.map((p: any) => ({
           ...p,
           protectedByBodyguard: p.name === player.name,
         }));
-        setPlayersLeft(updatedPlayers);
+        setPlayersInGame(updatedPlayers);
 
         // Set the selected player's name in the state
         setSelectedPlayerName(`Protected: ${player.name}`);

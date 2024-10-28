@@ -59,7 +59,7 @@ function RootLayoutNav() {
   // NewGameContext state - defined in scan_intro
   const [allPlayersInGame, setAllPlayersInGame] = useState<object[]>([]);
   // NewGameContext - defined in scan_intro
-  const [playersLeft, setPlayersLeft] = useState<object[]>([]);
+  const [playersInGame, setPlayersInGame] = useState<object[]>([]);
 
   // NewGameContext - defined in RoleEliminatedBS
   const [eliminatedPlayers, setEliminatedPlayers] = useState<object[]>([]);
@@ -78,8 +78,8 @@ function RootLayoutNav() {
               setEliminatedPlayers,
               selectedPlayersForElimination,
               setSelectedPlayersForElimination,
-              playersLeft,
-              setPlayersLeft,
+              playersInGame,
+              setPlayersInGame,
             }}
           >
             <ThemeProvider value={DefaultTheme}>

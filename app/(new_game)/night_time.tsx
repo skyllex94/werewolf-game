@@ -32,14 +32,14 @@ export default function NightTime() {
 
   // Context states
   const { soundEnabled } = useContext(SoundContext);
-  const { playersLeft, setPlayersLeft } = useContext(NewGameContext);
-  console.log("playersLeft:", playersLeft);
+  const { playersInGame, setPlayersInGame } = useContext(NewGameContext);
+  console.log("playersInGame:", playersInGame);
 
   const [wolfHowling, setWolfHowling] = useState<Audio.Sound | null>(null);
   const [nightBackgroundSound, setNightBackgroundSound] =
     useState<Audio.Sound | null>(null);
 
-  const allPlayersInGame = playersLeft;
+  const allPlayersInGame = playersInGame;
 
   // Mapping the roles to their corresponding UI component
   const roleComponents: { [key: string]: any } = {
@@ -55,14 +55,14 @@ export default function NightTime() {
     playNightBackground();
 
     // Resetting night role states
-    const resetNightState = playersLeft.map((player: any) => ({
+    const resetNightState = playersInGame.map((player: any) => ({
       ...player,
       attackedByWerewolves: false,
       protectedByDoctor: false,
     }));
 
-    // Apply the combined reset to playersLeft
-    setPlayersLeft(resetNightState);
+    // Apply the combined reset to playersInGame
+    setPlayersInGame(resetNightState);
   }, []);
 
   // Load and play the wolf howling sound
