@@ -121,3 +121,72 @@ export function checkForWinner(remainingPlayers: any, isDay: boolean) {
     }
   }
 }
+
+// function checkIfBodyguardedPlayerAttacked() {
+//   const bodyguard = playersInGame.find(
+//     (player: any) => player.role === "Bodyguard"
+//   );
+
+//   playersInGame.forEach((selectedPlayer: any) => {
+//     if (selectedPlayer.protectedByBodyguard && bodyguard) {
+//       selectedPlayer.numberOfAttacks += 1;
+
+//       if (selectedPlayer.numberOfAttacks === 1) {
+//         Alert.alert(
+//           "Bodyguard Protection",
+//           `${selectedPlayer.name} is protected by the Bodyguard and survives the attack.`
+//         );
+//       } else if (selectedPlayer.numberOfAttacks === 2) {
+//         // Eliminate the Bodyguard instead of the protected player
+//         Alert.alert(
+//           "Bodyguard Sacrifice",
+//           `${bodyguard.name} has sacrificed themselves to protect ${selectedPlayer.name} from a second attack.`
+//         );
+
+//         // Remove the Bodyguard from playersInGame
+//         setPlayersInGame((prev: any) => {
+//           const updatedPlayers = prev.filter(
+//             (player: any) => player.order !== bodyguard.order
+//           );
+
+//           // Log or check if the Bodyguard is removed successfully
+//           console.log("Updated BODYYY:", updatedPlayers);
+//           console.log(
+//             "Is Bodyguard removed:",
+//             !updatedPlayers.some(
+//               (player: any) => player.role === "Bodyguard"
+//             )
+//           );
+
+//           return updatedPlayers;
+//         });
+
+//         // Remove protection and attack tracking from the protected player
+//         selectedPlayer.protectedByBodyguard = false;
+//         delete selectedPlayer.numberOfAttacks;
+//       }
+//     }
+//   });
+// }
+
+// function checkIfDoctorProtected() {
+//   const isDoctorAlive = playersInGame.some(
+//     (player: any) => player.role === "Doctor"
+//   );
+
+//   selectedPlayersForElimination.forEach((selectedPlayer: any) => {
+//     if (selectedPlayer.protectedByDoctor && isDoctorAlive) {
+//       // Player protected by Doctor survives
+//       Alert.alert(
+//         "Doctor's Protection",
+//         `${selectedPlayer.name} was attacked but protected by the Doctor and survives.`
+//       );
+//       // Remove the player from the elimination list
+//       setSelectedPlayersForElimination(
+//         selectedPlayersForElimination.filter(
+//           (p: any) => p.order !== selectedPlayer.order
+//         )
+//       );
+//     }
+//   });
+// }

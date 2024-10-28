@@ -1,8 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, Pressable, Alert } from "react-native";
+import { View, Text, Pressable, Alert, Image } from "react-native";
 import { Audio } from "expo-av";
 import NewGameContext from "@/contexts/NewGameContext";
-import { Ionicons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  FontAwesome5,
+  FontAwesome6,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 interface WakeUIProps {
   soundEnabled: boolean;
@@ -82,6 +89,13 @@ export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
 
   return (
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
+      <View className="items-start mx-1 mt-2">
+        <Image
+          className="w-[21px] h-[21px]"
+          style={{ tintColor: "white" }}
+          source={require("../../assets/images/bottom_sheet/werewolf.png")}
+        />
+      </View>
       <View className="flex-row gap-3 justify-center mt-1">
         <Text className="text-start w-[100%] text-white font-[16px] px-3">
           - Wake up the Werewolves and let them decide collectively who to
@@ -130,6 +144,7 @@ export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
 // Wake Seer voice assistance
 export function WakeSeerUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     return () => {
@@ -154,6 +169,10 @@ export function WakeSeerUI({ soundEnabled }: WakeUIProps) {
 
   return (
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
+      <View className="items-start mx-1 mt-2">
+        <AntDesign name="eye" size={20} color="white" />
+      </View>
+
       <View className="flex-row items-center gap-3 justify-center mt-1">
         <Text className="text-start w-[100%] text-white font-[16px] px-3">
           - Wake up the Seer and let them choose someone from the village. You
@@ -176,6 +195,22 @@ export function WakeSeerUI({ soundEnabled }: WakeUIProps) {
               size={24}
               color="white"
             />
+          )}
+        </Pressable>
+
+        {/* Button for View Roles */}
+        <Pressable
+          className="bg-gray-700 p-3 rounded-lg"
+          onPress={() => router.push("/roles_modal")}
+        >
+          {({ pressed }) => (
+            <Text
+              className={`text-[14px] font-bold text-white ${
+                pressed ? "opacity-70" : "opacity-100"
+              }`}
+            >
+              View Roles
+            </Text>
           )}
         </Pressable>
       </View>
@@ -258,6 +293,9 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
 
   return (
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
+      <View className="items-start mx-1 mt-2">
+        <FontAwesome6 name="user-doctor" size={18} color="white" />
+      </View>
       <View className="flex-row items-center gap-3 justify-center mt-1">
         <Text className="text-start w-[100%] text-white font-[16px] px-3">
           - Wake up the Doctor and let them choose a person to protect,
@@ -377,6 +415,9 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
 
   return (
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
+      <View className="items-start mx-1 mt-2">
+        <FontAwesome5 name="shield-alt" size={17} color="white" />
+      </View>
       <View className="flex-row items-center gap-3 justify-center mt-1">
         <Text className="text-start w-[100%] text-white font-[16px] px-3">
           - Wake up the Bodyguard. He will choose a player through the first
@@ -384,7 +425,6 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
           attacked twice, the Bodyguard will die instead of them.
         </Text>
       </View>
-
       <View className="flex-row items-center m-2">
         {/* Button for Bodyguard voice assistance */}
         <Pressable
@@ -407,6 +447,124 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
         <Pressable
           className="bg-gray-700 p-3 rounded-lg "
           onPress={chooseGuardedPlayer}
+        >
+          {({ pressed }) => (
+            <Text
+              className={`text-[14px] font-bold text-white ${
+                pressed ? "opacity-70" : "opacity-100"
+              }`}
+            >
+              {selectedPlayerName}
+            </Text>
+          )}
+        </Pressable>
+      </View>
+    </View>
+  );
+}
+
+// Wake Priest UI
+export function WakePriestUI({ soundEnabled }: WakeUIProps) {
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+  const [selectedPlayerName, setSelectedPlayerName] =
+    useState<string>("Choose Player");
+  const { playersInGame, setPlayersInGame } = useContext(NewGameContext);
+
+  useEffect(() => {
+    return () => {
+      sound?.unloadAsync();
+    };
+  }, [sound]);
+
+  useEffect(() => {
+    if (sound) {
+      sound.setVolumeAsync(soundEnabled ? 0.7 : 0.0);
+    }
+  }, [soundEnabled]);
+
+  const handlePlayPriestAssistance = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/assists/priest-assist.mp3"), // Updated sound file for Priest
+      { volume: soundEnabled ? 0.7 : 0.0 }
+    );
+    setSound(sound);
+    await sound.playAsync();
+  };
+
+  const chooseBlessedPlayer = () => {
+    // Filter out the Priest from the playersInGame array
+    const availablePlayers = playersInGame.filter(
+      (player: any) => player.role !== "Priest"
+    );
+
+    const playerOptions = availablePlayers.map((player: any) => ({
+      text: player.name,
+      onPress: () => {
+        // Clear any previous Priest blessings
+        playersInGame.forEach((p: any) => {
+          if (p.protectedByPriest) {
+            p.protectedByPriest = false;
+          }
+        });
+
+        // Bless the new player
+        player.protectedByPriest = true;
+
+        // Updating the UI in the bottomSheet
+        const updatedPlayers = playersInGame.map((p: any) => ({
+          ...p,
+          protectedByPriest: p.name === player.name,
+        }));
+        setPlayersInGame(updatedPlayers);
+
+        // Set the selected player's name in the state
+        setSelectedPlayerName(`Blessed: ${player.name}`);
+      },
+    }));
+
+    // Add a cancel button to the alert
+    playerOptions.push({
+      text: "Cancel",
+      style: "cancel",
+    });
+
+    // Show the alert
+    Alert.alert("Choose Player to Bless", "Select one player", playerOptions);
+  };
+
+  return (
+    <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
+      <View className="items-start mx-1 mt-2">
+        <FontAwesome5 name="cross" size={17} color="white" />
+      </View>
+      <View className="flex-row items-center gap-3 justify-center mt-1">
+        <Text className="text-start w-[100%] text-white font-[16px] px-3">
+          - Wake up the Priest. They may bless one player, protecting them from
+          one werewolf attack.
+        </Text>
+      </View>
+      <View className="flex-row items-center m-2">
+        {/* Button for Priest voice assistance */}
+        <Pressable
+          className="bg-gray-700 p-2 rounded-lg mr-2"
+          onPress={handlePlayPriestAssistance}
+        >
+          {({ pressed }) => (
+            <Ionicons
+              className={`text-[14px] font-bold text-white ${
+                pressed ? "opacity-70" : "opacity-100"
+              }`}
+              name="volume-high"
+              size={24}
+              color="white"
+            />
+          )}
+        </Pressable>
+
+        {/* Button to choose player */}
+        <Pressable
+          className="bg-gray-700 p-3 rounded-lg"
+          onPress={chooseBlessedPlayer}
         >
           {({ pressed }) => (
             <Text

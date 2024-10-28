@@ -4,7 +4,12 @@ import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import NewGameContext from "@/contexts/NewGameContext";
 import { checkForWinner, truncate } from "@/functions/functions";
-import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  FontAwesome5,
+  FontAwesome6,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 
 type RoleEliminatedBSProps = {
   stopNightSounds: () => void;
@@ -50,63 +55,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
       }
     };
 
-    function checkIfBodyguardedPlayerAttacked() {
-      const bodyguard = playersInGame.find(
-        (player: any) => player.role === "Bodyguard"
-      );
-
-      playersInGame.forEach((selectedPlayer: any) => {
-        if (selectedPlayer.protectedByBodyguard && bodyguard) {
-          selectedPlayer.numberOfAttacks += 1;
-
-          if (selectedPlayer.numberOfAttacks === 1) {
-            Alert.alert(
-              "Bodyguard Protection",
-              `${selectedPlayer.name} is protected by the Bodyguard and survives the attack.`
-            );
-          } else if (selectedPlayer.numberOfAttacks === 2) {
-            // Eliminate the Bodyguard instead of the protected player
-            Alert.alert(
-              "Bodyguard Sacrifice",
-              `${bodyguard.name} has sacrificed themselves to protect ${selectedPlayer.name} from a second attack.`
-            );
-
-            // Remove the Bodyguard from playersInGame
-            setPlayersInGame((prev: any) =>
-              prev.filter((player: any) => player.order !== bodyguard.order)
-            );
-
-            // Remove protection and attack tracking from the protected player
-            selectedPlayer.protectedByBodyguard = false;
-            delete selectedPlayer.numberOfAttacks;
-          }
-        }
-      });
-    }
-
-    function checkIfDoctorProtected() {
-      const isDoctorAlive = playersInGame.some(
-        (player: any) => player.role === "Doctor"
-      );
-
-      selectedPlayersForElimination.forEach((selectedPlayer: any) => {
-        if (selectedPlayer.protectedByDoctor && isDoctorAlive) {
-          // Player protected by Doctor survives
-          Alert.alert(
-            "Doctor's Protection",
-            `${selectedPlayer.name} was attacked but protected by the Doctor and survives.`
-          );
-          // Remove the player from the elimination list
-          setSelectedPlayersForElimination(
-            selectedPlayersForElimination.filter(
-              (p: any) => p.order !== selectedPlayer.order
-            )
-          );
-        }
-      });
-    }
-
-    function checkIfHunterSelected() {
+    function checkIfHunterEliminated() {
       if (!hunterSelected) {
         const hunterEliminated = selectedPlayersForElimination.some(
           (player: any) => player.role === "Hunter"
@@ -145,54 +94,32 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
     }
 
     const confirmElimination = () => {
-      const eliminatedPlayerNames = selectedPlayersForElimination
+      const eliminatedNames = selectedPlayersForElimination
         .map((player: any) => player.name)
         .join(", ");
-
-      const playerLabel =
-        selectedPlayersForElimination.length === 1 ? "Player" : "Players";
-
-      const eliminationMessage = eliminatedPlayerNames
-        ? `${playerLabel}: ${eliminatedPlayerNames} will be removed from the game.`
+      const eliminationMessage = eliminatedNames
+        ? `Players: ${eliminatedNames} will be removed from the game.`
         : "No players will be removed from the game.";
 
-      return Alert.alert("Ready for the Day?", eliminationMessage, [
+      Alert.alert("Ready for the Day?", eliminationMessage, [
         {
           text: "Yes",
           onPress: () => {
-            const isBodyguardAlive = playersInGame.some(
-              (player: any) => player.role === "Bodyguard"
-            );
-
-            checkIfBodyguardedPlayerAttacked();
-            console.log(
-              "setSelectedPlayersForEliminationBODY:",
-              setSelectedPlayersForElimination
-            );
-            checkIfDoctorProtected();
-
-            const actualPlayersToBeEliminated =
-              selectedPlayersForElimination.filter(
-                (player: any) =>
-                  (!player.protectedByBodyguard ||
-                    player.numberOfAttacks >= 2 ||
-                    !isBodyguardAlive) &&
-                  !player.protectedByDoctor
-              );
-
+            // Actual removal excluding some conditions
             const finalPlayersForElimination = playersInGame.filter(
-              (player: any) => !actualPlayersToBeEliminated.includes(player)
+              (player: any) => !selectedPlayersForElimination.includes(player)
             );
 
-            const isHunterEliminated = checkIfHunterSelected();
+            // Hunter role check
+            const isHunterEliminated = checkIfHunterEliminated();
             if (isHunterEliminated) {
+              // If a Hunter was eliminated, include their selected target
               setPlayersInGame(finalPlayersForElimination);
               return;
             }
 
+            // Clear selected players for the next round
             setSelectedPlayersForElimination([]);
-
-            stopNightSounds();
 
             const isDay = false;
             checkForWinner(finalPlayersForElimination, isDay);
@@ -200,7 +127,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
             setPlayersInGame(finalPlayersForElimination);
             setEliminatedPlayers([
               ...eliminatedPlayers,
-              ...actualPlayersToBeEliminated,
+              ...selectedPlayersForElimination,
             ]);
           },
         },
@@ -271,9 +198,17 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                           )}
                         {playersInGame.some((p: any) => p.role === "Doctor") &&
                           player.protectedByDoctor && (
-                            <MaterialCommunityIcons
-                              name="shield-cross"
+                            <FontAwesome6
+                              name="user-doctor"
                               size={18}
+                              color="#636363"
+                            />
+                          )}
+                        {playersInGame.some((p: any) => p.role === "Priest") &&
+                          player.protectedByPriest && (
+                            <FontAwesome5
+                              name="cross"
+                              size={17}
                               color="#636363"
                             />
                           )}

@@ -11,6 +11,7 @@ import {
   WakeSeerUI,
   WakeDoctorUI,
   WakeBodyguardUI,
+  WakePriestUI,
 } from "../../components/NewGame/NightRolesUI";
 import { StatusBar } from "expo-status-bar";
 import NewGameContext from "@/contexts/NewGameContext";
@@ -48,6 +49,7 @@ export default function NightTime() {
     Doctor: WakeDoctorUI,
     // First night only roles
     Bodyguard: isFirstNight ? WakeBodyguardUI : null,
+    Priest: isFirstNight ? WakePriestUI : null,
   };
 
   useEffect(() => {
