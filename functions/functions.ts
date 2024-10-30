@@ -1,4 +1,6 @@
+import NewGameContext from "@/contexts/NewGameContext";
 import { router } from "expo-router";
+import { useContext } from "react";
 
 // Function to shuffle an array
 export function shuffleArray(array: any[]) {
@@ -30,8 +32,10 @@ export function assignRolesToPlayers(
     Doctor: "https://werewolf-app.netlify.app/doctor-role-link", // Add Doctor link
   };
 
-  // Define a mapping of roles to their types (good, bad or independent)
-  const roleTypes: { [key: string]: "good" | "bad" | "independent" } = {
+  // Define a mapping of roles to their types (good, bad, neutral or independent)
+  const roleTypes: {
+    [key: string]: "good" | "bad" | "independent" | "neutral";
+  } = {
     Villager: "good",
     Werewolf: "bad",
     Seer: "good",
@@ -43,7 +47,7 @@ export function assignRolesToPlayers(
     "Cursed Villager": "bad",
     Priest: "good",
     Hunter: "good",
-    Witch: "bad",
+    Witch: "neutral",
     "Alpha Werewolf": "bad",
     "Wolf Cub": "bad",
   };
@@ -80,7 +84,30 @@ export function truncate(text: string, maxLength: number = 10) {
   return text.slice(0, maxLength) + "...";
 }
 
-export function checkForWinner(remainingPlayers: any, isDay: boolean) {
+export function checkForWinner(
+  remainingPlayers: any,
+  isDay: boolean,
+  allPlayersInGame: object[]
+) {
+  console.log("allPlayersInGame:", allPlayersInGame);
+
+  // Check if there's a Tanner in the game
+  const tannerPresentInGame = allPlayersInGame.filter(
+    (player: any) => player.type == "independent"
+  ).length;
+
+  const isTannerStillInGame = remainingPlayers.filter(
+    (player: any) => player.type == "independent"
+  ).length;
+
+  if (tannerPresentInGame && !isTannerStillInGame) {
+    router.replace({
+      pathname: "/game_winner",
+      params: { winner: "independent" },
+    });
+    return;
+  }
+
   // Count the number of good and bad players remaining
   const goodPlayersCount = remainingPlayers.filter(
     (player: any) => player.type == "good"

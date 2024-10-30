@@ -66,6 +66,14 @@ function RootLayoutNav() {
   const [selectedPlayersForElimination, setSelectedPlayersForElimination] =
     useState<object[]>([]);
 
+  // Witch state
+  const [witchProtectionUsed, setWitchProtectionUsed] =
+    useState<boolean>(false);
+  // Alpha Werewolf state
+  const [convertedByAlphaWerewolf, setConvertedByAlphaWerewolf] = useState<
+    string | null
+  >(null);
+
   return (
     <GestureHandlerRootView className="flex-1">
       <SoundProvider>
@@ -80,6 +88,12 @@ function RootLayoutNav() {
               setSelectedPlayersForElimination,
               playersInGame,
               setPlayersInGame,
+              // Witch state
+              witchProtectionUsed,
+              setWitchProtectionUsed,
+              // Alpha Werewolf
+              convertedByAlphaWerewolf,
+              setConvertedByAlphaWerewolf,
             }}
           >
             <ThemeProvider value={DefaultTheme}>

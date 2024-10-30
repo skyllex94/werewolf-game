@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Image, BackHandler } from "react-native";
+import { View, Text, Pressable, Image } from "react-native";
 import React, { useRef, useEffect } from "react";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
@@ -27,12 +27,11 @@ const GameWinner = () => {
     router.replace("/");
   };
 
-  // Effect
   useEffect(() => {
     navigation.addListener("beforeRemove", (e) => {
       e.preventDefault();
       console.log("onback");
-      // Do your stuff here
+
       navigation.dispatch(e.data.action);
     });
   }, []);
@@ -67,18 +66,24 @@ const GameWinner = () => {
         ) : (
           <Image
             className="absolute left-[-60] top-[-150] h-[120px] w-[120px] drop-shadow-xl"
-            source={require("../../assets/images/emojis/werewolf.png")}
+            source={require("../../assets/images/emojis/tanner.png")}
           />
         )}
       </View>
 
       <Text className="text-2xl font-bold mb-4">
-        {winner === "good" ? "The Village Wins!" : "Werewolves Win!"}
+        {winner === "good"
+          ? "The Village Wins!"
+          : winner === "bad"
+          ? "Werewolves Win!"
+          : "The Tanner Wins!"}
       </Text>
       <Text className="text-lg text-center mb-8 font-light w-[90%]">
         {winner === "good"
           ? "Congratulations to the whole Village for figuring out who the bad guys are. You were able to successfully eliminate all of them in this game."
-          : "Great job Werewolves, you were able to successfully eliminate the Village and be unrecognized in doing so."}
+          : winner === "bad"
+          ? "Great job Werewolves, you were able to successfully eliminate the Village and be unrecognized in doing so."
+          : "The Tanner has been eliminated! The Tanner wins for achieving their goal of being removed from the game."}
       </Text>
 
       <View className="justify-center w-[80%] gap-y-3">

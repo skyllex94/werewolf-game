@@ -4,12 +4,7 @@ import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import NewGameContext from "@/contexts/NewGameContext";
 import { checkForWinner, truncate } from "@/functions/functions";
-import {
-  FontAwesome5,
-  FontAwesome6,
-  Ionicons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import { FontAwesome, FontAwesome5, FontAwesome6 } from "@expo/vector-icons";
 
 type RoleEliminatedBSProps = {
   stopNightSounds: () => void;
@@ -19,24 +14,20 @@ type RoleEliminatedBSProps = {
 const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
   (props, eliminatedRoleBSRef) => {
     const {
+      allPlayersInGame,
       eliminatedPlayers,
       setEliminatedPlayers,
       selectedPlayersForElimination,
       setSelectedPlayersForElimination,
       playersInGame,
       setPlayersInGame,
+      setWitchProtectionUsed,
     } = useContext(NewGameContext);
 
     const [showAll, setShowAll] = useState(false);
     const [hunterSelected, setHunterSelected] = useState<boolean>(false);
 
-    console.log(
-      "selectedPlayersForElimination:",
-      selectedPlayersForElimination
-    );
-
     const snapPoints = useMemo(() => ["50%"], []);
-    const { stopNightSounds } = props;
 
     const togglePlayerSelection = (player: any) => {
       if (
@@ -105,6 +96,21 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
         {
           text: "Yes",
           onPress: () => {
+            // Check if any player is protected by the Witch
+            const isProtectedByWitch = playersInGame.some(
+              (player: any) => player.protectedByWitch
+            );
+
+            // Disable future "Save a Player" actions if Witch has used protection
+            if (isProtectedByWitch) {
+              setWitchProtectionUsed(true);
+            }
+
+            // Check if the Tanner is in selectedPlayersForElimination
+            const isTannerEliminated = selectedPlayersForElimination.some(
+              (player: any) => player.role === "Tanner"
+            );
+
             // Actual removal excluding some conditions
             const finalPlayersForElimination = playersInGame.filter(
               (player: any) => !selectedPlayersForElimination.includes(player)
@@ -117,12 +123,26 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
               setPlayersInGame(finalPlayersForElimination);
               return;
             }
+            console.log(
+              "finalPlayersForElimination:",
+              finalPlayersForElimination
+            );
 
             // Clear selected players for the next round
             setSelectedPlayersForElimination([]);
 
             const isDay = false;
-            checkForWinner(finalPlayersForElimination, isDay);
+
+            // If Tanner is eliminated, he wins as an independent
+            if (isTannerEliminated) {
+              checkForWinner(
+                finalPlayersForElimination,
+                isDay,
+                allPlayersInGame
+              );
+              return; // Exit as the game is won by Tanner
+            }
+            checkForWinner(finalPlayersForElimination, isDay, allPlayersInGame);
 
             setPlayersInGame(finalPlayersForElimination);
             setEliminatedPlayers([
@@ -212,6 +232,23 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                               color="#636363"
                             />
                           )}
+                        {playersInGame.some((p: any) => p.role === "Witch") &&
+                          player.protectedByWitch && (
+                            <View className="flex-row">
+                              <Image
+                                className="w-[20px] h-[20px]"
+                                source={require("../../assets/images/bottom_sheet/witch.png")}
+                                style={{ tintColor: "#636363" }}
+                              />
+                              <View className="absolute top-0 right-[-6]">
+                                <FontAwesome
+                                  name="check"
+                                  size={10}
+                                  color="green"
+                                />
+                              </View>
+                            </View>
+                          )}
                       </View>
 
                       <View
@@ -229,9 +266,27 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                           player.attackedByWerewolves && (
                             <Image
                               className="w-[20px] h-[20px]"
-                              style={{ tintColor: "#3b3b3b" }}
+                              style={{ tintColor: "#636363" }}
                               source={require("../../assets/images/bottom_sheet/werewolf.png")}
                             />
+                          )}
+
+                        {playersInGame.some((p: any) => p.role === "Witch") &&
+                          player.attackedByWitch && (
+                            <View className="flex-row">
+                              <Image
+                                className="w-[20px] h-[20px]"
+                                source={require("../../assets/images/bottom_sheet/witch.png")}
+                                style={{ tintColor: "#636363" }}
+                              />
+                              <View className="absolute top-0 right-[-6]">
+                                <FontAwesome
+                                  name="close"
+                                  size={10}
+                                  color="red"
+                                />
+                              </View>
+                            </View>
                           )}
                       </View>
                       <Text className="font-bold">{truncate(player.name)}</Text>

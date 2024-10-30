@@ -7,7 +7,6 @@ import {
   FontAwesome5,
   FontAwesome6,
   Ionicons,
-  MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
@@ -18,16 +17,12 @@ interface WakeUIProps {
   playDoctorAssistance?: (soundEnabled: boolean) => Promise<void>;
 }
 
-// Wake Werewolf voice assistance
+// Wake Werewolf UI
 export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [attackedPlayer, setAttackedPlayer] = useState(null);
-  const {
-    playersInGame,
-    setPlayersInGame,
-    selectedPlayersForElimination,
-    setSelectedPlayersForElimination,
-  } = useContext(NewGameContext);
+  const { playersInGame, setPlayersInGame, setSelectedPlayersForElimination } =
+    useContext(NewGameContext);
 
   useEffect(() => {
     return () => {
@@ -89,12 +84,15 @@ export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
 
   return (
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
-      <View className="items-start mx-1 mt-2">
+      <View className="flex-row items-start mx-1 mt-2">
         <Image
           className="w-[21px] h-[21px]"
           style={{ tintColor: "white" }}
           source={require("../../assets/images/bottom_sheet/werewolf.png")}
         />
+        <Text className="text-white text-[15px] mx-2 mt-[2px]">
+          Werewolf Role
+        </Text>
       </View>
       <View className="flex-row gap-3 justify-center mt-1">
         <Text className="text-start w-[100%] text-white font-[16px] px-3">
@@ -141,7 +139,7 @@ export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
   );
 }
 
-// Wake Seer voice assistance
+// Wake Seer UI
 export function WakeSeerUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const router = useRouter();
@@ -169,8 +167,9 @@ export function WakeSeerUI({ soundEnabled }: WakeUIProps) {
 
   return (
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
-      <View className="items-start mx-1 mt-2">
+      <View className="flex-row items-start mx-1 mt-2">
         <AntDesign name="eye" size={20} color="white" />
+        <Text className="text-white text-[15px] mx-2">Seer Role</Text>
       </View>
 
       <View className="flex-row items-center gap-3 justify-center mt-1">
@@ -218,7 +217,7 @@ export function WakeSeerUI({ soundEnabled }: WakeUIProps) {
   );
 }
 
-// Wake Doctor voice assistance
+// Wake Doctor UI
 export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [selectedPlayerName, setSelectedPlayerName] =
@@ -293,9 +292,11 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
 
   return (
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
-      <View className="items-start mx-1 mt-2">
+      <View className="flex-row items-start mx-1 mt-2">
         <FontAwesome6 name="user-doctor" size={18} color="white" />
+        <Text className="text-white text-[15px] mx-2">Doctor Role</Text>
       </View>
+
       <View className="flex-row items-center gap-3 justify-center mt-1">
         <Text className="text-start w-[100%] text-white font-[16px] px-3">
           - Wake up the Doctor and let them choose a person to protect,
@@ -341,7 +342,7 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
   );
 }
 
-// Wake Bodyguard voice assistance
+// Wake Bodyguard UI
 export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [selectedPlayerName, setSelectedPlayerName] =
@@ -415,8 +416,9 @@ export function WakeBodyguardUI({ soundEnabled }: WakeUIProps) {
 
   return (
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
-      <View className="items-start mx-1 mt-2">
+      <View className="flex-row items-start mx-1 mt-2">
         <FontAwesome5 name="shield-alt" size={17} color="white" />
+        <Text className="text-white text-[15px] mx-2">Bodyguard Role</Text>
       </View>
       <View className="flex-row items-center gap-3 justify-center mt-1">
         <Text className="text-start w-[100%] text-white font-[16px] px-3">
@@ -482,9 +484,9 @@ export function WakePriestUI({ soundEnabled }: WakeUIProps) {
     }
   }, [soundEnabled]);
 
-  const handlePlayPriestAssistance = async () => {
+  const playPriestAssistance = async () => {
     const { sound } = await Audio.Sound.createAsync(
-      require("../../assets/audio/assists/priest-assist.mp3"), // Updated sound file for Priest
+      require("../../assets/audio/assists/priest-assist.mp3"),
       { volume: soundEnabled ? 0.7 : 0.0 }
     );
     setSound(sound);
@@ -534,8 +536,9 @@ export function WakePriestUI({ soundEnabled }: WakeUIProps) {
 
   return (
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
-      <View className="items-start mx-1 mt-2">
+      <View className="flex-row items-start mx-1 mt-2">
         <FontAwesome5 name="cross" size={17} color="white" />
+        <Text className="text-white text-[15px] mx-2">Priest Role</Text>
       </View>
       <View className="flex-row items-center gap-3 justify-center mt-1">
         <Text className="text-start w-[100%] text-white font-[16px] px-3">
@@ -547,7 +550,7 @@ export function WakePriestUI({ soundEnabled }: WakeUIProps) {
         {/* Button for Priest voice assistance */}
         <Pressable
           className="bg-gray-700 p-2 rounded-lg mr-2"
-          onPress={handlePlayPriestAssistance}
+          onPress={playPriestAssistance}
         >
           {({ pressed }) => (
             <Ionicons
@@ -575,6 +578,306 @@ export function WakePriestUI({ soundEnabled }: WakeUIProps) {
               {selectedPlayerName}
             </Text>
           )}
+        </Pressable>
+      </View>
+    </View>
+  );
+}
+
+// Wake Witch UI
+export function WakeWitchUI({ soundEnabled }: WakeUIProps) {
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+  const [saveButtonText, setSaveButtonText] = useState<string>("Save a Player");
+  const [killButtonText, setKillButtonText] = useState<string>("Kill a Player");
+  const {
+    playersInGame,
+    setPlayersInGame,
+    eliminatedPlayers,
+    witchProtectionUsed,
+  } = useContext(NewGameContext);
+  const [savedPlayer, setSavedPlayer] = useState<any>(null);
+  const [killedPlayer, setKilledPlayer] = useState<any>(null);
+
+  // Check conditions for disabling button
+  const disableKillButton = eliminatedPlayers.some(
+    (player: any) => player.attackedByWitch
+  );
+
+  useEffect(() => {
+    return () => {
+      sound?.unloadAsync();
+    };
+  }, [sound]);
+
+  useEffect(() => {
+    if (sound) {
+      sound.setVolumeAsync(soundEnabled ? 0.7 : 0.0);
+    }
+  }, [soundEnabled]);
+
+  const handlePlayWitchAssistance = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/assists/witch-assist.mp3"),
+      { volume: soundEnabled ? 0.7 : 0.0 }
+    );
+    setSound(sound);
+    await sound.playAsync();
+  };
+
+  const choosePlayerToSave = () => {
+    const availablePlayers = playersInGame.filter(
+      (player: any) => player.role !== "Witch"
+    );
+
+    const playerOptions = availablePlayers.map((player: any) => ({
+      text: player.name,
+      onPress: () => {
+        // Reset killed player if it exists
+        if (killedPlayer) {
+          setKilledPlayer(null);
+          setKillButtonText("Kill a Player");
+        }
+
+        // Update player properties in playersInGame
+        setPlayersInGame((prevPlayers: any) =>
+          prevPlayers.map((p: any) => ({
+            ...p,
+            protectedByWitch: p.order === player.order, // Set only selected player as protected
+            attackedByWitch: false, // Reset attackedByWitch for all
+          }))
+        );
+
+        setSavedPlayer(player);
+        setSaveButtonText(`Saved: ${player.name}`);
+      },
+    }));
+
+    playerOptions.push({
+      text: "Cancel",
+      style: "cancel",
+    });
+
+    Alert.alert("Choose Player to Save", "Select one player", playerOptions);
+  };
+
+  const choosePlayerToKill = () => {
+    if (disableKillButton) return;
+
+    const availablePlayers = playersInGame.filter(
+      (player: any) => player.role !== "Witch"
+    );
+
+    const playerOptions = availablePlayers.map((player: any) => ({
+      text: player.name,
+      onPress: () => {
+        // Reset saved player if it exists
+        if (savedPlayer) {
+          setSavedPlayer(null);
+          setSaveButtonText("Save a Player");
+        }
+
+        // Update player properties in playersInGame
+        setPlayersInGame((prevPlayers: any) =>
+          prevPlayers.map((p: any) => ({
+            ...p,
+            attackedByWitch: p.order === player.order, // Set only selected player as attacked
+            protectedByWitch: false, // Reset protectedByWitch for all
+          }))
+        );
+
+        setKilledPlayer(player);
+        setKillButtonText(`Attacked: ${player.name}`);
+      },
+    }));
+
+    playerOptions.push({
+      text: "Cancel",
+      style: "cancel",
+    });
+
+    Alert.alert("Choose Player to Kill", "Select one player", playerOptions);
+  };
+
+  return (
+    <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
+      <View className="flex-row items-start mx-1 mt-2">
+        <Image
+          className="w-[25px] h-[25px]"
+          source={require("../../assets/images/bottom_sheet/witch.png")}
+          style={{ tintColor: "white" }}
+        />
+        <Text className="text-white text-[15px] mx-2 mt-[5px]">Witch Role</Text>
+      </View>
+      <View className="flex-row items-center gap-3 justify-center mt-1">
+        <Text className="text-start w-[100%] text-white font-[16px] px-3">
+          - Wake up the Witch. The Werewolves have chosen someone to attack. She
+          may choose to use her potion to save this player from death. She also
+          has a poison potion, which she may use once on any player of her
+          choosing.
+        </Text>
+      </View>
+      <View className="flex-row items-center m-2">
+        <Pressable
+          className="bg-gray-700 p-2 rounded-lg mr-2"
+          onPress={handlePlayWitchAssistance}
+        >
+          {({ pressed }) => (
+            <Ionicons
+              className={`text-[14px] font-bold text-white ${
+                pressed ? "opacity-70" : "opacity-100"
+              }`}
+              name="volume-high"
+              size={24}
+              color="white"
+            />
+          )}
+        </Pressable>
+
+        <Pressable
+          className={`bg-gray-700 p-3 rounded-lg mr-2 ${
+            witchProtectionUsed ? "opacity-70" : ""
+          }`}
+          onPress={witchProtectionUsed ? undefined : choosePlayerToSave}
+          disabled={witchProtectionUsed}
+        >
+          <Text
+            className={`text-[14px] font-bold text-white ${
+              witchProtectionUsed ?? "opacity-100"
+            }`}
+          >
+            {saveButtonText}
+          </Text>
+        </Pressable>
+
+        <Pressable
+          className={`bg-gray-700 p-3 rounded-lg ${
+            disableKillButton ? "opacity-70" : ""
+          }`}
+          onPress={disableKillButton ? undefined : choosePlayerToKill}
+          disabled={disableKillButton}
+        >
+          <Text className="text-[14px] font-bold text-white">
+            {killButtonText}
+          </Text>
+        </Pressable>
+      </View>
+    </View>
+  );
+}
+
+export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
+  const {
+    playersInGame,
+    setPlayersInGame,
+    convertedByAlphaWerewolf,
+    setConvertedByAlphaWerewolf,
+  } = useContext(NewGameContext);
+
+  // Function to play sound for Alpha Werewolf
+  const handlePlayAlphaAssistance = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/assists/alpha-werewolf-assist.mp3"),
+      { volume: soundEnabled ? 0.7 : 0.0 }
+    );
+    setSound(sound);
+    await sound.playAsync();
+  };
+
+  // Function to choose a player to convert
+  const choosePlayerToConvert = () => {
+    const availablePlayers = playersInGame.filter(
+      (player: any) => player.role !== "Alpha Werewolf"
+    );
+
+    const playerOptions = availablePlayers.map((player: any) => ({
+      text: player.name,
+      onPress: () => {
+        // Show confirmation alert before converting
+        Alert.alert(
+          "Convert to Werewolf",
+          `Are you sure you want to convert ${player.name} into a Werewolf?`,
+          [
+            {
+              text: "Yes",
+              onPress: () => {
+                // Update the player's role to Werewolf
+                setPlayersInGame((prevPlayers: any) =>
+                  prevPlayers.map((p: any) =>
+                    p.order === player.order ? { ...p, role: "Werewolf" } : p
+                  )
+                );
+                setConvertedByAlphaWerewolf(player.name); // Set the converted player's name
+                Alert.alert(
+                  "Success!",
+                  `${player.name} has been converted to a Werewolf!`
+                );
+              },
+            },
+            {
+              text: "No",
+            },
+          ]
+        );
+      },
+    }));
+
+    playerOptions.push({
+      text: "Cancel",
+      style: "cancel",
+    });
+
+    Alert.alert("Choose Player to Convert", "Select one player", playerOptions);
+  };
+
+  return (
+    <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
+      <View className="flex-row items-start mx-1 mt-2">
+        <Image
+          className="w-[25px] h-[25px]"
+          source={require("../../assets/images/bottom_sheet/alpha-werewolf.png")}
+          style={{ tintColor: "white" }}
+        />
+        <Text className="text-white text-[15px] mx-2 mt-[5px]">
+          Alpha Werewolf Role
+        </Text>
+      </View>
+      <View className="flex-row items-center gap-3 justify-center mt-1">
+        <Text className="text-start w-[100%] text-white font-[16px] px-3">
+          - Wake up the Alpha Werewolf. The Alpha has the ability to convert one
+          villager into a Werewolf each night.
+        </Text>
+      </View>
+      <View className="flex-row items-center m-2">
+        <Pressable
+          className="bg-gray-700 p-2 rounded-lg mr-2"
+          onPress={handlePlayAlphaAssistance}
+        >
+          {({ pressed }) => (
+            <Ionicons
+              className={`text-[14px] font-bold text-white ${
+                pressed ? "opacity-70" : "opacity-100"
+              }`}
+              name="volume-high"
+              size={24}
+              color="white"
+            />
+          )}
+        </Pressable>
+
+        <Pressable
+          className={`bg-gray-700 p-3 rounded-lg mr-2 ${
+            convertedByAlphaWerewolf ? "opacity-70" : ""
+          }`}
+          onPress={choosePlayerToConvert}
+          disabled={!!convertedByAlphaWerewolf} // Disable button if player is converted
+        >
+          <Text className="text-[14px] font-bold text-white">
+            {convertedByAlphaWerewolf
+              ? `Converted to Werewolf: ${convertedByAlphaWerewolf}`
+              : "Choose a Player"}
+          </Text>
         </Pressable>
       </View>
     </View>

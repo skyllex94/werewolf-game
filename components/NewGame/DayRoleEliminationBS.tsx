@@ -24,8 +24,8 @@ const DayEliminationBottomSheet = forwardRef<
   } = useContext(NewGameContext);
 
   // State to toggle filtering
-  const [showAll, setShowAll] = useState(false);
   const [hunterSelected, setHunterSelected] = useState<boolean>(false);
+  const { allPlayersInGame } = useContext(NewGameContext);
 
   const snapPoints = useMemo(() => ["50%"], []);
 
@@ -89,10 +89,27 @@ const DayEliminationBottomSheet = forwardRef<
     return false;
   }
 
+  // Function to check if Prince is in elimination list and filter them out
+  const checkAndRemovePrince = (playersForElimination: any[]) => {
+    const nonPrincePlayers = playersForElimination.filter(
+      (player: any) => player.role !== "Prince"
+    );
+
+    // If a Prince was removed, display a message
+    if (nonPrincePlayers.length !== playersForElimination.length) {
+      Alert.alert(
+        "Prince Protected",
+        "The Prince cannot be removed during the day as the Village cannot vote him out."
+      );
+    }
+
+    return nonPrincePlayers;
+  };
+
   const confirmElimination = () => {
     const isDay = true;
 
-    // UI elements
+    // Prepare elimination message for the initial confirmation alert
     const eliminatedPlayerNames = selectedPlayersForElimination
       .map((player: any) => player.name)
       .join(", ");
@@ -104,32 +121,47 @@ const DayEliminationBottomSheet = forwardRef<
       ? `${playerLabel}: ${eliminatedPlayerNames} will be removed from the game.`
       : "No players will be removed from the game.";
 
-    return Alert.alert("Ready for the Day?", eliminationMessage, [
+    // Display the initial "Ready for the Day?" confirmation alert
+    Alert.alert("Ready for the Day?", eliminationMessage, [
       {
-        // Logic of the Elimination
         text: "Yes",
         onPress: () => {
-          // Actual removal excluding some conditions
-          const finalPlayersForElimination = playersInGame.filter(
-            (player: any) => !selectedPlayersForElimination.includes(player)
+          // Check if the Tanner is in selectedPlayersForElimination
+          const isTannerEliminated = selectedPlayersForElimination.some(
+            (player: any) => player.role === "Tanner"
+          );
+
+          // Filter out the Prince and display the Prince protection message if applicable
+          const finalPlayersForElimination = checkAndRemovePrince(
+            selectedPlayersForElimination
+          );
+
+          const remainingPlayers = playersInGame.filter(
+            (player: any) => !finalPlayersForElimination.includes(player)
           );
 
           // Hunter role check
           const isHunterEliminated = checkIfHunterSelected();
           if (isHunterEliminated) {
-            // If a Hunter was eliminated, include their selected target
-            setPlayersInGame(finalPlayersForElimination);
+            setPlayersInGame(remainingPlayers);
             return;
           }
 
           // Clear selected players for the next round
           setSelectedPlayersForElimination([]);
-          checkForWinner(finalPlayersForElimination, isDay);
 
-          setPlayersInGame(finalPlayersForElimination);
+          const isDay = true;
+          // If Tanner is eliminated, he wins as an independent
+          if (isTannerEliminated) {
+            checkForWinner(remainingPlayers, isDay, allPlayersInGame);
+            return; // Exit as the game is won by Tanner
+          }
+          checkForWinner(remainingPlayers, isDay, allPlayersInGame);
+
+          setPlayersInGame(remainingPlayers);
           setEliminatedPlayers([
             ...eliminatedPlayers,
-            ...selectedPlayersForElimination,
+            ...finalPlayersForElimination,
           ]);
         },
       },

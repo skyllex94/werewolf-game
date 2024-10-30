@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import NewGameContext from "@/contexts/NewGameContext";
 
 interface Item {
   order: number;
@@ -16,6 +17,18 @@ export default function OperatorViewRoles() {
   const { players_roles } = params;
 
   const [rolesShown, setRolesShown] = useState<boolean>(false);
+
+  const { setWitchProtectionUsed, setConvertedByAlphaWerewolf } =
+    useContext(NewGameContext);
+
+  function checkStatesBeforeGame() {
+    setConvertedByAlphaWerewolf(null);
+    setWitchProtectionUsed(false);
+  }
+
+  useEffect(() => {
+    checkStatesBeforeGame();
+  }, []);
 
   // Parse the allPlayersInGame array from JSON
   const allPlayersInGame: Item[] = players_roles
