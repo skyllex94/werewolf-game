@@ -73,6 +73,8 @@ function RootLayoutNav() {
   const [convertedByAlphaWerewolf, setConvertedByAlphaWerewolf] = useState<
     string | null
   >(null);
+  // Cupid state
+  const [cupidBond, setCupidBond] = useState(false);
 
   return (
     <GestureHandlerRootView className="flex-1">
@@ -94,6 +96,9 @@ function RootLayoutNav() {
               // Alpha Werewolf
               convertedByAlphaWerewolf,
               setConvertedByAlphaWerewolf,
+              // Cupid state
+              cupidBond,
+              setCupidBond,
             }}
           >
             <ThemeProvider value={DefaultTheme}>
@@ -118,6 +123,14 @@ function RootLayoutNav() {
                 />
                 <Stack.Screen
                   name="(new_game)/game_winner"
+                  options={{ gestureEnabled: false }}
+                />
+                <Stack.Screen
+                  name="(new_game)/night_time"
+                  options={{ gestureEnabled: false }}
+                />
+                <Stack.Screen
+                  name="(new_game)/day_time"
                   options={{ gestureEnabled: false }}
                 />
               </Stack>

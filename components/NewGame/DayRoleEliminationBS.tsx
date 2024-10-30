@@ -15,7 +15,6 @@ const DayEliminationBottomSheet = forwardRef<
   RoleEliminatedBSProps
 >((props, eliminatedRoleBSRef) => {
   const {
-    eliminatedPlayers,
     setEliminatedPlayers,
     selectedPlayersForElimination,
     setSelectedPlayersForElimination,
@@ -26,6 +25,9 @@ const DayEliminationBottomSheet = forwardRef<
   // State to toggle filtering
   const [hunterSelected, setHunterSelected] = useState<boolean>(false);
   const { allPlayersInGame } = useContext(NewGameContext);
+
+  // Passed states through props
+  const { setDayTimeSounds } = props;
 
   const snapPoints = useMemo(() => ["50%"], []);
 
@@ -90,7 +92,7 @@ const DayEliminationBottomSheet = forwardRef<
   }
 
   // Function to check if Prince is in elimination list and filter them out
-  const checkAndRemovePrince = (playersForElimination: any[]) => {
+  const princeCheckup = (playersForElimination: any[]) => {
     const nonPrincePlayers = playersForElimination.filter(
       (player: any) => player.role !== "Prince"
     );
@@ -107,8 +109,6 @@ const DayEliminationBottomSheet = forwardRef<
   };
 
   const confirmElimination = () => {
-    const isDay = true;
-
     // Prepare elimination message for the initial confirmation alert
     const eliminatedPlayerNames = selectedPlayersForElimination
       .map((player: any) => player.name)
@@ -121,8 +121,8 @@ const DayEliminationBottomSheet = forwardRef<
       ? `${playerLabel}: ${eliminatedPlayerNames} will be removed from the game.`
       : "No players will be removed from the game.";
 
-    // Display the initial "Ready for the Day?" confirmation alert
-    Alert.alert("Ready for the Day?", eliminationMessage, [
+    // Display the initial "Ready for the Night?" confirmation alert
+    Alert.alert("Ready for the Night?", eliminationMessage, [
       {
         text: "Yes",
         onPress: () => {
@@ -131,19 +131,37 @@ const DayEliminationBottomSheet = forwardRef<
             (player: any) => player.role === "Tanner"
           );
 
-          // Filter out the Prince and display the Prince protection message if applicable
-          const finalPlayersForElimination = checkAndRemovePrince(
-            selectedPlayersForElimination
+          // Check if the Prince is in selectedPlayersForElimination
+          const isPrinceEliminated = selectedPlayersForElimination.some(
+            (player: any) => player.role === "Prince"
           );
 
-          const remainingPlayers = playersInGame.filter(
-            (player: any) => !finalPlayersForElimination.includes(player)
+          // Check if the Wolf Cub is in selectedPlayersForElimination
+          const isWolfCubEliminated = selectedPlayersForElimination.some(
+            (player: any) => player.role === "Wolf Cub"
+          );
+
+          if (isPrinceEliminated) princeCheckup(selectedPlayersForElimination);
+
+          // Define the players to remain after elimination, respecting the Prince role
+          const finalPlayersForElimination = playersInGame.filter(
+            (player: any) => {
+              // Allow elimination of all selected players except the Prince
+              if (
+                player.role === "Prince" &&
+                selectedPlayersForElimination.includes(player)
+              ) {
+                return true;
+              }
+              // Eliminate other selected players
+              return !selectedPlayersForElimination.includes(player);
+            }
           );
 
           // Hunter role check
           const isHunterEliminated = checkIfHunterSelected();
           if (isHunterEliminated) {
-            setPlayersInGame(remainingPlayers);
+            setPlayersInGame(finalPlayersForElimination);
             return;
           }
 
@@ -151,18 +169,39 @@ const DayEliminationBottomSheet = forwardRef<
           setSelectedPlayersForElimination([]);
 
           const isDay = true;
+
           // If Tanner is eliminated, he wins as an independent
           if (isTannerEliminated) {
-            checkForWinner(remainingPlayers, isDay, allPlayersInGame);
-            return; // Exit as the game is won by Tanner
+            checkForWinner(finalPlayersForElimination, isDay, allPlayersInGame);
+            return;
           }
-          checkForWinner(remainingPlayers, isDay, allPlayersInGame);
 
-          setPlayersInGame(remainingPlayers);
-          setEliminatedPlayers([
-            ...eliminatedPlayers,
-            ...finalPlayersForElimination,
+          // Stop day time sounds
+          setDayTimeSounds(false);
+
+          // Update playersInGame and eliminatedPlayers based on final selections
+          setPlayersInGame(finalPlayersForElimination);
+          setEliminatedPlayers((prevEliminated: any) => [
+            ...prevEliminated,
+            ...selectedPlayersForElimination.filter(
+              (player: any) =>
+                !(
+                  player.role === "Prince" &&
+                  selectedPlayersForElimination.includes(player)
+                )
+            ),
           ]);
+
+          // Check if there's a winner after eliminations
+          checkForWinner(finalPlayersForElimination, isDay, allPlayersInGame);
+
+          // Display message if a Wolf Cub was eliminated
+          if (isWolfCubEliminated) {
+            Alert.alert(
+              "Wolf Cub Killed",
+              "The Wolf Cub has been killed. Werewolves get an extra kill next night. Don't let the Village know that there was a Wolf Cub killed, simply let the Werewolves eliminate another player."
+            );
+          }
         },
       },
       { text: "No", onPress: () => null },

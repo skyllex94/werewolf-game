@@ -765,6 +765,7 @@ export function WakeWitchUI({ soundEnabled }: WakeUIProps) {
   );
 }
 
+// Alpha Werewolf UI
 export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
@@ -774,6 +775,18 @@ export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
     convertedByAlphaWerewolf,
     setConvertedByAlphaWerewolf,
   } = useContext(NewGameContext);
+
+  useEffect(() => {
+    return () => {
+      sound?.unloadAsync();
+    };
+  }, [sound]);
+
+  useEffect(() => {
+    if (sound) {
+      sound.setVolumeAsync(soundEnabled ? 0.7 : 0.0);
+    }
+  }, [soundEnabled]);
 
   // Function to play sound for Alpha Werewolf
   const handlePlayAlphaAssistance = async () => {
@@ -805,7 +818,9 @@ export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
                 // Update the player's role to Werewolf
                 setPlayersInGame((prevPlayers: any) =>
                   prevPlayers.map((p: any) =>
-                    p.order === player.order ? { ...p, role: "Werewolf" } : p
+                    p.order === player.order
+                      ? { ...p, role: "Werewolf", type: "bad" }
+                      : p
                   )
                 );
                 setConvertedByAlphaWerewolf(player.name); // Set the converted player's name
@@ -877,6 +892,154 @@ export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
             {convertedByAlphaWerewolf
               ? `Converted to Werewolf: ${convertedByAlphaWerewolf}`
               : "Choose a Player"}
+          </Text>
+        </Pressable>
+      </View>
+    </View>
+  );
+}
+
+export function CupidUI({ soundEnabled }: WakeUIProps) {
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+  const { cupidBond, setCupidBond } = useContext(NewGameContext);
+
+  const { playersInGame, setPlayersInGame } = useContext(NewGameContext);
+  const [bondedPlayers, setBondedPlayers] = useState<{
+    player1: string;
+    player2: string;
+  } | null>(null);
+
+  useEffect(() => {
+    return () => {
+      sound?.unloadAsync();
+    };
+  }, [sound]);
+
+  useEffect(() => {
+    if (sound) {
+      sound.setVolumeAsync(soundEnabled ? 0.7 : 0.0);
+    }
+  }, [soundEnabled]);
+
+  // Function to play Cupid's voice assistance
+  const handlePlayCupidAssistance = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/audio/assists/cupid-assist.mp3"),
+      { volume: 0.7 }
+    );
+    setSound(sound);
+    await sound.playAsync();
+  };
+
+  const choosePlayersToBond = () => {
+    // Filter players who are not Cupid
+    const availablePlayers = playersInGame.filter(
+      (player: any) => player.role !== "Cupid"
+    );
+
+    const playerOptions = availablePlayers.map((player1: any) => ({
+      text: player1.name,
+      onPress: () => {
+        const remainingPlayers = availablePlayers.filter(
+          (p: any) => p.name !== player1.name
+        );
+
+        // After choosing the first player, present options for the second player
+        const secondPlayerOptions = remainingPlayers.map((player2: any) => ({
+          text: player2.name,
+          onPress: () => {
+            Alert.alert(
+              "Confirm Bond",
+              `Do you want to bond ${player1.name} and ${player2.name}?`,
+              [
+                {
+                  text: "Yes",
+                  onPress: () => {
+                    // Update both players to have bondedByCupid: true
+                    setPlayersInGame((prevPlayers: any) =>
+                      prevPlayers.map((p: any) =>
+                        p.name === player1.name || p.name === player2.name
+                          ? { ...p, bondedByCupid: true }
+                          : p
+                      )
+                    );
+                    setBondedPlayers({
+                      player1: player1.name,
+                      player2: player2.name,
+                    });
+
+                    // Context state used for UI button
+                    setCupidBond(true);
+
+                    Alert.alert(
+                      "Bond Created",
+                      `${player1.name} and ${player2.name} are now bonded by the Cupid for the rest of the game!`
+                    );
+                  },
+                },
+                { text: "No" },
+              ]
+            );
+          },
+        }));
+
+        secondPlayerOptions.push({ text: "Cancel", style: "cancel" });
+        Alert.alert(
+          "Choose Second Player",
+          "Select a second player to bond",
+          secondPlayerOptions
+        );
+      },
+    }));
+
+    playerOptions.push({ text: "Cancel", style: "cancel" });
+    Alert.alert(
+      "Choose First Player",
+      "Select two players to bond",
+      playerOptions
+    );
+  };
+
+  return (
+    <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
+      <View className="flex-row items-start mx-1 mt-2">
+        <AntDesign name="heart" size={18} color="white" />
+        <Text className="text-white text-[15px] mx-2">Cupid Role</Text>
+      </View>
+      <View className="flex-row items-center gap-3 justify-center mt-1">
+        <Text className="text-start w-[100%] text-white font-[16px] px-3">
+          - Wake up Cupid. Choose two players to bond with each other. If one
+          dies, the other dies as well.
+        </Text>
+      </View>
+      <View className="flex-row items-center m-2">
+        <Pressable
+          className="bg-gray-700 p-2 rounded-lg mr-2"
+          onPress={handlePlayCupidAssistance}
+        >
+          {({ pressed }) => (
+            <Ionicons
+              className={`text-[14px] font-bold text-white ${
+                pressed ? "opacity-50" : "opacity-100"
+              }`}
+              name="volume-high"
+              size={24}
+              color="white"
+            />
+          )}
+        </Pressable>
+
+        <Pressable
+          className={`bg-gray-700 p-3 rounded-lg mr-2 ${
+            cupidBond ? "opacity-70" : "opacity-100"
+          }`}
+          onPress={choosePlayersToBond}
+          disabled={!!cupidBond} // Disable button after bonding is confirmed
+        >
+          <Text className="text-[14px] font-bold text-white">
+            {bondedPlayers
+              ? `Bonded: ${bondedPlayers.player1} & ${bondedPlayers.player2}`
+              : "Choose Players"}
           </Text>
         </Pressable>
       </View>

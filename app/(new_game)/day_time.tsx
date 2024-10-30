@@ -44,29 +44,6 @@ export default function DayTimeScreen() {
     };
   }, [time, isPaused]);
 
-  const handleContinuePress = () => {
-    if (time > 0) {
-      Alert.alert(
-        "Timer is not finished!",
-        "Do you want to continue regardless?",
-        [
-          {
-            text: "Yes",
-            onPress: () => {
-              Alert.alert("Continuing to the next phase...");
-            },
-          },
-          {
-            text: "No",
-            onPress: () => {},
-          },
-        ]
-      );
-    } else {
-      Alert.alert("Continuing to the next phase...");
-    }
-  };
-
   // Handle play/pause toggle
   const togglePausePlay = () => {
     setIsPaused((prev) => !prev);

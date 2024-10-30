@@ -34,7 +34,7 @@ export function assignRolesToPlayers(
 
   // Define a mapping of roles to their types (good, bad, neutral or independent)
   const roleTypes: {
-    [key: string]: "good" | "bad" | "independent" | "neutral";
+    [key: string]: "good" | "bad" | "independent";
   } = {
     Villager: "good",
     Werewolf: "bad",
@@ -44,10 +44,11 @@ export function assignRolesToPlayers(
     Cupid: "good",
     Prince: "good",
     Bodyguard: "good",
-    "Cursed Villager": "bad",
+    "Cursed Villager": "good",
     Priest: "good",
     Hunter: "good",
-    Witch: "neutral",
+    Lycan: "good",
+    Witch: "good", // could be neutral as well
     "Alpha Werewolf": "bad",
     "Wolf Cub": "bad",
   };
@@ -120,6 +121,87 @@ export function checkForWinner(
   ).length;
 
   console.log("badPlayersCount:", badPlayersCount);
+
+  // Check for 2-on-2 scenario and special roles
+  if (goodPlayersCount === 2 && badPlayersCount === 2) {
+    const activeSpecialRoles = remainingPlayers.some(
+      (player: any) =>
+        player.type === "good" &&
+        (player.role === "Doctor" ||
+          player.role === "Witch" ||
+          player.role === "Hunter" ||
+          player.role === "Priest")
+    );
+
+    if (activeSpecialRoles) {
+      // Continue the game if special roles are present
+      if (isDay) {
+        router.push({
+          pathname: "/night_time",
+          params: { firstNight: "false" },
+        });
+      } else {
+        router.push({
+          pathname: "/day_time",
+        });
+      }
+      return;
+    }
+  }
+
+  // Check for 3-on-3 scenario and special roles
+  if (goodPlayersCount === 3 && badPlayersCount === 3) {
+    const activeSpecialRoles = remainingPlayers.some(
+      (player: any) =>
+        player.type === "good" &&
+        (player.role === "Doctor" ||
+          player.role === "Witch" ||
+          player.role === "Hunter" ||
+          player.role === "Priest")
+    );
+
+    if (activeSpecialRoles) {
+      // Continue the game if special roles are present
+      if (isDay) {
+        router.push({
+          pathname: "/night_time",
+          params: { firstNight: "false" },
+        });
+      } else {
+        router.push({
+          pathname: "/day_time",
+        });
+      }
+      return;
+    }
+  }
+
+  // Check for 4-on-4 scenario and special roles
+  if (goodPlayersCount === 4 && badPlayersCount === 4) {
+    const activeSpecialRoles = remainingPlayers.some(
+      (player: any) =>
+        player.type === "good" &&
+        (player.role === "Doctor" ||
+          player.role === "Witch" ||
+          player.role === "Hunter" ||
+          player.role === "Priest")
+    );
+
+    if (activeSpecialRoles) {
+      // Continue the game if special roles are present
+      if (isDay) {
+        router.push({
+          pathname: "/night_time",
+          params: { firstNight: "false" },
+        });
+      } else {
+        router.push({
+          pathname: "/day_time",
+        });
+      }
+      return;
+    }
+  }
 
   // Determine if the game is won
   if (badPlayersCount >= goodPlayersCount) {

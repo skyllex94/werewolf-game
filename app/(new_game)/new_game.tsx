@@ -89,14 +89,14 @@ export default function ModalScreen() {
       name: "Lycan",
       image: require("../../assets/images/characters/lycan.jpeg"),
       min: 0,
-      max: 1,
+      max: 2,
       amount: 0,
     },
     {
       name: "Cursed Villager",
       image: require("../../assets/images/characters/cursed-villager.jpeg"),
       min: 0,
-      max: 1,
+      max: 2,
       amount: 0,
     },
     {

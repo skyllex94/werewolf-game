@@ -18,12 +18,13 @@ export default function OperatorViewRoles() {
 
   const [rolesShown, setRolesShown] = useState<boolean>(false);
 
-  const { setWitchProtectionUsed, setConvertedByAlphaWerewolf } =
+  const { setWitchProtectionUsed, setConvertedByAlphaWerewolf, setCupidBond } =
     useContext(NewGameContext);
 
   function checkStatesBeforeGame() {
     setConvertedByAlphaWerewolf(null);
     setWitchProtectionUsed(false);
+    setCupidBond(false);
   }
 
   useEffect(() => {

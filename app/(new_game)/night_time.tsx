@@ -14,10 +14,12 @@ import {
   WakePriestUI,
   WakeWitchUI,
   AlphaWerewolfUI,
+  CupidUI,
 } from "../../components/NewGame/NightRolesUI";
 import { StatusBar } from "expo-status-bar";
 import NewGameContext from "@/contexts/NewGameContext";
 import { useLocalSearchParams } from "expo-router";
+import NightSoundManager from "@/components/NewGame/NightSoundManager";
 
 interface Item {
   order: number;
@@ -51,6 +53,7 @@ export default function NightTime() {
     // First night only roles
     Bodyguard: isFirstNight ? WakeBodyguardUI : null,
     Priest: isFirstNight ? WakePriestUI : null,
+    Cupid: isFirstNight ? CupidUI : null,
   };
 
   useEffect(() => {
@@ -69,40 +72,31 @@ export default function NightTime() {
     setPlayersInGame(resetNightState);
   }, []);
 
-  // Load and play the wolf howling sound
   async function playWolfHowling() {
-    const { sound } = await Audio.Sound.createAsync(
-      require("../../assets/audio/wolf-howling.mp3"),
-      { volume: soundEnabled ? 0.3 : 0.0 }
-    );
-    setWolfHowling(sound);
-    await sound?.playAsync();
+    try {
+      const { sound } = await Audio.Sound.createAsync(
+        require("../../assets/audio/wolf-howling.mp3"),
+        { volume: soundEnabled ? 0.3 : 0.0 }
+      );
+      setWolfHowling(sound);
+      await sound.playAsync();
+    } catch (error) {
+      console.error("Error playing wolf howling sound:", error);
+    }
   }
 
-  // Load and play the night background sound
   async function playNightBackground() {
-    const { sound } = await Audio.Sound.createAsync(
-      require("../../assets/audio/night-background.mp3"),
-      { isLooping: true, volume: soundEnabled ? 0.1 : 0.0 }
-    );
-    setNightBackgroundSound(sound);
-    await sound?.playAsync();
+    try {
+      const { sound } = await Audio.Sound.createAsync(
+        require("../../assets/audio/night-background.mp3"),
+        { isLooping: true, volume: soundEnabled ? 0.1 : 0.0 }
+      );
+      setNightBackgroundSound(sound);
+      await sound.playAsync();
+    } catch (error) {
+      console.error("Error playing night background sound:", error);
+    }
   }
-
-  // Unload sounds when the component unmounts
-  useEffect(() => {
-    return () => {
-      wolfHowling?.unloadAsync();
-      setWolfHowling(null);
-    };
-  }, [wolfHowling]);
-
-  useEffect(() => {
-    return () => {
-      nightBackgroundSound?.unloadAsync();
-      setNightBackgroundSound(null);
-    };
-  }, [nightBackgroundSound]);
 
   // Adjust volume based on soundEnabled changed
   useEffect(() => {
@@ -146,12 +140,16 @@ export default function NightTime() {
       />
       <TopPaneInGame />
 
+      {/* NightSoundManager to handle night sounds */}
+      {/* <NightSoundManager isNightTime={true} /> */}
+
       <Text className="text-center text-white font-bold text-[20px] mt-8 pb-4">
         The Night Has Started
       </Text>
-      <Text className="text-start text-white text-[16px] px-10 mb-3">
-        As the operator, guide the village through the night. Here are the roles
-        to wake up:
+      <Text className="text-start text-white text-[14px] font-light px-6 mb-3">
+        Guide the village through the night. Wake up each role displayed below,
+        even if the role is killed through the nights. Here are the roles to
+        wake up:
       </Text>
 
       <ScrollView showsVerticalScrollIndicator={false} className="mb-20">

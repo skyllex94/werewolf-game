@@ -4,7 +4,12 @@ import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import NewGameContext from "@/contexts/NewGameContext";
 import { checkForWinner, truncate } from "@/functions/functions";
-import { FontAwesome, FontAwesome5, FontAwesome6 } from "@expo/vector-icons";
+import {
+  AntDesign,
+  FontAwesome,
+  FontAwesome5,
+  FontAwesome6,
+} from "@expo/vector-icons";
 
 type RoleEliminatedBSProps = {
   stopNightSounds: () => void;
@@ -26,23 +31,46 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
 
     const [showAll, setShowAll] = useState(false);
     const [hunterSelected, setHunterSelected] = useState<boolean>(false);
+    const { stopNightSounds } = props;
 
     const snapPoints = useMemo(() => ["50%"], []);
 
     const togglePlayerSelection = (player: any) => {
-      if (
-        selectedPlayersForElimination.find((p: any) => p.order === player.order)
-      ) {
+      const isAlreadySelected = selectedPlayersForElimination.some(
+        (p: any) => p.order === player.order
+      );
+
+      // Check if the player is bonded by Cupid
+      const bondedPlayer = player.bondedByCupid
+        ? playersInGame.find(
+            (p: any) => p.bondedByCupid && p.order !== player.order
+          )
+        : null;
+
+      if (isAlreadySelected) {
+        // Remove both the player and their bonded player (if bonded)
         setSelectedPlayersForElimination(
           selectedPlayersForElimination.filter(
-            (p: any) => p.order !== player.order
+            (p: any) =>
+              p.order !== player.order &&
+              (!bondedPlayer || p.order !== bondedPlayer.order)
           )
         );
       } else {
+        // Add both the player and their bonded player (if bonded)
         setSelectedPlayersForElimination([
           ...selectedPlayersForElimination,
           player,
+          ...(bondedPlayer ? [bondedPlayer] : []),
         ]);
+
+        // Show alert if a bonded player was automatically selected
+        if (bondedPlayer) {
+          Alert.alert(
+            "Cupid's Bond",
+            `${player.name} is bonded by the Cupid with ${bondedPlayer.name}. Both have been selected for elimination.`
+          );
+        }
       }
     };
 
@@ -111,10 +139,25 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
               (player: any) => player.role === "Tanner"
             );
 
-            // Actual removal excluding some conditions
-            const finalPlayersForElimination = playersInGame.filter(
-              (player: any) => !selectedPlayersForElimination.includes(player)
-            );
+            const finalPlayersForElimination = playersInGame
+              .map((player: any) => {
+                // Transform Cursed Villager if selected by the village (not Hunter or Witch)
+                if (
+                  player.role === "Cursed Villager" &&
+                  selectedPlayersForElimination.includes(player) &&
+                  !player.attackedByWitch
+                ) {
+                  Alert.alert(
+                    "Cursed Villager Transformed",
+                    `${player.name} was a Cursed Villager and has now transformed into a Werewolf!`
+                  );
+                  return { ...player, role: "Werewolf", type: "bad" };
+                }
+                return player;
+              })
+              .filter(
+                (player: any) => !selectedPlayersForElimination.includes(player)
+              );
 
             // Hunter role check
             const isHunterEliminated = checkIfHunterEliminated();
@@ -123,10 +166,6 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
               setPlayersInGame(finalPlayersForElimination);
               return;
             }
-            console.log(
-              "finalPlayersForElimination:",
-              finalPlayersForElimination
-            );
 
             // Clear selected players for the next round
             setSelectedPlayersForElimination([]);
@@ -142,8 +181,12 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
               );
               return; // Exit as the game is won by Tanner
             }
-            checkForWinner(finalPlayersForElimination, isDay, allPlayersInGame);
 
+            // Stop all night sounds
+            stopNightSounds();
+
+            // Set the final players state
+            checkForWinner(finalPlayersForElimination, isDay, allPlayersInGame);
             setPlayersInGame(finalPlayersForElimination);
             setEliminatedPlayers([
               ...eliminatedPlayers,
@@ -270,6 +313,10 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                               source={require("../../assets/images/bottom_sheet/werewolf.png")}
                             />
                           )}
+
+                        {player.bondedByCupid && (
+                          <AntDesign name="heart" size={17} color="#636363" />
+                        )}
 
                         {playersInGame.some((p: any) => p.role === "Witch") &&
                           player.attackedByWitch && (
