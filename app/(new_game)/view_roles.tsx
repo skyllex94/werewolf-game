@@ -18,8 +18,12 @@ export default function OperatorViewRoles() {
 
   const [rolesShown, setRolesShown] = useState<boolean>(false);
 
-  const { setWitchProtectionUsed, setConvertedByAlphaWerewolf, setCupidBond } =
-    useContext(NewGameContext);
+  const {
+    setWitchProtectionUsed,
+    setConvertedByAlphaWerewolf,
+    setCupidBond,
+    setUniqueRolesInGame,
+  } = useContext(NewGameContext);
 
   function checkStatesBeforeGame() {
     setConvertedByAlphaWerewolf(null);
@@ -27,8 +31,24 @@ export default function OperatorViewRoles() {
     setCupidBond(false);
   }
 
+  function initUniqueRolesInGame() {
+    // Initialize uniqueRolesInGame based on the roles present
+    const uniqueRoles = Array.from(
+      new Set(allPlayersInGame.map((player: { role: string }) => player.role))
+    );
+
+    const initialRolesState = uniqueRoles.reduce((acc, role) => {
+      // Set Villager and Seer roles as ready by default
+      acc[role] = role === "Villager" || role === "Seer" ? true : false;
+      return acc;
+    }, {} as { [key: string]: boolean });
+
+    setUniqueRolesInGame(initialRolesState);
+  }
+
   useEffect(() => {
     checkStatesBeforeGame();
+    // initUniqueRolesInGame();
   }, []);
 
   // Parse the allPlayersInGame array from JSON

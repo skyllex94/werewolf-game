@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
-import { Entypo } from "@expo/vector-icons";
+import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Link, Href } from "expo-router";
 
 export default function MainMenu() {
@@ -17,8 +17,14 @@ export default function MainMenu() {
     },
     {
       name: "Rules",
-      icon: null,
-      link: null,
+      icon: (
+        <MaterialCommunityIcons
+          name="ruler-square-compass"
+          size={18}
+          color="black"
+        />
+      ),
+      link: "/rules",
     },
     {
       name: "Go Pro",

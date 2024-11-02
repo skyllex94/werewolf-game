@@ -3,13 +3,17 @@ import React, { useContext } from "react";
 import { Entypo } from "@expo/vector-icons";
 import SoundContext from "@/contexts/SoundContext";
 
-export default function TopPane() {
+interface TopPaneProps {
+  iconColor?: "black" | "white";
+}
+
+export default function TopPane({ iconColor = "black" }: TopPaneProps) {
   const { soundEnabled, setSoundEnabled } = useContext(SoundContext);
 
   return (
     <View className="flex-row justify-between">
       <TouchableOpacity className="m-3 w-10 p-2">
-        <Entypo name="globe" size={24} color="black" />
+        <Entypo name="globe" size={24} color={iconColor} />
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -17,9 +21,9 @@ export default function TopPane() {
         className="m-3 w-10 p-2"
       >
         {soundEnabled ? (
-          <Entypo name="sound" size={24} color="black" />
+          <Entypo name="sound" size={24} color={iconColor} />
         ) : (
-          <Entypo name="sound-mute" size={24} color="black" />
+          <Entypo name="sound-mute" size={24} color={iconColor} />
         )}
       </TouchableOpacity>
     </View>

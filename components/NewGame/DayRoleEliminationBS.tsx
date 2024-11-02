@@ -1,5 +1,11 @@
 import { View, Text, Pressable, Alert } from "react-native";
-import React, { useMemo, forwardRef, useContext, useState } from "react";
+import React, {
+  useMemo,
+  forwardRef,
+  useContext,
+  useState,
+  useEffect,
+} from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import NewGameContext from "@/contexts/NewGameContext";
@@ -24,7 +30,7 @@ const DayEliminationBottomSheet = forwardRef<
 
   // State to toggle filtering
   const [hunterSelected, setHunterSelected] = useState<boolean>(false);
-  const { allPlayersInGame } = useContext(NewGameContext);
+  const { allPlayersInGame, markRoleAsReady } = useContext(NewGameContext);
 
   // Passed states through props
   const { setDayTimeSounds } = props;
@@ -107,6 +113,12 @@ const DayEliminationBottomSheet = forwardRef<
 
     return nonPrincePlayers;
   };
+
+  // Resetting marked as ready for player being selected
+  // function updateMarkRolesAsReady() {
+  //   markRoleAsReady("Werewolf", false);
+  //   markRoleAsReady("Doctor", false);
+  // }
 
   const confirmElimination = () => {
     // Prepare elimination message for the initial confirmation alert

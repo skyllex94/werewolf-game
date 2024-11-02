@@ -12,7 +12,7 @@ import {
 } from "@expo/vector-icons";
 
 type RoleEliminatedBSProps = {
-  stopNightSounds: () => void;
+  setNightTimeSounds: any;
   isFirstNight: boolean | undefined;
 };
 
@@ -31,7 +31,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
 
     const [showAll, setShowAll] = useState(false);
     const [hunterSelected, setHunterSelected] = useState<boolean>(false);
-    const { stopNightSounds } = props;
+    const { setNightTimeSounds } = props;
 
     const snapPoints = useMemo(() => ["50%"], []);
 
@@ -183,7 +183,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
             }
 
             // Stop all night sounds
-            stopNightSounds();
+            setNightTimeSounds(false);
 
             // Set the final players state
             checkForWinner(finalPlayersForElimination, isDay, allPlayersInGame);

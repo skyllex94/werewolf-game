@@ -3,7 +3,7 @@ import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import FlashMessage from "react-native-flash-message";
 import "react-native-reanimated";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -66,6 +66,7 @@ function RootLayoutNav() {
   const [selectedPlayersForElimination, setSelectedPlayersForElimination] =
     useState<object[]>([]);
 
+  // Individual roles states
   // Witch state
   const [witchProtectionUsed, setWitchProtectionUsed] =
     useState<boolean>(false);
@@ -75,6 +76,27 @@ function RootLayoutNav() {
   >(null);
   // Cupid state
   const [cupidBond, setCupidBond] = useState(false);
+
+  // Night time continue button enabling
+  // const [isEnabledContinue, setIsEnabledContinue] = useState<boolean>(false);
+  // const [uniqueRolesInGame, setUniqueRolesInGame] = useState<{
+  //   [key: string]: boolean;
+  // }>({});
+
+  // const markRoleAsReady = (role: string, isReady: boolean) => {
+  //   setUniqueRolesInGame((prevRoles) => ({
+  //     ...prevRoles,
+  //     [role]: isReady,
+  //   }));
+  // };
+
+  // // Enable continue button if all roles are marked as ready
+  // useEffect(() => {
+  //   const allReady = Object.values(uniqueRolesInGame).every(
+  //     (ready) => ready === true
+  //   );
+  //   setIsEnabledContinue(allReady);
+  // }, [uniqueRolesInGame]);
 
   return (
     <GestureHandlerRootView className="flex-1">
@@ -99,6 +121,11 @@ function RootLayoutNav() {
               // Cupid state
               cupidBond,
               setCupidBond,
+              // Continue button at night_time
+              // isEnabledContinue,
+              // markRoleAsReady,
+              // uniqueRolesInGame,
+              // setUniqueRolesInGame,
             }}
           >
             <ThemeProvider value={DefaultTheme}>

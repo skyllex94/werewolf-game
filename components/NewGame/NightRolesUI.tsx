@@ -21,8 +21,7 @@ interface WakeUIProps {
 export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [attackedPlayer, setAttackedPlayer] = useState(null);
-  const { playersInGame, setPlayersInGame, setSelectedPlayersForElimination } =
-    useContext(NewGameContext);
+  const { playersInGame, setPlayersInGame } = useContext(NewGameContext);
 
   useEffect(() => {
     return () => {
@@ -69,13 +68,7 @@ export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
             }))
           );
 
-          // Update selectedPlayersForElimination to include the attacked player
-          const attackedPlayerObj = eligiblePlayers.find(
-            (player: any) => player.name === name
-          );
-          if (attackedPlayerObj) {
-            setSelectedPlayersForElimination([attackedPlayerObj]);
-          }
+          // markRoleAsReady("Werewolf", true);
         },
       })),
       { text: "Cancel", onPress: () => null },
@@ -222,7 +215,8 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [selectedPlayerName, setSelectedPlayerName] =
     useState<string>("Choose Player");
-  const { playersInGame, setPlayersInGame } = useContext(NewGameContext);
+  const { playersInGame, setPlayersInGame, markRoleAsReady } =
+    useContext(NewGameContext);
 
   useEffect(() => {
     return () => {
