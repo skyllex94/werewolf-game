@@ -1,11 +1,5 @@
 import { View, Text, Pressable, Alert } from "react-native";
-import React, {
-  useMemo,
-  forwardRef,
-  useContext,
-  useState,
-  useEffect,
-} from "react";
+import React, { useMemo, forwardRef, useContext, useState } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import NewGameContext from "@/contexts/NewGameContext";
@@ -30,7 +24,7 @@ const DayEliminationBottomSheet = forwardRef<
 
   // State to toggle filtering
   const [hunterSelected, setHunterSelected] = useState<boolean>(false);
-  const { allPlayersInGame, markRoleAsReady } = useContext(NewGameContext);
+  const { allPlayersInGame } = useContext(NewGameContext);
 
   // Passed states through props
   const { setDayTimeSounds } = props;

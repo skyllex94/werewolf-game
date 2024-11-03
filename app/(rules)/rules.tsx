@@ -42,7 +42,7 @@ const RulesMenu = () => {
         {/* Game Phases */}
         <TouchableOpacity
           className="p-3 mb-2 bg-gray-800 rounded-lg"
-          // onPress={() => router.push("/basic_overview")}
+          onPress={() => router.push("/game_phases")}
         >
           <Text className="text-sm text-gray-300">Game Phases</Text>
         </TouchableOpacity>
@@ -50,7 +50,7 @@ const RulesMenu = () => {
         {/* Elimination Rules */}
         <TouchableOpacity
           className="p-3 mb-2 bg-gray-800 rounded-lg"
-          // onPress={() => router.push("/basic_overview")}
+          onPress={() => router.push("/elimination_rules")}
         >
           <Text className="text-sm text-gray-300">Elimination Rules</Text>
         </TouchableOpacity>
@@ -58,7 +58,7 @@ const RulesMenu = () => {
         {/* Winning Conditions */}
         <TouchableOpacity
           className="p-3 mb-2 bg-gray-800 rounded-lg"
-          // onPress={() => router.push("/basic_overview")}
+          onPress={() => router.push("/winning_conditions")}
         >
           <Text className="text-sm text-gray-300">Winning Conditions</Text>
         </TouchableOpacity>
@@ -66,7 +66,7 @@ const RulesMenu = () => {
         {/* Special Situations */}
         <TouchableOpacity
           className="p-3 mb-2 bg-gray-800 rounded-lg"
-          // onPress={() => router.push("/basic_overview")}
+          onPress={() => router.push("/special_situations")}
         >
           <Text className="text-sm text-gray-300">Special Situations</Text>
         </TouchableOpacity>

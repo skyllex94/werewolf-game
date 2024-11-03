@@ -50,41 +50,12 @@ const GameSetup = () => (
       </Text>
 
       <Text className="text-sm text-gray-300 mb-3">
-        The game consists of{" "}
-        <Text className="font-bold">alternating Night and Day phases.</Text>
-      </Text>
-
-      <Text className="text-sm text-gray-300 mb-3">
-        - During the Night, players with special abilities can perform actions
-        in secrecy. The Narrator will wake those roles to "use their powers"
-        without revealing their identities by calling for example "Now, let the
-        Werewolves wake up and choose a player to eliminate through this night."{" "}
-        <Text className="font-bold">
-          At the same time all the other players will have their eyes closed,
-          and only having the Werewolves with eyes open so they can choose their
-          prey.{" "}
-        </Text>
-        After they do, the narrator will put them back to sleep, making sure
-        they are with closed eyes.
-      </Text>
-
-      <Text className="text-sm text-gray-300 mb-3">
-        - During the Day, players discuss who they believe is a Werewolf and
-        vote to eliminate a player they suspect. In order to vote out a player,
-        50%+ of the Village needs to decide on a player to vote out from the
-        game. In about 3 to 5 minutes, all the players in the Day time should
-        decide on eliminating someone and if they cannot agree on anyone to
-        eliminate in this time period, the Village goes back to sleep and wait
-        to the next day to decide on someone to vote out.
-      </Text>
-
-      <Text className="text-sm text-gray-300 mb-3">
         The game ends when either all Werewolves and bad Special roles are
         eliminated or the Werewolves outnumber the Villagers and all the good
         Special roles.
       </Text>
 
-      <Text className="text-sm text-gray-300 mb-3">
+      <Text className="text-sm text-gray-300 mb-3 pb-3">
         Finally, Werewolf is about deception, deduction, and strategy. Encourage
         them to engage in lively discussions and enjoy the social aspect of the
         game!

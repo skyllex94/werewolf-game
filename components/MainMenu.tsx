@@ -1,39 +1,44 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
-import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  Entypo,
+  Ionicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import { Link, Href } from "expo-router";
 
 export default function MainMenu() {
   const menuItems = [
     {
       name: "New Game",
-      icon: <Entypo name="plus" size={18} color="black" />,
+      icon: <Entypo name="plus" size={18} color="white" />,
       link: "/new_game",
     },
     {
-      name: "Winner",
-      icon: null,
+      name: "Roles & Abilities",
+      icon: <Entypo name="users" size={16} color="white" />,
       link: "/game_winner",
     },
     {
-      name: "Rules",
+      name: "Game Rules",
       icon: (
         <MaterialCommunityIcons
           name="ruler-square-compass"
           size={18}
-          color="black"
+          color="white"
         />
       ),
       link: "/rules",
     },
     {
       name: "Go Pro",
-      icon: null,
+      icon: <MaterialIcons name="workspace-premium" size={18} color="white" />,
       link: null,
     },
     {
       name: "Settings",
-      icon: null,
+      icon: <Ionicons name="settings" size={16} color="white" />,
       link: null,
     },
   ];
@@ -44,13 +49,13 @@ export default function MainMenu() {
         item.link ? (
           <Link key={idx} href={item.link as Href} asChild>
             <TouchableOpacity
-              className="flex-row items-center justify-center bg-slate-200 p-3 w-[50%] rounded-lg"
+              className="flex-row justify-start bg-gray-800 py-3 pl-6 w-[50%] rounded-lg"
               onPress={() => console.log(item.name)}
             >
               {item.icon}
               <Text
                 // style={{ fontFamily: "Bronzetti_Condensed", fontSize: 18 }}
-                className="text-center"
+                className="mx-1 text-center text-white"
               >
                 {item.name}
               </Text>
@@ -59,16 +64,11 @@ export default function MainMenu() {
         ) : (
           <TouchableOpacity
             key={idx}
-            className="flex-row items-center justify-center bg-slate-200 p-3 w-[50%] rounded-lg"
+            className="flex-row justify-start bg-gray-800 py-3 pl-6 w-[50%] rounded-lg"
             onPress={() => {}}
           >
             {item.icon}
-            <Text
-              // style={{ fontFamily: "Bronzetti_Condensed", fontSize: 14 }}
-              className="text-center"
-            >
-              {item.name}
-            </Text>
+            <Text className="mx-1 text-center text-white">{item.name}</Text>
           </TouchableOpacity>
         )
       )}

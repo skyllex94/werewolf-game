@@ -2,7 +2,7 @@ import { View, TouchableOpacity } from "react-native";
 import React, { useContext } from "react";
 import { Entypo } from "@expo/vector-icons";
 import SoundContext from "@/contexts/SoundContext";
-import { useNavigation, useRouter } from "expo-router";
+import { useNavigation } from "expo-router";
 
 interface TopPaneProps {
   iconColor?: "black" | "white";
