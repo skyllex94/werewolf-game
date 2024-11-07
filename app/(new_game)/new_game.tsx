@@ -45,7 +45,7 @@ export default function ModalScreen() {
     },
     {
       name: "Hunter",
-      image: require("../../assets/images/characters/hunter21.jpg"),
+      image: require("../../assets/images/characters/hunter.jpg"),
       min: 0,
       max: 1,
       amount: 0,

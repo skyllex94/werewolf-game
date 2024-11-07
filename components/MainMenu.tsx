@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import {
   Entypo,
@@ -12,14 +12,16 @@ export default function MainMenu() {
   const menuItems = [
     {
       name: "New Game",
-      icon: <Entypo name="plus" size={18} color="white" />,
+      icon: (
+        <Image
+          className="w-[18px] h-[18px]"
+          style={{ tintColor: "white" }}
+          source={require("../assets/images/bottom_sheet/werewolf.png")}
+        />
+      ),
       link: "/new_game",
     },
-    {
-      name: "Roles & Abilities",
-      icon: <Entypo name="users" size={16} color="white" />,
-      link: "/game_winner",
-    },
+
     {
       name: "Game Rules",
       icon: (
@@ -30,6 +32,11 @@ export default function MainMenu() {
         />
       ),
       link: "/rules",
+    },
+    {
+      name: "Roles & Abilities",
+      icon: <Entypo name="users" size={15} color="white" />,
+      link: "/roles",
     },
     {
       name: "Go Pro",

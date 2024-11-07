@@ -1,6 +1,4 @@
-import NewGameContext from "@/contexts/NewGameContext";
 import { router } from "expo-router";
-import { useContext } from "react";
 
 // Function to shuffle an array
 export function shuffleArray(array: any[]) {
@@ -25,11 +23,26 @@ export function assignRolesToPlayers(
   // Define a mapping of roles to links
   const roleLinks: { [key: string]: string } = {
     Villager:
-      "https://werewolf-app.netlify.app/126c3cb75cb3fbac5432732b23eef6bd", // Link for Villager role
+      "https://werewolf-app.netlify.app/126c3cb75cb3fbac5432732b23eef6bd",
     Werewolf:
-      "https://werewolf-app.netlify.app/bbb3606b5cab898386e0d9590278068e", // Link for Werewolf role
-    Seer: "https://werewolf-app.netlify.app/34b81f08e80d23ea2454472421070786", // Link for Seer role
-    Doctor: "https://werewolf-app.netlify.app/doctor-role-link", // Add Doctor link
+      "https://werewolf-app.netlify.app/bbb3606b5cab898386e0d9590278068e",
+    Seer: "https://werewolf-app.netlify.app/34b81f08e80d23ea2454472421070786",
+    Doctor: "https://werewolf-app.netlify.app/f9f16d97c90d8c6f2cab37bb6d1f1992",
+    Tanner: "https://werewolf-app.netlify.app/6766992ca3827afeb1181bf1c123b230",
+    Cupid: "https://werewolf-app.netlify.app/c59fdcefd9c65f5471cdee9acbeb3c10",
+    Prince: "https://werewolf-app.netlify.app/97c8f692a928a55577aaf6cd98c56bb5",
+    Bodyguard:
+      "https://werewolf-app.netlify.app/c79f034d0174707f425a0e523b7a76d5",
+    "Cursed Villager":
+      "https://werewolf-app.netlify.app/d89e6a000cd7cd4f8270a17a95497fe8",
+    Priest: "https://werewolf-app.netlify.app/e5ea56a64dedf72d7bfffbd4251d52bc",
+    Hunter: "https://werewolf-app.netlify.app/5e409e09f43d85c6e61301149e4f803b",
+    Lycan: "https://werewolf-app.netlify.app/50b137850dcf8a520f48ef958e6b4e3c",
+    Witch: "https://werewolf-app.netlify.app/1e5801f6c2ee2ba36fb7c41edab701e3",
+    "Alpha Werewolf":
+      "https://werewolf-app.netlify.app/e96301d78cf51cca1cc8bdc69072c4a0",
+    "Wolf Cub":
+      "https://werewolf-app.netlify.app/ab1f6afa66043c6763eab729c64bf14a",
   };
 
   // Define a mapping of roles to their types (good, bad, neutral or independent)
