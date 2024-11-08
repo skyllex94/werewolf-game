@@ -24,8 +24,6 @@ export default function PlayerScanCodesScreen() {
   const params = useLocalSearchParams();
   const { players_roles } = params;
 
-  const he = screenHeight / 1.4;
-
   // Parse the allPlayersInGame array from JSON
   const allPlayersInGame = players_roles
     ? JSON.parse(players_roles as string)
@@ -37,7 +35,7 @@ export default function PlayerScanCodesScreen() {
 
   const renderItem = ({ item }: { item: Item }) => {
     return (
-      <View className="flex-1 items-center justify-start pt-16 bg-slate-100 px-5 rounded-2xl shadow-lg">
+      <View className="flex-1 items-center justify-start pt-16 bg-slate-800 px-5 rounded-2xl shadow-lg">
         <View className="bg-slate-200 h-20 w-20 rounded-lg">
           <Image
             className="h-[100%] w-[100%] rounded-xl"
@@ -45,26 +43,31 @@ export default function PlayerScanCodesScreen() {
           />
         </View>
 
-        <Text className="text-center font-bold text-[26px] py-4">
+        <Text className="text-center text-white font-bold text-[26px] py-4">
           Player {item.order}: {item.name}
         </Text>
 
-        <Text className="text-center text-[18px] font-light py-2 mb-10 ">
+        <Text className="text-center text-white text-[18px] font-light py-2 mb-10 ">
           {item.name}, scan this code and view your role in the game through
           your phone.
         </Text>
 
         {/* QR Code Generator */}
         <View className="w-[80%] h-48 items-center justify-center mt-5">
-          <QRCode
-            value={item.link}
-            size={300}
-            margin={10}
-            dotScale={0.8}
-            dotRadius="80%"
-            positionRadius={["5%", "1%"]}
-            errorCorrection="H"
-          />
+          {/* Outer container for rounded borders */}
+          <View className="w-[100%] h-[155%] bg-black rounded-2xl items-center justify-center p-1">
+            <QRCode
+              value={item.link}
+              size={280} // Slightly smaller to fit within the rounded container
+              margin={10}
+              dotScale={0.8}
+              dotRadius="80%"
+              positionRadius={["5%", "1%"]}
+              errorCorrection="H"
+              backgroundColor="black"
+              color="white"
+            />
+          </View>
         </View>
       </View>
     );

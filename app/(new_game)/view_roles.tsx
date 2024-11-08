@@ -32,13 +32,11 @@ export default function OperatorViewRoles() {
   }
 
   function initUniqueRolesInGame() {
-    // Initialize uniqueRolesInGame based on the roles present
     const uniqueRoles = Array.from(
       new Set(allPlayersInGame.map((player: { role: string }) => player.role))
     );
 
     const initialRolesState = uniqueRoles.reduce((acc, role) => {
-      // Set Villager and Seer roles as ready by default
       acc[role] = role === "Villager" || role === "Seer" ? true : false;
       return acc;
     }, {} as { [key: string]: boolean });
@@ -48,10 +46,8 @@ export default function OperatorViewRoles() {
 
   useEffect(() => {
     checkStatesBeforeGame();
-    // initUniqueRolesInGame();
   }, []);
 
-  // Parse the allPlayersInGame array from JSON
   const allPlayersInGame: Item[] = players_roles
     ? JSON.parse(players_roles as string)
     : [];
@@ -68,29 +64,33 @@ export default function OperatorViewRoles() {
   }
 
   return (
-    <SafeAreaView className="flex-1 h-[100%]">
+    <SafeAreaView className="flex-1 h-[100%] bg-gray-900">
       {/* Header Image */}
-      <View className="items-center justify-center mt-8">
-        <Image
-          className="h-48 w-48"
-          source={require("../../assets/images/new_game/zzz.png")}
-        />
+      <View className="items-center justify-center">
+        <View className="mt-8 bg-slate-400 w-48 rounded-full shadow">
+          <Image
+            className="h-48 w-48"
+            source={require("../../assets/images/new_game/zzz.png")}
+          />
+        </View>
       </View>
 
       {/* Heading Text */}
-      <Text className="text-center font-bold text-[20px] py-4">
+      <Text className="text-center font-bold text-[20px] py-4 text-white">
         Get Ready for the First Night
       </Text>
-      <Text className="text-center font-light text-[15px] px-10">
+      <Text className="text-center font-light text-[15px] px-10 text-gray-300">
         As the operator, you will get the village ready for their first night.
         View each player's role below.
       </Text>
 
       {/* Table Header with vertical separator */}
-      <View className="flex-row items-center bg-slate-200 m-5 p-4 rounded-2xl">
-        <Text className="font-bold text-left flex-1">Player:</Text>
-        <View className="w-[0px] bg-gray-500 h-full mx-4" />
-        <Text className="font-bold text-left flex-1">Role:</Text>
+      <View className="flex-row items-center bg-gray-600 m-5 p-4 rounded-2xl">
+        <Text className="font-bold text-left flex-1 text-gray-200">
+          Player:
+        </Text>
+        <View className="w-[0px] bg-gray-300 h-full mx-4" />
+        <Text className="font-bold text-left flex-1 text-gray-200">Role:</Text>
       </View>
 
       {rolesShown ? (
@@ -103,22 +103,24 @@ export default function OperatorViewRoles() {
             <View
               key={index}
               className={`flex-row items-center py-2 px-4 ${
-                index % 2 === 0 ? "bg-slate-100" : "bg-slate-200"
+                index % 2 === 0 ? "bg-gray-800" : "bg-gray-900"
               } rounded-lg mb-2`}
             >
-              <Text className="text-left flex-1">
+              <Text className="text-left flex-1 text-gray-200">
                 {player.order}. {player.name}
               </Text>
-              <View className="w-[0px] bg-gray-400 h-full mx-4" />
-              <Text className="text-left flex-1">{player.role}</Text>
+              <View className="w-[0px] bg-gray-600 h-full mx-4" />
+              <Text className="text-left flex-1 text-gray-200">
+                {player.role}
+              </Text>
             </View>
           ))}
         </ScrollView>
       ) : (
         // View Roles Button
-        <View className="">
+        <View className="items-center">
           <TouchableOpacity
-            className="mx-5 p-3 bg-blue-700 rounded-xl w-[40%] shadow-md"
+            className="mx-5 p-3 bg-blue-600 rounded-xl w-[40%] shadow-md"
             onPress={showAllRoles}
           >
             <Text className="text-center text-white">View Roles</Text>
@@ -130,9 +132,9 @@ export default function OperatorViewRoles() {
       <View className="continue-button w-[100%] items-center absolute bottom-10">
         <TouchableOpacity
           onPress={toFirstNight}
-          className="bg-slate-300 items-center justify-center p-4 w-[90%] rounded-xl z-10"
+          className="bg-blue-700 items-center justify-center p-4 w-[90%] rounded-xl shadow-md"
         >
-          <Text className="text-[16px] font-bold">Continue</Text>
+          <Text className="text-[16px] font-bold text-white">Continue</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
