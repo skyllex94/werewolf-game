@@ -134,11 +134,6 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
               setWitchProtectionUsed(true);
             }
 
-            // Check if the Tanner is in selectedPlayersForElimination
-            const isTannerEliminated = selectedPlayersForElimination.some(
-              (player: any) => player.role === "Tanner"
-            );
-
             const finalPlayersForElimination = playersInGame
               .map((player: any) => {
                 // Transform Cursed Villager if selected by the village (not Hunter or Witch)
@@ -156,7 +151,8 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                 return player;
               })
               .filter(
-                (player: any) => !selectedPlayersForElimination.includes(player)
+                (player: any) =>
+                  player && !selectedPlayersForElimination.includes(player)
               );
 
             // Hunter role check
@@ -167,31 +163,22 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
               return;
             }
 
-            // Clear selected players for the next round
-            setSelectedPlayersForElimination([]);
-
             const isDay = false;
-
-            // If Tanner is eliminated, he wins as an independent
-            if (isTannerEliminated) {
-              checkForWinner(
-                finalPlayersForElimination,
-                isDay,
-                allPlayersInGame
-              );
-              return; // Exit as the game is won by Tanner
-            }
 
             // Stop all night sounds
             setNightTimeSounds(false);
 
             // Set the final players state
-            checkForWinner(finalPlayersForElimination, isDay, allPlayersInGame);
+            checkForWinner(finalPlayersForElimination, isDay);
+
             setPlayersInGame(finalPlayersForElimination);
             setEliminatedPlayers([
               ...eliminatedPlayers,
               ...selectedPlayersForElimination,
             ]);
+
+            // Clear selected players for the next round
+            setSelectedPlayersForElimination([]);
           },
         },
         { text: "No", onPress: () => null },

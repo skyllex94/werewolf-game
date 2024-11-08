@@ -83,7 +83,7 @@ const GameWinner = () => {
           ? "Congratulations to the whole Village for figuring out who the bad guys are. You were able to successfully eliminate all of them in this game."
           : winner === "bad"
           ? "Great job Werewolves, you were able to successfully eliminate the Village and be unrecognized in doing so."
-          : "The Tanner has been eliminated! The Tanner wins for achieving their goal of being removed from the game."}
+          : "The Tanner has been eliminated! The Tanner wins for achieving their goal of being voted out by the Village."}
       </Text>
 
       <View className="justify-center w-[80%] gap-y-3">

@@ -14,31 +14,19 @@ export default function IntroScanScreen() {
   const { allPlayersInGame, setAllPlayersInGame, setPlayersInGame } =
     useContext(NewGameContext);
 
-  // players_names - ["Lilly", "Michael", "Lucy", "Mary", "Nige", "Garf"] - string
-  // characters_data - [{"type":"Villager","amount":3},{"type":"Werewolf","amount":1},
-  //  {"type":"Seer","amount":1},{"type":"Doctor","amount":1}] - string
-
   useEffect(() => {
-    // Prepare and execute assigning roles to players
     try {
-      // Parse characters_data into an array of objects
       const characters = JSON.parse(characters_data as string);
-
-      // Parse players_names
       const playersNames: string[] = players_names
         ? JSON.parse(players_names as string)
         : [];
 
-      // Ensure no empty or invalid inputs
       if (characters.length === 0 || playersNames.length === 0) {
         console.log("Error: Missing characters or players' names");
         return;
       }
 
-      // Assign random roles to each player
       const rolesAssigned = assignRolesToPlayers(characters, playersNames);
-
-      // Initially the players left is the same as allPlayersInGame
       setAllPlayersInGame(rolesAssigned);
       setPlayersInGame(rolesAssigned);
     } catch (err) {
@@ -46,6 +34,7 @@ export default function IntroScanScreen() {
       showMessage({
         message: `Error while assigning the roles to players: ${err}`,
         type: "danger",
+        backgroundColor: "#d9534f",
       });
     }
   }, [characters_data, players_names]);
@@ -68,50 +57,42 @@ export default function IntroScanScreen() {
   }
 
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="flex-1 bg-gray-900">
       <View className="items-center justify-center mx-3">
-        <Text className="text-center font-bold text-[20px] py-4">
+        <Text className="text-center font-bold text-[20px] text-white py-4">
           Scanning Introduction
         </Text>
-        <View className="seperator bg-slate-200 my-5 h-[1px] w-[80%]" />
-
-        <Image
-          className="w-[80%] h-72 rounded-xl"
-          source={require("../../assets/images/new_game/scan-intro.png")}
-        />
+        <View className="seperator bg-slate-700 my-5 h-[1px] w-[70%]" />
+        <View className="h-[250px] w-[250px] items-center justify-center rounded-3xl px-2 bg-slate-300">
+          <Image
+            className="w-[80%] h-72 rounded-xl shadow"
+            source={require("../../assets/images/new_game/scan-intro.png")}
+          />
+        </View>
       </View>
 
-      {/*
-      <BarcodeCreatorView
-        value={"Hello World"}
-        background={"#FFFFFF"}
-        foregroundColor={"#000000"}
-        format={BarcodeFormat.AZTEC}
-        style={styles.box}
-      />
-      */}
-
-      <View className="flex-4 mx-5">
-        <Text className="font-light my-2 w-[100%]">
+      <View className="flex-4 mx-5 mt-4">
+        <Text className="font-light my-2 w-[100%] text-gray-200">
           On the next screens the <Text className="font-bold">narrator</Text> of
           the game should individually{" "}
           <Text className="font-bold">present a scan code</Text> to each one of
           the players.
         </Text>
 
-        <Text className="font-light w-[100%]">
+        <Text className="font-light w-[100%] text-gray-200">
           With it, the players will be able to{" "}
           <Text className="font-bold">individually view</Text> their roles in
-          the game, among with further explanations to them if needed.
+          the game, along with further explanations if needed.
         </Text>
       </View>
 
       <View className="continue-button w-[100%] items-center absolute bottom-10">
         <TouchableOpacity
           onPress={showPlayersCodes}
-          className="bg-slate-300 items-center justify-center p-4 w-[90%] rounded-xl z-10"
+          className="bg-gray-700 items-center justify-center p-4 w-[90%] rounded-xl z-10"
+          activeOpacity={0.85}
         >
-          <Text className="text-[16px] font-bold">Show Codes</Text>
+          <Text className="text-[16px] font-bold text-white">Show Codes</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

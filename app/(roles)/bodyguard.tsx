@@ -5,7 +5,7 @@ const BodyguardRole = () => {
   return (
     <RoleTemplate
       name="Bodyguard"
-      description="The Bodyguard is a steadfast protector who selects one player on the first night to shield for the rest of the game. This chosen player gains special protection from attacks, with the Bodyguard stepping in to save them if they are targeted. However, if the protected player is attacked a second time, the Bodyguard will sacrifice himself, dying in their place. This protection is only active as long as the Bodyguard remains in the game. The Bodyguard’s protection is a vital asset, but it is limited—certain powerful roles, such as the Hunter or the Witch, can bypass this safeguard with their lethal abilities."
+      description="The Bodyguard is a steadfast protector who selects one player on the first night to shield for the rest of the game. The Bodyguard cannot choose to protect himself. This chosen player gains special protection from attacks, with the Bodyguard stepping in to save them if they are targeted. However, if the protected player is attacked a second time, the Bodyguard will sacrifice himself, dying in their place. This protection is only active as long as the Bodyguard remains in the game. The Bodyguard’s protection is a vital asset, but it is limited—certain powerful roles, such as the Hunter or the Witch, can bypass this safeguard with their lethal abilities."
       roleType="good"
       interactions={[
         "Werewolf - If the Werewolves target the Bodyguard’s protected player, the Bodyguard will prevent the first attack. However, if the Werewolves target this player again, the Bodyguard dies in their place, and the protection ends.",

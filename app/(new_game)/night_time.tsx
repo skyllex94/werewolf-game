@@ -18,7 +18,7 @@ export default function NightTime() {
   const isFirstNight = JSON.parse(firstNight as string);
 
   // Context states
-  const { setPlayersInGame, allPlayersInGame } = useContext(NewGameContext);
+  const { playersInGame, setPlayersInGame } = useContext(NewGameContext);
   const { soundEnabled } = useContext(SoundContext);
 
   // Sound manager state to control sounds
@@ -26,7 +26,7 @@ export default function NightTime() {
 
   useEffect(() => {
     // Resetting night role states
-    const resetNightState = allPlayersInGame.map((player: any) => ({
+    const resetNightState = playersInGame.map((player: any) => ({
       ...player,
       attackedByWerewolves: false,
       protectedByDoctor: false,

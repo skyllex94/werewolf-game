@@ -58,7 +58,7 @@ export default function PlayersNames() {
     try {
     } catch (err) {
       showMessage({
-        message: `Error occured while confirming players. Please try again.`,
+        message: `Error occurred while confirming players. Please try again.`,
         type: "danger",
       });
       console.error("Error while confirming players: ", err);
@@ -75,59 +75,42 @@ export default function PlayersNames() {
   }
 
   return (
-    <SafeAreaView className="flex-1 ">
-      <Text className="text-center font-bold text-[20px] py-4">
+    <SafeAreaView className="flex-1 bg-gray-900">
+      <Text className="text-center font-bold text-[20px] text-white py-4">
         Players ({players})
       </Text>
 
       <ScrollView className="mb-20" showsVerticalScrollIndicator={false}>
-        {Array.from({ length: players }).map((player, idx: number) => (
+        {Array.from({ length: players }).map((_, idx: number) => (
           <View key={idx}>
             <View className="flex-row flex-wrap items-center justify-center gap-x-2 my-1.5">
-              <View className="h-12 w-12 border border-slate-500 rounded-xl overflow-hidden">
+              <View className="h-12 w-12 border border-gray-600 rounded-xl overflow-hidden">
                 <Image
-                  className="h-[100%] w-[100%]"
+                  className="h-full w-full"
                   resizeMode="cover"
                   source={require("../../assets/images/placeholders/placeholder2.jpg")}
                 />
               </View>
               <View className="w-[75%] h-12">
                 <TextInput
-                  className="w-[100%] h-12 pl-3 rounded-xl border border-slate-500"
-                  key={idx}
+                  className="w-full h-full pl-3 rounded-xl bg-gray-800 text-white border border-gray-600"
                   placeholder={`Player ${idx + 1}`}
+                  placeholderTextColor="#B0B0B0"
                   value={playerNames[idx]}
                   onChangeText={(text) => playerNamesChange(idx, text)}
                 />
-
-                {/*
-                <View className="flex-row justify-between pt-1">
-                    <TouchableOpacity className="w-[49%] items-center p-3 border border-b-2 border-slate-500 rounded-lg">
-                      <Entypo name="camera" size={20} color="black" />
-                      <Text className="">Camera</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity className="w-[49%] items-center p-3 border border-b-2 border-slate-500 rounded-lg">
-                      <MaterialIcons
-                        name="photo-size-select-actual"
-                        size={20}
-                        color="black"
-                      />
-                      <Text className="">Library</Text>
-                    </TouchableOpacity>
-                  </View>
-                */}
               </View>
             </View>
           </View>
         ))}
       </ScrollView>
 
-      <View className="continue-button w-[100%] items-center absolute bottom-10">
+      <View className="continue-button w-full items-center absolute bottom-10">
         <TouchableOpacity
           onPress={confirmPlayers}
-          className="bg-slate-300 items-center justify-center p-4 w-[90%] rounded-xl z-10"
+          className="bg-gray-700 items-center justify-center p-4 w-[90%] rounded-xl"
         >
-          <Text className="text-[16px] font-bold">Continue</Text>
+          <Text className="text-[16px] font-bold text-white">Continue</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

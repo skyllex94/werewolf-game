@@ -132,37 +132,40 @@ const DayEliminationBottomSheet = forwardRef<
       {
         text: "Yes",
         onPress: () => {
-          // Check if the Tanner is in selectedPlayersForElimination
+          // Check if specific roles are in the selected players for elimination
           const isTannerEliminated = selectedPlayersForElimination.some(
             (player: any) => player.role === "Tanner"
           );
-
-          // Check if the Prince is in selectedPlayersForElimination
           const isPrinceEliminated = selectedPlayersForElimination.some(
             (player: any) => player.role === "Prince"
           );
-
-          // Check if the Wolf Cub is in selectedPlayersForElimination
           const isWolfCubEliminated = selectedPlayersForElimination.some(
             (player: any) => player.role === "Wolf Cub"
           );
 
-          if (isPrinceEliminated) princeCheckup(selectedPlayersForElimination);
+          // Apply Prince immunity if the Prince is selected for elimination
+          if (isPrinceEliminated) {
+            princeCheckup(selectedPlayersForElimination);
+          }
 
-          // Define the players to remain after elimination, respecting the Prince role
-          const finalPlayersForElimination = playersInGame.filter(
-            (player: any) => {
-              // Allow elimination of all selected players except the Prince
+          // Filter out players to keep only those not protected by the Prince
+          const finalPlayersForElimination = playersInGame
+            .map((player: any) => {
+              // Set isEliminatedDuringDay to true for the Tanner if eliminated during the day
               if (
-                player.role === "Prince" &&
+                player.role === "Tanner" &&
                 selectedPlayersForElimination.includes(player)
               ) {
-                return true;
+                return { ...player, isEliminatedDuringDay: true };
               }
-              // Eliminate other selected players
-              return !selectedPlayersForElimination.includes(player);
-            }
-          );
+              return player;
+            })
+            .filter(
+              (player: any) =>
+                !selectedPlayersForElimination.includes(player) ||
+                (player.role === "Prince" &&
+                  selectedPlayersForElimination.includes(player))
+            );
 
           // Hunter role check
           const isHunterEliminated = checkIfHunterSelected();
@@ -174,13 +177,8 @@ const DayEliminationBottomSheet = forwardRef<
           // Clear selected players for the next round
           setSelectedPlayersForElimination([]);
 
+          // Set to day context for checking win conditions
           const isDay = true;
-
-          // If Tanner is eliminated, he wins as an independent
-          if (isTannerEliminated) {
-            checkForWinner(finalPlayersForElimination, isDay, allPlayersInGame);
-            return;
-          }
 
           // Stop day time sounds
           setDayTimeSounds(false);
@@ -198,8 +196,8 @@ const DayEliminationBottomSheet = forwardRef<
             ),
           ]);
 
-          // Check if there's a winner after eliminations
-          checkForWinner(finalPlayersForElimination, isDay, allPlayersInGame);
+          // Check for a winner after eliminations
+          checkForWinner(finalPlayersForElimination, isDay);
 
           // Display message if a Wolf Cub was eliminated
           if (isWolfCubEliminated) {

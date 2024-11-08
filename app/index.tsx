@@ -13,6 +13,7 @@ export default function MainScreen() {
 
   return (
     <View className="flex-1 relative bg-[#354e6e]">
+      <StatusBar style="light" />
       {/* Lottie Animation Background */}
       <LottieView
         autoPlay
@@ -31,8 +32,6 @@ export default function MainScreen() {
 
       {/* Foreground Content */}
       <SafeAreaView className="flex-1 bg-gray-900]">
-        <StatusBar style="light" />
-
         {/* Top Pane */}
         <TopPane iconColor="white" />
 

@@ -8,7 +8,7 @@ type RoleTemplateProps = {
   name: string;
   description: string;
   roleType: "good" | "bad" | "independent";
-  interactions: string[]; // Array of interaction points
+  interactions: string[];
   imagePath: any;
 };
 

@@ -240,10 +240,8 @@ export function WakeDoctorUI({ soundEnabled }: WakeUIProps) {
   };
 
   const choosePlayerProtectedByDoctor = () => {
-    // Filter out the Doctor from the playersInGame array
-    const availablePlayers = playersInGame.filter(
-      (player: any) => player.role !== "Doctor"
-    );
+    // Rules are to not filter out the doctor since he can protect himself
+    const availablePlayers = playersInGame;
 
     const playerOptions = availablePlayers.map((player: any) => ({
       text: player.name,

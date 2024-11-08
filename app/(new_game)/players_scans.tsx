@@ -23,7 +23,8 @@ export default function PlayerScanCodesScreen() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { players_roles } = params;
-  console.log("players_roles:", players_roles);
+
+  const he = screenHeight / 1.4;
 
   // Parse the allPlayersInGame array from JSON
   const allPlayersInGame = players_roles
@@ -83,11 +84,11 @@ export default function PlayerScanCodesScreen() {
   }
 
   return (
-    <SafeAreaView className="flex-1 h-[100%] ">
-      <Text className="text-center font-bold text-[20px] py-4">
+    <SafeAreaView className="flex-1 h-[100%] bg-gray-900">
+      <Text className="text-center font-bold text-[20px] py-4 text-white">
         Role of Each Player
       </Text>
-      <Text className="text-center font-light text-[15px] px-10">
+      <Text className="text-center font-light text-[15px] px-10 text-white">
         Swipe to let each player scan their barcode with their phone.
       </Text>
 
@@ -108,18 +109,18 @@ export default function PlayerScanCodesScreen() {
 
       <View className="continue-button w-[100%] items-center absolute bottom-10">
         <View className="justify-center my-3">
-          <Text className="text-center font-light text-[16px]">
+          <Text className="text-center font-light text-[16px] text-white">
             {activeIndex + 1} / {allPlayersInGame.length}
           </Text>
         </View>
         <TouchableOpacity
           onPress={moveToNextBarcode}
-          className="bg-slate-300 items-center justify-center p-4 w-[90%] rounded-xl z-10"
+          className="bg-slate-700 items-center justify-center p-4 w-[90%] rounded-xl z-10"
         >
           {activeIndex === allPlayersInGame.length - 1 ? (
-            <Text className="text-[16px] font-bold">Start Game</Text>
+            <Text className="text-[16px] font-bold text-white">Start Game</Text>
           ) : (
-            <Text className="text-[16px] font-bold">Next</Text>
+            <Text className="text-[16px] font-bold text-white">Next</Text>
           )}
         </TouchableOpacity>
       </View>

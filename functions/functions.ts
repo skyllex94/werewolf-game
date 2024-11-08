@@ -98,23 +98,15 @@ export function truncate(text: string, maxLength: number = 10) {
   return text.slice(0, maxLength) + "...";
 }
 
-export function checkForWinner(
-  remainingPlayers: any,
-  isDay: boolean,
-  allPlayersInGame: object[]
-) {
-  console.log("allPlayersInGame:", allPlayersInGame);
+export function checkForWinner(remainingPlayers: any, isDay: boolean) {
+  // Check if there's a Tanner who was eliminated during the day
+  const tannerEliminatedDuringDay = remainingPlayers.some(
+    (player: any) => player.role === "Tanner" && player.isEliminatedDuringDay
+  );
 
-  // Check if there's a Tanner in the game
-  const tannerPresentInGame = allPlayersInGame.filter(
-    (player: any) => player.type == "independent"
-  ).length;
+  console.log("tannerEliminatedDuringDay:", tannerEliminatedDuringDay);
 
-  const isTannerStillInGame = remainingPlayers.filter(
-    (player: any) => player.type == "independent"
-  ).length;
-
-  if (tannerPresentInGame && !isTannerStillInGame) {
+  if (tannerEliminatedDuringDay) {
     router.replace({
       pathname: "/game_winner",
       params: { winner: "independent" },

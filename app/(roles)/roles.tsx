@@ -8,8 +8,6 @@ import RulesTopPane from "@/components/Rules/RulesTopPane";
 import { ScrollView } from "react-native-gesture-handler";
 
 const RolesAbilitiesMenu = () => {
-  const router = useRouter();
-
   const roles = [
     {
       name: "Villager",
@@ -88,6 +86,8 @@ const RolesAbilitiesMenu = () => {
     },
   ];
 
+  const router = useRouter();
+
   return (
     <SafeAreaView className="flex-1 bg-gray-900">
       <StatusBar style="light" />
@@ -102,11 +102,7 @@ const RolesAbilitiesMenu = () => {
           <TouchableOpacity
             key={role.name}
             className="p-3 mb-2 bg-gray-800 rounded-lg flex-row items-center"
-            onPress={() =>
-              router.push({
-                pathname: role.path,
-              })
-            }
+            onPress={() => router.push({ pathname: role.path as any })}
           >
             <Image
               source={role.icon}
