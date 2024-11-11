@@ -50,15 +50,15 @@ export default function NightTime() {
       <Image
         className="absolute top-0 left-0 w-full h-[111%] z-[-1]"
         resizeMode="cover"
-        source={require("../../assets/images/backgrounds/night.jpeg")}
+        source={require("../../assets/images/backgrounds/night_upscaled.jpeg")}
       />
-      <TopPaneInGame />
+      <TopPaneInGame rolesModalDarkMode="true" />
 
       {/* NightSoundManager to handle night sounds */}
       <NightSoundManager nightTimeSounds={nightTimeSounds} />
 
       <Text className="text-center text-white font-bold text-[20px] mt-8 pb-4">
-        The Night Has Started
+        Night Time
       </Text>
       <Text className="text-start text-white text-[14px] font-light px-6 mb-3">
         Guide the village through the night. Wake up each role displayed below,

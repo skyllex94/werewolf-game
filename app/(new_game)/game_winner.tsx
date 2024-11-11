@@ -16,7 +16,10 @@ const GameWinner = () => {
   const animation = useRef<LottieView>(null);
 
   function viewRoles() {
-    router.push("/roles_modal");
+    router.push({
+      pathname: "/roles_modal",
+      params: { darkMode: "true" },
+    });
   }
 
   function startNewGame() {
@@ -37,8 +40,8 @@ const GameWinner = () => {
   }, []);
 
   return (
-    <View className="items-center justify-center p-5">
-      <StatusBar style={"dark"} />
+    <View className="flex-1 bg-slate-900 items-center justify-center p-5">
+      <StatusBar style={"light"} />
       <View className="lottie-animation">
         <LottieView
           autoPlay
@@ -71,14 +74,14 @@ const GameWinner = () => {
         )}
       </View>
 
-      <Text className="text-2xl font-bold mb-4">
+      <Text className="text-2xl text-white font-bold mb-4">
         {winner === "good"
           ? "The Village Wins!"
           : winner === "bad"
           ? "Werewolves Win!"
           : "The Tanner Wins!"}
       </Text>
-      <Text className="text-lg text-center mb-8 font-light w-[90%]">
+      <Text className="text-lg text-white text-center mb-8 font-light w-[90%]">
         {winner === "good"
           ? "Congratulations to the whole Village for figuring out who the bad guys are. You were able to successfully eliminate all of them in this game."
           : winner === "bad"

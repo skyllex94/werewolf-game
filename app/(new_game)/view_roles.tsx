@@ -118,7 +118,7 @@ export default function OperatorViewRoles() {
         </ScrollView>
       ) : (
         // View Roles Button
-        <View className="items-center">
+        <View className="items-start">
           <TouchableOpacity
             className="mx-5 p-3 bg-blue-600 rounded-xl w-[40%] shadow-md"
             onPress={showAllRoles}
@@ -132,7 +132,7 @@ export default function OperatorViewRoles() {
       <View className="continue-button w-[100%] items-center absolute bottom-10">
         <TouchableOpacity
           onPress={toFirstNight}
-          className="bg-blue-700 items-center justify-center p-4 w-[90%] rounded-xl shadow-md"
+          className="bg-slate-700 items-center justify-center p-4 w-[90%] rounded-xl shadow-md"
         >
           <Text className="text-[16px] font-bold text-white">Continue</Text>
         </TouchableOpacity>

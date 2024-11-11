@@ -9,6 +9,7 @@ import {
   Ionicons,
 } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { BlurView } from "expo-blur";
 
 interface WakeUIProps {
   soundEnabled: boolean;

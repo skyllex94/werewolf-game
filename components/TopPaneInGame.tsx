@@ -5,24 +5,26 @@ import { useRouter } from "expo-router";
 import SoundContext from "@/contexts/SoundContext";
 
 interface TopPaneInGameProps {
-  iconColor?: "black" | "white"; // Optional prop for icon color, default is white
+  iconColor?: "black" | "white";
+  rolesModalDarkMode?: string;
 }
 
 export default function TopPaneInGame({
   iconColor = "white",
+  rolesModalDarkMode = "false",
 }: TopPaneInGameProps) {
   const router = useRouter();
   const { soundEnabled, setSoundEnabled } = useContext(SoundContext);
 
-  function goBack() {
-    router.back();
+  function openGameMenu() {
+    router.push("/game_menu");
   }
 
   return (
     <View className="flex-row justify-between">
       <View>
-        <TouchableOpacity onPress={goBack} className="m-3 w-10 p-2">
-          <Ionicons name="arrow-back" size={24} color={iconColor} />
+        <TouchableOpacity onPress={openGameMenu} className="m-3 p-2">
+          <Ionicons name="menu" size={28} color={iconColor} />
         </TouchableOpacity>
       </View>
 
@@ -32,6 +34,7 @@ export default function TopPaneInGame({
           onPress={() =>
             router.push({
               pathname: "/roles_modal",
+              params: { darkMode: rolesModalDarkMode },
             })
           }
         >

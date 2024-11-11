@@ -19,7 +19,7 @@ interface RolesUIProps {
 }
 
 const RolesUI: React.FC<RolesUIProps> = ({ isFirstNight, soundEnabled }) => {
-  const { allPlayersInGame, markRoleAsReady } = useContext(NewGameContext);
+  const { allPlayersInGame } = useContext(NewGameContext);
 
   // Mapping roles to their corresponding UI component
   const roleComponents: { [key: string]: any } = {

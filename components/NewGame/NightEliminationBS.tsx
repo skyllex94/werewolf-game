@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Alert, Image } from "react-native";
+import { View, Text, Pressable, Alert, Image, StyleSheet } from "react-native";
 import React, { useMemo, forwardRef, useState, useContext } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
@@ -19,7 +19,6 @@ type RoleEliminatedBSProps = {
 const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
   (props, eliminatedRoleBSRef) => {
     const {
-      allPlayersInGame,
       eliminatedPlayers,
       setEliminatedPlayers,
       selectedPlayersForElimination,
@@ -197,10 +196,21 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
         enablePanDownToClose={true}
         enableOverDrag={true}
         animateOnMount={true}
+        handleIndicatorStyle={{
+          backgroundColor: "white", // Set the color to black
+          width: 40, // Optional: Adjust width
+          height: 5, // Optional: Adjust height for visibility
+          borderRadius: 2.5, // Optional: Make it more rounded
+        }}
+        handleStyle={{
+          backgroundColor: "#1F2937", // Dark background for the top area
+          borderTopLeftRadius: 16, // Rounded corners for the top-left edge
+          borderTopRightRadius: 16, // Rounded corners for the top-right edge
+        }}
       >
-        <View className="flex-1 items-center">
+        <View className="flex-1 items-center bg-gray-800">
           <View className="flex-row items-center justify-center px-3 py-2 w-full">
-            <Text className="text-[16px] font-light">
+            <Text className="text-[16px] font-light text-white">
               Anyone eliminated this night?
             </Text>
           </View>
@@ -210,7 +220,6 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
             className="w-full mb-24"
           >
             <View className="flex-row flex-wrap justify-start p-2 w-full">
-              {/* Map through players and render them */}
               {playersInGame
                 .filter((player: any) => showAll || player.role !== "Werewolf")
                 .map((player: any) => (
@@ -221,10 +230,11 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                         selectedPlayersForElimination.find(
                           (p: any) => p.order === player.order
                         )
-                          ? "bg-green-300"
-                          : "bg-gray-300"
+                          ? "bg-green-600"
+                          : "bg-gray-700"
                       }`}
                     >
+                      {/* Left-side Icons */}
                       <View
                         style={{
                           alignItems: "center",
@@ -241,7 +251,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                             <FontAwesome5
                               name="shield-alt"
                               size={17}
-                              color="#636363"
+                              color="white"
                               // Space between shields if multiple
                               style={{ marginBottom: 2 }}
                             />
@@ -251,7 +261,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                             <FontAwesome6
                               name="user-doctor"
                               size={18}
-                              color="#636363"
+                              color="white"
                             />
                           )}
                         {playersInGame.some((p: any) => p.role === "Priest") &&
@@ -259,7 +269,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                             <FontAwesome5
                               name="cross"
                               size={17}
-                              color="#636363"
+                              color="white" // #636363
                             />
                           )}
                         {playersInGame.some((p: any) => p.role === "Witch") &&
@@ -268,7 +278,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                               <Image
                                 className="w-[20px] h-[20px]"
                                 source={require("../../assets/images/bottom_sheet/witch.png")}
-                                style={{ tintColor: "#636363" }}
+                                style={{ tintColor: "white" }}
                               />
                               <View className="absolute top-0 right-[-6]">
                                 <FontAwesome
@@ -296,13 +306,13 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                           player.attackedByWerewolves && (
                             <Image
                               className="w-[20px] h-[20px]"
-                              style={{ tintColor: "#636363" }}
+                              style={{ tintColor: "white" }}
                               source={require("../../assets/images/bottom_sheet/werewolf.png")}
                             />
                           )}
 
                         {player.bondedByCupid && (
-                          <AntDesign name="heart" size={17} color="#636363" />
+                          <AntDesign name="heart" size={17} color="white" />
                         )}
 
                         {playersInGame.some((p: any) => p.role === "Witch") &&
@@ -311,7 +321,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                               <Image
                                 className="w-[20px] h-[20px]"
                                 source={require("../../assets/images/bottom_sheet/witch.png")}
-                                style={{ tintColor: "#636363" }}
+                                style={{ tintColor: "white" }}
                               />
                               <View className="absolute top-0 right-[-6]">
                                 <FontAwesome
@@ -323,8 +333,12 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                             </View>
                           )}
                       </View>
-                      <Text className="font-bold">{truncate(player.name)}</Text>
-                      <Text className="text-xs">{player.role}</Text>
+                      <Text className="text-white font-bold">
+                        {truncate(player.name)}
+                      </Text>
+                      <Text className="text-xs text-slate-300">
+                        {player.role}
+                      </Text>
                     </TouchableOpacity>
                   </View>
                 ))}
@@ -332,16 +346,14 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
               {/* No Role Eliminated Button */}
               <View className="w-[33.3%] max-w-[33.3%]">
                 <TouchableOpacity
-                  onPress={() => {
-                    setSelectedPlayersForElimination([]);
-                  }}
+                  onPress={() => setSelectedPlayersForElimination([])}
                   className={`rounded-lg p-3 m-1 mb-2 items-center ${
                     selectedPlayersForElimination.length === 0
-                      ? "bg-green-300"
-                      : "bg-gray-300"
+                      ? "bg-green-600"
+                      : "bg-gray-700"
                   }`}
                 >
-                  <Text className="font-bold text-center">
+                  <Text className="font-bold text-white text-center">
                     No Role Eliminated
                   </Text>
                 </TouchableOpacity>
@@ -349,17 +361,14 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
             </View>
           </ScrollView>
 
-          {/* Buttons Section */}
-          <View className="w-full flex-row justify-between items-center absolute bottom-10 px-3 z-[-1]">
-            {/* Confirm Button */}
+          <View className="w-full flex-row justify-between items-center absolute bottom-10 px-3">
             <Pressable
-              className="bg-green-300 items-center justify-center border border-green-300 p-4
-               w-[70%] rounded-xl"
+              className="bg-green-600 items-center justify-center border border-green-700 p-4 w-[68%] rounded-xl"
               onPress={confirmElimination}
             >
               {({ pressed }) => (
                 <Text
-                  className={`text-[16px] font-bold ${
+                  className={`text-[16px] font-bold text-white ${
                     pressed ? "opacity-70" : "opacity-100"
                   }`}
                 >
@@ -368,15 +377,13 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
               )}
             </Pressable>
 
-            {/* Show All Button */}
             <Pressable
-              className="bg-white items-center justify-center border 
-              border-transparent p-4 w-[30%] rounded-xl"
+              className="bg-gray-700 m-2 items-center justify-center border border-gray-700 p-4 w-[30%] rounded-xl"
               onPress={toggleShowAll}
             >
               {({ pressed }) => (
                 <Text
-                  className={`text-[16px] font-bold ${
+                  className={`text-[16px] font-bold text-white ${
                     pressed ? "opacity-70" : "opacity-100"
                   }`}
                 >

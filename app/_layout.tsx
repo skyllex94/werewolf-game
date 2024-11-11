@@ -160,6 +160,10 @@ function RootLayoutNav() {
                   name="(new_game)/day_time"
                   options={{ gestureEnabled: false }}
                 />
+                <Stack.Screen
+                  name="(new_game)/game_menu"
+                  options={{ presentation: "modal" }}
+                />
               </Stack>
 
               <FlashMessage position="top" />
