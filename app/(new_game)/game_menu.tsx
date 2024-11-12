@@ -1,11 +1,20 @@
 import { View, Text, Pressable } from "react-native";
 import React, { useEffect } from "react";
-import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
-
+import { useNavigation, useRouter, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 
 export default function GameMenu() {
   const router = useRouter();
+  const { darkMode } = useLocalSearchParams();
+
+  console.log("darkMode:", darkMode);
+
+  // Converting the string from params into a boolean
+  let isDarkMode = null;
+  if (darkMode === "true") isDarkMode = true;
+  else isDarkMode = false;
+
+  console.log("isDarkMode:", isDarkMode);
 
   // Navigation
   const navigation = useNavigation();
@@ -13,12 +22,8 @@ export default function GameMenu() {
   function viewRoles() {
     router.push({
       pathname: "/roles_modal",
-      params: { darkMode: "true" },
+      params: { darkMode },
     });
-  }
-
-  function startNewGame() {
-    router.replace("/new_game");
   }
 
   const exitMenu = () => {
@@ -39,43 +44,100 @@ export default function GameMenu() {
   }, []);
 
   return (
-    <View className="flex-1 bg-slate-900 items-center justify-center p-5">
-      <StatusBar style={"light"} />
+    <View
+      className={`flex-1 items-center justify-center p-5 ${
+        isDarkMode ? "bg-slate-900" : "bg-white"
+      }`}
+    >
+      <StatusBar style={isDarkMode ? "light" : "dark"} />
 
-      <Text className="text-2xl text-white font-bold">Werewolf:</Text>
-      <Text className="text-2xl text-white font-bold mb-4">
+      <Text
+        style={{
+          fontFamily: "Bronzetti_SC_Condensed",
+          fontSize: 34,
+          color: isDarkMode ? "lightgray" : "black",
+        }}
+        className="text-[24px] font-bold my-1"
+      >
+        Werewolf:
+      </Text>
+      <Text
+        style={{
+          fontFamily: "Bronzetti_SC_Condensed",
+          fontSize: 26,
+          color: isDarkMode ? "gray" : "black",
+        }}
+        className="text-[24px] font-bold"
+      >
         Save the Village
       </Text>
-      <Text className="text-lg text-white text-center mb-8 font-light w-[90%]">
-        Duration:
-      </Text>
 
-      <View className="justify-center w-[80%] gap-y-3">
-        <View className="bg-green-200 p-4 rounded-xl">
-          <Text className="font-bold text-center mb-3">Game Information </Text>
-          <Text className="font-bold text-start">Players: </Text>
-          <Text className="font-bold text-start">Game Duration: </Text>
-        </View>
+      <View
+        className={`seperator my-6 h-[1px] w-[60%] ${
+          isDarkMode ? "bg-slate-400" : "bg-gray-300"
+        }`}
+      />
+
+      <View className="justify-center w-[60%] gap-y-3">
         <Pressable
-          onPress={startNewGame}
-          className="bg-green-300 p-4 rounded-xl"
+          className={`p-4 rounded-xl ${
+            isDarkMode ? "bg-green-600" : "bg-green-300"
+          }`}
         >
-          <Text className="font-bold text-center">New Game</Text>
+          <Text
+            className={`font-bold text-center ${
+              isDarkMode ? "text-white" : "text-black"
+            }`}
+          >
+            Game Info
+          </Text>
         </Pressable>
 
-        <Pressable onPress={viewRoles} className="bg-green-300 p-4 rounded-xl">
-          <Text className="font-bold text-center">View Roles</Text>
+        <Pressable
+          onPress={viewRoles}
+          className={`p-4 rounded-xl ${
+            isDarkMode ? "bg-green-600" : "bg-green-300"
+          }`}
+        >
+          <Text
+            className={`font-bold text-center ${
+              isDarkMode ? "text-white" : "text-black"
+            }`}
+          >
+            View Roles
+          </Text>
         </Pressable>
 
-        <Pressable onPress={exitMenu} className="bg-green-300 p-4 rounded-xl">
-          <Text className="font-bold text-center">Exit Game</Text>
+        <Pressable
+          onPress={exitMenu}
+          className={`p-4 rounded-xl ${
+            isDarkMode ? "bg-green-600" : "bg-green-300"
+          }`}
+        >
+          <Text
+            className={`font-bold text-center ${
+              isDarkMode ? "text-white" : "text-black"
+            }`}
+          >
+            Quit Game
+          </Text>
         </Pressable>
 
         <Pressable
           onPress={goBack}
-          className="bg-slate-200 p-4 rounded-xl border border-gray-400"
+          className={`p-4 rounded-xl border ${
+            isDarkMode
+              ? "bg-slate-700 border-gray-500"
+              : "bg-slate-200 border-gray-400"
+          }`}
         >
-          <Text className="font-bold text-center">Go Back</Text>
+          <Text
+            className={`font-bold text-center ${
+              isDarkMode ? "text-white" : "text-black"
+            }`}
+          >
+            Go Back
+          </Text>
         </Pressable>
       </View>
     </View>

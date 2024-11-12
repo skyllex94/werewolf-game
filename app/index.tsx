@@ -1,5 +1,4 @@
-import { Text, View } from "@/components/Themed";
-import { Dimensions, SafeAreaView } from "react-native";
+import { Dimensions, SafeAreaView, View, Text } from "react-native";
 import MainMenu from "@/components/MainMenu";
 import TopPane from "@/components/TopPane";
 import { StatusBar } from "expo-status-bar";

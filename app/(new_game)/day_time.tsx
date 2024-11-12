@@ -85,7 +85,7 @@ export default function DayTimeScreen() {
       <View className="timer items-center">
         <BlurView
           tint="systemChromeMaterial"
-          className="items-center justify-center mt-24"
+          className="items-center justify-center mt-12"
           style={{
             width: 260,
             height: 260,

@@ -63,9 +63,9 @@ export default function IntroScanScreen() {
           Scanning Introduction
         </Text>
         <View className="seperator bg-slate-700 my-5 h-[1px] w-[70%]" />
-        <View className="h-[250px] w-[250px] items-center justify-center rounded-3xl px-2 bg-slate-300">
+        <View className="h-[250px] w-[250px] items-center justify-center rounded-full px-2 bg-slate-300">
           <Image
-            className="w-[80%] h-72 rounded-xl shadow"
+            className="w-[60%] h-72 rounded-full shadow"
             source={require("../../assets/images/new_game/scan-intro.png")}
           />
         </View>

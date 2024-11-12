@@ -17,7 +17,10 @@ export default function TopPaneInGame({
   const { soundEnabled, setSoundEnabled } = useContext(SoundContext);
 
   function openGameMenu() {
-    router.push("/game_menu");
+    router.push({
+      pathname: "/game_menu",
+      params: { darkMode: rolesModalDarkMode },
+    });
   }
 
   return (

@@ -1,8 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { Text, View } from "@/components/Themed";
+
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Image, ScrollView, TouchableOpacity } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { roles } from "@/constants/GameConstants";

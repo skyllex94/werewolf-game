@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View } from "@/components/Themed";
+
 import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
 import RulesTopPane from "@/components/Rules/RulesTopPane";

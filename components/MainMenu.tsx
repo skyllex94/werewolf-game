@@ -46,7 +46,7 @@ export default function MainMenu() {
     {
       name: "Settings",
       icon: <Ionicons name="settings" size={16} color="white" />,
-      link: null,
+      link: "/settings",
     },
   ];
 
