@@ -41,7 +41,7 @@ export default function MainMenu() {
     {
       name: "Go Pro",
       icon: <MaterialIcons name="workspace-premium" size={18} color="white" />,
-      link: null,
+      link: "/game_winner",
     },
     {
       name: "Settings",

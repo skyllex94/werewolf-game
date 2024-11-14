@@ -14,7 +14,7 @@ export default function TopPaneInGame({
   rolesModalDarkMode = "false",
 }: TopPaneInGameProps) {
   const router = useRouter();
-  const { soundEnabled, setSoundEnabled } = useContext(SoundContext);
+  const { soundEnabled, setSoundEnabled } = useContext(SoundContext)!;
 
   function openGameMenu() {
     router.push({

@@ -18,7 +18,7 @@ export default function OperatorViewRoles() {
   const { players_roles } = params;
 
   const [rolesShown, setRolesShown] = useState<boolean>(false);
-  const { setSoundtrackEnabled } = useContext(SoundContext);
+  const { setSoundtrackEnabled } = useContext(SoundContext)!;
 
   const {
     setWitchProtectionUsed,

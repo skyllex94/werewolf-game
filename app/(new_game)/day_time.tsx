@@ -6,13 +6,13 @@ import TopPaneInGame from "@/components/TopPaneInGame";
 
 import CircularProgress from "react-native-circular-progress-indicator";
 import { FontAwesome } from "@expo/vector-icons";
-import SoundManager from "@/components/NewGame/DaySoundManager";
+
 import DayEliminationBottomSheet from "@/components/NewGame/DayRoleEliminationBS";
 import { BlurView } from "expo-blur";
 import SoundContext from "@/contexts/SoundContext";
 
 export default function DayTimeScreen() {
-  const { setDaySoundsEnabled } = useContext(SoundContext);
+  const { setDaySoundsEnabled } = useContext(SoundContext)!;
 
   // Bottom Sheet setup
   const eliminatedRoleBSRef = useRef<any>(null);
@@ -26,6 +26,10 @@ export default function DayTimeScreen() {
 
   // Ref to control CircularProgress
   const circularProgressRef = useRef<any>(null);
+
+  useEffect(() => {
+    setDaySoundsEnabled(true);
+  }, []);
 
   useEffect(() => {
     let timer: NodeJS.Timeout | undefined;
@@ -62,9 +66,6 @@ export default function DayTimeScreen() {
     <SafeAreaView className="flex-1 h-[100%]">
       <StatusBar style={"dark"} />
       <TopPaneInGame iconColor="black" />
-
-      {/* Add SoundManager to loop day-bg-sound */}
-      <SoundManager daySoundsEnabled={setDaySoundsEnabled} />
 
       <Image
         className="absolute top-0 left-0 w-full h-[111%] z-[-1]"
@@ -142,7 +143,10 @@ export default function DayTimeScreen() {
       </View>
 
       {/* Bottom Sheet Role Elimination  */}
-      <DayEliminationBottomSheet ref={eliminatedRoleBSRef} />
+      <DayEliminationBottomSheet
+        ref={eliminatedRoleBSRef}
+        setDaySoundsEnabled={setDaySoundsEnabled}
+      />
 
       {/* Continue Button */}
       <View className="continue-button w-[100%] items-center absolute bottom-10 z-[-1]">

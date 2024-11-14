@@ -7,7 +7,7 @@ interface SoundManagerProps {
   daySoundsEnabled: boolean;
 }
 
-const SoundManager: React.FC<SoundManagerProps> = ({ daySoundsEnabled }) => {
+const DaySoundManager: React.FC<SoundManagerProps> = ({ daySoundsEnabled }) => {
   const [backgroundSound, setBackgroundSound] = useState<Audio.Sound | null>(
     null
   );
@@ -23,7 +23,7 @@ const SoundManager: React.FC<SoundManagerProps> = ({ daySoundsEnabled }) => {
 
     setVolume(backgroundSound);
     setVolume(ambienceSound);
-  }, [soundEnabled, backgroundSound, ambienceSound]);
+  }, [soundEnabled]); // backgroundSound, ambienceSound
 
   useEffect(() => {
     let isMounted = true;
@@ -61,20 +61,20 @@ const SoundManager: React.FC<SoundManagerProps> = ({ daySoundsEnabled }) => {
     playDaytimeSounds();
 
     // Cleanup when component unmounts or day time changes
-    return () => {
-      isMounted = false;
-      if (backgroundSound) {
-        backgroundSound.stopAsync();
-        backgroundSound.unloadAsync();
-      }
-      if (ambienceSound) {
-        ambienceSound.stopAsync();
-        ambienceSound.unloadAsync();
-      }
-    };
+    // return () => {
+    //   isMounted = false;
+    //   if (backgroundSound) {
+    //     backgroundSound.stopAsync();
+    //     backgroundSound.unloadAsync();
+    //   }
+    //   if (ambienceSound) {
+    //     ambienceSound.stopAsync();
+    //     ambienceSound.unloadAsync();
+    //   }
+    // };
   }, [daySoundsEnabled]);
 
   return null;
 };
 
-export default SoundManager;
+export default DaySoundManager;

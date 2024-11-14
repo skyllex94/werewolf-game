@@ -10,10 +10,7 @@ const MainSoundManager: React.FC<MainSoundManagerProps> = ({
   soundtrackEnabled,
 }) => {
   const [soundtrack, setSoundtrack] = useState<Audio.Sound | null>(null);
-  //   const [lightningSound, setLightningSound] = useState<Audio.Sound | null>(
-  //     null
-  //   );
-  const { soundEnabled } = useContext(SoundContext);
+  const { soundEnabled } = useContext(SoundContext)!;
 
   useEffect(() => {
     const playSounds = async () => {
@@ -25,24 +22,12 @@ const MainSoundManager: React.FC<MainSoundManagerProps> = ({
         );
         setSoundtrack(bgSound);
         await bgSound.playAsync();
-
-        // Play lightning sound
-        // const { sound: lightning } = await Audio.Sound.createAsync(
-        //   require("../../assets/audio/lightning.mp3"),
-        //   { isLooping: true, volume: soundEnabled ? 0.2 : 0.0 }
-        // );
-        // setLightningSound(lightning);
-        // await lightning.playAsync();
       } else {
         // Stop sounds when not on main screen
         if (soundtrack) {
           await soundtrack.stopAsync();
           await soundtrack.unloadAsync();
         }
-        // if (lightningSound) {
-        //   await lightningSound.stopAsync();
-        //   await lightningSound.unloadAsync();
-        // }
       }
     };
 
@@ -54,10 +39,6 @@ const MainSoundManager: React.FC<MainSoundManagerProps> = ({
         soundtrack.stopAsync();
         soundtrack.unloadAsync();
       }
-      //   if (lightningSound) {
-      //     lightningSound.stopAsync();
-      //     lightningSound.unloadAsync();
-      //   }
     };
   }, [soundtrackEnabled]);
 
@@ -65,7 +46,7 @@ const MainSoundManager: React.FC<MainSoundManagerProps> = ({
   useEffect(() => {
     soundtrack?.setVolumeAsync(soundEnabled ? 0.3 : 0.0);
     // lightningSound?.setVolumeAsync(soundEnabled ? 0.2 : 0.0);
-  }, [soundEnabled, soundtrack]); // lightningSound
+  }, [soundEnabled]); // lightningSound
 
   return null;
 };

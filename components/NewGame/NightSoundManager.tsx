@@ -47,24 +47,24 @@ const NightSoundManager: React.FC<NightSoundManagerProps> = ({
 
     playSounds();
 
-    // Cleanup on unmount or when isNightTime changes
-    return () => {
-      if (wolfHowling) {
-        wolfHowling.stopAsync();
-        wolfHowling.unloadAsync();
-      }
-      if (nightBackgroundSound) {
-        nightBackgroundSound.stopAsync();
-        nightBackgroundSound.unloadAsync();
-      }
-    };
+    // // Cleanup on unmount or when isNightTime changes
+    // return () => {
+    //   if (wolfHowling) {
+    //     wolfHowling.stopAsync();
+    //     wolfHowling.unloadAsync();
+    //   }
+    //   if (nightBackgroundSound) {
+    //     nightBackgroundSound.stopAsync();
+    //     nightBackgroundSound.unloadAsync();
+    //   }
+    // };
   }, [nightSoundsEnabled]);
 
   // Adjust volume based on soundEnabled changed
   useEffect(() => {
     wolfHowling?.setVolumeAsync(soundEnabled ? 0.3 : 0.0);
     nightBackgroundSound?.setVolumeAsync(soundEnabled ? 0.1 : 0.0);
-  }, [soundEnabled, wolfHowling, nightBackgroundSound]);
+  }, [soundEnabled]);
 
   return null;
 };

@@ -35,7 +35,7 @@ export default function PlayerScanCodesScreen() {
 
   const renderItem = ({ item }: { item: Item }) => {
     return (
-      <View className="flex-1 items-center justify-start pt-16 bg-slate-800 px-5 rounded-2xl shadow-lg">
+      <View className="flex-1 items-center justify-start pt-16 bg-slate-800 px-5 rounded-2xl">
         <View className="bg-slate-200 h-20 w-20 rounded-lg">
           <Image
             className="h-[100%] w-[100%] rounded-xl"

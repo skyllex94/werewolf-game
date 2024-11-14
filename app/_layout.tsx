@@ -77,10 +77,6 @@ function RootLayoutNav() {
   // Cupid state
   const [cupidBond, setCupidBond] = useState(false);
 
-  // Sound Manager states
-
-  const [soundtrackEnabled, setSoundtrackEnabled] = useState<boolean>(true);
-
   // Night time continue button enabling
   // const [isEnabledContinue, setIsEnabledContinue] = useState<boolean>(false);
   // const [uniqueRolesInGame, setUniqueRolesInGame] = useState<{
@@ -125,8 +121,6 @@ function RootLayoutNav() {
               // Cupid state
               cupidBond,
               setCupidBond,
-              soundtrackEnabled,
-              setSoundtrackEnabled,
 
               // Continue button at night_time
               // isEnabledContinue,

@@ -79,7 +79,7 @@ export default function ChooseRoles() {
 
               <View
                 className="character_counter flex-row justify-between items-center
-               bg-gray-600 mt-2 mx-2 drop-shadow-lg rounded-xl py-1 px-2"
+               bg-gray-600 mt-2 mx-2 rounded-xl py-1 px-2"
               >
                 <TouchableOpacity
                   onPress={() =>

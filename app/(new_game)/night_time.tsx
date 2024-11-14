@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import { View, Text, Pressable, Image } from "react-native";
 import TopPaneInGame from "@/components/TopPaneInGame";
-import NightSoundManager from "@/components/NewGame/NightSoundManager";
+
 import RolesUI from "@/components/NewGame/RolesUI";
 import SoundContext from "@/contexts/SoundContext";
 
@@ -19,10 +19,10 @@ export default function NightTime() {
 
   // Context states
   const { playersInGame, setPlayersInGame } = useContext(NewGameContext);
-  const { soundEnabled } = useContext(SoundContext);
+  const { soundEnabled } = useContext(SoundContext)!;
 
   // Sound manager state to control sounds
-  const { nightSoundsEnabled } = useContext(SoundContext);
+  const { setNightSoundsEnabled } = useContext(SoundContext)!;
 
   useEffect(() => {
     // Resetting night role states
@@ -34,6 +34,7 @@ export default function NightTime() {
       protectedByWitch: false,
     }));
 
+    setNightSoundsEnabled(true);
     setPlayersInGame(resetNightState);
   }, []);
 
@@ -55,7 +56,7 @@ export default function NightTime() {
       <TopPaneInGame rolesModalDarkMode="true" />
 
       {/* NightSoundManager to handle night sounds */}
-      <NightSoundManager nightSoundsEnabled={nightSoundsEnabled} />
+      {/* <NightSoundManager nightSoundsEnabled={true} /> */}
 
       <Text className="text-center text-white font-bold text-[20px] mt-8 pb-4">
         Night Time
@@ -73,6 +74,7 @@ export default function NightTime() {
       <NightEliminationBottomSheet
         ref={eliminatedRoleBSRef}
         isFirstNight={isFirstNight}
+        setNightSoundsEnabled={setNightSoundsEnabled}
       />
 
       <View className="w-full items-center absolute bottom-10 z-[-1]">

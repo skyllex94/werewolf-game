@@ -1,13 +1,17 @@
 import { View, Text, Pressable, Image } from "react-native";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
 import { StatusBar } from "expo-status-bar";
+import SoundContext from "@/contexts/SoundContext";
 
 const GameWinner = () => {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { winner } = params;
+
+  const { setWinSoundEnabled, setSoundtrackEnabled } =
+    useContext(SoundContext)!;
 
   // Navigation
   const navigation = useNavigation();
@@ -23,20 +27,25 @@ const GameWinner = () => {
   }
 
   function startNewGame() {
+    // Reset sound
+    setWinSoundEnabled(false);
+    setSoundtrackEnabled(true);
     router.replace("/new_game");
   }
 
   const handleMainMenu = () => {
+    setWinSoundEnabled(false);
     router.replace("/");
   };
 
   useEffect(() => {
     navigation.addListener("beforeRemove", (e) => {
       e.preventDefault();
-      console.log("onback");
 
       navigation.dispatch(e.data.action);
     });
+
+    setWinSoundEnabled(true);
   }, []);
 
   return (
@@ -58,17 +67,17 @@ const GameWinner = () => {
       <View className="emoji-face relative">
         {winner === "good" ? (
           <Image
-            className="absolute left-[-60] top-[-150] h-[120px] w-[120px] drop-shadow-xl"
+            className="absolute left-[-60] top-[-150] h-[120px] w-[120px]"
             source={require("../../assets/images/emojis/villager.png")}
           />
         ) : winner === "bad" ? (
           <Image
-            className="absolute left-[-60] top-[-150] h-[120px] w-[120px] drop-shadow-xl"
+            className="absolute left-[-60] top-[-150] h-[120px] w-[120px"
             source={require("../../assets/images/emojis/werewolf.png")}
           />
         ) : (
           <Image
-            className="absolute left-[-60] top-[-150] h-[120px] w-[120px] drop-shadow-xl"
+            className="absolute left-[-60] top-[-150] h-[120px] w-[120px]"
             source={require("../../assets/images/emojis/tanner.png")}
           />
         )}

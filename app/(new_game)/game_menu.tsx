@@ -1,13 +1,15 @@
 import { View, Text, Pressable } from "react-native";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigation, useRouter, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import SoundContext from "@/contexts/SoundContext";
 
 export default function GameMenu() {
   const router = useRouter();
   const { darkMode } = useLocalSearchParams();
 
-  console.log("darkMode:", darkMode);
+  const { setNightSoundsEnabled, setDaySoundsEnabled, setWinSoundEnabled } =
+    useContext(SoundContext)!;
 
   // Converting the string from params into a boolean
   let isDarkMode = null;
@@ -27,6 +29,10 @@ export default function GameMenu() {
   }
 
   const exitMenu = () => {
+    setNightSoundsEnabled(false);
+    setDaySoundsEnabled(false);
+    setWinSoundEnabled(false);
+
     router.replace("/");
   };
 
