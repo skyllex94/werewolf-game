@@ -1,18 +1,21 @@
 import { Dimensions, SafeAreaView, View, Text } from "react-native";
 import MainMenu from "@/components/MainMenu";
 import TopPane from "@/components/TopPane";
-import { StatusBar } from "expo-status-bar";
 import LottieView from "lottie-react-native";
-import { useRef } from "react";
+import { useContext, useRef, useState } from "react";
+import MainSoundManager from "@/components/MainSound";
+import SoundContext from "@/contexts/SoundContext";
 
 export default function MainScreen() {
   const animation = useRef<LottieView>(null);
   const width = Dimensions.get("window").width;
   const height = Dimensions.get("window").height;
 
+  // Sound manager context state for soundtrack
+  const { soundtrackEnabled } = useContext(SoundContext);
+
   return (
     <View className="flex-1 relative bg-[#354e6e]">
-      <StatusBar style="light" />
       {/* Lottie Animation Background */}
       <LottieView
         autoPlay
@@ -33,6 +36,9 @@ export default function MainScreen() {
       <SafeAreaView className="flex-1 bg-gray-900]">
         {/* Top Pane */}
         <TopPane iconColor="white" />
+
+        {/* Soundtrack SoundManager */}
+        <MainSoundManager soundtrackEnabled={soundtrackEnabled} />
 
         {/* Main Content */}
         <View className="flex-1 justify-start items-center bg-transparent mt-12">

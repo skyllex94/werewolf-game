@@ -10,9 +10,9 @@ import {
   FontAwesome5,
   FontAwesome6,
 } from "@expo/vector-icons";
+import SoundContext from "@/contexts/SoundContext";
 
 type RoleEliminatedBSProps = {
-  setNightTimeSounds: any;
   isFirstNight: boolean | undefined;
 };
 
@@ -30,7 +30,8 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
 
     const [showAll, setShowAll] = useState(false);
     const [hunterSelected, setHunterSelected] = useState<boolean>(false);
-    const { setNightTimeSounds } = props;
+    const { setNightSoundsEnabled, setDaySoundsEnabled } =
+      useContext(SoundContext);
 
     const snapPoints = useMemo(() => ["50%"], []);
 
@@ -123,6 +124,10 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
         {
           text: "Yes",
           onPress: () => {
+            // Sound management states
+            setNightSoundsEnabled(false);
+            // setDaySoundsEnabled(true);
+
             // Check if any player is protected by the Witch
             const isProtectedByWitch = playersInGame.some(
               (player: any) => player.protectedByWitch
@@ -163,9 +168,6 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
             }
 
             const isDay = false;
-
-            // Stop all night sounds
-            setNightTimeSounds(false);
 
             // Set the final players state
             checkForWinner(finalPlayersForElimination, isDay);

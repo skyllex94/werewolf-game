@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -9,9 +9,10 @@ import { FontAwesome } from "@expo/vector-icons";
 import SoundManager from "@/components/NewGame/DaySoundManager";
 import DayEliminationBottomSheet from "@/components/NewGame/DayRoleEliminationBS";
 import { BlurView } from "expo-blur";
+import SoundContext from "@/contexts/SoundContext";
 
 export default function DayTimeScreen() {
-  const [dayTimeSounds, setDayTimeSounds] = useState<boolean>(true);
+  const { setDaySoundsEnabled } = useContext(SoundContext);
 
   // Bottom Sheet setup
   const eliminatedRoleBSRef = useRef<any>(null);
@@ -61,8 +62,9 @@ export default function DayTimeScreen() {
     <SafeAreaView className="flex-1 h-[100%]">
       <StatusBar style={"dark"} />
       <TopPaneInGame iconColor="black" />
+
       {/* Add SoundManager to loop day-bg-sound */}
-      <SoundManager dayTimeSounds={dayTimeSounds} />
+      <SoundManager daySoundsEnabled={setDaySoundsEnabled} />
 
       <Image
         className="absolute top-0 left-0 w-full h-[111%] z-[-1]"
@@ -71,7 +73,6 @@ export default function DayTimeScreen() {
       />
 
       {/* Heading Text */}
-
       <Text className="text-center font-bold text-[20px] py-4">Day Time</Text>
       <Text className="text-start font-light text-[15px] px-10 mb-1">
         The Village has 5 minutes to decide whether they can agree on a player
@@ -141,10 +142,7 @@ export default function DayTimeScreen() {
       </View>
 
       {/* Bottom Sheet Role Elimination  */}
-      <DayEliminationBottomSheet
-        ref={eliminatedRoleBSRef}
-        setDayTimeSounds={setDayTimeSounds}
-      />
+      <DayEliminationBottomSheet ref={eliminatedRoleBSRef} />
 
       {/* Continue Button */}
       <View className="continue-button w-[100%] items-center absolute bottom-10 z-[-1]">

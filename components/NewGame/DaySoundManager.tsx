@@ -4,10 +4,10 @@ import { Audio } from "expo-av";
 import SoundContext from "@/contexts/SoundContext";
 
 interface SoundManagerProps {
-  dayTimeSounds: boolean;
+  daySoundsEnabled: boolean;
 }
 
-const SoundManager: React.FC<SoundManagerProps> = ({ dayTimeSounds }) => {
+const SoundManager: React.FC<SoundManagerProps> = ({ daySoundsEnabled }) => {
   const [backgroundSound, setBackgroundSound] = useState<Audio.Sound | null>(
     null
   );
@@ -29,7 +29,7 @@ const SoundManager: React.FC<SoundManagerProps> = ({ dayTimeSounds }) => {
     let isMounted = true;
 
     const playDaytimeSounds = async () => {
-      if (dayTimeSounds) {
+      if (daySoundsEnabled) {
         // Load and play the main background sound
         const { sound: bgSound } = await Audio.Sound.createAsync(
           require("../../assets/audio/day-bg-sound.mp3"),
@@ -72,7 +72,7 @@ const SoundManager: React.FC<SoundManagerProps> = ({ dayTimeSounds }) => {
         ambienceSound.unloadAsync();
       }
     };
-  }, [dayTimeSounds]);
+  }, [daySoundsEnabled]);
 
   return null;
 };

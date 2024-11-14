@@ -22,7 +22,7 @@ export default function NightTime() {
   const { soundEnabled } = useContext(SoundContext);
 
   // Sound manager state to control sounds
-  const [nightTimeSounds, setNightTimeSounds] = useState<boolean>(true);
+  const { nightSoundsEnabled } = useContext(SoundContext);
 
   useEffect(() => {
     // Resetting night role states
@@ -55,7 +55,7 @@ export default function NightTime() {
       <TopPaneInGame rolesModalDarkMode="true" />
 
       {/* NightSoundManager to handle night sounds */}
-      <NightSoundManager nightTimeSounds={nightTimeSounds} />
+      <NightSoundManager nightSoundsEnabled={nightSoundsEnabled} />
 
       <Text className="text-center text-white font-bold text-[20px] mt-8 pb-4">
         Night Time
@@ -73,7 +73,6 @@ export default function NightTime() {
       <NightEliminationBottomSheet
         ref={eliminatedRoleBSRef}
         isFirstNight={isFirstNight}
-        setNightTimeSounds={setNightTimeSounds}
       />
 
       <View className="w-full items-center absolute bottom-10 z-[-1]">

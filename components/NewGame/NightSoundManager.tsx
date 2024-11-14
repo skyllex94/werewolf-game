@@ -3,11 +3,11 @@ import { Audio } from "expo-av";
 import SoundContext from "@/contexts/SoundContext";
 
 interface NightSoundManagerProps {
-  nightTimeSounds: boolean;
+  nightSoundsEnabled: boolean;
 }
 
 const NightSoundManager: React.FC<NightSoundManagerProps> = ({
-  nightTimeSounds,
+  nightSoundsEnabled,
 }) => {
   const [wolfHowling, setWolfHowling] = useState<Audio.Sound | null>(null);
   const [nightBackgroundSound, setNightBackgroundSound] =
@@ -16,7 +16,7 @@ const NightSoundManager: React.FC<NightSoundManagerProps> = ({
 
   useEffect(() => {
     const playSounds = async () => {
-      if (nightTimeSounds) {
+      if (nightSoundsEnabled) {
         // Play wolf howling sound
         const { sound: howlSound } = await Audio.Sound.createAsync(
           require("../../assets/audio/wolf-howling.mp3"),
@@ -58,7 +58,7 @@ const NightSoundManager: React.FC<NightSoundManagerProps> = ({
         nightBackgroundSound.unloadAsync();
       }
     };
-  }, [nightTimeSounds]);
+  }, [nightSoundsEnabled]);
 
   // Adjust volume based on soundEnabled changed
   useEffect(() => {

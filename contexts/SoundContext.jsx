@@ -6,6 +6,10 @@ const SoundContext = createContext();
 export const SoundProvider = ({ children }) => {
   const [soundEnabled, setSoundEnabled] = useState(true);
 
+  const [soundtrackEnabled, setSoundtrackEnabled] = useState(true);
+  const [nightSoundsEnabled, setNightSoundsEnabled] = useState(true);
+  const [daySoundsEnabled, setDaySoundsEnabled] = useState(true);
+
   useEffect(() => {
     // Load sound settings from AsyncStorage when app starts
     const loadSoundSettings = async () => {
@@ -26,7 +30,18 @@ export const SoundProvider = ({ children }) => {
   }, [soundEnabled]);
 
   return (
-    <SoundContext.Provider value={{ soundEnabled, setSoundEnabled }}>
+    <SoundContext.Provider
+      value={{
+        soundEnabled,
+        setSoundEnabled,
+        soundtrackEnabled,
+        setSoundtrackEnabled,
+        nightSoundsEnabled,
+        setNightSoundsEnabled,
+        daySoundsEnabled,
+        setDaySoundsEnabled,
+      }}
+    >
       {children}
     </SoundContext.Provider>
   );

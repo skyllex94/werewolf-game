@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import NewGameContext from "@/contexts/NewGameContext";
+import SoundContext from "@/contexts/SoundContext";
 
 interface Item {
   order: number;
@@ -17,6 +18,7 @@ export default function OperatorViewRoles() {
   const { players_roles } = params;
 
   const [rolesShown, setRolesShown] = useState<boolean>(false);
+  const { setSoundtrackEnabled } = useContext(SoundContext);
 
   const {
     setWitchProtectionUsed,
@@ -57,6 +59,9 @@ export default function OperatorViewRoles() {
   }
 
   function toFirstNight() {
+    // Stop other sounds
+    setSoundtrackEnabled(false);
+
     router.push({
       pathname: "/night_time",
       params: { firstNight: "true" },
@@ -67,7 +72,7 @@ export default function OperatorViewRoles() {
     <SafeAreaView className="flex-1 h-[100%] bg-gray-900">
       {/* Header Image */}
       <View className="items-center justify-center">
-        <View className="mt-8 bg-slate-400 w-48 rounded-full shadow">
+        <View className="mt-8 bg-slate-400 w-48 rounded-full">
           <Image
             className="h-48 w-48"
             source={require("../../assets/images/new_game/zzz.png")}
@@ -120,7 +125,7 @@ export default function OperatorViewRoles() {
         // View Roles Button
         <View className="items-start">
           <TouchableOpacity
-            className="mx-5 p-3 bg-blue-600 rounded-xl w-[40%] shadow-md"
+            className="mx-5 p-3 bg-blue-600 rounded-xl w-[40%]"
             onPress={showAllRoles}
           >
             <Text className="text-center text-white">View Roles</Text>
@@ -132,7 +137,7 @@ export default function OperatorViewRoles() {
       <View className="continue-button w-[100%] items-center absolute bottom-10">
         <TouchableOpacity
           onPress={toFirstNight}
-          className="bg-slate-700 items-center justify-center p-4 w-[90%] rounded-xl shadow-md"
+          className="bg-slate-700 items-center justify-center p-4 w-[90%] rounded-xl"
         >
           <Text className="text-[16px] font-bold text-white">Continue</Text>
         </TouchableOpacity>

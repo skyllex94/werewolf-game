@@ -55,10 +55,7 @@ export default function MainMenu() {
       {menuItems.map((item, idx) =>
         item.link ? (
           <Link key={idx} href={item.link as Href} asChild>
-            <TouchableOpacity
-              className="flex-row justify-start bg-gray-800 py-3 pl-6 w-[50%] rounded-lg"
-              onPress={() => console.log(item.name)}
-            >
+            <TouchableOpacity className="flex-row justify-start bg-gray-800 py-3 pl-6 w-[50%] rounded-lg">
               {item.icon}
               <Text
                 // style={{ fontFamily: "Bronzetti_Condensed", fontSize: 18 }}

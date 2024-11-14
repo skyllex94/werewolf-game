@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon/werewolf.jpeg",
     "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
@@ -14,7 +14,11 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.zionstudios.werewolf"
+      "bundleIdentifier": "com.zionstudios.werewolf",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Werewolf uses the camera to take photos of people to set as Avatar photos.",
+        "NSPhotoLibraryUsageDescription": "Allow Werewolf to access your photos."
+      }
     },
     "android": {
       "adaptiveIcon": {
