@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Purchases from "react-native-purchases";
 
-// Subscription product names
-const typesOfMembership = {
-  weekly: "esign_pro_weekly",
-  monthly: "esign_pro_monthly",
-  yearly: "esign_pro_yearly",
+// Subscription identifiers
+const subIdentifiers = {
+  weekly: "werewolf_pro_weekly",
+  monthly: "werewolf_pro_monthly",
+  yearly: "werewolf_pro_yearly",
 };
 
 export default function useRevenueCat() {
@@ -13,7 +13,7 @@ export default function useRevenueCat() {
   const [customerInfo, setCustomerInfo] = useState(null);
 
   const isProMember =
-    customerInfo?.entitlements?.active?.esign_pro_subscription;
+    customerInfo?.entitlements?.active?.werewolf_subscriptions;
 
   useEffect(() => {
     const fetchData = async () => {

@@ -165,6 +165,10 @@ function RootLayoutNav() {
                   name="(new_game)/game_menu"
                   options={{ presentation: "modal" }}
                 />
+                <Stack.Screen
+                  name="shared/paywall"
+                  options={{ presentation: "modal" }}
+                />
               </Stack>
 
               <FlashMessage position="top" />
