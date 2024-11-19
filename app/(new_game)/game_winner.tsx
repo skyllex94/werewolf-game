@@ -72,7 +72,7 @@ const GameWinner = () => {
           />
         ) : winner === "bad" ? (
           <Image
-            className="absolute left-[-60] top-[-150] h-[120px] w-[120px"
+            className="absolute left-[-60] top-[-150] h-[120px] w-[120px]"
             source={require("../../assets/images/emojis/werewolf.png")}
           />
         ) : (

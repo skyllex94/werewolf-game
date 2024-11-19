@@ -1,3 +1,5 @@
+import useRevenueCat from "@/hooks/RevenueCat";
+
 export const roles = [
   {
     name: "Villager",
@@ -5,6 +7,8 @@ export const roles = [
     min: 3,
     max: 25,
     amount: 2,
+    unlocked: true,
+    need_pro_membership: false,
   },
   {
     name: "Werewolf",
@@ -12,6 +16,8 @@ export const roles = [
     min: 1,
     max: 4,
     amount: 1,
+    unlocked: true,
+    need_pro_membership: false,
   },
   {
     name: "Seer",
@@ -19,6 +25,8 @@ export const roles = [
     min: 0,
     max: 1,
     amount: 0,
+    unlocked: true,
+    need_pro_membership: false,
   },
   {
     name: "Doctor",
@@ -26,6 +34,8 @@ export const roles = [
     min: 0,
     max: 1,
     amount: 0,
+    unlocked: false,
+    need_pro_membership: true,
   },
   {
     name: "Bodyguard",
@@ -33,6 +43,8 @@ export const roles = [
     min: 0,
     max: 1,
     amount: 0,
+    unlocked: false,
+    need_pro_membership: true,
   },
   {
     name: "Hunter",
@@ -40,6 +52,8 @@ export const roles = [
     min: 0,
     max: 1,
     amount: 0,
+    unlocked: false,
+    need_pro_membership: true,
   },
   {
     name: "Priest",
@@ -47,6 +61,8 @@ export const roles = [
     min: 0,
     max: 1,
     amount: 0,
+    unlocked: false,
+    need_pro_membership: true,
   },
   {
     name: "Prince",
@@ -54,6 +70,8 @@ export const roles = [
     min: 0,
     max: 1,
     amount: 0,
+    unlocked: false,
+    need_pro_membership: true,
   },
   {
     name: "Witch",
@@ -61,6 +79,8 @@ export const roles = [
     min: 0,
     max: 1,
     amount: 0,
+    unlocked: false,
+    need_pro_membership: true,
   },
   {
     name: "Tanner",
@@ -68,6 +88,8 @@ export const roles = [
     min: 0,
     max: 1,
     amount: 0,
+    unlocked: false,
+    need_pro_membership: true,
   },
   {
     name: "Alpha Werewolf",
@@ -75,6 +97,8 @@ export const roles = [
     min: 0,
     max: 1,
     amount: 0,
+    unlocked: false,
+    need_pro_membership: true,
   },
   {
     name: "Lycan",
@@ -82,6 +106,8 @@ export const roles = [
     min: 0,
     max: 2,
     amount: 0,
+    unlocked: false,
+    need_pro_membership: true,
   },
   {
     name: "Cursed Villager",
@@ -89,6 +115,8 @@ export const roles = [
     min: 0,
     max: 2,
     amount: 0,
+    unlocked: false,
+    need_pro_membership: true,
   },
   {
     name: "Cupid",
@@ -96,6 +124,8 @@ export const roles = [
     min: 0,
     max: 1,
     amount: 0,
+    unlocked: false,
+    need_pro_membership: true,
   },
   {
     name: "Wolf Cub",
@@ -103,5 +133,7 @@ export const roles = [
     min: 0,
     max: 1,
     amount: 0,
+    unlocked: false,
+    need_pro_membership: true,
   },
 ];

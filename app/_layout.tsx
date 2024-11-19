@@ -169,6 +169,21 @@ function RootLayoutNav() {
                   name="shared/paywall"
                   options={{ presentation: "modal" }}
                 />
+
+                <Stack.Screen
+                  name="shared/terms"
+                  options={({ route }: any) => ({
+                    presentation:
+                      route.params?.presentation === "modal" ? "modal" : "card",
+                  })}
+                />
+                <Stack.Screen
+                  name="shared/privacy_policy"
+                  options={({ route }: any) => ({
+                    presentation:
+                      route.params?.presentation === "modal" ? "modal" : "card",
+                  })}
+                />
               </Stack>
 
               <FlashMessage position="top" />

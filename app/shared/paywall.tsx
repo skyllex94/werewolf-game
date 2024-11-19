@@ -9,6 +9,8 @@ import {
 import React, { useEffect, useState } from "react";
 import {
   AntDesign,
+  Entypo,
+  FontAwesome5,
   FontAwesome6,
   MaterialCommunityIcons,
   MaterialIcons,
@@ -22,6 +24,7 @@ import Purchases from "react-native-purchases";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import { ScrollView } from "react-native-gesture-handler";
 import { useRouter } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Paywall() {
   const router = useRouter();
@@ -36,11 +39,11 @@ export default function Paywall() {
 
   // Fetch all pricing data before displaying paywall
   useEffect(() => {
-    // if (
-    //   currentOffering?.weekly?.product.priceString &&
-    //   currentOffering?.monthly?.product.priceString
-    // )
-    setLoadedPaywall(true);
+    if (
+      currentOffering?.weekly?.product.priceString &&
+      currentOffering?.monthly?.product.priceString
+    )
+      setLoadedPaywall(true);
   }, [currentOffering]);
 
   useEffect(() => {
@@ -74,10 +77,10 @@ export default function Paywall() {
       );
 
       if (
-        purchaserInfo.customerInfo.entitlements.active.esign_pro_subscription
+        purchaserInfo.customerInfo.entitlements.active.werewolf_subscriptions
       ) {
-        const price =
-          currentOffering?.[subscription]?.product.priceString ?? null;
+        // const price =
+        //   currentOffering?.[subscription]?.product.priceString ?? null;
         // await analyticsSubscriptionEvent(subscription, trafficSource, price);
 
         router.back();
@@ -90,7 +93,7 @@ export default function Paywall() {
     setPurchaseSpinner(false);
   }
 
-  async function handleRestorePurchase() {
+  async function restorePurchase() {
     setPurchaseSpinner(true);
     const purchaserInfo = await Purchases.restorePurchases();
 
@@ -111,7 +114,7 @@ export default function Paywall() {
           <View className="paywall-image items-center">
             <TouchableOpacity
               onPress={() => router.back()}
-              className={`z-10 absolute top-10 right-6 rounded-full p-3`}
+              className={`z-10 absolute top-6 right-6 rounded-full p-3`}
             >
               <AntDesign name="close" size={20} color="white" />
             </TouchableOpacity>
@@ -136,44 +139,45 @@ export default function Paywall() {
           <ScrollView>
             <View className="premium-features mt-6">
               <View className="flex-row items-center gap-x-5 m-3 ">
-                <FontAwesome6 name="toolbox" size={34} color="white" />
+                <FontAwesome5 name="users" size={32} color="white" />
+
                 <View className="flex-1 gap-y-1">
                   <Text className="text-white text-[16px] font-semibold">
-                    All Editing Tools
+                    14+ Different Roles
                   </Text>
                   <Text className="text-white text-[14px] font-light">
-                    Unlock all editing tools: Dates, Initials, Images, Custom
-                    Text, Checks and more to come.
+                    Play with all Roles in the game and more to come for
+                    exciting outcomes and scenarios.
                   </Text>
                 </View>
               </View>
 
               <View className="flex-row items-center gap-x-5 m-3">
                 <MaterialCommunityIcons
-                  name="file-document-edit"
-                  size={34}
+                  name="image-text"
+                  size={40}
                   color="white"
                 />
                 <View className="flex-1 gap-y-1">
                   <Text className="text-white text-[16px] font-semibold">
-                    15+ Document Templates
+                    Saving and Storing Users
                   </Text>
                   <Text className="text-white text-[14px] font-light">
-                    Try different templates for direct editing with more being
-                    added on a regular basis.
+                    Snap photos of the players and store them with their photos
+                    for further use in following games.
                   </Text>
                 </View>
               </View>
 
               <View className="flex-row items-center gap-x-5 m-3">
-                <MaterialIcons name="camera-enhance" size={34} color="white" />
+                <FontAwesome6 name="ranking-star" size={32} color="white" />
                 <View className="flex-1 gap-y-1">
                   <Text className="text-white text-[16px] font-semibold">
-                    Camera Scanning
+                    More Game Outcomes
                   </Text>
                   <Text className="text-white text-[14px] font-light">
-                    Get included camera scanning and organizing your documents
-                    in a safe environment.
+                    Allows for deeper strategic thinking and a wider range of
+                    outcomes with different winners.
                   </Text>
                 </View>
               </View>
@@ -183,41 +187,62 @@ export default function Paywall() {
               <View className="items-center gap-y-2">
                 <TouchableOpacity
                   onPress={() => getSubscription("weekly")}
-                  className="bg-white items-center p-3 w-[90%] rounded-full"
+                  className="w-[90%]"
                 >
-                  <Text className="text-[#7875f1] font-semibold text-[15px]">
-                    Weekly Plan
-                  </Text>
-                  <Text className="text-[#7875f1]">
-                    3-day Free Trial, and then{" "}
-                    {/* {currentOffering?.weekly?.product?.priceString}/week */}
-                  </Text>
+                  <LinearGradient
+                    className="items-center p-3 rounded-full"
+                    colors={["#3EB489", "#90EE90"]}
+                    start={[0, 0]}
+                    end={[1, 1]}
+                  >
+                    <Text className="font-semibold text-[15px]">
+                      Weekly Plan
+                    </Text>
+                    <Text>
+                      3-day Free Trial, and then{" "}
+                      {currentOffering?.weekly?.product?.priceString}/week
+                    </Text>
+                  </LinearGradient>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                   onPress={() => getSubscription("monthly")}
-                  className="bg-white items-center p-3 w-[90%] rounded-full"
+                  className="w-[90%]"
                 >
-                  <Text className="text-[#7875f1] font-semibold text-[15px]">
-                    Monthly Plan
-                  </Text>
-                  <Text className="text-[#7875f1]">
-                    3-day Free Trial, and then{" "}
-                    {/* {currentOffering?.monthly?.product?.priceString}/month */}
-                  </Text>
+                  <LinearGradient
+                    className="items-center p-3 rounded-full"
+                    colors={["#3EB489", "#90EE90"]}
+                    start={[0, 0]}
+                    end={[1, 1]}
+                  >
+                    <Text className="font-semibold text-[15px]">
+                      Monthly Plan
+                    </Text>
+                    <Text>
+                      3-day Free Trial, and then{" "}
+                      {currentOffering?.monthly?.product?.priceString}/month
+                    </Text>
+                  </LinearGradient>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                   onPress={() => getSubscription("annual")}
-                  className="bg-white items-center p-3 w-[90%] rounded-full"
+                  className="w-[90%]"
                 >
-                  <Text className="text-[#7875f1] font-semibold text-[15px]">
-                    Yearly Plan
-                  </Text>
-                  <Text className="text-[#7875f1]">
-                    3-day Free Trial, and then{" "}
-                    {/* {currentOffering?.annual?.product?.priceString}/year */}
-                  </Text>
+                  <LinearGradient
+                    className="items-center p-3 rounded-full"
+                    colors={["#3EB489", "#90EE90"]}
+                    start={[0, 0]}
+                    end={[1, 1]}
+                  >
+                    <Text className="font-semibold text-[15px]">
+                      Yearly Plan
+                    </Text>
+                    <Text className="">
+                      3-day Free Trial, and then{" "}
+                      {currentOffering?.annual?.product?.priceString}/year
+                    </Text>
+                  </LinearGradient>
                 </TouchableOpacity>
               </View>
             ) : (
@@ -227,23 +252,29 @@ export default function Paywall() {
                     Get 3 days for Free
                   </Text>
                   <Text className="text-white font-semibold">
-                    {/* Then {currentOffering?.weekly?.product?.priceString} per */}
+                    Then {currentOffering?.weekly?.product?.priceString} per
                     week. Cancel any time.
                   </Text>
                 </View>
+
                 <View className="items-center gap-y-2">
                   <TouchableOpacity
                     onPress={() => getSubscription("weekly")}
-                    className="bg-white items-center p-3 w-[90%] rounded-full"
+                    className="w-[90%]"
                   >
-                    <Text className="text-[#7875f1] text-[20px] font-light">
-                      Continue
-                    </Text>
+                    <LinearGradient
+                      className="items-center p-3 rounded-full"
+                      colors={["#3EB489", "#90EE90"]}
+                      start={[0, 0]}
+                      end={[1, 1]}
+                    >
+                      <Text className="text-[20px] font-light">Continue</Text>
+                    </LinearGradient>
                   </TouchableOpacity>
 
                   <TouchableOpacity
+                    className="items-center w-[90%] p-3 border-2 border-slate-800 rounded-full"
                     onPress={() => setShowOtherPlans(true)}
-                    className="bg-[#7875f1] items-center p-3 w-[90%] border-2 border-white rounded-full"
                   >
                     <Text className="text-white text-[20px] font-light">
                       View All Plans
@@ -256,18 +287,30 @@ export default function Paywall() {
             <View className="items-center mt-3">
               <View className="flex-row">
                 <TouchableOpacity
-                  onPress={() => router.push("/shared/privacy_policy")}
+                  onPress={() =>
+                    router.push({
+                      pathname: "/shared/privacy_policy",
+                      params: { presentation: "modal" },
+                    })
+                  }
                 >
                   <Text className="text-white">Privacy Policy</Text>
                 </TouchableOpacity>
                 <Text className="text-white mx-2">|</Text>
 
-                <TouchableOpacity onPress={handleRestorePurchase}>
+                <TouchableOpacity onPress={restorePurchase}>
                   <Text className="text-white">Restore Purchase</Text>
                 </TouchableOpacity>
                 <Text className="text-white mx-2">|</Text>
 
-                <TouchableOpacity onPress={() => router.push("/shared/terms")}>
+                <TouchableOpacity
+                  onPress={() =>
+                    router.push({
+                      pathname: "/shared/terms",
+                      params: { presentation: "modal" },
+                    })
+                  }
+                >
                   <Text className="text-white">Terms of Use</Text>
                 </TouchableOpacity>
               </View>
@@ -275,7 +318,7 @@ export default function Paywall() {
           </ScrollView>
         </View>
       ) : (
-        <View className="flex-1 bg-[#7875f1]">
+        <View className="flex-1 bg-slate-900">
           <ActivityIndicator
             className="pt-20 z-10"
             size="large"

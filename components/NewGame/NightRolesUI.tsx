@@ -9,7 +9,6 @@ import {
   Ionicons,
 } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { BlurView } from "expo-blur";
 
 interface WakeUIProps {
   soundEnabled: boolean;
@@ -194,7 +193,12 @@ export function WakeSeerUI({ soundEnabled }: WakeUIProps) {
         {/* Button for View Roles */}
         <Pressable
           className="bg-gray-700 p-3 rounded-lg"
-          onPress={() => router.push("/roles_modal")}
+          onPress={() =>
+            router.push({
+              pathname: "/roles_modal",
+              params: { darkMode: "true" },
+            })
+          }
         >
           {({ pressed }) => (
             <Text
