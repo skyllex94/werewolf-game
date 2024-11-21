@@ -26,7 +26,7 @@ export const SoundProvider = ({ children }: SoundProviderProps) => {
   const [soundEnabled, setSoundEnabled] = useState(true);
 
   // Background sound control states
-  const [soundtrackEnabled, setSoundtrackEnabled] = useState(true);
+  const [soundtrackEnabled, setSoundtrackEnabled] = useState(false);
   const [nightSoundsEnabled, setNightSoundsEnabled] = useState(false);
   const [daySoundsEnabled, setDaySoundsEnabled] = useState(false);
   const [winSoundEnabled, setWinSoundEnabled] = useState(false);
@@ -54,6 +54,9 @@ export const SoundProvider = ({ children }: SoundProviderProps) => {
       if (storedSoundSetting !== null) {
         setSoundEnabled(JSON.parse(storedSoundSetting));
       }
+
+      // Play the soundtrack after the AsyncStorage fetching is done
+      setSoundtrackEnabled(true);
     };
     loadSoundSettings();
   }, []);
@@ -70,7 +73,6 @@ export const SoundProvider = ({ children }: SoundProviderProps) => {
   useEffect(() => {
     const playSounds = async () => {
       if (soundtrackEnabled) {
-        console.log("soundEnabledINNN", soundEnabled);
         // Play soundtrack
         const { sound: bgSound } = await Audio.Sound.createAsync(
           require("../assets/audio/bg_music/soundtrack.mp3"),

@@ -105,7 +105,7 @@ export default function DayTimeScreen() {
             duration={time * 1000}
             progressValueStyle={{ display: "none" }}
             activeStrokeSecondaryColor="teal"
-            inActiveStrokeColor="black"
+            inActiveStrokeColor="white"
             dashedStrokeConfig={{
               count: 150,
               width: 2,
@@ -114,7 +114,7 @@ export default function DayTimeScreen() {
 
           {/* Time Display */}
           <Text
-            className="absolute " // text-slate-200
+            className="text-white absolute " // text-slate-200
             style={{ fontSize: 40, fontWeight: "bold", top: "30%" }}
           >
             {`${Math.floor(time / 60)}:${String(time % 60).padStart(2, "0")}`}
@@ -126,16 +126,14 @@ export default function DayTimeScreen() {
           >
             <TouchableOpacity
               className={`flex-row p-3 w-[60%] items-center justify-center rounded-xl ${
-                isPaused
-                  ? "bg-green-500"
-                  : "bg-transparent border border-slate-800"
+                isPaused ? "bg-green-500" : "bg-transparent border border-white"
               }`}
               onPress={togglePausePlay}
             >
               {isPaused ? (
                 <FontAwesome name="play" size={18} color="white" />
               ) : (
-                <FontAwesome name="pause" size={18} color="black" />
+                <FontAwesome name="pause" size={18} color="white" />
               )}
             </TouchableOpacity>
           </View>

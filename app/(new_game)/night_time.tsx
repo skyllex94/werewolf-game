@@ -55,9 +55,6 @@ export default function NightTime() {
       />
       <TopPaneInGame rolesModalDarkMode="true" />
 
-      {/* NightSoundManager to handle night sounds */}
-      {/* <NightSoundManager nightSoundsEnabled={true} /> */}
-
       <Text className="text-center text-white font-bold text-[20px] mt-8 pb-4">
         Night Time
       </Text>

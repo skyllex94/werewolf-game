@@ -31,3 +31,24 @@ body {
     background-color: #000;
   }
 }`;
+
+// Night time continue button enabling
+// const [isEnabledContinue, setIsEnabledContinue] = useState<boolean>(false);
+// const [uniqueRolesInGame, setUniqueRolesInGame] = useState<{
+//   [key: string]: boolean;
+// }>({});
+
+// const markRoleAsReady = (role: string, isReady: boolean) => {
+//   setUniqueRolesInGame((prevRoles) => ({
+//     ...prevRoles,
+//     [role]: isReady,
+//   }));
+// };
+
+// // Enable continue button if all roles are marked as ready
+// useEffect(() => {
+//   const allReady = Object.values(uniqueRolesInGame).every(
+//     (ready) => ready === true
+//   );
+//   setIsEnabledContinue(allReady);
+// }, [uniqueRolesInGame]);

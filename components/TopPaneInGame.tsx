@@ -48,7 +48,7 @@ export default function TopPaneInGame({
           onPress={() => setSoundEnabled((prev: boolean) => !prev)}
           className="my-3 mx-5 w-10 p-2"
         >
-          {soundEnabled ? (
+          {soundEnabled! ? (
             <Entypo name="sound" size={24} color={iconColor} />
           ) : (
             <Entypo name="sound-mute" size={24} color={iconColor} />

@@ -14,16 +14,12 @@ import NewGameContext from "@/contexts/NewGameContext";
 
 // Bottom sheet imports
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from "expo-router";
-
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "index",
-};
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -36,26 +32,55 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
+  const [appFirstOpened, setAppFirstOpened] = useState<boolean | null>(() => {
+    const checkFirstTimeOpen = async () => {
+      try {
+        const firstOpen = await AsyncStorage.getItem("appFirstOpened");
+        console.log("firstOpen1:", firstOpen);
+
+        if (!firstOpen) {
+          // If app is opened for the first time
+          await AsyncStorage.setItem("appFirstOpened", "true");
+          setAppFirstOpened(true);
+        } else {
+          setAppFirstOpened(false);
+        }
+      } catch (err) {
+        console.error("Error checking first open:", err);
+        setAppFirstOpened(false);
+      }
+    };
+
+    checkFirstTimeOpen(); // Run the check on initialization
+
+    return null; // Default value before state is set
+  });
+
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
     if (error) throw error;
   }, [error]);
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+  // useEffect(() => {
+  //   if (loaded) {
+  //     SplashScreen.hideAsync();
+  //   }
+  // }, [loaded]);
 
   if (!loaded) {
     return null;
   }
 
   // Main UI branch of the app
-  return <RootLayoutNav />;
+  return loaded && <RootLayoutNav appFirstOpened={appFirstOpened} />;
 }
 
-function RootLayoutNav() {
+type RootLayoutNavTypes = {
+  appFirstOpened: boolean | null;
+};
+
+function RootLayoutNav({ appFirstOpened }: RootLayoutNavTypes) {
+  console.log("appFirstOpened2:", appFirstOpened);
   // NewGameContext state - defined in scan_intro
   const [allPlayersInGame, setAllPlayersInGame] = useState<object[]>([]);
   // NewGameContext - defined in scan_intro
@@ -76,27 +101,6 @@ function RootLayoutNav() {
   >(null);
   // Cupid state
   const [cupidBond, setCupidBond] = useState(false);
-
-  // Night time continue button enabling
-  // const [isEnabledContinue, setIsEnabledContinue] = useState<boolean>(false);
-  // const [uniqueRolesInGame, setUniqueRolesInGame] = useState<{
-  //   [key: string]: boolean;
-  // }>({});
-
-  // const markRoleAsReady = (role: string, isReady: boolean) => {
-  //   setUniqueRolesInGame((prevRoles) => ({
-  //     ...prevRoles,
-  //     [role]: isReady,
-  //   }));
-  // };
-
-  // // Enable continue button if all roles are marked as ready
-  // useEffect(() => {
-  //   const allReady = Object.values(uniqueRolesInGame).every(
-  //     (ready) => ready === true
-  //   );
-  //   setIsEnabledContinue(allReady);
-  // }, [uniqueRolesInGame]);
 
   return (
     <GestureHandlerRootView className="flex-1">
@@ -121,12 +125,6 @@ function RootLayoutNav() {
               // Cupid state
               cupidBond,
               setCupidBond,
-
-              // Continue button at night_time
-              // isEnabledContinue,
-              // markRoleAsReady,
-              // uniqueRolesInGame,
-              // setUniqueRolesInGame,
             }}
           >
             <ThemeProvider value={DefaultTheme}>
@@ -134,7 +132,9 @@ function RootLayoutNav() {
                 <Stack.Screen
                   name="index"
                   options={{ gestureEnabled: false }}
+                  initialParams={{ appFirstOpened }}
                 />
+                <Stack.Screen name="main" options={{ gestureEnabled: false }} />
 
                 {/* New game screens */}
                 <Stack.Screen

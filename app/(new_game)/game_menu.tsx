@@ -8,8 +8,12 @@ export default function GameMenu() {
   const router = useRouter();
   const { darkMode } = useLocalSearchParams();
 
-  const { setNightSoundsEnabled, setDaySoundsEnabled, setWinSoundEnabled } =
-    useContext(SoundContext)!;
+  const {
+    setNightSoundsEnabled,
+    setDaySoundsEnabled,
+    setWinSoundEnabled,
+    setSoundtrackEnabled,
+  } = useContext(SoundContext)!;
 
   // Converting the string from params into a boolean
   let isDarkMode = null;
@@ -32,6 +36,9 @@ export default function GameMenu() {
     setNightSoundsEnabled(false);
     setDaySoundsEnabled(false);
     setWinSoundEnabled(false);
+
+    // Start back up the soundtrack
+    setSoundtrackEnabled(true);
 
     router.replace("/");
   };

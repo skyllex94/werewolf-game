@@ -8,12 +8,12 @@ interface TopPaneProps {
 }
 
 export default function TopPane({ iconColor = "black" }: TopPaneProps) {
-  const { soundEnabled, setSoundEnabled } = useContext(SoundContext);
+  const { soundEnabled, setSoundEnabled } = useContext(SoundContext)!;
 
   return (
     <View className="flex-row justify-between">
       <TouchableOpacity className="m-3 w-10 p-2">
-        <Entypo name="globe" size={24} color={iconColor} />
+        {/* <Entypo name="globe" size={24} color={iconColor} /> */}
       </TouchableOpacity>
 
       <TouchableOpacity

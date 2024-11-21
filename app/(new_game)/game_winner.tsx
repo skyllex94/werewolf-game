@@ -29,12 +29,15 @@ const GameWinner = () => {
   function startNewGame() {
     // Reset sound
     setWinSoundEnabled(false);
+
     setSoundtrackEnabled(true);
     router.replace("/new_game");
   }
 
   const handleMainMenu = () => {
     setWinSoundEnabled(false);
+
+    setSoundtrackEnabled(true);
     router.replace("/");
   };
 
