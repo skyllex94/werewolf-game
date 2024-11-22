@@ -1,13 +1,22 @@
-import { View, Animated, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useRef } from "react";
-import { Text } from "react-native";
+import { View, Animated, TouchableOpacity, Text } from "react-native";
 
+// Define the types for the props
+type ContinueButtonProps = {
+  percentage: number;
+  slideForward: () => void;
+  currSlide: number;
+  currentOffering: any;
+};
+
+// Component definition
 export default function ContinueButton({
   percentage,
   slideForward,
   currSlide,
   currentOffering,
-}) {
+}: ContinueButtonProps) {
   const size = 128;
   const strokeWidth = 2;
   const center = size / 2;
@@ -15,8 +24,9 @@ export default function ContinueButton({
   const circumference = 2 * Math.PI * radius;
 
   const progressAnimation = useRef(new Animated.Value(0)).current;
-  const progressRef = useRef();
-  const animation = (toValue) => {
+  const progressRef = useRef<any>(null);
+
+  const animation = (toValue: number) => {
     return Animated.timing(progressAnimation, {
       toValue,
       duration: 250,
@@ -29,7 +39,7 @@ export default function ContinueButton({
   }, [percentage]);
 
   useEffect(() => {
-    progressAnimation.addListener((value) => {
+    const listener = progressAnimation.addListener((value) => {
       const strokeDashoffset =
         circumference - (circumference * value.value) / 100;
 
@@ -41,29 +51,32 @@ export default function ContinueButton({
     });
 
     return () => {
-      progressAnimation.removeAllListeners();
+      progressAnimation.removeListener(listener);
     };
-  }, []);
+  }, [progressAnimation, circumference]);
 
   return (
     <View className="items-center justify-center">
-      <Text
-        className={`font-light bottom-12 absolute py-2 ${
-          currSlide === 5 ? "text-slate-600" : "hidden"
-        }`}
-      >
-        Try 3 days free, then {currentOffering?.weekly?.product.priceString}
-        /week
-      </Text>
+      {currSlide === 3 && (
+        <Text className="font-light text-xs bottom-12 absolute py-2 text-white">
+          Try 3 days free, then {currentOffering?.weekly?.product.priceString}
+          /week
+        </Text>
+      )}
 
       <TouchableOpacity
         onPress={slideForward}
         activeOpacity={0.6}
-        className="bg-[#695391] rounded-full w-64 p-4"
+        className="rounded-full w-64"
       >
-        <Text className="text-white text-center font-light text-[16px]">
-          Next
-        </Text>
+        <LinearGradient
+          className="items-center p-4 rounded-full"
+          colors={["#3EB489", "#90EE90"]}
+          start={[0, 0]}
+          end={[1, 1]}
+        >
+          <Text className="text-center font-light text-[16px]">Next</Text>
+        </LinearGradient>
       </TouchableOpacity>
     </View>
   );

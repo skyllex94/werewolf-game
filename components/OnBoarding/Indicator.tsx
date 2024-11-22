@@ -1,7 +1,12 @@
 import { View, Animated, useWindowDimensions } from "react-native";
 import React from "react";
 
-export default function Indicator({ data, scrollX }) {
+type IndicatorTypes = {
+  data: any[];
+  scrollX: Animated.Value;
+};
+
+export default function Indicator({ data, scrollX }: IndicatorTypes) {
   const { width } = useWindowDimensions();
 
   return (
@@ -22,7 +27,7 @@ export default function Indicator({ data, scrollX }) {
 
         return (
           <Animated.View
-            className={`bg-[#6f5e90] h-[10px] rounded-xl mx-[8px]`}
+            className={`bg-[#3EB489] h-[10px] rounded-xl mx-[8px]`}
             style={[{ width: dotWidth, opacity }]}
             key={i.toString()}
           />

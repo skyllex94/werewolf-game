@@ -12,6 +12,11 @@ const subIdentifiers = {
   yearly: "werewolf_pro_yearly",
 };
 
+// Offerings identifiers in RC
+const offeringsIdentifier = {
+  identifier_name: "werewolf_subscriptions",
+};
+
 // TypeScript types for the data structures
 interface CustomOffering extends Offering {
   [key: string]: PurchasesPackage | undefined;

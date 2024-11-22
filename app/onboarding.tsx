@@ -16,13 +16,14 @@ import useRevenueCat from "../hooks/RevenueCat";
 import Spinner from "react-native-loading-spinner-overlay";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 // Define the shape of the slides
 interface Slide {
-  id: string;
+  id: number;
   title: string;
   description: string;
-  image: string;
+  image: any;
 }
 
 export default function OnBoarding() {
@@ -43,8 +44,10 @@ export default function OnBoarding() {
   const { currentOffering } = useRevenueCat();
   const [purchaseSpinner, setPurchaseSpinner] = useState<boolean>(false);
 
-  async function handleWeeklyPurchase() {
+  async function purchaseWeeklySubscription() {
     setPurchaseSpinner(true);
+
+    // Check if there's a weekly offering in RevenueCat
     if (!currentOffering?.weekly) {
       setPurchaseSpinner(false);
       return;
@@ -55,10 +58,12 @@ export default function OnBoarding() {
         currentOffering?.weekly
       );
 
+      // Check to see if purchase was successful
       if (
-        purchaserInfo.customerInfo.entitlements.active.esign_pro_subscription
+        purchaserInfo?.customerInfo?.entitlements?.active
+          ?.werewolf_subscriptions
       ) {
-        await AsyncStorage.setItem("appFirstOpened", "false");
+        await AsyncStorage.setItem("isFirstOpen", "false");
 
         // Analytics - actived_subscription event
         // const price = currentOffering?.weekly?.product?.priceString ?? null;
@@ -82,19 +87,21 @@ export default function OnBoarding() {
         // Analytics - paywall_shown event trigger
         // await analyticsPaywallShownEvent("onboarding");
 
-        await handleWeeklyPurchase();
+        await purchaseWeeklySubscription();
 
-        const value = await AsyncStorage.getItem("appFirstOpened");
-        if (value !== null) router.replace("/");
+        // Direct to main only if isFirstOpen is false
+        const value = await AsyncStorage.getItem("isFirstOpen");
+        if (value === "false") router.replace("/main");
       } catch (err) {
-        console.log("Error @setItem on appFirstOpened:", err);
+        console.log("Error @setItem on isFirstOpen:", err);
       }
     }
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-slate-900">
+    <View className="flex-1 bg-slate-900 pb-10">
       <Spinner visible={purchaseSpinner} />
+      <StatusBar style={"light"} />
 
       <FlatList
         data={slides}
@@ -105,7 +112,7 @@ export default function OnBoarding() {
         renderItem={({ item }: ListRenderItemInfo<Slide>) => (
           <OnBoardingItem item={item} />
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
           { useNativeDriver: false }
@@ -126,6 +133,6 @@ export default function OnBoarding() {
           currentOffering={currentOffering}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }

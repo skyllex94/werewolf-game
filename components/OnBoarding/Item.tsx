@@ -12,6 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {
   AntDesign,
+  FontAwesome5,
   FontAwesome6,
   MaterialCommunityIcons,
   MaterialIcons,
@@ -35,17 +36,17 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
 
   // Function to handle navigation to the main screen
   async function sendToMainScreen(): Promise<void> {
-    await AsyncStorage.setItem("appFirstOpened", "false");
+    await AsyncStorage.setItem("isFirstOpen", "false");
     router.replace("/main");
   }
 
   return (
-    <SafeAreaView style={[{ width }]}>
-      {item.id === 6 ? (
+    <View style={[{ width }]}>
+      {item.id === 4 ? (
         <View>
           <TouchableOpacity
             onPress={sendToMainScreen}
-            className="close-button z-10 absolute top-4 right-4 rounded-full p-3"
+            className="close-button z-10 absolute top-10 right-6 rounded-full p-3"
           >
             <AntDesign name="close" size={20} color="#94a3b8" />
           </TouchableOpacity>
@@ -53,60 +54,56 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
           <View className="items-center justify-center">
             <Image
               source={item.image}
-              className="items-center justify-center"
+              className="items-center justify-center mb-10"
               style={[{ width: width, height: 450 }]}
             />
           </View>
 
           <ScrollView>
-            <Text className="font-bold text-center text-[28px] px-6 mb-4 text-slate-600">
+            <Text className="font-bold text-center text-[28px] px-6 mb-4 text-slate-200">
               {item.title}
             </Text>
 
             <View className="premium-features items-center justify-center">
               <View className="flex-row items-center gap-x-5 m-1">
-                <FontAwesome6 name="toolbox" size={24} color="#334155" />
-                <View className="flex-1 gap-y-1">
-                  <Text className="text-slate-600 text-[15px] font-semibold">
-                    All Editing Tools
+                <FontAwesome5 name="users" size={26} color="white" />
+                <View className="flex-1 gap-y-1 pr-4">
+                  <Text className="text-slate-200 text-[15px] font-semibold">
+                    14+ Different Roles
                   </Text>
-                  <Text className="text-slate-500 font-light">
-                    Unlock all editing tools: Dates, Initials, Images, Custom
-                    Text, Checks and more to come.
+                  <Text className="text-slate-300 font-light">
+                    Play with all Roles in the game and more to come for
+                    exciting outcomes and scenarios.
                   </Text>
                 </View>
               </View>
 
               <View className="flex-row items-center gap-x-5 m-1">
                 <MaterialCommunityIcons
-                  name="file-document-edit"
-                  size={24}
-                  color="#334155"
+                  name="image-text"
+                  size={32}
+                  color="white"
                 />
-                <View className="flex-1 gap-y-1">
-                  <Text className="text-slate-600 text-[15px] font-semibold">
-                    15+ Document Templates
+                <View className="flex-1 gap-y-1 pr-4">
+                  <Text className="text-slate-200 text-[15px] font-semibold">
+                    Saving and Storing Users
                   </Text>
-                  <Text className="text-slate-500 font-light">
-                    Try different templates for direct editing with more being
-                    added on a regular basis.
+                  <Text className="text-slate-300 font-light">
+                    Snap photos of the players and store them with their photos
+                    for further use in following games.
                   </Text>
                 </View>
               </View>
 
               <View className="flex-row items-center gap-x-5 m-1">
-                <MaterialIcons
-                  name="camera-enhance"
-                  size={24}
-                  color="#334155"
-                />
-                <View className="flex-1 gap-y-1">
-                  <Text className="text-slate-600 text-[15px] font-semibold">
-                    Camera Scanning
+                <FontAwesome6 name="ranking-star" size={26} color="white" />
+                <View className="flex-1 gap-y-1 pr-4">
+                  <Text className="text-slate-200 text-[15px] font-semibold">
+                    More Game Outcomes
                   </Text>
-                  <Text className="text-slate-500 font-light">
-                    Get included camera scanning and organizing your documents
-                    in a safe environment.
+                  <Text className="text-slate-300 font-light">
+                    Allows for deeper strategic thinking and a wider range of
+                    outcomes with different winners.
                   </Text>
                 </View>
               </View>
@@ -115,24 +112,24 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
         </View>
       ) : (
         <View>
-          <View className="items-center justify-center">
+          <View className="items-center justify-center ">
             <Image
               source={item.image}
-              className="items-center justify-center"
+              className="items-center justify-center mb-10"
               style={[{ width: width, height: 450 }]}
             />
           </View>
 
           <View>
-            <Text className="font-bold text-center text-[28px] px-6 mb-3 text-slate-600">
+            <Text className="font-bold text-center text-[28px] px-6 mb-3 text-slate-200">
               {item.title}
             </Text>
-            <Text className="font-light text-center px-8 text-slate-500">
+            <Text className="font-light text-center px-8 text-slate-300">
               {item.description}
             </Text>
           </View>
         </View>
       )}
-    </SafeAreaView>
+    </View>
   );
 }

@@ -7,6 +7,7 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import { Link, Href } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function MainMenu() {
   const menuItems = [
@@ -15,7 +16,7 @@ export default function MainMenu() {
       icon: (
         <Image
           className="w-[18px] h-[18px]"
-          style={{ tintColor: "white" }}
+          style={{ tintColor: "black" }}
           source={require("../assets/images/bottom_sheet/werewolf.png")}
         />
       ),
@@ -28,54 +29,51 @@ export default function MainMenu() {
         <MaterialCommunityIcons
           name="ruler-square-compass"
           size={18}
-          color="white"
+          color="black"
         />
       ),
       link: "/rules",
     },
     {
       name: "Roles & Abilities",
-      icon: <Entypo name="users" size={15} color="white" />,
+      icon: <Entypo name="users" size={15} color="black" />,
       link: "/roles",
     },
     {
       name: "Go Pro",
-      icon: <MaterialIcons name="workspace-premium" size={18} color="white" />,
+      icon: <MaterialIcons name="workspace-premium" size={18} color="black" />,
       link: "/shared/paywall",
     },
     {
       name: "Settings",
-      icon: <Ionicons name="settings" size={16} color="white" />,
+      icon: <Ionicons name="settings" size={16} color="black" />,
       link: "/settings",
     },
   ];
 
   return (
-    <View className="items-center w-[100%] gap-y-1">
-      {menuItems.map((item, idx) =>
-        item.link ? (
+    <View className="items-center w-[100%] gap-y-1 mb-8">
+      {menuItems.map((item, idx) => (
+        <LinearGradient
+          className="flex-row justify-start items-center rounded-lg"
+          colors={["#3EB489", "#90EE90"]}
+          start={[0, 0]}
+          end={[1, 1]}
+        >
           <Link key={idx} href={item.link as Href} asChild>
-            <TouchableOpacity className="flex-row justify-start bg-gray-800 py-3 pl-6 w-[50%] rounded-lg">
+            <TouchableOpacity className="flex-row justify-start p-3 pl-6 w-[55%] rounded-lg">
               {item.icon}
+
               <Text
                 // style={{ fontFamily: "Bronzetti_Condensed", fontSize: 18 }}
-                className="mx-1 text-center text-white"
+                className="mx-1 text-center "
               >
                 {item.name}
               </Text>
             </TouchableOpacity>
           </Link>
-        ) : (
-          <TouchableOpacity
-            key={idx}
-            className="flex-row justify-start bg-gray-800 py-3 pl-6 w-[50%] rounded-lg"
-            onPress={() => {}}
-          >
-            {item.icon}
-            <Text className="mx-1 text-center text-white">{item.name}</Text>
-          </TouchableOpacity>
-        )
-      )}
+        </LinearGradient>
+      ))}
     </View>
   );
 }

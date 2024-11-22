@@ -32,15 +32,23 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
-  const [appFirstOpened, setAppFirstOpened] = useState<boolean | null>(() => {
+  const [appFirstOpened, setAppFirstOpened] = useState<boolean | null>(null);
+
+  // Check if app if being opened for the first time
+  useEffect(() => {
     const checkFirstTimeOpen = async () => {
       try {
-        const firstOpen = await AsyncStorage.getItem("appFirstOpened");
-        console.log("firstOpen1:", firstOpen);
+        let isFirstOpen = null;
+        const storageValue = await AsyncStorage.getItem("isFirstOpen");
+        console.log("storageValue:", storageValue);
 
-        if (!firstOpen) {
-          // If app is opened for the first time
-          await AsyncStorage.setItem("appFirstOpened", "true");
+        if (storageValue === "false") isFirstOpen = false;
+        else isFirstOpen = true;
+
+        // console.log("isFirstOpen1:", isFirstOpen, typeof isFirstOpen);
+
+        if (isFirstOpen === true) {
+          await AsyncStorage.setItem("isFirstOpen", "true");
           setAppFirstOpened(true);
         } else {
           setAppFirstOpened(false);
@@ -51,28 +59,21 @@ export default function RootLayout() {
       }
     };
 
-    checkFirstTimeOpen(); // Run the check on initialization
+    checkFirstTimeOpen();
+  }, []);
 
-    return null; // Default value before state is set
-  });
-
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
+  // Handle font loading errors
   useEffect(() => {
     if (error) throw error;
   }, [error]);
 
-  // useEffect(() => {
-  //   if (loaded) {
-  //     SplashScreen.hideAsync();
-  //   }
-  // }, [loaded]);
-
-  if (!loaded) {
+  // Wait until fonts are loaded and appFirstOpened is set
+  if (!loaded || appFirstOpened === null) {
     return null;
   }
 
-  // Main UI branch of the app
-  return loaded && <RootLayoutNav appFirstOpened={appFirstOpened} />;
+  // Pass appFirstOpened to RootLayoutNav
+  return <RootLayoutNav appFirstOpened={appFirstOpened} />;
 }
 
 type RootLayoutNavTypes = {
@@ -80,7 +81,6 @@ type RootLayoutNavTypes = {
 };
 
 function RootLayoutNav({ appFirstOpened }: RootLayoutNavTypes) {
-  console.log("appFirstOpened2:", appFirstOpened);
   // NewGameContext state - defined in scan_intro
   const [allPlayersInGame, setAllPlayersInGame] = useState<object[]>([]);
   // NewGameContext - defined in scan_intro
@@ -101,6 +101,8 @@ function RootLayoutNav({ appFirstOpened }: RootLayoutNavTypes) {
   >(null);
   // Cupid state
   const [cupidBond, setCupidBond] = useState(false);
+
+  // console.log("isFirstOpen2:", appFirstOpened, typeof appFirstOpened);
 
   return (
     <GestureHandlerRootView className="flex-1">
