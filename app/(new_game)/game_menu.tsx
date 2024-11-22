@@ -40,7 +40,7 @@ export default function GameMenu() {
     // Start back up the soundtrack
     setSoundtrackEnabled(true);
 
-    router.replace("/");
+    router.replace("/main");
   };
 
   const goBack = () => {
@@ -92,7 +92,7 @@ export default function GameMenu() {
       />
 
       <View className="justify-center w-[60%] gap-y-3">
-        <Pressable
+        {/* <Pressable
           className={`p-4 rounded-xl ${
             isDarkMode ? "bg-green-600" : "bg-green-300"
           }`}
@@ -104,7 +104,7 @@ export default function GameMenu() {
           >
             Game Info
           </Text>
-        </Pressable>
+        </Pressable> */}
 
         <Pressable
           onPress={viewRoles}

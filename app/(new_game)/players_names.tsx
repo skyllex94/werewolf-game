@@ -10,19 +10,22 @@ import {
 import React, { useState } from "react";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { showMessage } from "react-native-flash-message";
+import * as ImagePicker from "expo-image-picker";
 
 export default function PlayersNames() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { total_players, characters_data } = params;
 
+  // const [playerPhoto, setPlayerPhoto] = useState<string | null>(null);
+
   const players = parseInt(total_players as string);
 
   const [playerNames, setPlayerNames] = useState<string[]>(
-    // Array(players).fill("")
+    Array(players).fill("")
 
     // Only Placeholders - Remove later *
-    ["Kamen", "Mikey", "Rossy"] //"Johnny", "Ponny", "Ronny", "Bonbonny"
+    // ["Kamen", "Mikey", "Rossy"] //"Johnny", "Ponny", "Ronny", "Bonbonny"
   );
 
   function playerNamesChange(idx: number, text: string) {
@@ -74,6 +77,26 @@ export default function PlayersNames() {
     });
   }
 
+  async function openPhotos() {
+    console.log("This is your photo gallery");
+
+    console.log(ImagePicker);
+
+    // // No permissions request is necessary for launching the image library
+    // let result = await ImagePicker.launchImageLibraryAsync({
+    //   mediaTypes: ["images", "videos"],
+    //   allowsEditing: false,
+    //   aspect: [3, 3],
+    //   quality: 1,
+    // });
+
+    // console.log(result);
+
+    // if (!result.canceled) {
+    //   // setPlayerPhoto(result.assets[0].uri);
+    // }
+  }
+
   return (
     <SafeAreaView className="flex-1 bg-gray-900">
       <Text className="text-center font-bold text-[20px] text-white py-4">
@@ -85,11 +108,13 @@ export default function PlayersNames() {
           <View key={idx}>
             <View className="flex-row flex-wrap items-center justify-center gap-x-2 my-1.5">
               <View className="h-12 w-12 border border-gray-600 rounded-xl overflow-hidden">
-                <Image
-                  className="h-full w-full"
-                  resizeMode="cover"
-                  source={require("../../assets/images/placeholders/placeholder2.jpg")}
-                />
+                <TouchableOpacity onPress={openPhotos}>
+                  <Image
+                    className="h-full w-full"
+                    resizeMode="cover"
+                    source={require("../../assets/images/placeholders/user-placeholder.jpg")}
+                  />
+                </TouchableOpacity>
               </View>
               <View className="w-[75%] h-12">
                 <TextInput

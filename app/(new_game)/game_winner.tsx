@@ -34,11 +34,11 @@ const GameWinner = () => {
     router.replace("/new_game");
   }
 
-  const handleMainMenu = () => {
+  const goToMainMenu = () => {
     setWinSoundEnabled(false);
 
     setSoundtrackEnabled(true);
-    router.replace("/");
+    router.replace("/main");
   };
 
   useEffect(() => {
@@ -102,19 +102,19 @@ const GameWinner = () => {
       </Text>
 
       <View className="justify-center w-[80%] gap-y-3">
-        <Pressable
+        {/* <Pressable
           onPress={startNewGame}
           className="bg-green-300 p-4 rounded-xl"
         >
           <Text className="font-bold text-center">New Game</Text>
-        </Pressable>
+        </Pressable> */}
 
         <Pressable onPress={viewRoles} className="bg-green-300 p-4 rounded-xl">
           <Text className="font-bold text-center">View All Roles</Text>
         </Pressable>
 
         <Pressable
-          onPress={handleMainMenu}
+          onPress={goToMainMenu}
           className="bg-slate-200 p-4 rounded-xl border border-gray-400"
         >
           <Text className="font-bold text-center">Main Menu</Text>

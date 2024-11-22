@@ -5,7 +5,6 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Entypo, FontAwesome, Fontisto } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
 import useRevenueCat from "@/hooks/RevenueCat";
-import RulesTopPane from "@/components/Rules/RulesTopPane";
 
 export default function ChooseRoles() {
   const { isProMember } = useRevenueCat();
@@ -202,11 +201,22 @@ export default function ChooseRoles() {
   return (
     <SafeAreaView className="flex-1 items-center bg-gray-900">
       <StatusBar style={"light"} />
-      <RulesTopPane iconColor="white" />
 
-      <Text className="text-[20px] font-bold mt-8 text-white">
-        Roles ({playerCount})
-      </Text>
+      <View className="flex-row items-center justify-between mt-8 w-full">
+        {true ? (
+          <TouchableOpacity onPress={() => router.back()} className="w-10 px-2">
+            <Entypo name="chevron-left" size={24} color={"white"} />
+          </TouchableOpacity>
+        ) : (
+          <View className="w-10"></View>
+        )}
+
+        <Text className="text-[20px] font-bold text-white">
+          Roles ({playerCount})
+        </Text>
+
+        <View className="w-10"></View>
+      </View>
 
       <View className="seperator bg-slate-600 mt-5 h-[0.5px] w-[50%]" />
 
@@ -233,11 +243,14 @@ export default function ChooseRoles() {
 
               {/* Conditional overlay for locked roles */}
               {!character.unlocked && (
-                <View className="absolute top-0 left-0 w-full h-full z-10 bg-white opacity-50 rounded-2xl">
+                <TouchableOpacity
+                  onPress={() => router.push("/shared/paywall")}
+                  className="absolute top-0 left-0 w-full h-full z-10 bg-white opacity-40 rounded-2xl"
+                >
                   <View className="items-center justify-center mt-8 h-[100%]">
                     <FontAwesome name="lock" size={44} color="black" />
                   </View>
-                </View>
+                </TouchableOpacity>
               )}
 
               <Image

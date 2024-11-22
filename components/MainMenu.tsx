@@ -52,24 +52,20 @@ export default function MainMenu() {
   ];
 
   return (
-    <View className="items-center w-[100%] gap-y-1 mb-8">
+    <View className="items-center w-[100%] gap-y-1 mb-4">
       {menuItems.map((item, idx) => (
         <LinearGradient
+          key={idx}
           className="flex-row justify-start items-center rounded-lg"
           colors={["#3EB489", "#90EE90"]}
           start={[0, 0]}
           end={[1, 1]}
         >
           <Link key={idx} href={item.link as Href} asChild>
-            <TouchableOpacity className="flex-row justify-start p-3 pl-6 w-[55%] rounded-lg">
+            <TouchableOpacity className="flex-row justify-start p-3 pl-6 w-[65%] rounded-lg">
               {item.icon}
 
-              <Text
-                // style={{ fontFamily: "Bronzetti_Condensed", fontSize: 18 }}
-                className="mx-1 text-center "
-              >
-                {item.name}
-              </Text>
+              <Text className="mx-1 text-center ">{item.name}</Text>
             </TouchableOpacity>
           </Link>
         </LinearGradient>

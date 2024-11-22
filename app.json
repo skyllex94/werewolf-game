@@ -41,6 +41,12 @@
           ]
         }
       ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to choose a profile photo for each player."
+        }
+      ],
       "expo-router"
     ],
     "experiments": {

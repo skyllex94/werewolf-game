@@ -10,7 +10,7 @@ interface TopPaneProps {
 
 export default function RulesTopPane({ iconColor = "black" }: TopPaneProps) {
   const navigation = useNavigation();
-  const { soundEnabled, setSoundEnabled } = useContext(SoundContext);
+  const { soundEnabled, setSoundEnabled } = useContext(SoundContext)!;
 
   return (
     <View className="flex-row justify-between">
