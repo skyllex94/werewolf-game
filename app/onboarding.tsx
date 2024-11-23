@@ -18,6 +18,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 
+import { useSplash } from "@/contexts/SplashContext";
+import SplashScreen from "@/components/SplashScreen/SplashScreen";
+
 // Define the shape of the slides
 interface Slide {
   id: number;
@@ -32,6 +35,9 @@ export default function OnBoarding() {
   const [currSlide, setCurrSlide] = useState<number>(0);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef<FlatList<Slide> | null>(null);
+
+  // Splash context controls
+  const { isSplashVisible, fadeAnim } = useSplash();
 
   const viewableItemsChanged = useRef(
     ({ viewableItems }: { viewableItems: Array<{ index: number | null }> }) => {
@@ -99,9 +105,11 @@ export default function OnBoarding() {
   };
 
   return (
-    <View className="flex-1 bg-slate-900 pb-10">
+    <View className="flex-1 bg-slate-900 pb-10 relative">
       <Spinner visible={purchaseSpinner} />
       <StatusBar style={"light"} />
+
+      {isSplashVisible && <SplashScreen fadeAnim={fadeAnim} />}
 
       <FlatList
         data={slides}

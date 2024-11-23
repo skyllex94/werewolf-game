@@ -8,15 +8,13 @@
     "scheme": "myapp",
     "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0F172A"
     },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.zionstudios.werewolf",
       "infoPlist": {
-        "NSCameraUsageDescription": "Werewolf uses the camera to take photos of people to set as Avatar photos.",
+        "NSCameraUsageDescription": "Werewolf uses the camera to take photos of people to set as avatar photos.",
         "NSPhotoLibraryUsageDescription": "Allow Werewolf to access your photos."
       }
     },
@@ -45,6 +43,14 @@
         "expo-image-picker",
         {
           "photosPermission": "The app accesses your photos to choose a profile photo for each player."
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow Werewolf to access photos for players in the game.",
+          "savePhotosPermission": "Allow SimpleSign to save player's avatar photos.",
+          "isAccessMediaLocationEnabled": true
         }
       ],
       "expo-router"

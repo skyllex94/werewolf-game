@@ -80,7 +80,7 @@ export default function PlayersNames() {
   async function openPhotos() {
     console.log("This is your photo gallery");
 
-    console.log(ImagePicker);
+    // console.log(ImagePicker);
 
     // // No permissions request is necessary for launching the image library
     // let result = await ImagePicker.launchImageLibraryAsync({

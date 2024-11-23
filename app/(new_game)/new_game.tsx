@@ -16,7 +16,7 @@ export default function ChooseRoles() {
       image: require("../../assets/images/characters/villager.jpeg"),
       min: 3,
       max: 25,
-      amount: 2,
+      amount: 4,
       unlocked: true,
       info: "/villager",
     },

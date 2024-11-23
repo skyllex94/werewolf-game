@@ -122,7 +122,7 @@ export default function Paywall() {
             <Image
               className="h-60 w-full rounded-bl-full rounded-b-[180px]"
               resizeMode="cover"
-              source={require("../../assets/images/paywall/wolves.png")}
+              source={require("../../assets/images/paywall/paywall-image.jpg")}
             />
 
             <View className="w-[80px] absolute shadow top-48 bg-white rounded-full p-4">

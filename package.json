@@ -34,7 +34,6 @@
     "expo-media-library": "^17.0.2",
     "expo-router": "~3.5.23",
     "expo-sharing": "^13.0.0",
-    "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
     "expo-store-review": "^7.0.2",
     "expo-system-ui": "~3.0.7",

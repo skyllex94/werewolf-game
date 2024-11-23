@@ -1,45 +1,31 @@
-import { Dimensions, SafeAreaView, View, Text, Image } from "react-native";
+import { SafeAreaView, View, Image } from "react-native";
 import MainMenu from "@/components/MainMenu";
 import TopPane from "@/components/TopPane";
-import LottieView from "lottie-react-native";
-import { useRef } from "react";
-
 import { StatusBar } from "expo-status-bar";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import SplashScreen from "@/components/SplashScreen/SplashScreen";
+
+import { useSplash } from "@/contexts/SplashContext";
 
 export default function MainScreen() {
+  // Controlled inside SplashContext
+  const { isSplashVisible, fadeAnim } = useSplash();
+
   return (
-    <View className="flex-1 relative bg-[#354e6e]">
+    <View className="flex-1 bg-[#354e6e] relative">
       <StatusBar style="light" />
-      {/* Lottie Animation Background */}
 
-      {/* const animation = useRef<LottieView>(null);
-          const width = Dimensions.get("window").width;
-          const height = Dimensions.get("window").height; */}
-
-      {/* <LottieView
-        autoPlay
-        ref={animation}
-        loop={true}
-        style={{
-          position: "absolute",
-          top: 200,
-          left: 0,
-          width: width,
-          height: height,
-          zIndex: -1,
-        }}
-        source={require("../assets/animations/paperplane.json")}
-      /> */}
-
+      {/* Background Image */}
       <Image
         className="absolute w-full h-full"
         source={require("../assets/images/backgrounds/new-main2.jpg")}
+        resizeMode="cover"
       />
 
+      {/* Splash Screen */}
+      {isSplashVisible && <SplashScreen fadeAnim={fadeAnim} />}
+
       {/* Foreground Content */}
-      <SafeAreaView className="flex-1 bg-gray-900]">
+      <SafeAreaView className="flex-1 bg-transparent">
         {/* Top Pane */}
         <TopPane iconColor="white" />
 
