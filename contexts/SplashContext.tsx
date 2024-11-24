@@ -34,6 +34,7 @@ export const SplashProvider: React.FC<{ children: React.ReactNode }> = ({
       }).start(() => setIsSplashVisible(false));
     }, 2000);
 
+    // Used in main and onboarding screens
     return () => clearTimeout(timer);
   }, []);
 

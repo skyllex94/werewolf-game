@@ -1,10 +1,4 @@
-import {
-  FlatList,
-  SafeAreaView,
-  Animated,
-  View,
-  ListRenderItemInfo,
-} from "react-native";
+import { FlatList, Animated, View, ListRenderItemInfo } from "react-native";
 import React, { useRef, useState } from "react";
 import slides from "../constants/OnBoardingSlides";
 import OnBoardingItem from "../components/OnBoarding/Item";

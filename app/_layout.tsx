@@ -16,6 +16,7 @@ import NewGameContext from "@/contexts/NewGameContext";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+// Splash screen loaded from SplashContext
 import { SplashProvider } from "@/contexts/SplashContext";
 
 export {
@@ -56,6 +57,7 @@ export default function RootLayout() {
     if (error) throw error;
   }, [error]);
 
+  // Display after initial assets loaded
   if (!loaded || appFirstOpened === null) {
     return null;
   }
