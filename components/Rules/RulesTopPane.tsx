@@ -22,9 +22,9 @@ export default function RulesTopPane({ iconColor = "black" }: TopPaneProps) {
       </TouchableOpacity>
 
       <View className="flex-row">
-        <TouchableOpacity className="m-3 w-10 p-2">
+        {/* <TouchableOpacity className="m-3 w-10 p-2">
           <Entypo name="globe" size={24} color={iconColor} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity
           onPress={() => setSoundEnabled((prev: boolean) => !prev)}

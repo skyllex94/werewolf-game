@@ -228,7 +228,7 @@ const DayEliminationBottomSheet = forwardRef<
       <View className="flex-1 items-center">
         <View className="flex-row items-center justify-center px-3 py-2 w-full">
           <Text className="text-[16px] font-light">
-            Anyone eliminated this night?
+            Anyone eliminated this day?
           </Text>
         </View>
 

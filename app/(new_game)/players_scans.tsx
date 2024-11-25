@@ -36,9 +36,9 @@ export default function PlayerScanCodesScreen() {
   const renderItem = ({ item }: { item: Item }) => {
     return (
       <View className="flex-1 items-center justify-start pt-16 bg-slate-800 px-5 rounded-2xl">
-        <View className="bg-slate-200 h-20 w-20 rounded-lg">
+        <View className="bg-slate-200 rounded-lg">
           <Image
-            className="h-[100%] w-[100%] rounded-xl"
+            className="h-20 w-20 rounded-xl"
             source={require("../../assets/images/placeholders/placeholder2.jpg")}
           />
         </View>
@@ -75,6 +75,10 @@ export default function PlayerScanCodesScreen() {
 
   // Function to handle the Next button press
   function moveToNextBarcode() {
+    if (!carouselRef.current?.isScrolling) {
+      carouselRef.current?.scrollTo({ index: activeIndex + 1, animated: true });
+    }
+
     // Ensure we're not going beyond the last item
     if (activeIndex < allPlayersInGame.length - 1) {
       carouselRef.current?.scrollTo({ index: activeIndex + 1, animated: true });
@@ -101,13 +105,18 @@ export default function PlayerScanCodesScreen() {
         height={screenHeight / 1.4}
         data={allPlayersInGame}
         renderItem={renderItem}
-        onSnapToItem={(index) => setActiveIndex(index)}
+        scrollAnimationDuration={1000} // Adjust as needed (in ms)
+        onSnapToItem={(index) => {
+          if (index !== activeIndex) setActiveIndex(index);
+        }}
         mode="parallax"
         modeConfig={{
-          parallaxScrollingScale: 0.85,
+          parallaxScrollingScale: 0.9, // Slightly higher for smoother scaling
+          parallaxScrollingOffset: 50, // Adjust offset to avoid snapping
+          parallaxAdjacentItemScale: 0.75, // Consistent adjacent scaling
         }}
         loop={false}
-        pagingEnabled={true}
+        // pagingEnabled={true}
       />
 
       <View className="continue-button w-[100%] items-center absolute bottom-10">

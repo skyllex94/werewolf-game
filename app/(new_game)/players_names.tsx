@@ -83,18 +83,18 @@ export default function PlayersNames() {
     // console.log(ImagePicker);
 
     // // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ["images", "videos"],
-      allowsEditing: false,
-      aspect: [3, 3],
-      quality: 1,
-    });
+    // let result = await ImagePicker.launchImageLibraryAsync({
+    //   mediaTypes: ["images", "videos"],
+    //   allowsEditing: false,
+    //   aspect: [3, 3],
+    //   quality: 1,
+    // });
 
-    console.log(result);
+    // console.log(result);
 
-    if (!result.canceled) {
-      // setPlayerPhoto(result.assets[0].uri);
-    }
+    // if (!result.canceled) {
+    //   // setPlayerPhoto(result.assets[0].uri);
+    // }
   }
 
   return (
@@ -107,7 +107,7 @@ export default function PlayersNames() {
         {Array.from({ length: players }).map((_, idx: number) => (
           <View key={idx}>
             <View className="flex-row flex-wrap items-center justify-center gap-x-2 my-1.5">
-              <View className="h-12 w-12 border border-gray-600 rounded-xl overflow-hidden">
+              {/* <View className="h-12 w-12 border border-gray-600 rounded-xl overflow-hidden">
                 <TouchableOpacity onPress={openPhotos}>
                   <Image
                     className="h-full w-full"
@@ -115,8 +115,8 @@ export default function PlayersNames() {
                     source={require("../../assets/images/placeholders/user-placeholder.jpg")}
                   />
                 </TouchableOpacity>
-              </View>
-              <View className="w-[75%] h-12">
+              </View> */}
+              <View className="w-[90%] h-12">
                 <TextInput
                   className="w-full h-full pl-3 rounded-xl bg-gray-800 text-white border border-gray-600"
                   placeholder={`Player ${idx + 1}`}

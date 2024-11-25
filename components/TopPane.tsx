@@ -22,8 +22,9 @@ export default function TopPane({ iconColor = "black" }: TopPaneProps) {
 
   return (
     <View className="flex-row justify-between">
-      <TouchableOpacity className="m-3 w-10 p-2" onPress={clearAsyncStorage}>
-        <Entypo name="remove-user" size={24} color="white" />
+      <TouchableOpacity className="m-3 w-10 p-2">
+        {/* onPress={clearAsyncStorage} */}
+        {/* <Entypo name="remove-user" size={24} color="white" /> */}
       </TouchableOpacity>
 
       <View className="justify-start items-center bg-transparent">

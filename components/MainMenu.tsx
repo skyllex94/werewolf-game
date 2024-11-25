@@ -65,7 +65,7 @@ export default function MainMenu() {
             <TouchableOpacity className="flex-row justify-start p-3 pl-6 w-[65%] rounded-lg">
               {item.icon}
 
-              <Text className="mx-1 text-center ">{item.name}</Text>
+              <Text className="mx-1 text-center">{item.name}</Text>
             </TouchableOpacity>
           </Link>
         </LinearGradient>
