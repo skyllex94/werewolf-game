@@ -1,6 +1,8 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useRef } from "react";
 import { View, Animated, TouchableOpacity, Text } from "react-native";
+import * as StoreReview from "expo-store-review";
+import { showMessage } from "react-native-flash-message";
 
 // Define the types for the props
 type ContinueButtonProps = {
@@ -55,9 +57,27 @@ export default function ContinueButton({
     };
   }, [progressAnimation, circumference]);
 
+  async function requestReview() {
+    const isAvailable = await StoreReview.isAvailableAsync();
+
+    // A second delay for reading the text
+    if (isAvailable) {
+      setTimeout(() => {
+        StoreReview.requestReview();
+      }, 1000);
+    } else {
+      console.log("Error occured while loading App Store Review");
+    }
+  }
+
+  // Request Review - Help Us Grow page
+  useEffect(() => {
+    if (currSlide === 3) requestReview();
+  }, [currSlide]);
+
   return (
     <View className="items-center justify-center">
-      {currSlide === 3 && (
+      {currSlide === 4 && (
         <Text className="font-light text-xs bottom-12 absolute py-2 text-white">
           Try 3 days free, then {currentOffering?.weekly?.product.priceString}
           /week

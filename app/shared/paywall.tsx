@@ -28,9 +28,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export default function Paywall() {
   const router = useRouter();
-  const { isProMember, currentOffering } = useRevenueCat();
-  console.log("isProMember:", isProMember);
-  console.log("currentOffering:", currentOffering);
+  const { currentOffering } = useRevenueCat();
 
   const [loadedPaywall, setLoadedPaywall] = useState(false);
   const [purchaseSpinner, setPurchaseSpinner] = useState(false);
@@ -71,10 +69,10 @@ export default function Paywall() {
       const purchaserInfo = await Purchases.purchasePackage(
         currentOffering?.[subscription]
       );
-      console.log(
-        `Bought ${subscription} :`,
-        purchaserInfo.customerInfo.entitlements.active
-      );
+      // console.log(
+      //   `Bought ${subscription} :`,
+      //   purchaserInfo.customerInfo.entitlements.active
+      // );
 
       if (
         purchaserInfo.customerInfo.entitlements.active.werewolf_subscriptions
@@ -154,17 +152,17 @@ export default function Paywall() {
 
               <View className="flex-row items-center gap-x-5 m-3">
                 <MaterialCommunityIcons
-                  name="image-text"
+                  name="account-voice"
                   size={40}
                   color="white"
                 />
                 <View className="flex-1 gap-y-1">
                   <Text className="text-white text-[16px] font-semibold">
-                    Saving and Storing Users
+                    Narrator Assistance
                   </Text>
                   <Text className="text-white text-[14px] font-light">
-                    Snap photos of the players and store them with their photos
-                    for further use in following games.
+                    Built-in voice guidance for all roles and easy navigation
+                    through the night. Additional languages to be added.
                   </Text>
                 </View>
               </View>

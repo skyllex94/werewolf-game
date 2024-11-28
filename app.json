@@ -13,6 +13,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.zionstudios.werewolf",
+      "appStoreUrl": "https://apps.apple.com/us/app/id6738326023",
       "infoPlist": {
         "NSCameraUsageDescription": "Werewolf uses the camera to take photos of people to set as avatar photos.",
         "NSPhotoLibraryUsageDescription": "Allow Werewolf to access your photos."

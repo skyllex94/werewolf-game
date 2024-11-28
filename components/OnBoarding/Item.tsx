@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  Image,
-  useWindowDimensions,
-  SafeAreaView,
-} from "react-native";
+import { View, Text, Image, useWindowDimensions } from "react-native";
 import React from "react";
 
 import { TouchableOpacity } from "react-native";
@@ -15,7 +9,6 @@ import {
   FontAwesome5,
   FontAwesome6,
   MaterialCommunityIcons,
-  MaterialIcons,
 } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 import { useRouter } from "expo-router";
@@ -37,12 +30,13 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
   // Function to handle navigation to the main screen
   async function sendToMainScreen(): Promise<void> {
     await AsyncStorage.setItem("isFirstOpen", "false");
+
     router.replace("/main");
   }
 
   return (
     <View style={[{ width }]}>
-      {item.id === 4 ? (
+      {item.id === 5 ? (
         <View>
           <TouchableOpacity
             onPress={sendToMainScreen}
@@ -80,17 +74,17 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
 
               <View className="flex-row items-center gap-x-5 m-1">
                 <MaterialCommunityIcons
-                  name="image-text"
+                  name="account-voice"
                   size={32}
                   color="white"
                 />
                 <View className="flex-1 gap-y-1 pr-4">
                   <Text className="text-slate-200 text-[15px] font-semibold">
-                    Saving and Storing Users
+                    Narrator Assistance
                   </Text>
                   <Text className="text-slate-300 font-light">
-                    Snap photos of the players and store them with their photos
-                    for further use in following games.
+                    Built-in voice guidance for all roles and easy navigation
+                    through the night. Additional languages to be added.
                   </Text>
                 </View>
               </View>
@@ -109,6 +103,29 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
               </View>
             </View>
           </ScrollView>
+        </View>
+      ) : item.id === 4 ? (
+        <View>
+          <View className="items-center justify-center ">
+            <Image
+              source={item.image}
+              className="items-center justify-center mb-10"
+              style={[{ width: width, height: 450 }]}
+            />
+          </View>
+
+          <View>
+            <Text className="font-bold text-center text-[28px] px-6 mb-3 text-slate-200">
+              {item.title}
+            </Text>
+
+            <Text className="font-light text-center px-8 text-slate-300">
+              Before embarking on your journey,{" "}
+              <Text className="font-bold">please consider supporting us</Text>.
+              This goes a long way and help us continue improving and innovating
+              the game as we continue introducing new features.
+            </Text>
+          </View>
         </View>
       ) : (
         <View>

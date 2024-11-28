@@ -1,14 +1,17 @@
-import { View, Text, Pressable, Image } from "react-native";
+import { View, Text, Pressable, Image, Linking } from "react-native";
 import React, { useRef, useEffect, useContext } from "react";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import LottieView from "lottie-react-native";
 import { StatusBar } from "expo-status-bar";
 import SoundContext from "@/contexts/SoundContext";
+import * as StoreReview from "expo-store-review";
 
 const GameWinner = () => {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { winner } = params;
+
+  const appStoreUrl = "https://apps.apple.com/us/app/id6738326023";
 
   const { setWinSoundEnabled, setSoundtrackEnabled } =
     useContext(SoundContext)!;
@@ -19,6 +22,16 @@ const GameWinner = () => {
   // Animation ref
   const animation = useRef<LottieView>(null);
 
+  async function requestReview() {
+    const isAvailable = await StoreReview.isAvailableAsync();
+    if (isAvailable) {
+      StoreReview.requestReview();
+    } else {
+      console.log("In-app review is unavailable. Redirecting to App Store...");
+      Linking.openURL(appStoreUrl);
+    }
+  }
+
   function viewRoles() {
     router.push({
       pathname: "/roles_modal",
@@ -26,18 +39,14 @@ const GameWinner = () => {
     });
   }
 
-  function startNewGame() {
-    // Reset sound
-    setWinSoundEnabled(false);
-
-    setSoundtrackEnabled(true);
-    router.replace("/new_game");
-  }
-
   const goToMainMenu = () => {
+    // Sound management
     setWinSoundEnabled(false);
-
     setSoundtrackEnabled(true);
+
+    // Request Review
+    requestReview();
+
     router.replace("/main");
   };
 

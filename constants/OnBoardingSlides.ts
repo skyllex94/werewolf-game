@@ -22,9 +22,16 @@ export default [
   },
   {
     id: 4,
+    title: "Help Us Grow",
+    description:
+      "Before embarking on your journey, please consider supporting us. This goes a long way and help us continue improving and innovating the game as we continue introducing new features.",
+    image: require("../assets/images/onboarding/slide4.jpg"),
+  },
+  {
+    id: 5,
     title: "Premium Trial",
     description:
       "✓ - Unlock all editing tools: including date, initials, images, texts, checkboxes \n ✓ - Camera Scanning & Document Organizing \n ✓ - Get All Templates for Direct Editing",
-    image: require("../assets/images/onboarding/slide4.jpg"),
+    image: require("../assets/images/onboarding/slide5.jpg"),
   },
 ];

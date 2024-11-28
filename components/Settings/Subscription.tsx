@@ -14,7 +14,7 @@ export default function Subscription() {
 
   async function restorePurchase() {
     showMessage({
-      message: "Looking to restore a purchase",
+      message: "Looking to restore a purchase...",
       duration: 2000,
       backgroundColor: "#3EB489",
     });
@@ -26,11 +26,17 @@ export default function Subscription() {
   }
 
   async function rateApp() {
-    try {
-      if (await StoreReview.hasAction()) {
-        StoreReview.requestReview();
-      }
-    } catch (err) {
+    showMessage({
+      message: "Opening App Store Review...",
+      duration: 2000,
+      backgroundColor: "#3EB489",
+    });
+
+    const isAvailableStoreReview = await StoreReview.isAvailableAsync();
+
+    if (isAvailableStoreReview) {
+      StoreReview.requestReview();
+    } else {
       showMessage({
         message: "Error occurred",
         description:
