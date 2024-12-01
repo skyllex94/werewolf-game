@@ -10,7 +10,7 @@ export default function Indicator({ data, scrollX }: IndicatorTypes) {
   const { width } = useWindowDimensions();
 
   return (
-    <View className="flex-row h-10">
+    <View className="flex-row h-12 pt-2">
       {data.map((_, i) => {
         const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
         const dotWidth = scrollX.interpolate({

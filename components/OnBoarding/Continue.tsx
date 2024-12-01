@@ -78,7 +78,7 @@ export default function ContinueButton({
   return (
     <View className="items-center justify-center">
       {currSlide === 4 && (
-        <Text className="font-light text-xs bottom-12 absolute py-2 text-white">
+        <Text className="font-light text-sm bottom-12 absolute py-2 text-white">
           Try 3 days free, then {currentOffering?.weekly?.product.priceString}
           /week
         </Text>

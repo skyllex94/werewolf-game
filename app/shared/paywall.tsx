@@ -134,7 +134,7 @@ export default function Paywall() {
             </Text>
           </View>
 
-          <ScrollView>
+          <ScrollView className="mb-6" showsVerticalScrollIndicator={false}>
             <View className="premium-features mt-6">
               <View className="flex-row items-center gap-x-5 m-3 ">
                 <FontAwesome5 name="users" size={32} color="white" />
@@ -282,35 +282,41 @@ export default function Paywall() {
               </View>
             )}
 
-            <View className="items-center mt-3">
-              <View className="flex-row">
-                <TouchableOpacity
-                  onPress={() =>
-                    router.push({
-                      pathname: "/shared/privacy_policy",
-                      params: { presentation: "modal" },
-                    })
-                  }
-                >
-                  <Text className="text-white">Privacy Policy</Text>
-                </TouchableOpacity>
-                <Text className="text-white mx-2">|</Text>
+            <View className="items-center">
+              <View className="mt-3 mb-8 w-[90%]">
+                <View className="flex-row items-center justify-center">
+                  <TouchableOpacity
+                    onPress={() =>
+                      router.push({
+                        pathname: "/shared/privacy_policy",
+                        params: { presentation: "modal" },
+                      })
+                    }
+                  >
+                    <Text className="text-white text-[13px]">
+                      Privacy Policy
+                    </Text>
+                  </TouchableOpacity>
+                  <Text className="text-white mx-2">|</Text>
 
-                <TouchableOpacity onPress={restorePurchase}>
-                  <Text className="text-white">Restore Purchase</Text>
-                </TouchableOpacity>
-                <Text className="text-white mx-2">|</Text>
+                  <TouchableOpacity onPress={restorePurchase}>
+                    <Text className="text-white text-[13px]">
+                      Restore Purchase
+                    </Text>
+                  </TouchableOpacity>
+                  <Text className="text-white mx-2">|</Text>
 
-                <TouchableOpacity
-                  onPress={() =>
-                    router.push({
-                      pathname: "/shared/terms",
-                      params: { presentation: "modal" },
-                    })
-                  }
-                >
-                  <Text className="text-white">Terms of Use</Text>
-                </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() =>
+                      router.push({
+                        pathname: "/shared/terms",
+                        params: { presentation: "modal" },
+                      })
+                    }
+                  >
+                    <Text className="text-white text-[13px]">Terms of Use</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </ScrollView>

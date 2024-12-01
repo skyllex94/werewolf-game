@@ -37,7 +37,7 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
   return (
     <View style={[{ width }]}>
       {item.id === 5 ? (
-        <View>
+        <View className="flex-1">
           <TouchableOpacity
             onPress={sendToMainScreen}
             className="close-button z-10 absolute top-10 right-6 rounded-full p-3"
@@ -45,20 +45,24 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
             <AntDesign name="close" size={20} color="#94a3b8" />
           </TouchableOpacity>
 
-          <View className="items-center justify-center">
+          <View className="items-center justify-center relative">
             <Image
               source={item.image}
-              className="items-center justify-center mb-10"
-              style={[{ width: width, height: 450 }]}
+              className="items-center justify-center mb-6"
+              style={[{ width: width, height: 420 }]}
             />
+            <View className="absolute bottom-0 py-1 px-8 rounded-xl bg-slate-800">
+              <Text className="font-bold text-center text-[28px] text-slate-200">
+                {item.title}
+              </Text>
+            </View>
           </View>
 
-          <ScrollView>
-            <Text className="font-bold text-center text-[28px] px-6 mb-4 text-slate-200">
-              {item.title}
-            </Text>
-
-            <View className="premium-features items-center justify-center">
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            className="mt-8 mb-2"
+          >
+            <View className="premium-featuresitems-center justify-center">
               <View className="flex-row items-center gap-x-5 m-1">
                 <FontAwesome5 name="users" size={26} color="white" />
                 <View className="flex-1 gap-y-1 pr-4">
@@ -106,11 +110,11 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
         </View>
       ) : item.id === 4 ? (
         <View>
-          <View className="items-center justify-center ">
+          <View className="items-center justify-center">
             <Image
               source={item.image}
               className="items-center justify-center mb-10"
-              style={[{ width: width, height: 450 }]}
+              style={[{ width: width, height: 420 }]}
             />
           </View>
 
@@ -133,7 +137,7 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
             <Image
               source={item.image}
               className="items-center justify-center mb-10"
-              style={[{ width: width, height: 450 }]}
+              style={[{ width: width, height: 420 }]}
             />
           </View>
 
