@@ -215,7 +215,7 @@ export default function ChooseRoles() {
           Roles ({playerCount})
         </Text>
 
-        <View className="w-10"></View>
+        <View className="w-10" />
       </View>
 
       <View className="seperator bg-slate-600 mt-5 h-[0.5px] w-[50%]" />
@@ -224,11 +224,15 @@ export default function ChooseRoles() {
         className="mt-4 mb-20 rounded-2xl"
         showsVerticalScrollIndicator={false}
       >
-        <View className="characters bg-gray-900 flex-row flex-wrap pt-4 gap-2 px-2">
+        <View className="characters bg-gray-900 flex-row flex-wrap pt-4 px-2">
           {characters.map((character, idx) => (
             <View
               key={idx}
-              className="bg-gray-700 w-[48%] h-[280px] rounded-2xl relative"
+              style={{
+                width: "47%", // Dynamically adjust to ensure two items fit.
+                marginHorizontal: "1.5%",
+              }}
+              className="bg-gray-700 h-[280px] rounded-2xl relative mb-3"
             >
               <Text className="absolute text-white text-[15px] m-1 font-bold p-2 z-10">
                 x{character.amount}
@@ -241,7 +245,6 @@ export default function ChooseRoles() {
                 <Fontisto name="info" size={14} color="white" />
               </TouchableOpacity>
 
-              {/* Conditional overlay for locked roles */}
               {!character.unlocked && (
                 <TouchableOpacity
                   onPress={() => router.push("/shared/paywall")}
@@ -263,7 +266,7 @@ export default function ChooseRoles() {
                   onPress={() =>
                     updateCharacterAmount(character.name, "decrease")
                   }
-                  className="p-2 border border-white rounded-full"
+                  className="p-1.5 border border-white rounded-full"
                 >
                   <Entypo name="minus" size={24} color="white" />
                 </TouchableOpacity>
@@ -276,7 +279,7 @@ export default function ChooseRoles() {
                   onPress={() =>
                     updateCharacterAmount(character.name, "increase")
                   }
-                  className="p-2 my-2 border border-white rounded-full"
+                  className="p-1.5 my-2 border border-white rounded-full"
                 >
                   <Entypo name="plus" size={24} color="white" />
                 </TouchableOpacity>

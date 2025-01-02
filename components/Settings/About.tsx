@@ -37,7 +37,7 @@ export default function About() {
 
       <View className="flex-row items-center justify-between bg-slate-800 w-full rounded-lg p-3">
         <Text className="text-white">App Version</Text>
-        <Text className="text-white">1.0</Text>
+        <Text className="text-white">1.0.4</Text>
       </View>
     </View>
   );

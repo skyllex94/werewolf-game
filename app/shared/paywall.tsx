@@ -69,18 +69,11 @@ export default function Paywall() {
       const purchaserInfo = await Purchases.purchasePackage(
         currentOffering?.[subscription]
       );
-      // console.log(
-      //   `Bought ${subscription} :`,
-      //   purchaserInfo.customerInfo.entitlements.active
-      // );
 
+      // Check if purchase completed and navigate back
       if (
         purchaserInfo.customerInfo.entitlements.active.werewolf_subscriptions
       ) {
-        // const price =
-        //   currentOffering?.[subscription]?.product.priceString ?? null;
-        // await analyticsSubscriptionEvent(subscription, trafficSource, price);
-
         router.back();
       }
     } catch (err: any) {
@@ -239,6 +232,26 @@ export default function Paywall() {
                     <Text className="">
                       3-day Free Trial, and then{" "}
                       {currentOffering?.annual?.product?.priceString}/year
+                    </Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => getSubscription("lifetime")}
+                  className="w-[90%]"
+                >
+                  <LinearGradient
+                    className="items-center p-3 rounded-full"
+                    colors={["#3EB489", "#90EE90"]}
+                    start={[0, 0]}
+                    end={[1, 1]}
+                  >
+                    <Text className="font-semibold text-[15px]">
+                      Lifetime Plan
+                    </Text>
+                    <Text className="">
+                      Lifetime Plan for just{" "}
+                      {currentOffering?.lifetime?.product?.priceString} once
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>

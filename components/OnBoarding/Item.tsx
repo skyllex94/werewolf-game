@@ -1,17 +1,22 @@
-import { View, Text, Image, useWindowDimensions } from "react-native";
-import React from "react";
-
-import { TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  Modal,
+  useWindowDimensions,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import {
   AntDesign,
   FontAwesome5,
   FontAwesome6,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { ScrollView } from "react-native-gesture-handler";
 import { useRouter } from "expo-router";
+import AllPlans from "./AllPlans";
 
 // Define the type for item prop
 type OnBoardingItemProps = {
@@ -26,12 +31,17 @@ type OnBoardingItemProps = {
 export default function OnBoardingItem({ item }: OnBoardingItemProps) {
   const router = useRouter();
   const { width } = useWindowDimensions();
+  const [isModalVisible, setModalVisible] = useState(false);
 
   // Function to handle navigation to the main screen
   async function sendToMainScreen(): Promise<void> {
     await AsyncStorage.setItem("isFirstOpen", "false");
-
     router.replace("/main");
+  }
+
+  // Function to toggle modal visibility
+  function toggleModal() {
+    setModalVisible(!isModalVisible);
   }
 
   return (
@@ -58,11 +68,17 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
             </View>
           </View>
 
+          <TouchableOpacity className="pt-2" onPress={toggleModal}>
+            <Text className="text-center underline text-[14px] text-slate-200">
+              View All Plans
+            </Text>
+          </TouchableOpacity>
+
           <ScrollView
             showsVerticalScrollIndicator={false}
             className="mt-8 mb-2"
           >
-            <View className="premium-featuresitems-center justify-center">
+            <View className="premium-features items-center justify-center">
               <View className="flex-row items-center gap-x-5 m-1">
                 <FontAwesome5 name="users" size={26} color="white" />
                 <View className="flex-1 gap-y-1 pr-4">
@@ -107,6 +123,9 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
               </View>
             </View>
           </ScrollView>
+
+          {/* Modal for Subscription Plans */}
+          <AllPlans isModalVisible={isModalVisible} toggleModal={toggleModal} />
         </View>
       ) : item.id === 4 ? (
         <View>

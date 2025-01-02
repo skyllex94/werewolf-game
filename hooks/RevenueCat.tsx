@@ -5,6 +5,11 @@ import Purchases, {
 } from "react-native-purchases";
 import Offering from "react-native-purchases";
 
+// Entitlements identifier in RevenueCat
+const entitlementsIdentifier = {
+  identifier_name: "werewolf_subscriptions",
+};
+
 // Subscription identifiers
 const subIdentifiers = {
   weekly: "werewolf_pro_weekly",
@@ -12,9 +17,9 @@ const subIdentifiers = {
   yearly: "werewolf_pro_yearly",
 };
 
-// Offerings identifiers in RC
-const offeringsIdentifier = {
-  identifier_name: "werewolf_subscriptions",
+// In-App Purchase identifiers
+const iapIdentifiers = {
+  lifetime: "werewolf_iap_lifetime",
 };
 
 // TypeScript types for the data structures
@@ -38,6 +43,7 @@ export default function useRevenueCat() {
           apiKey: process.env.EXPO_PUBLIC_REVENUECAT_API_KEY ?? "",
         });
 
+        // Get all offerings setup from RevenueCat
         const offerings = await Purchases.getOfferings();
         const customerInfo = await Purchases.getCustomerInfo();
 
