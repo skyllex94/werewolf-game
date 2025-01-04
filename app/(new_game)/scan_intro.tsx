@@ -5,8 +5,10 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { assignRolesToPlayers } from "@/functions/functions";
 import { showMessage } from "react-native-flash-message";
 import NewGameContext from "@/contexts/NewGameContext";
+import { useTranslation } from "react-i18next";
 
 export default function IntroScanScreen() {
+  const { t } = useTranslation();
   const router = useRouter();
   const params = useLocalSearchParams();
 
@@ -60,7 +62,7 @@ export default function IntroScanScreen() {
     <SafeAreaView className="flex-1 bg-gray-900">
       <View className="items-center justify-center mx-3">
         <Text className="text-center font-bold text-[20px] text-white py-4">
-          Scanning Introduction
+          {t("scanningIntroductionScreen.title")}
         </Text>
         <View className="seperator bg-slate-700 my-5 h-[1px] w-[70%]" />
         <View className="h-[250px] w-[250px] items-center justify-center rounded-full px-2 bg-slate-300">
@@ -73,16 +75,11 @@ export default function IntroScanScreen() {
 
       <View className="flex-4 mx-5 mt-4">
         <Text className="font-light my-2 w-[100%] text-gray-200">
-          On the next screens the <Text className="font-bold">narrator</Text> of
-          the game should individually{" "}
-          <Text className="font-bold">present a scan code</Text> to each one of
-          the players.
+          {t("scanningIntroductionScreen.firstMessage")}
         </Text>
 
         <Text className="font-light w-[100%] text-gray-200">
-          With it, the players will be able to{" "}
-          <Text className="font-bold">individually view</Text> their roles in
-          the game, along with further explanations if needed.
+          {t("scanningIntroductionScreen.secondMessage")}
         </Text>
       </View>
 
@@ -92,7 +89,9 @@ export default function IntroScanScreen() {
           className="bg-gray-700 items-center justify-center p-4 w-[90%] rounded-xl z-10"
           activeOpacity={0.85}
         >
-          <Text className="text-[16px] font-bold text-white">Show Codes</Text>
+          <Text className="text-[16px] font-bold text-white">
+            {t("scanningIntroductionScreen.showCodes")}
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -2,12 +2,9 @@ import React, { useRef, useState } from "react";
 import { View, Text, TouchableOpacity, Dimensions, Image } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-// Swipable carousel imports
 import Carousel from "react-native-reanimated-carousel";
-
-// QR code generator
 import QRCode from "react-fancy-qrcode";
+import { useTranslation } from "react-i18next";
 
 interface Item {
   order: number;
@@ -20,17 +17,16 @@ interface Item {
 const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 
 export default function PlayerScanCodesScreen() {
+  const { t } = useTranslation();
   const router = useRouter();
   const params = useLocalSearchParams();
   const { players_roles } = params;
 
-  // Parse the allPlayersInGame array from JSON
   const allPlayersInGame = players_roles
     ? JSON.parse(players_roles as string)
     : [];
 
   const [activeIndex, setActiveIndex] = useState(0);
-
   const carouselRef = useRef<any>(null);
 
   const renderItem = ({ item }: { item: Item }) => {
@@ -44,21 +40,19 @@ export default function PlayerScanCodesScreen() {
         </View>
 
         <Text className="text-center text-white font-bold text-[26px] py-4">
-          Player {item.order}: {item.name}
+          {t("playersScanScreen.player")} {item.order}: {item.name}
         </Text>
 
-        <Text className="text-center text-white text-[18px] font-light py-2 mb-10 ">
-          {item.name}, scan this code and view your role in the game through
-          your phone.
+        <Text className="text-center text-white text-[18px] font-light py-2 mb-10">
+          {item.name}
+          {t("playersScanScreen.cardDescription")}
         </Text>
 
-        {/* QR Code Generator */}
         <View className="w-[80%] h-48 items-center justify-center mt-5">
-          {/* Outer container for rounded borders */}
           <View className="w-[100%] h-[155%] bg-black rounded-2xl items-center justify-center p-1">
             <QRCode
               value={item.link}
-              size={280} // Slightly smaller to fit within the rounded container
+              size={280}
               margin={10}
               dotScale={0.8}
               dotRadius="80%"
@@ -73,13 +67,11 @@ export default function PlayerScanCodesScreen() {
     );
   };
 
-  // Function to handle the Next button press
   function moveToNextBarcode() {
     if (!carouselRef.current?.isScrolling) {
       carouselRef.current?.scrollTo({ index: activeIndex + 1, animated: true });
     }
 
-    // Ensure we're not going beyond the last item
     if (activeIndex < allPlayersInGame.length - 1) {
       carouselRef.current?.scrollTo({ index: activeIndex + 1, animated: true });
     } else {
@@ -93,10 +85,10 @@ export default function PlayerScanCodesScreen() {
   return (
     <SafeAreaView className="flex-1 h-[100%] bg-gray-900">
       <Text className="text-center font-bold text-[20px] py-4 text-white">
-        Role of Each Player
+        {t("playersScanScreen.title")}
       </Text>
       <Text className="text-center font-light text-[15px] px-10 text-white">
-        Swipe to let each player scan their barcode with their phone.
+        {t("playersScanScreen.subtitle")}
       </Text>
 
       <Carousel<Item>
@@ -105,18 +97,17 @@ export default function PlayerScanCodesScreen() {
         height={screenHeight / 1.4}
         data={allPlayersInGame}
         renderItem={renderItem}
-        scrollAnimationDuration={1000} // Adjust as needed (in ms)
+        scrollAnimationDuration={1000}
         onSnapToItem={(index) => {
           if (index !== activeIndex) setActiveIndex(index);
         }}
         mode="parallax"
         modeConfig={{
-          parallaxScrollingScale: 0.9, // Slightly higher for smoother scaling
-          parallaxScrollingOffset: 50, // Adjust offset to avoid snapping
-          parallaxAdjacentItemScale: 0.75, // Consistent adjacent scaling
+          parallaxScrollingScale: 0.9,
+          parallaxScrollingOffset: 50,
+          parallaxAdjacentItemScale: 0.75,
         }}
         loop={false}
-        // pagingEnabled={true}
       />
 
       <View className="continue-button w-[100%] items-center absolute bottom-10">
@@ -129,11 +120,11 @@ export default function PlayerScanCodesScreen() {
           onPress={moveToNextBarcode}
           className="bg-slate-700 items-center justify-center p-4 w-[90%] rounded-xl z-10"
         >
-          {activeIndex === allPlayersInGame.length - 1 ? (
-            <Text className="text-[16px] font-bold text-white">Start Game</Text>
-          ) : (
-            <Text className="text-[16px] font-bold text-white">Next</Text>
-          )}
+          <Text className="text-[16px] font-bold text-white">
+            {activeIndex === allPlayersInGame.length - 1
+              ? t("playersScanScreen.startGameButton")
+              : t("playersScanScreen.nextButton")}
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -1,0 +1,111 @@
+{
+  "title": "Hombre Lobo:",
+  "subtitle": "Salva el Pueblo",
+
+  "mainMenu": {
+    "newGame": "Nuevo Juego",
+    "gameRules": "Reglas del Juego",
+    "rolesAbilities": "Roles y Habilidades",
+    "goPro": "Hazte Pro",
+    "settings": "Configuraciones"
+  },
+
+  "newGameScreen": {
+    "title": "Roles",
+    "totalPlayers": "Total de Jugadores",
+    "roles": {
+      "villager": "Aldeano",
+      "werewolf": "Hombre Lobo",
+      "seer": "Vidente",
+      "doctor": "Doctor",
+      "bodyguard": "Cuerpo de Guardia",
+      "hunter": "Cazador",
+      "priest": "Sacerdote",
+      "prince": "Príncipe",
+      "witch": "Bruja",
+      "tanner": "Sastre",
+      "alphaWerewolf": "Hombre Lobo Alfa",
+      "lycan": "Lican",
+      "cursedVillager": "Aldeano Maldito",
+      "cupid": "Cupido",
+      "wolfCub": "Cachorro de Lobo"
+    },
+    "continue": "Continuar"
+  },
+
+  "playersNamesScreen": {
+    "title": "Jugadores",
+    "player": "Jugador",
+    "continue": "Continuar",
+    "warningEmptyList": "La lista de nombres de jugadores está vacía o es inválida.",
+    "messagePlayerNameMissed": "No has ingresado un nombre para el Jugador",
+    "errorConfirmingPlayers": "Ocurrió un error al confirmar a los jugadores. Por favor, intenta de nuevo."
+  },
+
+  "scanningIntroductionScreen": {
+    "title": "Introducción del Escaneo",
+    "firstMessage": "En las siguientes pantallas, el narrador del juego debe presentar individualmente un código de escaneo a cada uno de los jugadores.",
+    "secondMessage": "Con este código, los jugadores podrán ver individualmente sus roles en el juego, junto con explicaciones adicionales si es necesario.",
+    "showCodes": "Mostrar Códigos"
+  },
+
+  "playersScanScreen": {
+    "title": "Rol de Cada Jugador",
+    "subtitle": "Desliza para que cada jugador escanee su código QR con su teléfono",
+    "player": "Jugador",
+    "cardDescription": ", escanea este código y ve tu rol en el juego a través de tu teléfono.",
+    "nextButton": "Siguiente",
+    "startGameButton": "Iniciar Juego"
+  },
+
+  "viewRolesScreen": {
+    "title": "Prepárate para la Primera Noche",
+    "subtitle": "Como operador, deberás preparar al pueblo para su primera noche. Ve el rol de cada jugador a continuación.",
+    "playerColumn": "Jugador",
+    "roleColumn": "Rol",
+    "viewRolesButton": "Ver Roles",
+    "continue": "Continuar"
+  },
+
+  "nightTimeScreen": {
+    "title": "Tiempo de Noche",
+    "subtitle": "Guía al pueblo durante la noche. Despierta a cada rol mostrado a continuación, incluso si el rol es eliminado durante la noche. Aquí están los roles que deben despertarse:",
+    "continue": "Continuar"
+  },
+
+  "choosePlayerButton": "Elegir Jugador",
+  "attackedButton": "Atacado",
+  "choosePlayerToAttackLabel": "Elige un jugador para atacar",
+  "cancelButton": "Cancelar",
+
+  "UIWerewolf": {
+    "title": "Rol de Hombre Lobo",
+    "description": "- Despierta a los Hombres Lobo y deja que decidan colectivamente quién eliminar esta noche."
+  },
+  "UISeer": {
+    "title": "Rol de Vidente",
+    "description": "- Despierta al Vidente y deja que elija a alguien del pueblo. Le dirás al Vidente si la persona elegida tiene un rol bueno o malo.",
+    "viewRolesButton": "Ver Roles"
+  },
+  "UIDoctor": {
+    "doctorRoleTitle": "Rol de Doctor",
+    "doctorRoleDescription": "- Despierta al Doctor y deja que elija a una persona para proteger, incluido él mismo. No puede repetir a la misma persona dos veces seguidas.",
+    "choosePlayerToProtect": "Elegir Jugador para Proteger",
+    "choosePlayerDescription": "Selecciona un jugador para que sea protegido por el Doctor",
+    "protectedByDoctor": "Protegido"
+  },
+  "UIBodyguard": {
+    "bodyguardRoleTitle": "Rol de Guardiaespaldas",
+    "bodyguardRoleDescription": "- Despierta al Guardiaespaldas. Él elegirá a un jugador durante la primera noche para protegerlo por el resto del juego. Si este jugador es atacado dos veces, el Guardiaespaldas morirá en su lugar.",
+    "choosePlayerToProtect": "Elegir jugador para proteger",
+    "choosePlayerDescription": "Selecciona un jugador",
+    "protectedByBodyguard": "Protegido"
+  },
+  "UIPriest": {
+    "priestRoleTitle": "Rol de Sacerdote",
+    "priestRoleDescription": "- El Sacerdote puede bendecir a un jugador, protegiéndolo de un ataque de hombre lobo.",
+    "choosePlayerToBless": "Elegir Jugador para Bendecir",
+    "choosePlayerDescription": "Selecciona un jugador para bendecir y protegerlo.",
+    "blessed": "Bendecido"
+  }
+}

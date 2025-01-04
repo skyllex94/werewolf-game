@@ -1,0 +1,111 @@
+{
+  "title": "Werewolf:",
+  "subtitle": "Save the Village",
+
+  "mainMenu": {
+    "newGame": "New Game",
+    "gameRules": "Game Rules",
+    "rolesAbilities": "Roles & Abilities",
+    "goPro": "Go Pro",
+    "settings": "Settings"
+  },
+
+  "newGameScreen": {
+    "title": "Roles",
+    "totalPlayers": "Total Players",
+    "roles": {
+      "villager": "Villager",
+      "werewolf": "Werewolf",
+      "seer": "Seer",
+      "doctor": "Doctor",
+      "bodyguard": "Bodyguard",
+      "hunter": "Hunter",
+      "priest": "Priest",
+      "prince": "Prince",
+      "witch": "Witch",
+      "tanner": "Tanner",
+      "alphaWerewolf": "Alpha Werewolf",
+      "lycan": "Lycan",
+      "cursedVillager": "Cursed Villager",
+      "cupid": "Cupid",
+      "wolfCub": "Wolf Cub"
+    },
+    "continue": "Continue"
+  },
+
+  "playersNamesScreen": {
+    "title": "Players",
+    "player": "Player",
+    "continue": "Continue",
+    "warningEmptyList": "Player names list is empty or invalid.",
+    "messagePlayerNameMissed": "You have not entered a name for Player",
+    "errorConfirmingPlayers": "Error occurred while confirming players. Please try again."
+  },
+
+  "scanningIntroductionScreen": {
+    "title": "Scanning Introduction",
+    "firstMessage": "On the next screens the narrator of the game should individually present a scan code to each one of the players.",
+    "secondMessage": "With it, the players will be able to individually view their roles in the game, along with further explanations if needed.",
+    "showCodes": "Show Codes"
+  },
+
+  "playersScanScreen": {
+    "title": "Role of Each Player",
+    "subtitle": "Swipe to let each player scan their QR code with their phone",
+    "player": "Player",
+    "cardDescription": ", scan this code and view your role in the game through your phone.",
+    "nextButton": "Next",
+    "startGameButton": "Start Game"
+  },
+
+  "viewRolesScreen": {
+    "title": "Get Ready for the First Night",
+    "subtitle": "As the operator, you will get the village ready for their first night. View each player's role below.",
+    "playerColumn": "Player",
+    "roleColumn": "Role",
+    "viewRolesButton": "View Roles",
+    "continue": "Continue"
+  },
+
+  "nightTimeScreen": {
+    "title": "Night Time",
+    "subtitle": "Guide the village through the night. Wake up each role displayed below, even if the role is killed through the nights. Here are the roles to wake up:",
+    "continue": "Continue"
+  },
+
+  "choosePlayerButton": "Choose Player",
+  "attackedButton": "Attacked",
+  "choosePlayerToAttackLabel": "Choose a player to attack",
+  "cancelButton": "Cancel",
+
+  "UIWerewolf": {
+    "title": "Werewolf Role",
+    "description": "- Wake up the Werewolves and let them decide collectively who to eliminate this night."
+  },
+  "UISeer": {
+    "title": "Seer Role",
+    "description": "- Wake up the Seer and let them choose someone from the village. You will let the Seer know if the chosen person is a good or bad role.",
+    "viewRolesButton": "View Roles"
+  },
+  "UIDoctor": {
+    "doctorRoleTitle": "Doctor Role",
+    "doctorRoleDescription": "- Wake up the Doctor and let them choose a person to protect, including themselves. Cannot repeat the same person 2 times in a row.",
+    "choosePlayerToProtect": "Choose Player to Protect",
+    "choosePlayerDescription": "Select one player to be protected by the Doctor",
+    "protectedByDoctor": "Protected"
+  },
+  "UIBodyguard": {
+    "bodyguardRoleTitle": "Bodyguard Role",
+    "bodyguardRoleDescription": "Wake up the Bodyguard. He will choose a player through the first night to protect for the rest of the game. If this player gets attacked twice, the Bodyguard will die instead of them.",
+    "choosePlayerToProtect": "Choose Player to Protect",
+    "choosePlayerDescription": "Select one player",
+    "protectedByBodyguard": "Protected"
+  },
+  "UIPriest": {
+    "priestRoleTitle": "Priest Role",
+    "priestRoleDescription": "- The Priest can bless one player, protecting them from one werewolf attack.",
+    "choosePlayerToBless": "Choose Player to Bless",
+    "choosePlayerDescription": "Select one player to bless and protect them.",
+    "blessed": "Blessed"
+  }
+}

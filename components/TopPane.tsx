@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { Entypo } from "@expo/vector-icons";
 import SoundContext from "@/contexts/SoundContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTranslation } from "react-i18next";
 
 interface TopPaneProps {
   iconColor?: "black" | "white";
@@ -10,6 +11,8 @@ interface TopPaneProps {
 
 export default function TopPane({ iconColor = "black" }: TopPaneProps) {
   const { soundEnabled, setSoundEnabled } = useContext(SoundContext)!;
+
+  const { t, i18n } = useTranslation();
 
   async function clearAsyncStorage() {
     try {
@@ -20,11 +23,24 @@ export default function TopPane({ iconColor = "black" }: TopPaneProps) {
     }
   }
 
+  const switchLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+  };
+
   return (
     <View className="flex-row justify-between">
-      <TouchableOpacity className="m-3 w-10 p-2">
-        {/* onPress={clearAsyncStorage} */}
-        {/* <Entypo name="remove-user" size={24} color="white" /> */}
+      <TouchableOpacity
+        onPress={() => switchLanguage("es")}
+        className="m-3 w-10 p-2"
+      >
+        <Entypo name="globe" size={24} color="white" />
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => switchLanguage("en")}
+        className="m-3 w-10 p-2"
+      >
+        <Entypo name="globe" size={24} color="white" />
       </TouchableOpacity>
 
       <View className="justify-start items-center bg-transparent">
@@ -32,13 +48,13 @@ export default function TopPane({ iconColor = "black" }: TopPaneProps) {
           style={{ fontFamily: "Bronzetti_SC_Condensed", fontSize: 34 }}
           className="text-[24px] text-slate-300 font-bold my-1"
         >
-          Werewolf:
+          {t("title")}
         </Text>
         <Text
           style={{ fontFamily: "Bronzetti_SC_Condensed", fontSize: 26 }}
           className="text-[24px] font-bold text-gray-400"
         >
-          Save the Village
+          {t("subtitle")}
         </Text>
       </View>
 

@@ -5,17 +5,19 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
-  Image,
 } from "react-native";
 import React, { useState } from "react";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { showMessage } from "react-native-flash-message";
 import * as ImagePicker from "expo-image-picker";
+import { useTranslation } from "react-i18next";
 
 export default function PlayersNames() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { total_players, characters_data } = params;
+
+  const { t } = useTranslation();
 
   // const [playerPhoto, setPlayerPhoto] = useState<string | null>(null);
 
@@ -38,7 +40,7 @@ export default function PlayersNames() {
     try {
       // Check if playerNames is valid
       if (!playerNames || playerNames.length === 0) {
-        console.log("Player names list is empty or invalid.");
+        console.log(t("playersNamesScreen.warningEmptyList"));
         return;
       }
 
@@ -46,7 +48,9 @@ export default function PlayersNames() {
       for (let i = 0; i < playerNames.length; i++) {
         if (!playerNames[i] || playerNames[i].trim() === "") {
           showMessage({
-            message: `You have not entered a name for Player ${i + 1}.`,
+            message: `${t("playersNamesScreen.messagePlayerNameMissed")} ${
+              i + 1
+            }.`,
             type: "danger",
           });
           return;
@@ -56,15 +60,12 @@ export default function PlayersNames() {
       console.log("Error while confirming players' names: ", err);
     }
 
-    console.log("All players' names are filled in:", playerNames);
-
     try {
     } catch (err) {
       showMessage({
-        message: `Error occurred while confirming players. Please try again.`,
+        message: `${t("playersNamesScreen.errorConfirmingPlayers")}`,
         type: "danger",
       });
-      console.error("Error while confirming players: ", err);
     }
 
     router.push({
@@ -100,7 +101,7 @@ export default function PlayersNames() {
   return (
     <SafeAreaView className="flex-1 bg-gray-900">
       <Text className="text-center font-bold text-[20px] text-white py-4">
-        Players ({players})
+        {t("playersNamesScreen.title")} ({players})
       </Text>
 
       <ScrollView className="mb-20" showsVerticalScrollIndicator={false}>
@@ -119,7 +120,7 @@ export default function PlayersNames() {
               <View className="w-[90%] h-12">
                 <TextInput
                   className="w-full h-full pl-3 rounded-xl bg-gray-800 text-white border border-gray-600"
-                  placeholder={`Player ${idx + 1}`}
+                  placeholder={`${t("playersNamesScreen.player")} ${idx + 1}`}
                   placeholderTextColor="#B0B0B0"
                   value={playerNames[idx]}
                   onChangeText={(text) => playerNamesChange(idx, text)}
@@ -135,7 +136,9 @@ export default function PlayersNames() {
           onPress={confirmPlayers}
           className="bg-gray-700 items-center justify-center p-4 w-[90%] rounded-xl"
         >
-          <Text className="text-[16px] font-bold text-white">Continue</Text>
+          <Text className="text-[16px] font-bold text-white">
+            {t("playersNamesScreen.continue")}
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

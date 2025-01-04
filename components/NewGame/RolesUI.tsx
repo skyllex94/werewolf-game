@@ -12,6 +12,7 @@ import {
 } from "../../components/NewGame/NightRolesUI";
 import NewGameContext from "@/contexts/NewGameContext";
 import { ScrollView } from "react-native-gesture-handler";
+import { useTranslation } from "react-i18next";
 
 interface RolesUIProps {
   isFirstNight: boolean;
@@ -21,17 +22,37 @@ interface RolesUIProps {
 const RolesUI: React.FC<RolesUIProps> = ({ isFirstNight, soundEnabled }) => {
   const { allPlayersInGame } = useContext(NewGameContext);
 
+  const { t } = useTranslation();
+
+  const roles = {
+    Villager: t("newGameScreen.roles.villager"),
+    Werewolf: t("newGameScreen.roles.werewolf"),
+    Seer: t("newGameScreen.roles.seer"),
+    Doctor: t("newGameScreen.roles.doctor"),
+    Bodyguard: t("newGameScreen.roles.bodyguard"),
+    Hunter: t("newGameScreen.roles.hunter"),
+    Priest: t("newGameScreen.roles.priest"),
+    Prince: t("newGameScreen.roles.prince"),
+    Witch: t("newGameScreen.roles.witch"),
+    Tanner: t("newGameScreen.roles.tanner"),
+    AlphaWerewolf: t("newGameScreen.roles.alphaWerewolf"),
+    Lycan: t("newGameScreen.roles.lycan"),
+    CursedVillager: t("newGameScreen.roles.cursedVillager"),
+    Cupid: t("newGameScreen.roles.cupid"),
+    WolfCub: t("newGameScreen.roles.wolfCub"),
+  };
+
   // Mapping roles to their corresponding UI component
   const roleComponents: { [key: string]: any } = {
-    Werewolf: WakeWerewolfUI,
-    Seer: WakeSeerUI,
-    Doctor: WakeDoctorUI,
-    Witch: WakeWitchUI,
-    "Alpha Werewolf": AlphaWerewolfUI,
+    [roles.Werewolf]: WakeWerewolfUI,
+    [roles.Seer]: WakeSeerUI,
+    [roles.Doctor]: WakeDoctorUI,
+    [roles.Witch]: WakeWitchUI,
+    [roles.AlphaWerewolf]: AlphaWerewolfUI,
     // First night only roles
-    Bodyguard: isFirstNight ? WakeBodyguardUI : null,
-    Priest: isFirstNight ? WakePriestUI : null,
-    Cupid: isFirstNight ? CupidUI : null,
+    [roles.Bodyguard]: isFirstNight ? WakeBodyguardUI : null,
+    [roles.Priest]: isFirstNight ? WakePriestUI : null,
+    [roles.Cupid]: isFirstNight ? CupidUI : null,
   };
 
   // Get unique roles, ensuring Werewolf is first and Witch is last if present

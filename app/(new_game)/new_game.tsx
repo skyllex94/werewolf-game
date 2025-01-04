@@ -5,14 +5,18 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Entypo, FontAwesome, Fontisto } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
 import useRevenueCat from "@/hooks/RevenueCat";
+import { useTranslation } from "react-i18next";
 
 export default function ChooseRoles() {
   const { isProMember } = useRevenueCat();
   const router = useRouter();
 
+  // Translation state
+  const { t } = useTranslation();
+
   const roles = [
     {
-      name: "Villager",
+      name: t("newGameScreen.roles.villager"),
       image: require("../../assets/images/characters/villager.jpeg"),
       min: 3,
       max: 25,
@@ -21,7 +25,7 @@ export default function ChooseRoles() {
       info: "/villager",
     },
     {
-      name: "Werewolf",
+      name: t("newGameScreen.roles.werewolf"),
       image: require("../../assets/images/characters/werewolf.jpeg"),
       min: 1,
       max: 4,
@@ -30,7 +34,7 @@ export default function ChooseRoles() {
       info: "/werewolf",
     },
     {
-      name: "Seer",
+      name: t("newGameScreen.roles.seer"),
       image: require("../../assets/images/characters/seer.jpeg"),
       min: 0,
       max: 1,
@@ -39,7 +43,7 @@ export default function ChooseRoles() {
       info: "/seer",
     },
     {
-      name: "Doctor",
+      name: t("newGameScreen.roles.doctor"),
       image: require("../../assets/images/characters/doctor.jpg"),
       min: 0,
       max: 1,
@@ -48,7 +52,7 @@ export default function ChooseRoles() {
       info: "/doctor",
     },
     {
-      name: "Bodyguard",
+      name: t("newGameScreen.roles.bodyguard"),
       image: require("../../assets/images/characters/bodyguard.jpeg"),
       min: 0,
       max: 1,
@@ -57,7 +61,7 @@ export default function ChooseRoles() {
       info: "/bodyguard",
     },
     {
-      name: "Hunter",
+      name: t("newGameScreen.roles.hunter"),
       image: require("../../assets/images/characters/hunter.jpg"),
       min: 0,
       max: 1,
@@ -66,7 +70,7 @@ export default function ChooseRoles() {
       info: "/hunter",
     },
     {
-      name: "Priest",
+      name: t("newGameScreen.roles.priest"),
       image: require("../../assets/images/characters/priest.jpg"),
       min: 0,
       max: 1,
@@ -75,7 +79,7 @@ export default function ChooseRoles() {
       info: "/priest",
     },
     {
-      name: "Prince",
+      name: t("newGameScreen.roles.prince"),
       image: require("../../assets/images/characters/prince.jpeg"),
       min: 0,
       max: 1,
@@ -84,7 +88,7 @@ export default function ChooseRoles() {
       info: "/prince",
     },
     {
-      name: "Witch",
+      name: t("newGameScreen.roles.witch"),
       image: require("../../assets/images/characters/witch.jpeg"),
       min: 0,
       max: 1,
@@ -93,7 +97,7 @@ export default function ChooseRoles() {
       info: "/witch",
     },
     {
-      name: "Tanner",
+      name: t("newGameScreen.roles.tanner"),
       image: require("../../assets/images/characters/lurker3.jpeg"),
       min: 0,
       max: 1,
@@ -102,7 +106,7 @@ export default function ChooseRoles() {
       info: "/tanner",
     },
     {
-      name: "Alpha Werewolf",
+      name: t("newGameScreen.roles.alphaWerewolf"),
       image: require("../../assets/images/characters/alpha-werewolf.jpg"),
       min: 0,
       max: 1,
@@ -111,7 +115,7 @@ export default function ChooseRoles() {
       info: "/alpha_werewolf",
     },
     {
-      name: "Lycan",
+      name: t("newGameScreen.roles.lycan"),
       image: require("../../assets/images/characters/lycan.jpeg"),
       min: 0,
       max: 2,
@@ -120,7 +124,7 @@ export default function ChooseRoles() {
       info: "/lycan",
     },
     {
-      name: "Cursed Villager",
+      name: t("newGameScreen.roles.cursedVillager"),
       image: require("../../assets/images/characters/cursed-villager.jpeg"),
       min: 0,
       max: 2,
@@ -129,7 +133,7 @@ export default function ChooseRoles() {
       info: "/cursed_villager",
     },
     {
-      name: "Cupid",
+      name: t("newGameScreen.roles.cupid"),
       image: require("../../assets/images/characters/cupid.jpeg"),
       min: 0,
       max: 1,
@@ -138,7 +142,7 @@ export default function ChooseRoles() {
       info: "/cupid",
     },
     {
-      name: "Wolf Cub",
+      name: t("newGameScreen.roles.wolfCub"),
       image: require("../../assets/images/characters/wolf-cub.jpeg"),
       min: 0,
       max: 1,
@@ -212,7 +216,7 @@ export default function ChooseRoles() {
         )}
 
         <Text className="text-[20px] font-bold text-white">
-          Roles ({playerCount})
+          {t("newGameScreen.title")} ({playerCount})
         </Text>
 
         <View className="w-10" />
@@ -305,7 +309,9 @@ export default function ChooseRoles() {
         asChild
       >
         <TouchableOpacity className="bg-gray-700 items-center justify-center absolute bottom-10 p-4 w-[90%] mx-3 rounded-xl">
-          <Text className="text-[16px] font-bold text-white">Continue</Text>
+          <Text className="text-[16px] font-bold text-white">
+            {t("newGameScreen.continue")}
+          </Text>
         </TouchableOpacity>
       </Link>
     </SafeAreaView>

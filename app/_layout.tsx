@@ -19,6 +19,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // Splash screen loaded from SplashContext
 import { SplashProvider } from "@/contexts/SplashContext";
 
+// Translation imports
+import { I18nextProvider } from "react-i18next";
+import i18n from "./../translations/i18n";
+
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -93,102 +97,104 @@ function RootLayoutNav({ appFirstOpened }: RootLayoutNavTypes) {
 
   return (
     <GestureHandlerRootView className="flex-1">
-      <SoundProvider>
-        <SplashProvider>
-          <BottomSheetModalProvider>
-            <NewGameContext.Provider
-              value={{
-                allPlayersInGame,
-                setAllPlayersInGame,
-                eliminatedPlayers,
-                setEliminatedPlayers,
-                selectedPlayersForElimination,
-                setSelectedPlayersForElimination,
-                playersInGame,
-                setPlayersInGame,
-                // Witch state
-                witchProtectionUsed,
-                setWitchProtectionUsed,
-                // Alpha Werewolf
-                convertedByAlphaWerewolf,
-                setConvertedByAlphaWerewolf,
-                // Cupid state
-                cupidBond,
-                setCupidBond,
-              }}
-            >
-              <ThemeProvider value={DefaultTheme}>
-                <Stack screenOptions={{ headerShown: false }}>
-                  <Stack.Screen
-                    name="index"
-                    options={{ gestureEnabled: false }}
-                    initialParams={{ appFirstOpened }}
-                  />
-                  <Stack.Screen
-                    name="main"
-                    options={{ gestureEnabled: false }}
-                  />
+      <I18nextProvider i18n={i18n}>
+        <SoundProvider>
+          <SplashProvider>
+            <BottomSheetModalProvider>
+              <NewGameContext.Provider
+                value={{
+                  allPlayersInGame,
+                  setAllPlayersInGame,
+                  eliminatedPlayers,
+                  setEliminatedPlayers,
+                  selectedPlayersForElimination,
+                  setSelectedPlayersForElimination,
+                  playersInGame,
+                  setPlayersInGame,
+                  // Witch state
+                  witchProtectionUsed,
+                  setWitchProtectionUsed,
+                  // Alpha Werewolf
+                  convertedByAlphaWerewolf,
+                  setConvertedByAlphaWerewolf,
+                  // Cupid state
+                  cupidBond,
+                  setCupidBond,
+                }}
+              >
+                <ThemeProvider value={DefaultTheme}>
+                  <Stack screenOptions={{ headerShown: false }}>
+                    <Stack.Screen
+                      name="index"
+                      options={{ gestureEnabled: false }}
+                      initialParams={{ appFirstOpened }}
+                    />
+                    <Stack.Screen
+                      name="main"
+                      options={{ gestureEnabled: false }}
+                    />
 
-                  {/* New game screens */}
-                  <Stack.Screen
-                    name="(new_game)/new_game"
-                    options={{ presentation: "card" }}
-                  />
-                  <Stack.Screen name="(new_game)/players_names" />
-                  <Stack.Screen name="(new_game)/scan_intro" />
-                  <Stack.Screen name="(new_game)/players_scans" />
-                  <Stack.Screen name="(new_game)/view_roles" />
-                  <Stack.Screen
-                    name="(new_game)/roles_modal"
-                    options={{ presentation: "modal" }}
-                  />
-                  <Stack.Screen
-                    name="(new_game)/game_winner"
-                    options={{ gestureEnabled: false }}
-                  />
-                  <Stack.Screen
-                    name="(new_game)/night_time"
-                    options={{ gestureEnabled: false }}
-                  />
-                  <Stack.Screen
-                    name="(new_game)/day_time"
-                    options={{ gestureEnabled: false }}
-                  />
-                  <Stack.Screen
-                    name="(new_game)/game_menu"
-                    options={{ presentation: "modal" }}
-                  />
-                  <Stack.Screen
-                    name="shared/paywall"
-                    options={{ presentation: "modal" }}
-                  />
+                    {/* New game screens */}
+                    <Stack.Screen
+                      name="(new_game)/new_game"
+                      options={{ presentation: "card" }}
+                    />
+                    <Stack.Screen name="(new_game)/players_names" />
+                    <Stack.Screen name="(new_game)/scan_intro" />
+                    <Stack.Screen name="(new_game)/players_scans" />
+                    <Stack.Screen name="(new_game)/view_roles" />
+                    <Stack.Screen
+                      name="(new_game)/roles_modal"
+                      options={{ presentation: "modal" }}
+                    />
+                    <Stack.Screen
+                      name="(new_game)/game_winner"
+                      options={{ gestureEnabled: false }}
+                    />
+                    <Stack.Screen
+                      name="(new_game)/night_time"
+                      options={{ gestureEnabled: false }}
+                    />
+                    <Stack.Screen
+                      name="(new_game)/day_time"
+                      options={{ gestureEnabled: false }}
+                    />
+                    <Stack.Screen
+                      name="(new_game)/game_menu"
+                      options={{ presentation: "modal" }}
+                    />
+                    <Stack.Screen
+                      name="shared/paywall"
+                      options={{ presentation: "modal" }}
+                    />
 
-                  <Stack.Screen
-                    name="shared/terms"
-                    options={({ route }: any) => ({
-                      presentation:
-                        route.params?.presentation === "modal"
-                          ? "modal"
-                          : "card",
-                    })}
-                  />
-                  <Stack.Screen
-                    name="shared/privacy_policy"
-                    options={({ route }: any) => ({
-                      presentation:
-                        route.params?.presentation === "modal"
-                          ? "modal"
-                          : "card",
-                    })}
-                  />
-                </Stack>
+                    <Stack.Screen
+                      name="shared/terms"
+                      options={({ route }: any) => ({
+                        presentation:
+                          route.params?.presentation === "modal"
+                            ? "modal"
+                            : "card",
+                      })}
+                    />
+                    <Stack.Screen
+                      name="shared/privacy_policy"
+                      options={({ route }: any) => ({
+                        presentation:
+                          route.params?.presentation === "modal"
+                            ? "modal"
+                            : "card",
+                      })}
+                    />
+                  </Stack>
 
-                <FlashMessage position="top" />
-              </ThemeProvider>
-            </NewGameContext.Provider>
-          </BottomSheetModalProvider>
-        </SplashProvider>
-      </SoundProvider>
+                  <FlashMessage position="top" />
+                </ThemeProvider>
+              </NewGameContext.Provider>
+            </BottomSheetModalProvider>
+          </SplashProvider>
+        </SoundProvider>
+      </I18nextProvider>
     </GestureHandlerRootView>
   );
 }

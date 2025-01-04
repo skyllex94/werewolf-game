@@ -8,11 +8,14 @@ import {
 } from "@expo/vector-icons";
 import { Link, Href } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
 
 export default function MainMenu() {
+  const { t } = useTranslation();
+
   const menuItems = [
     {
-      name: "New Game",
+      name: t("mainMenu.newGame"),
       icon: (
         <Image
           className="w-[18px] h-[18px]"
@@ -22,9 +25,8 @@ export default function MainMenu() {
       ),
       link: "/new_game",
     },
-
     {
-      name: "Game Rules",
+      name: t("mainMenu.gameRules"),
       icon: (
         <MaterialCommunityIcons
           name="ruler-square-compass"
@@ -35,17 +37,17 @@ export default function MainMenu() {
       link: "/rules",
     },
     {
-      name: "Roles & Abilities",
+      name: t("mainMenu.rolesAbilities"),
       icon: <Entypo name="users" size={15} color="black" />,
       link: "/roles",
     },
     {
-      name: "Go Pro",
+      name: t("mainMenu.goPro"),
       icon: <MaterialIcons name="workspace-premium" size={18} color="black" />,
       link: "/shared/paywall",
     },
     {
-      name: "Settings",
+      name: t("mainMenu.settings"),
       icon: <Ionicons name="settings" size={16} color="black" />,
       link: "/settings",
     },

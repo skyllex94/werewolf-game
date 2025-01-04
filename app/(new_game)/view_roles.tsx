@@ -5,6 +5,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import NewGameContext from "@/contexts/NewGameContext";
 import SoundContext from "@/contexts/SoundContext";
 
+import { useTranslation } from "react-i18next";
+
 interface Item {
   order: number;
   name: string;
@@ -16,6 +18,8 @@ export default function OperatorViewRoles() {
   const router = useRouter();
   const params = useLocalSearchParams();
   const { players_roles } = params;
+
+  const { t } = useTranslation();
 
   const [rolesShown, setRolesShown] = useState<boolean>(false);
   const { setSoundtrackEnabled } = useContext(SoundContext)!;
@@ -54,6 +58,8 @@ export default function OperatorViewRoles() {
     ? JSON.parse(players_roles as string)
     : [];
 
+  const rolesTranslations = t("newGameScreen.roles");
+
   function showAllRoles() {
     setRolesShown(true);
   }
@@ -82,20 +88,21 @@ export default function OperatorViewRoles() {
 
       {/* Heading Text */}
       <Text className="text-center font-bold text-[20px] py-4 text-white">
-        Get Ready for the First Night
+        {t("viewRolesScreen.title")}
       </Text>
       <Text className="text-center font-light text-[15px] px-10 text-gray-300">
-        As the operator, you will get the village ready for their first night.
-        View each player's role below.
+        {t("viewRolesScreen.subtitle")}
       </Text>
 
       {/* Table Header with vertical separator */}
       <View className="flex-row items-center bg-gray-600 m-5 p-4 rounded-2xl">
         <Text className="font-bold text-left flex-1 text-gray-200">
-          Player:
+          {t("viewRolesScreen.playerColumn")}
         </Text>
         <View className="w-[0px] bg-gray-300 h-full mx-4" />
-        <Text className="font-bold text-left flex-1 text-gray-200">Role:</Text>
+        <Text className="font-bold text-left flex-1 text-gray-200">
+          {t("viewRolesScreen.roleColumn")}
+        </Text>
       </View>
 
       {rolesShown ? (
@@ -128,7 +135,9 @@ export default function OperatorViewRoles() {
             className="mx-5 p-3 bg-blue-600 rounded-xl w-[40%]"
             onPress={showAllRoles}
           >
-            <Text className="text-center text-white">View Roles</Text>
+            <Text className="text-center text-white">
+              {t("viewRolesScreen.viewRolesButton")}
+            </Text>
           </TouchableOpacity>
         </View>
       )}
@@ -139,7 +148,9 @@ export default function OperatorViewRoles() {
           onPress={toFirstNight}
           className="bg-slate-700 items-center justify-center p-4 w-[90%] rounded-xl"
         >
-          <Text className="text-[16px] font-bold text-white">Continue</Text>
+          <Text className="text-[16px] font-bold text-white">
+            {t("viewRolesScreen.continue")}
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

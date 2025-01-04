@@ -10,12 +10,15 @@ import NightEliminationBottomSheet from "@/components/NewGame/NightEliminationBS
 import { StatusBar } from "expo-status-bar";
 import NewGameContext from "@/contexts/NewGameContext";
 import { useLocalSearchParams } from "expo-router";
+import { useTranslation } from "react-i18next";
 
 export default function NightTime() {
   // Router params
   const params = useLocalSearchParams();
   const { firstNight } = params;
   const isFirstNight = JSON.parse(firstNight as string);
+
+  const { t } = useTranslation();
 
   // Context states
   const { playersInGame, setPlayersInGame } = useContext(NewGameContext);
@@ -56,12 +59,10 @@ export default function NightTime() {
       <TopPaneInGame rolesModalDarkMode="true" />
 
       <Text className="text-center text-white font-bold text-[20px] mt-8 pb-4">
-        Night Time
+        {t("nightTimeScreen.title")}
       </Text>
       <Text className="text-start text-white text-[14px] font-light px-6 mb-3">
-        Guide the village through the night. Wake up each role displayed below,
-        even if the role is killed through the nights. Here are the roles to
-        wake up:
+        {t("nightTimeScreen.subtitle")}
       </Text>
 
       {/* Displaying all the roles */}
@@ -79,7 +80,9 @@ export default function NightTime() {
           className="bg-gray-800 items-center justify-center p-4 w-[90%] rounded-xl"
           onPress={openEliminatedBottomSheet}
         >
-          <Text className="text-[16px] font-bold text-white">Continue</Text>
+          <Text className="text-[16px] font-bold text-white">
+            {t("nightTimeScreen.continue")}
+          </Text>
         </Pressable>
       </View>
     </SafeAreaView>
