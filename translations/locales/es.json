@@ -77,6 +77,9 @@
   "attackedButton": "Atacado",
   "choosePlayerToAttackLabel": "Elige un jugador para atacar",
   "cancelButton": "Cancelar",
+  "yesButton": "Sí",
+  "noButton": "No",
+  "continueButton": "Continuar",
 
   "UIWerewolf": {
     "title": "Rol de Hombre Lobo",
@@ -107,5 +110,113 @@
     "choosePlayerToBless": "Elegir Jugador para Bendecir",
     "choosePlayerDescription": "Selecciona un jugador para bendecir y protegerlo.",
     "blessed": "Bendecido"
+  },
+  "UIWitch": {
+    "roleTitle": "Rol de la Bruja",
+    "roleDescription": "La Bruja puede salvar a un jugador de la muerte o elegir matar a un jugador una vez por juego.",
+    "saveButtonDefault": "Salvar a un jugador",
+    "killButtonDefault": "Matar a un jugador",
+    "savedButtonText": "Salvado",
+    "attackedButtonText": "Atacado",
+    "chooseSaveTitle": "Elegir jugador para salvar",
+    "chooseSaveDescription": "Selecciona un jugador para salvar de la muerte.",
+    "chooseKillTitle": "Elegir jugador para matar",
+    "chooseKillDescription": "Selecciona un jugador para atacar."
+  },
+  "UIAlphaWerewolf": {
+    "roleTitle": "Rol de Hombre Lobo Alfa",
+    "roleDescription": "El Hombre Lobo Alfa puede convertir a un aldeano en un Hombre Lobo cada noche.",
+    "chooseTitle": "Elige jugador para convertir",
+    "chooseDescription": "Selecciona un jugador para convertirlo en Hombre Lobo.",
+    "chooseButtonText": "Elige un jugador",
+    "convertedText": "Convertido: {{playerName}}",
+    "confirmTitle": "Convertir a Hombre Lobo",
+    "confirmDescription": "¿Estás seguro de que quieres convertir a {{playerName}} en un Hombre Lobo?",
+    "successTitle": "¡Éxito!",
+    "successDescription": "¡{{playerName}} ha sido convertido en un Hombre Lobo!"
+  },
+  "UICupid": {
+    "roleTitle": "Rol de Cupido",
+    "roleDescription": "Despierta a Cupido. Elige dos jugadores para vincularse entre sí. Si uno muere, el otro también morirá.",
+    "chooseFirstTitle": "Elegir Primer Jugador",
+    "chooseFirstDescription": "Selecciona el primer jugador para vincular.",
+    "chooseSecondTitle": "Elegir Segundo Jugador",
+    "chooseSecondDescription": "Selecciona el segundo jugador para vincular.",
+    "confirmTitle": "Confirmar Vinculación",
+    "confirmDescription": "¿Quieres vincular a {{player1}} y {{player2}}?",
+    "successTitle": "Vinculación Creada",
+    "successDescription": "¡{{player1}} y {{player2}} ahora están vinculados por Cupido para el resto del juego!",
+    "bondedText": "Vinculados: {{player1}} y {{player2}}",
+    "chooseButtonText": "Elegir Jugadores"
+  },
+
+  "confirmButton": "Confirmar",
+  "showAllButton": "Todo",
+  "showLessButton": "Menos",
+  "NightBottomSheet": {
+    "anyoneEliminated": "¿Alguien fue eliminado esta noche?",
+    "noRoleEliminated": "Sin rol eliminado",
+    "cupidTitle": "El vínculo de Cupido",
+    "cupidMessage": "{{playerName}} está vinculado por Cupido con {{bondedName}}. Ambos han sido seleccionados para eliminación.",
+    "hunterTitle": "¡El cazador fue eliminado!",
+    "hunterMessage": "El cazador puede eliminar a otro jugador.",
+    "playerSelected": "{{playerName}} ha sido seleccionado para eliminación.",
+    "confirmElimination": {
+      "title": "¿Listo para el día?",
+      "message": "Jugadores: {{names}} serán eliminados del juego.",
+      "noElimination": "Ningún jugador será eliminado del juego.",
+      "confirm": "Sí",
+      "cancel": "No",
+      "cursedVillagerTitle": "Aldeano maldito transformado",
+      "cursedVillagerMessage": "{{name}} era un Aldeano Maldito y ahora se ha transformado en un Hombre Lobo."
+    }
+  },
+
+  "dayTime": {
+    "title": "Tiempo de Día",
+    "description1": "El pueblo tiene 5 minutos para decidir si pueden ponerse de acuerdo sobre un jugador para votar.",
+    "description2": "Debe haber al menos la mitad del pueblo de acuerdo en una sola persona para que esa persona sea votada.",
+    "hunterEliminatedTitle": "¡El cazador fue eliminado!",
+    "hunterEliminatedMessage": "El cazador puede eliminar a otro jugador.",
+    "playerSelected": "{{name}} ha sido seleccionado para la eliminación.",
+    "cancel": "Cancelar",
+    "princeProtectedTitle": "Príncipe protegido",
+    "princeProtectedMessage": "El Príncipe no puede ser eliminado durante el día ya que el Pueblo no puede votarlo.",
+    "confirmElimination": {
+      "readyForNight": "¿Listo para la noche?",
+      "willBeRemoved": "serán eliminados del juego.",
+      "noPlayersRemoved": "Ningún jugador será eliminado del juego.",
+      "yes": "Sí",
+      "no": "No",
+      "player": "Jugador",
+      "players": "Jugadores",
+      "wolfCubKilled": "Cachorro Lobo Muerto",
+      "wolfCubMessage": "El Cachorro Lobo ha sido asesinado. Los hombres lobo obtienen una muerte extra la próxima noche. No dejes que el Pueblo se entere de que hubo un Cachorro Lobo muerto, simplemente deja que los hombres lobo eliminen a otro jugador."
+    },
+    "eliminatedThisDay": "¿Alguien eliminado hoy?",
+    "noRoleEliminated": "Ningún Rol Eliminado"
+  },
+
+  "winningScreen": {
+    "villageWins": "¡La Villa Gana!",
+    "werewolvesWin": "¡Los Hombres Lobo Ganan!",
+    "tannerWins": "¡El Tanner Gana!",
+    "villageVictoryDescription": "Felicidades a toda la Villa por descubrir quiénes eran los malos. Pudieron eliminarlos con éxito en este juego.",
+    "werewolvesVictoryDescription": "Buen trabajo Hombres Lobo, pudieron eliminar con éxito a la Villa y pasar desapercibidos.",
+    "tannerVictoryDescription": "¡El Tanner ha sido eliminado! El Tanner gana por lograr su objetivo de ser votado fuera por la Villa.",
+    "viewAllRoles": "Ver Todos los Roles",
+    "mainMenu": "Menú Principal"
+  },
+
+  "viewRolesModal": {
+    "rolesOfPlayers": "Roles de Cada Jugador",
+    "player": "Jugador",
+    "role": "Rol",
+    "back": "Atrás"
+  },
+
+  "gameMenu": {
+    "quitGame": "Salir del Juego",
+    "goBack": "Volver"
   }
 }

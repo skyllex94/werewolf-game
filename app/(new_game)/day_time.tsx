@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import { useTranslation } from "react-i18next";
 import TopPaneInGame from "@/components/TopPaneInGame";
 
 import CircularProgress from "react-native-circular-progress-indicator";
@@ -13,6 +14,7 @@ import SoundContext from "@/contexts/SoundContext";
 
 export default function DayTimeScreen() {
   const { setDaySoundsEnabled } = useContext(SoundContext)!;
+  const { t } = useTranslation();
 
   // Bottom Sheet setup
   const eliminatedRoleBSRef = useRef<any>(null);
@@ -40,16 +42,13 @@ export default function DayTimeScreen() {
       }, 1000);
     }
 
-    // Only clear the timer if it exists
     if (time === 0 && timer) clearInterval(timer);
 
-    // Clean up the timer on unmount if it exists
     return () => {
       if (timer) clearInterval(timer);
     };
   }, [time, isPaused]);
 
-  // Handle play/pause toggle
   const togglePausePlay = () => {
     setIsPaused((prev) => !prev);
 
@@ -74,14 +73,14 @@ export default function DayTimeScreen() {
       />
 
       {/* Heading Text */}
-      <Text className="text-center font-bold text-[20px] py-4">Day Time</Text>
+      <Text className="text-center font-bold text-[20px] py-4">
+        {t("dayTime.title")}
+      </Text>
       <Text className="text-start font-light text-[15px] px-10 mb-1">
-        The Village has 5 minutes to decide whether they can agree on a player
-        to vote out.
+        {t("dayTime.description1")}
       </Text>
       <Text className="text-start font-light text-[15px] px-10">
-        There needs to be at least half of the Village to agree on a single
-        person in order for that person to be voted out.
+        {t("dayTime.description2")}
       </Text>
 
       <View className="timer items-center">
@@ -91,7 +90,7 @@ export default function DayTimeScreen() {
           style={{
             width: 260,
             height: 260,
-            borderRadius: 130, // full circle rounding
+            borderRadius: 130,
             overflow: "hidden",
           }}
         >
@@ -112,15 +111,13 @@ export default function DayTimeScreen() {
             }}
           />
 
-          {/* Time Display */}
           <Text
-            className="text-white absolute " // text-slate-200
+            className="text-white absolute"
             style={{ fontSize: 40, fontWeight: "bold", top: "30%" }}
           >
             {`${Math.floor(time / 60)}:${String(time % 60).padStart(2, "0")}`}
           </Text>
 
-          {/* Pause/Play Button */}
           <View
             style={{ position: "absolute", bottom: 70, alignItems: "center" }}
           >
@@ -140,19 +137,17 @@ export default function DayTimeScreen() {
         </BlurView>
       </View>
 
-      {/* Bottom Sheet Role Elimination  */}
       <DayEliminationBottomSheet
         ref={eliminatedRoleBSRef}
         setDaySoundsEnabled={setDaySoundsEnabled}
       />
 
-      {/* Continue Button */}
       <View className="continue-button w-[100%] items-center absolute bottom-10 z-[-1]">
         <TouchableOpacity
           className="bg-slate-400 items-center justify-center p-4 w-[90%] rounded-xl z-10"
           onPress={openEliminatedBottomSheet}
         >
-          <Text className="text-[16px] font-bold">Continue</Text>
+          <Text className="text-[16px] font-bold">{t("continueButton")}</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

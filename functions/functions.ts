@@ -11,14 +11,14 @@ export function shuffleArray(array: any[]) {
 
 // Function to randomly assign roles to players
 export function assignRolesToPlayers(
-  characters: any[],
+  characters: { type: string; amount: number; name: string }[],
   playersNames: string[]
 ) {
   console.log("characters:", characters, typeof characters);
-  console.log("playersNames:", playersNames, typeof characters);
+  console.log("playersNames:", playersNames, typeof playersNames);
 
-  // Create a pool of character types based on the `amount` for each type
-  let characterPool: string[] = [];
+  // Create a pool of characters based on the `amount` for each type
+  let characterPool: { type: string; name: string }[] = [];
 
   // Define a mapping of roles to links
   const roleLinks: { [key: string]: string } = {
@@ -66,25 +66,27 @@ export function assignRolesToPlayers(
     "Wolf Cub": "bad",
   };
 
-  // Ensure characters is a valid array
-  characters.forEach((character: { type: string; amount: number }) => {
+  // Populate the character pool based on `amount`
+  characters.forEach((character) => {
     for (let i = 0; i < character.amount; i++) {
-      characterPool.push(character.type);
+      characterPool.push({ type: character.type, name: character.name });
     }
   });
 
   // Shuffle the pool to randomize the assignment
   characterPool = shuffleArray(characterPool);
+  console.log("characterPool:", characterPool);
 
-  // Map each player to a character type from the shuffled pool
+  // Map each player to a character from the shuffled pool
   const playerRoles = playersNames.map((player: string, idx: number) => {
     const role = characterPool[idx];
     return {
       name: player,
       order: idx + 1,
-      role: role,
-      link: roleLinks[role] || "https://example.com/no-role",
-      type: roleTypes[role] || "good",
+      role: role.type,
+      role_name: role.name,
+      link: roleLinks[role.type] || "https://example.com/no-role",
+      type: roleTypes[role.type] || "good",
     };
   });
 

@@ -12,6 +12,7 @@ interface Item {
   name: string;
   link: string;
   role: string;
+  role_name: string;
 }
 
 export default function OperatorViewRoles() {
@@ -58,8 +59,6 @@ export default function OperatorViewRoles() {
     ? JSON.parse(players_roles as string)
     : [];
 
-  const rolesTranslations = t("newGameScreen.roles");
-
   function showAllRoles() {
     setRolesShown(true);
   }
@@ -73,6 +72,8 @@ export default function OperatorViewRoles() {
       params: { firstNight: "true" },
     });
   }
+
+  console.log(allPlayersInGame);
 
   return (
     <SafeAreaView className="flex-1 h-[100%] bg-gray-900">
@@ -123,7 +124,7 @@ export default function OperatorViewRoles() {
               </Text>
               <View className="w-[0px] bg-gray-600 h-full mx-4" />
               <Text className="text-left flex-1 text-gray-200">
-                {player.role}
+                {player.role_name}
               </Text>
             </View>
           ))}

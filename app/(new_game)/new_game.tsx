@@ -17,6 +17,7 @@ export default function ChooseRoles() {
   const roles = [
     {
       name: t("newGameScreen.roles.villager"),
+      role: "Villager",
       image: require("../../assets/images/characters/villager.jpeg"),
       min: 3,
       max: 25,
@@ -26,6 +27,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.werewolf"),
+      role: "Werewolf",
       image: require("../../assets/images/characters/werewolf.jpeg"),
       min: 1,
       max: 4,
@@ -35,6 +37,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.seer"),
+      role: "Seer",
       image: require("../../assets/images/characters/seer.jpeg"),
       min: 0,
       max: 1,
@@ -44,6 +47,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.doctor"),
+      role: "Doctor",
       image: require("../../assets/images/characters/doctor.jpg"),
       min: 0,
       max: 1,
@@ -53,6 +57,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.bodyguard"),
+      role: "Bodyguard",
       image: require("../../assets/images/characters/bodyguard.jpeg"),
       min: 0,
       max: 1,
@@ -62,6 +67,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.hunter"),
+      role: "Hunter",
       image: require("../../assets/images/characters/hunter.jpg"),
       min: 0,
       max: 1,
@@ -71,6 +77,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.priest"),
+      role: "Priest",
       image: require("../../assets/images/characters/priest.jpg"),
       min: 0,
       max: 1,
@@ -80,6 +87,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.prince"),
+      role: "Prince",
       image: require("../../assets/images/characters/prince.jpeg"),
       min: 0,
       max: 1,
@@ -89,6 +97,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.witch"),
+      role: "Witch",
       image: require("../../assets/images/characters/witch.jpeg"),
       min: 0,
       max: 1,
@@ -98,6 +107,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.tanner"),
+      role: "Tanner",
       image: require("../../assets/images/characters/lurker3.jpeg"),
       min: 0,
       max: 1,
@@ -107,6 +117,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.alphaWerewolf"),
+      role: "Alpha Werewolf",
       image: require("../../assets/images/characters/alpha-werewolf.jpg"),
       min: 0,
       max: 1,
@@ -116,6 +127,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.lycan"),
+      role: "Lycan",
       image: require("../../assets/images/characters/lycan.jpeg"),
       min: 0,
       max: 2,
@@ -125,6 +137,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.cursedVillager"),
+      role: "Cursed Villager",
       image: require("../../assets/images/characters/cursed-villager.jpeg"),
       min: 0,
       max: 2,
@@ -134,6 +147,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.cupid"),
+      role: "Cupid",
       image: require("../../assets/images/characters/cupid.jpeg"),
       min: 0,
       max: 1,
@@ -143,6 +157,7 @@ export default function ChooseRoles() {
     },
     {
       name: t("newGameScreen.roles.wolfCub"),
+      role: "Wolf Cub",
       image: require("../../assets/images/characters/wolf-cub.jpeg"),
       min: 0,
       max: 1,
@@ -300,7 +315,8 @@ export default function ChooseRoles() {
             total_players: playerCount,
             characters_data: JSON.stringify(
               characters.map((character) => ({
-                type: character.name,
+                name: character.name,
+                type: character.role,
                 amount: character.amount,
               }))
             ),

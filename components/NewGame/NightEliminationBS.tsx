@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Alert, Image, StyleSheet } from "react-native";
+import { View, Text, Pressable, Alert, Image } from "react-native";
 import React, { useMemo, forwardRef, useState, useContext } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
@@ -10,6 +10,7 @@ import {
   FontAwesome5,
   FontAwesome6,
 } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 type RoleEliminatedBSProps = {
   isFirstNight: boolean | undefined;
@@ -32,6 +33,9 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
     const [hunterSelected, setHunterSelected] = useState<boolean>(false);
 
     const { setNightSoundsEnabled } = props;
+
+    // Translation imported state
+    const { t } = useTranslation();
 
     const snapPoints = useMemo(() => ["50%"], []);
 
@@ -67,8 +71,11 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
         // Show alert if a bonded player was automatically selected
         if (bondedPlayer) {
           Alert.alert(
-            "Cupid's Bond",
-            `${player.name} is bonded by the Cupid with ${bondedPlayer.name}. Both have been selected for elimination.`
+            t("NightBottomSheet.cupidTitle"),
+            t("NightBottomSheet.cupidMessage", {
+              playerName: player.name,
+              bondedName: bondedPlayer.name,
+            })
           );
         }
       }
@@ -89,8 +96,8 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
 
           const playerNames = playersToChooseFrom.map((p: any) => p.name);
           Alert.alert(
-            "Hunter was eliminated!",
-            "The Hunter gets to eliminate another player.",
+            t("NightBottomSheet.hunterTitle"),
+            t("NightBottomSheet.hunterMessage"),
             [
               ...playerNames.map((name: string, index: number) => ({
                 text: name,
@@ -99,10 +106,12 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                     ...prev,
                     playersToChooseFrom[index],
                   ]);
-                  Alert.alert(`${name} has been selected for elimination.`);
+                  Alert.alert(
+                    t("NightBottomSheet.playerSelected", { playerName: name })
+                  );
                 },
               })),
-              { text: "Cancel", onPress: () => null },
+              { text: t("cancelButton"), onPress: () => null },
             ]
           );
 
@@ -117,72 +126,88 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
         .map((player: any) => player.name)
         .join(", ");
       const eliminationMessage = eliminatedNames
-        ? `Players: ${eliminatedNames} will be removed from the game.`
-        : "No players will be removed from the game.";
+        ? t("NightBottomSheet.confirmElimination.message", {
+            names: eliminatedNames,
+          })
+        : t("NightBottomSheet.confirmElimination.noElimination");
 
-      Alert.alert("Ready for the Day?", eliminationMessage, [
-        {
-          text: "Yes",
-          onPress: () => {
-            // Sound management states
-            setNightSoundsEnabled(false);
+      Alert.alert(
+        t("NightBottomSheet.confirmElimination.title"),
+        eliminationMessage,
+        [
+          {
+            text: t("NightBottomSheet.confirmElimination.confirm"),
+            onPress: () => {
+              // Sound management states
+              setNightSoundsEnabled(false);
 
-            // Check if any player is protected by the Witch
-            const isProtectedByWitch = playersInGame.some(
-              (player: any) => player.protectedByWitch
-            );
-
-            // Disable future "Save a Player" actions if Witch has used protection
-            if (isProtectedByWitch) {
-              setWitchProtectionUsed(true);
-            }
-
-            const finalPlayersForElimination = playersInGame
-              .map((player: any) => {
-                // Transform Cursed Villager if selected by the village (not Hunter or Witch)
-                if (
-                  player.role === "Cursed Villager" &&
-                  selectedPlayersForElimination.includes(player) &&
-                  !player.attackedByWitch
-                ) {
-                  Alert.alert(
-                    "Cursed Villager Transformed",
-                    `${player.name} was a Cursed Villager and has now transformed into a Werewolf!`
-                  );
-                  return { ...player, role: "Werewolf", type: "bad" };
-                }
-                return player;
-              })
-              .filter(
-                (player: any) =>
-                  player && !selectedPlayersForElimination.includes(player)
+              // Check if any player is protected by the Witch
+              const isProtectedByWitch = playersInGame.some(
+                (player: any) => player.protectedByWitch
               );
 
-            // Hunter role check
-            const isHunterEliminated = checkIfHunterEliminated();
-            if (isHunterEliminated) {
-              // If a Hunter was eliminated, include their selected target
+              // Disable future "Save a Player" actions if Witch has used protection
+              if (isProtectedByWitch) {
+                setWitchProtectionUsed(true);
+              }
+
+              const finalPlayersForElimination = playersInGame
+                .map((player: any) => {
+                  // Transform Cursed Villager if selected by the village (not Hunter or Witch)
+                  if (
+                    player.role === "Cursed Villager" &&
+                    selectedPlayersForElimination.includes(player) &&
+                    !player.attackedByWitch
+                  ) {
+                    Alert.alert(
+                      t(
+                        "NightBottomSheet.confirmElimination.cursedVillagerTitle"
+                      ),
+                      t(
+                        "NightBottomSheet.confirmElimination.cursedVillagerMessage",
+                        {
+                          name: player.name,
+                        }
+                      )
+                    );
+                    return { ...player, role: "Werewolf", type: "bad" };
+                  }
+                  return player;
+                })
+                .filter(
+                  (player: any) =>
+                    player && !selectedPlayersForElimination.includes(player)
+                );
+
+              // Hunter role check
+              const isHunterEliminated = checkIfHunterEliminated();
+              if (isHunterEliminated) {
+                // If a Hunter was eliminated, include their selected target
+                setPlayersInGame(finalPlayersForElimination);
+                return;
+              }
+
+              const isDay = false;
+
+              // Set the final players state
+              checkForWinner(finalPlayersForElimination, isDay);
+
               setPlayersInGame(finalPlayersForElimination);
-              return;
-            }
+              setEliminatedPlayers([
+                ...eliminatedPlayers,
+                ...selectedPlayersForElimination,
+              ]);
 
-            const isDay = false;
-
-            // Set the final players state
-            checkForWinner(finalPlayersForElimination, isDay);
-
-            setPlayersInGame(finalPlayersForElimination);
-            setEliminatedPlayers([
-              ...eliminatedPlayers,
-              ...selectedPlayersForElimination,
-            ]);
-
-            // Clear selected players for the next round
-            setSelectedPlayersForElimination([]);
+              // Clear selected players for the next round
+              setSelectedPlayersForElimination([]);
+            },
           },
-        },
-        { text: "No", onPress: () => null },
-      ]);
+          {
+            text: t("NightBottomSheet.confirmElimination.cancel"),
+            onPress: () => null,
+          },
+        ]
+      );
     };
 
     const toggleShowAll = () => {
@@ -198,21 +223,21 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
         enableOverDrag={true}
         animateOnMount={true}
         handleIndicatorStyle={{
-          backgroundColor: "white", // Set the color to black
-          width: 40, // Optional: Adjust width
-          height: 5, // Optional: Adjust height for visibility
+          backgroundColor: "white",
+          width: 40,
+          height: 5,
           borderRadius: 2.5, // Optional: Make it more rounded
         }}
         handleStyle={{
-          backgroundColor: "#1F2937", // Dark background for the top area
-          borderTopLeftRadius: 16, // Rounded corners for the top-left edge
-          borderTopRightRadius: 16, // Rounded corners for the top-right edge
+          backgroundColor: "#1F2937",
+          borderTopLeftRadius: 16,
+          borderTopRightRadius: 16,
         }}
       >
         <View className="flex-1 items-center bg-gray-800">
           <View className="flex-row items-center justify-center px-3 py-2 w-full">
             <Text className="text-[16px] font-light text-white">
-              Anyone eliminated this night?
+              {t("NightBottomSheet.anyoneEliminated")}
             </Text>
           </View>
 
@@ -338,7 +363,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                         {truncate(player.name)}
                       </Text>
                       <Text className="text-xs text-slate-300">
-                        {player.role}
+                        {truncate(player.role_name, 14)}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -355,7 +380,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                   }`}
                 >
                   <Text className="font-bold text-white text-center">
-                    No Role Eliminated
+                    {t("NightBottomSheet.noRoleEliminated")}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -373,7 +398,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                     pressed ? "opacity-70" : "opacity-100"
                   }`}
                 >
-                  Confirm
+                  {t("confirmButton")}
                 </Text>
               )}
             </Pressable>
@@ -388,7 +413,7 @@ const NightEliminationBS = forwardRef<BottomSheet, RoleEliminatedBSProps>(
                     pressed ? "opacity-70" : "opacity-100"
                   }`}
                 >
-                  {showAll ? "Show Less" : "Show All"}
+                  {showAll ? t("showLessButton") : t("showAllButton")}
                 </Text>
               )}
             </Pressable>

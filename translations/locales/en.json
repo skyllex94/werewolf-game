@@ -77,6 +77,9 @@
   "attackedButton": "Attacked",
   "choosePlayerToAttackLabel": "Choose a player to attack",
   "cancelButton": "Cancel",
+  "yesButton": "Yes",
+  "noButton": "No",
+  "continueButton": "Continue",
 
   "UIWerewolf": {
     "title": "Werewolf Role",
@@ -107,5 +110,113 @@
     "choosePlayerToBless": "Choose Player to Bless",
     "choosePlayerDescription": "Select one player to bless and protect them.",
     "blessed": "Blessed"
+  },
+  "UIWitch": {
+    "roleTitle": "Witch Role",
+    "roleDescription": "The Witch can save a player from death or choose to kill a player once per game.",
+    "saveButtonDefault": "Save a Player",
+    "killButtonDefault": "Kill a Player",
+    "savedButtonText": "Saved",
+    "attackedButtonText": "Attacked",
+    "chooseSaveTitle": "Choose Player to Save",
+    "chooseSaveDescription": "Select one player to save from death.",
+    "chooseKillTitle": "Choose Player to Kill",
+    "chooseKillDescription": "Select one player to attack."
+  },
+  "UIAlphaWerewolf": {
+    "roleTitle": "Alpha Werewolf Role",
+    "roleDescription": "The Alpha Werewolf can convert one villager into a Werewolf each night.",
+    "chooseTitle": "Choose Player to Convert",
+    "chooseDescription": "Select one player to convert into a Werewolf.",
+    "chooseButtonText": "Choose a Player",
+    "convertedText": "Converted: {{playerName}}",
+    "confirmTitle": "Convert to Werewolf",
+    "confirmDescription": "Are you sure you want to convert {{playerName}} into a Werewolf?",
+    "successTitle": "Success!",
+    "successDescription": "{{playerName}} has been converted into a Werewolf!"
+  },
+  "UICupid": {
+    "roleTitle": "Cupid Role",
+    "roleDescription": "Wake up Cupid. Choose two players to bond with each other. If one dies, the other dies as well.",
+    "chooseFirstTitle": "Choose First Player",
+    "chooseFirstDescription": "Select the first player to bond.",
+    "chooseSecondTitle": "Choose Second Player",
+    "chooseSecondDescription": "Select the second player to bond.",
+    "confirmTitle": "Confirm Bond",
+    "confirmDescription": "Do you want to bond {{player1}} and {{player2}}?",
+    "successTitle": "Bond Created",
+    "successDescription": "{{player1}} and {{player2}} are now bonded by Cupid for the rest of the game!",
+    "bondedText": "Bonded: {{player1}} & {{player2}}",
+    "chooseButtonText": "Choose Players"
+  },
+
+  "confirmButton": "Confirm",
+  "showAllButton": "Show All",
+  "showLessButton": "Show Less",
+  "NightBottomSheet": {
+    "anyoneEliminated": "Anyone eliminated this night?",
+    "noRoleEliminated": "No Role Eliminated",
+    "cupidTitle": "Cupid's Bond",
+    "cupidMessage": "{{playerName}} is bonded by the Cupid with {{bondedName}}. Both have been selected for elimination.",
+    "hunterTitle": "Hunter was eliminated!",
+    "hunterMessage": "The Hunter gets to eliminate another player.",
+    "playerSelected": "{{playerName}} has been selected for elimination.",
+    "confirmElimination": {
+      "title": "Ready for the Day?",
+      "message": "Players: {{names}} will be removed from the game.",
+      "noElimination": "No players will be removed from the game.",
+      "confirm": "Yes",
+      "cancel": "No",
+      "cursedVillagerTitle": "Cursed Villager Transformed",
+      "cursedVillagerMessage": "{{name}} was a Cursed Villager and has now transformed into a Werewolf!"
+    }
+  },
+
+  "dayTime": {
+    "title": "Day Time",
+    "description1": "The Village has 5 minutes to decide whether they can agree on a player to vote out.",
+    "description2": "There needs to be at least half of the Village to agree on a single person in order for that person to be voted out.",
+    "hunterEliminatedTitle": "Hunter was eliminated!",
+    "hunterEliminatedMessage": "The Hunter gets to eliminate another player.",
+    "playerSelected": "{{name}} has been selected for elimination.",
+    "cancel": "Cancel",
+    "princeProtectedTitle": "Prince Protected",
+    "princeProtectedMessage": "The Prince cannot be removed during the day as the Village cannot vote him out.",
+    "confirmElimination": {
+      "readyForNight": "Ready for the Night?",
+      "willBeRemoved": "will be removed from the game.",
+      "noPlayersRemoved": "No players will be removed from the game.",
+      "yes": "Yes",
+      "no": "No",
+      "player": "Player",
+      "players": "Players",
+      "wolfCubKilled": "Wolf Cub Killed",
+      "wolfCubMessage": "The Wolf Cub has been killed. Werewolves get an extra kill next night. Don't let the Village know that there was a Wolf Cub killed, simply let the Werewolves eliminate another player."
+    },
+    "eliminatedThisDay": "Anyone eliminated this day?",
+    "noRoleEliminated": "No Role Eliminated"
+  },
+
+  "winningScreen": {
+    "villageWins": "The Village Wins!",
+    "werewolvesWin": "Werewolves Win!",
+    "tannerWins": "The Tanner Wins!",
+    "villageVictoryDescription": "Congratulations to the whole Village for figuring out who the bad guys are. You were able to successfully eliminate all of them in this game.",
+    "werewolvesVictoryDescription": "Great job Werewolves, you were able to successfully eliminate the Village and be unrecognized in doing so.",
+    "tannerVictoryDescription": "The Tanner has been eliminated! The Tanner wins for achieving their goal of being voted out by the Village.",
+    "viewAllRoles": "View All Roles",
+    "mainMenu": "Main Menu"
+  },
+
+  "viewRolesModal": {
+    "rolesOfPlayers": "Roles of Each Player",
+    "player": "Player",
+    "role": "Role",
+    "back": "Back"
+  },
+
+  "gameMenu": {
+    "quitGame": "Quit Game",
+    "goBack": "Go Back"
   }
 }

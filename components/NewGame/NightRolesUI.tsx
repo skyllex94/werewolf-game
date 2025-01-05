@@ -50,12 +50,9 @@ export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
   const handleChoosePlayer = () => {
     const eligiblePlayers = playersInGame.filter(
       (player: any) =>
-        ![
-          t("newGameScreen.roles.werewolf"),
-          t("newGameScreen.roles.alphaWerewolf"),
-          t("newGameScreen.roles.wolfCub"),
-          t("newGameScreen.roles.lycan"),
-        ].includes(player.role)
+        !["Werewolf", "Alpha Werewolf", "Wolf Cub", "Lycan"].includes(
+          player.role
+        )
     );
 
     const playerNames = eligiblePlayers.map((player: any) => player.name);
@@ -73,8 +70,6 @@ export function WakeWerewolfUI({ soundEnabled }: WakeUIProps) {
               attackedByWerewolves: player.name === name,
             }))
           );
-
-          // markRoleAsReady("Werewolf", true);
         },
       })),
       { text: t("cancelButton"), onPress: () => null },
@@ -144,7 +139,7 @@ export function WakeSeerUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const router = useRouter();
 
-  const { t } = useTranslation(); // Added translation hook
+  const { t } = useTranslation();
 
   useEffect(() => {
     return () => {
@@ -516,7 +511,7 @@ export function WakePriestUI({ soundEnabled }: WakeUIProps) {
   const chooseBlessedPlayer = () => {
     // Filter out the Priest from the playersInGame array
     const availablePlayers = playersInGame.filter(
-      (player: any) => player.role !== t("newGameScreen.roles.priest")
+      (player: any) => player.role !== "Priest"
     );
 
     const playerOptions = availablePlayers.map((player: any) => ({
@@ -546,14 +541,14 @@ export function WakePriestUI({ soundEnabled }: WakeUIProps) {
 
     // Add a cancel button to the alert
     playerOptions.push({
-      text: t("cancelButton"), // Use translation for cancel button
+      text: t("cancelButton"),
       style: "cancel",
     });
 
     // Show the alert
     Alert.alert(
-      t("UIPriest.choosePlayerToBless"), // Use translation for the alert title
-      t("UIPriest.choosePlayerDescription"), // Use translation for the alert description
+      t("UIPriest.choosePlayerToBless"),
+      t("UIPriest.choosePlayerDescription"),
       playerOptions
     );
   };
@@ -563,14 +558,12 @@ export function WakePriestUI({ soundEnabled }: WakeUIProps) {
       <View className="flex-row items-start mx-1 mt-2">
         <FontAwesome5 name="cross" size={17} color="white" />
         <Text className="text-white text-[15px] mx-2">
-          {t("UIPriest.priestRoleTitle")}{" "}
-          {/* Use translation for the priest role title */}
+          {t("UIPriest.priestRoleTitle")}
         </Text>
       </View>
       <View className="flex-row items-center gap-3 justify-center mt-1">
         <Text className="text-start w-[100%] text-white font-[16px] px-3">
-          {t("UIPriest.priestRoleDescription")}{" "}
-          {/* Use translation for description */}
+          {t("UIPriest.priestRoleDescription")}
         </Text>
       </View>
       <View className="flex-row items-center m-2">
@@ -613,9 +606,14 @@ export function WakePriestUI({ soundEnabled }: WakeUIProps) {
 
 // Wake Witch UI
 export function WakeWitchUI({ soundEnabled }: WakeUIProps) {
+  const { t } = useTranslation();
   const [sound, setSound] = useState<Audio.Sound | null>(null);
-  const [saveButtonText, setSaveButtonText] = useState<string>("Save a Player");
-  const [killButtonText, setKillButtonText] = useState<string>("Kill a Player");
+  const [saveButtonText, setSaveButtonText] = useState<string>(
+    t("UIWitch.saveButtonDefault")
+  );
+  const [killButtonText, setKillButtonText] = useState<string>(
+    t("UIWitch.killButtonDefault")
+  );
   const {
     playersInGame,
     setPlayersInGame,
@@ -625,7 +623,6 @@ export function WakeWitchUI({ soundEnabled }: WakeUIProps) {
   const [savedPlayer, setSavedPlayer] = useState<any>(null);
   const [killedPlayer, setKilledPlayer] = useState<any>(null);
 
-  // Check conditions for disabling button
   const disableKillButton = eliminatedPlayers.some(
     (player: any) => player.attackedByWitch
   );
@@ -659,32 +656,34 @@ export function WakeWitchUI({ soundEnabled }: WakeUIProps) {
     const playerOptions = availablePlayers.map((player: any) => ({
       text: player.name,
       onPress: () => {
-        // Reset killed player if it exists
         if (killedPlayer) {
           setKilledPlayer(null);
-          setKillButtonText("Kill a Player");
+          setKillButtonText(t("UIWitch.killButtonDefault"));
         }
 
-        // Update player properties in playersInGame
         setPlayersInGame((prevPlayers: any) =>
           prevPlayers.map((p: any) => ({
             ...p,
-            protectedByWitch: p.order === player.order, // Set only selected player as protected
-            attackedByWitch: false, // Reset attackedByWitch for all
+            protectedByWitch: p.order === player.order,
+            attackedByWitch: false,
           }))
         );
 
         setSavedPlayer(player);
-        setSaveButtonText(`Saved: ${player.name}`);
+        setSaveButtonText(`${t("UIWitch.savedButtonText")}: ${player.name}`);
       },
     }));
 
     playerOptions.push({
-      text: "Cancel",
+      text: t("cancelButton"),
       style: "cancel",
     });
 
-    Alert.alert("Choose Player to Save", "Select one player", playerOptions);
+    Alert.alert(
+      t("UIWitch.chooseSaveTitle"),
+      t("UIWitch.chooseSaveDescription"),
+      playerOptions
+    );
   };
 
   const choosePlayerToKill = () => {
@@ -697,32 +696,34 @@ export function WakeWitchUI({ soundEnabled }: WakeUIProps) {
     const playerOptions = availablePlayers.map((player: any) => ({
       text: player.name,
       onPress: () => {
-        // Reset saved player if it exists
         if (savedPlayer) {
           setSavedPlayer(null);
-          setSaveButtonText("Save a Player");
+          setSaveButtonText(t("UIWitch.saveButtonDefault"));
         }
 
-        // Update player properties in playersInGame
         setPlayersInGame((prevPlayers: any) =>
           prevPlayers.map((p: any) => ({
             ...p,
-            attackedByWitch: p.order === player.order, // Set only selected player as attacked
-            protectedByWitch: false, // Reset protectedByWitch for all
+            attackedByWitch: p.order === player.order,
+            protectedByWitch: false,
           }))
         );
 
         setKilledPlayer(player);
-        setKillButtonText(`Attacked: ${player.name}`);
+        setKillButtonText(`${t("UIWitch.attackedButtonText")}: ${player.name}`);
       },
     }));
 
     playerOptions.push({
-      text: "Cancel",
+      text: t("cancelButton"),
       style: "cancel",
     });
 
-    Alert.alert("Choose Player to Kill", "Select one player", playerOptions);
+    Alert.alert(
+      t("UIWitch.chooseKillTitle"),
+      t("UIWitch.chooseKillDescription"),
+      playerOptions
+    );
   };
 
   return (
@@ -733,14 +734,13 @@ export function WakeWitchUI({ soundEnabled }: WakeUIProps) {
           source={require("../../assets/images/bottom_sheet/witch.png")}
           style={{ tintColor: "white" }}
         />
-        <Text className="text-white text-[15px] mx-2 mt-[5px]">Witch Role</Text>
+        <Text className="text-white text-[15px] mx-2 mt-[5px]">
+          {t("UIWitch.roleTitle")}
+        </Text>
       </View>
       <View className="flex-row items-center gap-3 justify-center mt-1">
         <Text className="text-start w-[100%] text-white font-[16px] px-3">
-          - Wake up the Witch. The Werewolves have chosen someone to attack. She
-          may choose to use her potion to save this player from death. She also
-          has a poison potion, which she may use once on any player of her
-          choosing.
+          {t("UIWitch.roleDescription")}
         </Text>
       </View>
       <View className="flex-row items-center m-2">
@@ -794,8 +794,8 @@ export function WakeWitchUI({ soundEnabled }: WakeUIProps) {
 
 // Alpha Werewolf UI
 export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
+  const { t } = useTranslation();
   const [sound, setSound] = useState<Audio.Sound | null>(null);
-
   const {
     playersInGame,
     setPlayersInGame,
@@ -815,7 +815,6 @@ export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
     }
   }, [soundEnabled]);
 
-  // Function to play sound for Alpha Werewolf
   const handlePlayAlphaAssistance = async () => {
     const { sound } = await Audio.Sound.createAsync(
       require("../../assets/audio/assists/alpha-werewolf-assist.mp3"),
@@ -825,7 +824,6 @@ export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
     await sound.playAsync();
   };
 
-  // Function to choose a player to convert
   const choosePlayerToConvert = () => {
     const availablePlayers = playersInGame.filter(
       (player: any) => player.role !== "Alpha Werewolf"
@@ -834,15 +832,13 @@ export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
     const playerOptions = availablePlayers.map((player: any) => ({
       text: player.name,
       onPress: () => {
-        // Show confirmation alert before converting
         Alert.alert(
-          "Convert to Werewolf",
-          `Are you sure you want to convert ${player.name} into a Werewolf?`,
+          t("UIAlphaWerewolf.confirmTitle"),
+          t("UIAlphaWerewolf.confirmDescription", { playerName: player.name }),
           [
             {
-              text: "Yes",
+              text: t("yesButton"),
               onPress: () => {
-                // Update the player's role to Werewolf
                 setPlayersInGame((prevPlayers: any) =>
                   prevPlayers.map((p: any) =>
                     p.order === player.order
@@ -850,27 +846,31 @@ export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
                       : p
                   )
                 );
-                setConvertedByAlphaWerewolf(player.name); // Set the converted player's name
+                setConvertedByAlphaWerewolf(player.name);
                 Alert.alert(
-                  "Success!",
-                  `${player.name} has been converted to a Werewolf!`
+                  t("UIAlphaWerewolf.successTitle"),
+                  t("UIAlphaWerewolf.successDescription", {
+                    playerName: player.name,
+                  })
                 );
               },
             },
-            {
-              text: "No",
-            },
+            { text: t("noButton") },
           ]
         );
       },
     }));
 
     playerOptions.push({
-      text: "Cancel",
+      text: t("cancelButton"),
       style: "cancel",
     });
 
-    Alert.alert("Choose Player to Convert", "Select one player", playerOptions);
+    Alert.alert(
+      t("UIAlphaWerewolf.chooseTitle"),
+      t("UIAlphaWerewolf.chooseDescription"),
+      playerOptions
+    );
   };
 
   return (
@@ -882,13 +882,12 @@ export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
           style={{ tintColor: "white" }}
         />
         <Text className="text-white text-[15px] mx-2 mt-[5px]">
-          Alpha Werewolf Role
+          {t("UIAlphaWerewolf.roleTitle")}
         </Text>
       </View>
       <View className="flex-row items-center gap-3 justify-center mt-1">
         <Text className="text-start w-[100%] text-white font-[16px] px-3">
-          - Wake up the Alpha Werewolf. The Alpha has the ability to convert one
-          villager into a Werewolf each night.
+          {t("UIAlphaWerewolf.roleDescription")}
         </Text>
       </View>
       <View className="flex-row items-center m-2">
@@ -909,16 +908,18 @@ export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
         </Pressable>
 
         <Pressable
-          className={`bg-gray-700 p-3 rounded-lg mr-2 ${
+          className={`bg-gray-700 p-3 rounded-lg ${
             convertedByAlphaWerewolf ? "opacity-70" : ""
           }`}
-          onPress={choosePlayerToConvert}
-          disabled={!!convertedByAlphaWerewolf} // Disable button if player is converted
+          onPress={convertedByAlphaWerewolf ? undefined : choosePlayerToConvert}
+          disabled={!!convertedByAlphaWerewolf}
         >
           <Text className="text-[14px] font-bold text-white">
             {convertedByAlphaWerewolf
-              ? `Converted to Werewolf: ${convertedByAlphaWerewolf}`
-              : "Choose a Player"}
+              ? t("UIAlphaWerewolf.convertedText", {
+                  playerName: convertedByAlphaWerewolf,
+                })
+              : t("UIAlphaWerewolf.chooseButtonText")}
           </Text>
         </Pressable>
       </View>
@@ -926,11 +927,13 @@ export function AlphaWerewolfUI({ soundEnabled }: WakeUIProps) {
   );
 }
 
+// Cupid UI
 export function CupidUI({ soundEnabled }: WakeUIProps) {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
-  const { cupidBond, setCupidBond } = useContext(NewGameContext);
+  const { t } = useTranslation();
 
-  const { playersInGame, setPlayersInGame } = useContext(NewGameContext);
+  const { playersInGame, setPlayersInGame, cupidBond, setCupidBond } =
+    useContext(NewGameContext);
   const [bondedPlayers, setBondedPlayers] = useState<{
     player1: string;
     player2: string;
@@ -948,18 +951,16 @@ export function CupidUI({ soundEnabled }: WakeUIProps) {
     }
   }, [soundEnabled]);
 
-  // Function to play Cupid's voice assistance
   const handlePlayCupidAssistance = async () => {
     const { sound } = await Audio.Sound.createAsync(
       require("../../assets/audio/assists/cupid-assist.mp3"),
-      { volume: 0.7 }
+      { volume: soundEnabled ? 0.7 : 0.0 }
     );
     setSound(sound);
     await sound.playAsync();
   };
 
   const choosePlayersToBond = () => {
-    // Filter players who are not Cupid
     const availablePlayers = playersInGame.filter(
       (player: any) => player.role !== "Cupid"
     );
@@ -971,18 +972,19 @@ export function CupidUI({ soundEnabled }: WakeUIProps) {
           (p: any) => p.name !== player1.name
         );
 
-        // After choosing the first player, present options for the second player
         const secondPlayerOptions = remainingPlayers.map((player2: any) => ({
           text: player2.name,
           onPress: () => {
             Alert.alert(
-              "Confirm Bond",
-              `Do you want to bond ${player1.name} and ${player2.name}?`,
+              t("UICupid.confirmTitle"),
+              t("UICupid.confirmDescription", {
+                player1: player1.name,
+                player2: player2.name,
+              }),
               [
                 {
-                  text: "Yes",
+                  text: t("yesButton"),
                   onPress: () => {
-                    // Update both players to have bondedByCupid: true
                     setPlayersInGame((prevPlayers: any) =>
                       prevPlayers.map((p: any) =>
                         p.name === player1.name || p.name === player2.name
@@ -994,35 +996,35 @@ export function CupidUI({ soundEnabled }: WakeUIProps) {
                       player1: player1.name,
                       player2: player2.name,
                     });
-
-                    // Context state used for UI button
                     setCupidBond(true);
-
                     Alert.alert(
-                      "Bond Created",
-                      `${player1.name} and ${player2.name} are now bonded by the Cupid for the rest of the game!`
+                      t("UICupid.successTitle"),
+                      t("UICupid.successDescription", {
+                        player1: player1.name,
+                        player2: player2.name,
+                      })
                     );
                   },
                 },
-                { text: "No" },
+                { text: t("noButton") },
               ]
             );
           },
         }));
 
-        secondPlayerOptions.push({ text: "Cancel", style: "cancel" });
+        secondPlayerOptions.push({ text: t("cancelButton"), style: "cancel" });
         Alert.alert(
-          "Choose Second Player",
-          "Select a second player to bond",
+          t("UICupid.chooseSecondTitle"),
+          t("UICupid.chooseSecondDescription"),
           secondPlayerOptions
         );
       },
     }));
 
-    playerOptions.push({ text: "Cancel", style: "cancel" });
+    playerOptions.push({ text: t("cancelButton"), style: "cancel" });
     Alert.alert(
-      "Choose First Player",
-      "Select two players to bond",
+      t("UICupid.chooseFirstTitle"),
+      t("UICupid.chooseFirstDescription"),
       playerOptions
     );
   };
@@ -1031,12 +1033,13 @@ export function CupidUI({ soundEnabled }: WakeUIProps) {
     <View className="border-slate-500 rounded-lg p-3 border-[0.5px] my-1">
       <View className="flex-row items-start mx-1 mt-2">
         <AntDesign name="heart" size={18} color="white" />
-        <Text className="text-white text-[15px] mx-2">Cupid Role</Text>
+        <Text className="text-white text-[15px] mx-2">
+          {t("UICupid.roleTitle")}
+        </Text>
       </View>
       <View className="flex-row items-center gap-3 justify-center mt-1">
         <Text className="text-start w-[100%] text-white font-[16px] px-3">
-          - Wake up Cupid. Choose two players to bond with each other. If one
-          dies, the other dies as well.
+          {t("UICupid.roleDescription")}
         </Text>
       </View>
       <View className="flex-row items-center m-2">
@@ -1061,12 +1064,15 @@ export function CupidUI({ soundEnabled }: WakeUIProps) {
             cupidBond ? "opacity-70" : "opacity-100"
           }`}
           onPress={choosePlayersToBond}
-          disabled={!!cupidBond} // Disable button after bonding is confirmed
+          disabled={!!cupidBond}
         >
           <Text className="text-[14px] font-bold text-white">
             {bondedPlayers
-              ? `Bonded: ${bondedPlayers.player1} & ${bondedPlayers.player2}`
-              : "Choose Players"}
+              ? t("UICupid.bondedText", {
+                  player1: bondedPlayers.player1,
+                  player2: bondedPlayers.player2,
+                })
+              : t("UICupid.chooseButtonText")}
           </Text>
         </Pressable>
       </View>

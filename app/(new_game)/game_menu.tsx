@@ -3,10 +3,13 @@ import React, { useContext, useEffect } from "react";
 import { useNavigation, useRouter, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import SoundContext from "@/contexts/SoundContext";
+import { useTranslation } from "react-i18next";
 
 export default function GameMenu() {
   const router = useRouter();
   const { darkMode } = useLocalSearchParams();
+
+  const { t } = useTranslation();
 
   const {
     setNightSoundsEnabled,
@@ -72,7 +75,7 @@ export default function GameMenu() {
         }}
         className="text-[24px] font-bold my-1"
       >
-        Werewolf:
+        {t("title")}
       </Text>
       <Text
         style={{
@@ -82,7 +85,7 @@ export default function GameMenu() {
         }}
         className="text-[24px] font-bold"
       >
-        Save the Village
+        {t("subtitle")}
       </Text>
 
       <View
@@ -92,20 +95,6 @@ export default function GameMenu() {
       />
 
       <View className="justify-center w-[60%] gap-y-3">
-        {/* <Pressable
-          className={`p-4 rounded-xl ${
-            isDarkMode ? "bg-green-600" : "bg-green-300"
-          }`}
-        >
-          <Text
-            className={`font-bold text-center ${
-              isDarkMode ? "text-white" : "text-black"
-            }`}
-          >
-            Game Info
-          </Text>
-        </Pressable> */}
-
         <Pressable
           onPress={viewRoles}
           className={`p-4 rounded-xl ${
@@ -117,7 +106,7 @@ export default function GameMenu() {
               isDarkMode ? "text-white" : "text-black"
             }`}
           >
-            View Roles
+            {t("viewRolesScreen.viewRolesButton")}
           </Text>
         </Pressable>
 
@@ -132,7 +121,7 @@ export default function GameMenu() {
               isDarkMode ? "text-white" : "text-black"
             }`}
           >
-            Quit Game
+            {t("gameMenu.quitGame")}
           </Text>
         </Pressable>
 
@@ -149,7 +138,7 @@ export default function GameMenu() {
               isDarkMode ? "text-white" : "text-black"
             }`}
           >
-            Go Back
+            {t("gameMenu.goBack")}
           </Text>
         </Pressable>
       </View>

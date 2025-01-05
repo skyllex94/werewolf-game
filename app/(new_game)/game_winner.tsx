@@ -5,8 +5,10 @@ import LottieView from "lottie-react-native";
 import { StatusBar } from "expo-status-bar";
 import SoundContext from "@/contexts/SoundContext";
 import * as StoreReview from "expo-store-review";
+import { useTranslation } from "react-i18next";
 
 const GameWinner = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const params = useLocalSearchParams();
   const { winner } = params;
@@ -96,37 +98,38 @@ const GameWinner = () => {
       </View>
 
       <Text className="text-2xl text-white font-bold mb-4">
-        {winner === "good"
-          ? "The Village Wins!"
-          : winner === "bad"
-          ? "Werewolves Win!"
-          : "The Tanner Wins!"}
+        {t(
+          winner === "good"
+            ? "winningScreen.villageWins"
+            : winner === "bad"
+            ? "winningScreen.werewolvesWin"
+            : "winningScreen.tannerWins"
+        )}
       </Text>
       <Text className="text-lg text-white text-center mb-8 font-light w-[90%]">
-        {winner === "good"
-          ? "Congratulations to the whole Village for figuring out who the bad guys are. You were able to successfully eliminate all of them in this game."
-          : winner === "bad"
-          ? "Great job Werewolves, you were able to successfully eliminate the Village and be unrecognized in doing so."
-          : "The Tanner has been eliminated! The Tanner wins for achieving their goal of being voted out by the Village."}
+        {t(
+          winner === "good"
+            ? "winningScreen.villageVictoryDescription"
+            : winner === "bad"
+            ? "winningScreen.werewolvesVictoryDescription"
+            : "winningScreen.tannerVictoryDescription"
+        )}
       </Text>
 
       <View className="justify-center w-[80%] gap-y-3">
-        {/* <Pressable
-          onPress={startNewGame}
-          className="bg-green-300 p-4 rounded-xl"
-        >
-          <Text className="font-bold text-center">New Game</Text>
-        </Pressable> */}
-
         <Pressable onPress={viewRoles} className="bg-green-300 p-4 rounded-xl">
-          <Text className="font-bold text-center">View All Roles</Text>
+          <Text className="font-bold text-center">
+            {t("winningScreen.viewAllRoles")}
+          </Text>
         </Pressable>
 
         <Pressable
           onPress={goToMainMenu}
           className="bg-slate-200 p-4 rounded-xl border border-gray-400"
         >
-          <Text className="font-bold text-center">Main Menu</Text>
+          <Text className="font-bold text-center">
+            {t("winningScreen.mainMenu")}
+          </Text>
         </Pressable>
       </View>
     </View>

@@ -4,27 +4,23 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesome5 } from "@expo/vector-icons";
 import NewGameContext from "@/contexts/NewGameContext";
+import { useTranslation } from "react-i18next";
 
 interface Item {
   order: number;
   name: string;
   link: string;
   role: string;
+  role_name: string;
 }
 
 export default function ViewRolesModal() {
+  const { t } = useTranslation();
   const router = useRouter();
   const { darkMode } = useLocalSearchParams();
 
-  console.log("darkMode:", darkMode);
-
   const { allPlayersInGame } = useContext(NewGameContext);
-  // Converting the string from params into a boolean
-  let isDarkMode = null;
-  if (darkMode === "true") isDarkMode = true;
-  else isDarkMode = false;
-
-  console.log("isDarkMode:", isDarkMode);
+  let isDarkMode = darkMode === "true";
 
   const bgColor = isDarkMode ? "bg-gray-900" : "bg-white";
   const textColor = isDarkMode ? "text-white" : "text-black";
@@ -46,7 +42,7 @@ export default function ViewRolesModal() {
 
       {/* Heading Text */}
       <Text className={`text-center font-bold text-[20px] py-4 ${textColor}`}>
-        Roles of Each Player
+        {t("viewRolesModal.rolesOfPlayers")}
       </Text>
 
       {/* Table Header with vertical separator */}
@@ -54,14 +50,16 @@ export default function ViewRolesModal() {
         className={`flex-row items-center ${headerBgColor} m-5 p-4 rounded-2xl`}
       >
         <Text className={`font-bold text-left flex-1 ${textColor}`}>
-          Player:
+          {t("viewRolesModal.player")}
         </Text>
         <View
           className={`w-[0px] ${
-            darkMode ? "bg-gray-500" : "bg-gray-400"
+            isDarkMode ? "bg-gray-500" : "bg-gray-400"
           } h-full mx-4`}
         />
-        <Text className={`font-bold text-left flex-1 ${textColor}`}>Role:</Text>
+        <Text className={`font-bold text-left flex-1 ${textColor}`}>
+          {t("viewRolesModal.role")}
+        </Text>
       </View>
 
       {/* Table Content: Players' roles */}
@@ -81,11 +79,11 @@ export default function ViewRolesModal() {
             </Text>
             <View
               className={`w-[0px] ${
-                darkMode ? "bg-gray-500" : "bg-gray-400"
+                isDarkMode ? "bg-gray-500" : "bg-gray-400"
               } h-full mx-4`}
             />
             <Text className={`text-left flex-1 ${textColor}`}>
-              {player.role}
+              {player.role_name}
             </Text>
           </View>
         ))}
@@ -97,7 +95,9 @@ export default function ViewRolesModal() {
           onPress={() => router.back()}
           className={`${buttonColor} items-center justify-center p-4 w-[90%] rounded-xl z-10`}
         >
-          <Text className={`text-[16px] font-bold ${textColor}`}>Back</Text>
+          <Text className={`text-[16px] font-bold ${textColor}`}>
+            {t("viewRolesModal.back")}
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

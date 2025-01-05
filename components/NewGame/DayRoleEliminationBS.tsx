@@ -1,19 +1,11 @@
-import {
-  View,
-  Text,
-  Pressable,
-  Alert,
-  Appearance,
-  StyleSheet,
-  Modal,
-  Button,
-} from "react-native";
+import { View, Text, Pressable, Alert } from "react-native";
 import React, { useMemo, forwardRef, useContext, useState } from "react";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import NewGameContext from "@/contexts/NewGameContext";
 import { checkForWinner, truncate } from "@/functions/functions";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 type RoleEliminatedBSProps = {
   setDaySoundsEnabled: any;
@@ -37,6 +29,9 @@ const DayEliminationBottomSheet = forwardRef<
   const { setDaySoundsEnabled } = props;
 
   const snapPoints = useMemo(() => ["50%"], []);
+
+  // Translation import state
+  const { t } = useTranslation();
 
   const togglePlayerSelection = (player: any) => {
     if (
@@ -74,8 +69,8 @@ const DayEliminationBottomSheet = forwardRef<
         // Prepare an alert to choose a player to eliminate
         const playerNames = playersToChooseFrom.map((p: any) => p.name);
         Alert.alert(
-          "Hunter was eliminated!",
-          "The Hunter gets to eliminate another player.",
+          t("dayTime.hunterEliminatedTitle"),
+          t("dayTime.hunterEliminatedMessage"),
           [
             ...playerNames.map((name: string, index: number) => ({
               text: name,
@@ -85,10 +80,10 @@ const DayEliminationBottomSheet = forwardRef<
                   ...prev,
                   playersToChooseFrom[index],
                 ]);
-                Alert.alert(`${name} has been selected for elimination.`);
+                Alert.alert(t("dayTime.playerSelected", { name }));
               },
             })),
-            { text: "Cancel", onPress: () => null },
+            { text: t("cancel"), onPress: () => null }, // "Cancel"
           ]
         );
 
@@ -107,8 +102,8 @@ const DayEliminationBottomSheet = forwardRef<
     // If a Prince was removed, display a message
     if (nonPrincePlayers.length !== playersForElimination.length) {
       Alert.alert(
-        "Prince Protected",
-        "The Prince cannot be removed during the day as the Village cannot vote him out."
+        t("dayTime.princeProtectedTitle"),
+        t("dayTime.princeProtectedMessage")
       );
     }
 
@@ -128,92 +123,100 @@ const DayEliminationBottomSheet = forwardRef<
       .join(", ");
 
     const playerLabel =
-      selectedPlayersForElimination.length === 1 ? "Player" : "Players";
+      selectedPlayersForElimination.length === 1
+        ? t("dayTime.confirmElimination.player")
+        : t("dayTime.confirmElimination.players");
 
     const eliminationMessage = eliminatedPlayerNames
-      ? `${playerLabel}: ${eliminatedPlayerNames} will be removed from the game.`
-      : "No players will be removed from the game.";
+      ? `${playerLabel}: ${eliminatedPlayerNames} ${t(
+          "dayTime.confirmElimination.willBeRemoved"
+        )}`
+      : t("dayTime.confirmElimination.noPlayersRemoved");
 
     // Display the initial "Ready for the Night?" confirmation alert
-    Alert.alert("Ready for the Night?", eliminationMessage, [
-      {
-        text: "Yes",
-        onPress: () => {
-          // Sound management states
-          setDaySoundsEnabled(false);
+    Alert.alert(
+      t("dayTime.confirmElimination.readyForNight"),
+      eliminationMessage,
+      [
+        {
+          text: t("dayTime.confirmElimination.yes"),
+          onPress: () => {
+            // Sound management states
+            setDaySoundsEnabled(false);
 
-          // Check if specific roles are in the selected players for elimination
-          const isPrinceEliminated = selectedPlayersForElimination.some(
-            (player: any) => player.role === "Prince"
-          );
-          const isWolfCubEliminated = selectedPlayersForElimination.some(
-            (player: any) => player.role === "Wolf Cub"
-          );
-
-          // Apply Prince immunity if the Prince is selected for elimination
-          if (isPrinceEliminated) {
-            princeCheckup(selectedPlayersForElimination);
-          }
-
-          // Filter out players to keep only those not protected by the Prince
-          const finalPlayersForElimination = playersInGame
-            .map((player: any) => {
-              // Set isEliminatedDuringDay to true for the Tanner if eliminated during the day
-              if (
-                player.role === "Tanner" &&
-                selectedPlayersForElimination.includes(player)
-              ) {
-                return { ...player, isEliminatedDuringDay: true };
-              }
-              return player;
-            })
-            .filter(
-              (player: any) =>
-                !selectedPlayersForElimination.includes(player) ||
-                (player.role === "Prince" &&
-                  selectedPlayersForElimination.includes(player))
+            // Check if specific roles are in the selected players for elimination
+            const isPrinceEliminated = selectedPlayersForElimination.some(
+              (player: any) => player.role === "Prince"
+            );
+            const isWolfCubEliminated = selectedPlayersForElimination.some(
+              (player: any) => player.role === "Wolf Cub"
             );
 
-          // Hunter role check
-          const isHunterEliminated = checkIfHunterSelected();
-          if (isHunterEliminated) {
-            setPlayersInGame(finalPlayersForElimination);
-            return;
-          }
+            // Apply Prince immunity if the Prince is selected for elimination
+            if (isPrinceEliminated) {
+              princeCheckup(selectedPlayersForElimination);
+            }
 
-          // Clear selected players for the next round
-          setSelectedPlayersForElimination([]);
-
-          // Set to day context for checking win conditions
-          const isDay = true;
-
-          // Update playersInGame and eliminatedPlayers based on final selections
-          setPlayersInGame(finalPlayersForElimination);
-          setEliminatedPlayers((prevEliminated: any) => [
-            ...prevEliminated,
-            ...selectedPlayersForElimination.filter(
-              (player: any) =>
-                !(
-                  player.role === "Prince" &&
+            // Filter out players to keep only those not protected by the Prince
+            const finalPlayersForElimination = playersInGame
+              .map((player: any) => {
+                // Set isEliminatedDuringDay to true for the Tanner if eliminated during the day
+                if (
+                  player.role === "Tanner" &&
                   selectedPlayersForElimination.includes(player)
-                )
-            ),
-          ]);
+                ) {
+                  return { ...player, isEliminatedDuringDay: true };
+                }
+                return player;
+              })
+              .filter(
+                (player: any) =>
+                  !selectedPlayersForElimination.includes(player) ||
+                  (player.role === "Prince" &&
+                    selectedPlayersForElimination.includes(player))
+              );
 
-          // Check for a winner after eliminations
-          checkForWinner(finalPlayersForElimination, isDay);
+            // Hunter role check
+            const isHunterEliminated = checkIfHunterSelected();
+            if (isHunterEliminated) {
+              setPlayersInGame(finalPlayersForElimination);
+              return;
+            }
 
-          // Display message if a Wolf Cub was eliminated
-          if (isWolfCubEliminated) {
-            Alert.alert(
-              "Wolf Cub Killed",
-              "The Wolf Cub has been killed. Werewolves get an extra kill next night. Don't let the Village know that there was a Wolf Cub killed, simply let the Werewolves eliminate another player."
-            );
-          }
+            // Clear selected players for the next round
+            setSelectedPlayersForElimination([]);
+
+            // Set to day context for checking win conditions
+            const isDay = true;
+
+            // Update playersInGame and eliminatedPlayers based on final selections
+            setPlayersInGame(finalPlayersForElimination);
+            setEliminatedPlayers((prevEliminated: any) => [
+              ...prevEliminated,
+              ...selectedPlayersForElimination.filter(
+                (player: any) =>
+                  !(
+                    player.role === "Prince" &&
+                    selectedPlayersForElimination.includes(player)
+                  )
+              ),
+            ]);
+
+            // Check for a winner after eliminations
+            checkForWinner(finalPlayersForElimination, isDay);
+
+            // Display message if a Wolf Cub was eliminated
+            if (isWolfCubEliminated) {
+              Alert.alert(
+                t("dayTime.confirmElimination.wolfCubKilled"),
+                t("dayTime.confirmElimination.wolfCubMessage")
+              );
+            }
+          },
         },
-      },
-      { text: "No", onPress: () => null },
-    ]);
+        { text: t("dayTime.confirmElimination.no"), onPress: () => null },
+      ]
+    );
   };
 
   return (
@@ -228,7 +231,7 @@ const DayEliminationBottomSheet = forwardRef<
       <View className="flex-1 items-center">
         <View className="flex-row items-center justify-center px-3 py-2 w-full">
           <Text className="text-[16px] font-light">
-            Anyone eliminated this day?
+            {t("dayTime.eliminatedThisDay")}
           </Text>
         </View>
 
@@ -262,7 +265,9 @@ const DayEliminationBottomSheet = forwardRef<
                   </View>
                   <Text className="font-bold">{truncate(player.name)}</Text>
 
-                  <Text className="text-xs">{player.role}</Text>
+                  <Text className="text-xs">
+                    {truncate(player.role_name, 14)}
+                  </Text>
                 </TouchableOpacity>
               </View>
             ))}
@@ -279,7 +284,7 @@ const DayEliminationBottomSheet = forwardRef<
                 }`}
               >
                 <Text className="font-bold text-center">
-                  No Role Eliminated
+                  {t("dayTime.noRoleEliminated")}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -300,7 +305,7 @@ const DayEliminationBottomSheet = forwardRef<
                   pressed ? "opacity-70" : "opacity-100"
                 }`}
               >
-                Confirm
+                {t("confirmButton")}
               </Text>
             )}
           </Pressable>
