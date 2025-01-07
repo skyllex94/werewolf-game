@@ -218,5 +218,289 @@
   "gameMenu": {
     "quitGame": "Quit Game",
     "goBack": "Go Back"
+  },
+
+  "rulesScreen": {
+    "title": "Game Rules"
+  },
+  "Basic Overview": "Basic Overview",
+  "Game Setup": "Game Setup",
+  "Game Phases": "Game Phases",
+  "Elimination Rules": "Elimination Rules",
+  "Winning Conditions": "Winning Conditions",
+  "Special Situations": "Special Situations",
+
+  "basicOverview": {
+    "title": "Basic Overview",
+    "description1": "The game of Werewolf is a social deduction game where players are assigned secret roles in a village filled with a one or a couple werewolves. Each round, players use logic and persuasion to identify werewolves or to hide their own identity. The game involves two main teams: the Village and the Werewolves and the roles are chosen at random.",
+    "description2": "The game is played in series of alternating \"Night\" and \"Day\" phases.",
+    "duringNight": "During the Night:",
+    "nightDescription1": "In the night everyone closes their eyes and the Narrator of the game awakes the players with special roles so they open their eyes without moving much so they don't get sensed by the other people around them.",
+    "nightDescription2": "All the special roles in a basic game of Werewolf are: Werewolves, Seer and Doctor. The Villager is not a special role, since he doesn't wake up (open his eyes) during the night to take any action.",
+    "nightDescription3": "The Werewolf/ves will be woken up first and by pointing, they will choose a player to eliminate. From there the Narrator will the tell all the Village to go back to sleep and she/he will wake up the next special role of the game until all of the roles are woken and have taken action.",
+    "duringDay": "During the Day:",
+    "dayDescription1": "All the players are 'awake' (with open eyes) and they discuss the player that died during the last night if any. They should try to ask each other and figure out who are the bad roles (Werewolves, Alpha Werewolf, Wolf Cub) by way of reasoning and identifying who is lying.",
+    "dayDescription2": "The time for discussion during the Day time is around 5 minutes in which anyone is open to asking anyone else any questions in order to get more information and catch someone into lying. Players can accuse others of being a werewolf or defend themselves if suspected.",
+    "dayDescription3": "At the same time, the objective of the Werewolves and all the other special bad roles is to remain undetected so this way they don't get voted out during the day phase. They should by definition lie if asked if they are the Werewolf and decive people into thinking they are the good guys.",
+    "goal": "The goal of the Village is to eliminate all Werewolves, while the Werewolves aim to outnumber the Villagers.",
+    "tannerRole": "A special role called Tanner, can independently win the game if he gets eliminated or voted out.",
+    "playersStrategy": "Players should use logic, observation, and strategic lies depending on their role. They should all play and follow the agenda of their group to either eliminate all the bad guys, or the good guys or win independently based on their randomly-assigned role in the game.",
+    "narratorRole": "The Narrator guides each phase, announcing events without revealing any player’s identity, keeping the game tense and exciting.",
+    "eliminationRule": "The Narrator ensures smooth gameplay by guiding each phase, enforcing rules, and moderating discussions. Whoever is eliminated throughout the game, should not say anything or give any hints to the guys who are still in the game."
+  },
+  "gameSetupTitle": "Game Setup",
+  "gameSetupDescription": "To set up a game of Werewolf, gather a group of players. The ideal number is between 6 to 20 players, with at least one Werewolf among them. More players allow for a greater variety of roles and strategies.",
+  "step1Title": "Step 1: Choose Roles",
+  "step1Description": "Determine the roles to include in the game. A standard setup includes: 5-6 Villagers, 2 Werewolves, 1 Seer, and 1 Doctor. Additional roles like all the other roles available can be added for complexity and interesting twists.",
+  "step2Title": "Step 2: Assign Roles",
+  "step2Description": "Each player should be assigned a secret role at random. For this, the narrator who will guide the game, will choose the roles and the algorithm will automatically assign roles to each player. Then the narrator should present each QR code to each player so they can scan and see their role for the game. Make sure players do not reveal their roles to others, only the narrator knows each player's role.",
+  "step3Title": "Step 3: Explain the Rules",
+  "step3Description": "Before starting, ensure all players understand their roles, abilities, and the overall game flow. If some of the players do not know their abilities, they can always be guided to review more information about their abilities from the \"More info\" from the scanned QR code they receive.",
+  "gameEndDescription": "The game ends when either all Werewolves and bad Special roles are eliminated or the Werewolves outnumber the Villagers and all the good Special roles.",
+  "finalNotes": "Finally, Werewolf is about deception, deduction, and strategy. Encourage them to engage in lively discussions and enjoy the social aspect of the game!",
+  "gamePhasesTitle": "Game Phases",
+  "gamePhasesDescription": "The game of Werewolf is divided into two main phases that alternate throughout the game: the",
+  "nightPhase": "Night Phase",
+  "dayPhase": "Day Phase",
+  "phasesDescription": "These phases determine when certain players can take actions and when accusations and eliminations happen.",
+  "nightPhaseDescription": "- During the Night, players with special abilities can perform actions in secrecy. The Narrator will wake those roles to \"use their powers\" without revealing their identities by calling for example \"Now, let the Werewolves wake up and choose a player to eliminate through this night.\" At the same time, all the other players will have their eyes closed, and only the Werewolves will have their eyes open so they can choose their prey. After they do, the narrator will put them back to sleep, making sure they are with closed eyes.",
+  "dayPhaseDescription": "- During the Day, players discuss who they believe is a Werewolf and vote to eliminate a player they suspect. In order to vote out a player, 50%+ of the Village needs to decide on a player to vote out from the game. In about 3 to 5 minutes, all the players in the Day time should decide on eliminating someone, and if they cannot agree on anyone to eliminate in this time period, the Village goes back to sleep and waits for the next day to decide on someone to vote out.",
+  "eliminationRulesTitle": "Elimination Rules",
+  "eliminationRulesIntro": "In the game of Werewolf, elimination is a critical aspect that determines a player's exit from the game. A player can be eliminated either through the group’s decision during the Day Phase or by the actions of specific roles during the Night Phase. Here are the general rules and specific elimination conditions for each role in the game.",
+  "generalEliminationRulesTitle": "General Elimination Rules:",
+  "generalEliminationRules": "During the Day Phase, players may accuse and vote to eliminate a player suspected of being a Werewolf. The player with the majority of votes is eliminated. During the Night Phase, roles like the Werewolves, Hunter, and Witch may also cause eliminations based on their abilities.",
+  "eliminationRulesByRoleTitle": "Elimination Rules by Role:",
+  "villagerTitle": "Villager",
+  "villagerDescription": "Villagers are eliminated by standard voting during the Day Phase or by Werewolves at night. They have no special resistance to elimination.",
+  "werewolfTitle": "Werewolf",
+  "werewolfDescription": "Werewolves can be eliminated during the Day by a majority vote from Villagers or killed by the special roles Hunter or Witch. They aim to avoid detection and elimination to ensure their team's survival.",
+  "seerTitle": "Seer",
+  "seerDescription": "The Seer, a Villager ally, can be eliminated by a vote or attacked by Werewolves at night. Losing the Seer weakens the Village as they lose a key source of information.",
+  "doctorTitle": "Doctor",
+  "doctorDescription": "The Doctor can be eliminated through voting or Werewolf attack. They can protect themselves once, but beyond that, they are vulnerable to elimination.",
+  "tannerTitle": "Tanner",
+  "tannerDescription": "The Tanner wins the game if they are eliminated, either by the Villagers during the Day or by the Werewolves at night. Unlike other players, the Tanner actively seeks elimination.",
+  "cupidTitle": "Cupid",
+  "cupidDescription": "If Cupid is eliminated, it has no direct effect on other players unless the Lovers, if any, are still in the game. Cupid’s role as a matchmaker is complete after pairing players.",
+  "princeTitle": "Prince",
+  "princeDescription": "The Prince is immune being voted out in the Daytime elimination vote; if voted out, they reveal themselves and survive. However, they can still be eliminated by Werewolves or other roles at night.",
+  "bodyguardTitle": "Bodyguard",
+  "bodyguardDescription": "The Bodyguard can be voted out or killed by Werewolves. However, they can defend other players against attacks, absorbing the attack if they are still in the game.",
+  "cursedVillagerTitle": "Cursed Villager",
+  "cursedVillagerDescription": "This player is initially on the Villagers' team but becomes a Werewolf if attacked by them at night. They can be eliminated through voting or by Werewolves before turning.",
+  "priestTitle": "Priest",
+  "priestDescription": "The Priest may bless a player once, offering them protection from one elimination. However, the Priest themselves can be eliminated by vote or attack.",
+  "hunterTitle": "Hunter",
+  "hunterDescription": "If eliminated, the Hunter can immediately target and eliminate another player. This ability activates upon any form of elimination, whether through voting or Werewolf attack.",
+  "lycanTitle": "Lycan",
+  "lycanDescription": "The Lycan appears as a Werewolf to the Seer, increasing their risk of being voted out. However, they are truly a Villager and can be eliminated like any other Villager.",
+  "witchTitle": "Witch",
+  "witchDescription": "The Witch has two potions: one to save and one to kill. They can be eliminated by vote or Werewolf attack and may also use their powers strategically to control eliminations.",
+  "alphaWerewolfTitle": "Alpha Werewolf",
+  "alphaWerewolfDescription": "This Werewolf can turn other Villagers into Werewolves under certain conditions. They are eliminated like a standard Werewolf but are often a high-priority target.",
+  "wolfCubTitle": "Wolf Cub",
+  "wolfCubDescription": "If the Wolf Cub is eliminated, the Werewolves become enraged, gaining the ability to eliminate two players on the next night. The Wolf Cub can be eliminated by any normal means.",
+  "winningConditions": "Winning Conditions",
+  "villagersGoal": "Villagers' Goal:",
+  "villagersGoalDesc": "The Villagers win if they eliminate all Werewolves. However, the game may continue if certain special roles with unique winning conditions are still in play.",
+  "werewolvesGoal": "Werewolves' Goal:",
+  "werewolvesGoalDesc": "The Werewolves win if they outnumber or match the remaining Villagers. In this scenario, the Werewolves can overpower the Villagers, ensuring their victory.",
+  "specialRolesGoal": "Special Roles with Unique Goals:",
+  "tanner": "Tanner:",
+  "tannerDesc": "The Tanner wins if they are eliminated by the Villagers or the Werewolves. Their sole purpose is to lose their life, ending the game in their favor if they succeed.",
+  "prince": "Prince:",
+  "princeDesc": "The Prince has no special win condition but adds complexity by surviving the first elimination vote.",
+  "hunter": "Hunter:",
+  "hunterDesc": "The Hunter can influence the outcome by eliminating a player upon their own elimination.",
+  "exampleScenarios": "Example Scenarios:",
+  "example1": "Example 1: There are three players left: two Villagers and one Werewolf. In this scenario, the Villagers are still able to vote out the Werewolf, leading to a Villager win.",
+  "special_conditions_title": "Special Conditions",
+  "prince_immunity_title": "Prince’s Immunity from Voting Eliminations",
+  "prince_immunity_description": "The Prince cannot be eliminated during any Day phase by voting. If players attempt to vote out the Prince, their votes are nullified, and no one is eliminated that round. This immunity lasts throughout the game, forcing the Village to reconsider other potential targets.",
+  "prince_example": "On Day 3, all players vote to eliminate the Prince, but he reveals his immunity. The Village loses its elimination opportunity for the round, adding tension and raising suspicion against other players.",
+  "tanner_win_condition_title": "Tanner’s Unique Win Condition",
+  "tanner_win_condition_description": "The Tanner wins if he is eliminated (either by Werewolves or by the Village). His goal is to act suspiciously, prompting others to vote for his elimination. However, his presence creates confusion, as eliminating him ends the game with his victory, regardless of other roles in play.",
+  "tanner_example": "A player begins acting erratically, raising suspicion. The Village considers voting them out but hesitates, fearing that they may be the Tanner and would win the game if eliminated.",
+  "witch_dual_potions_title": "Witch’s Dual Potions (Save/Kill)",
+  "witch_dual_potions_description": "The Witch has two potions—a healing potion to save one player per game and a deadly potion to eliminate one player per game. The Witch’s decision to save or eliminate a player at Night can completely change the game’s direction.",
+  "witch_example": "The Witch uses her healing potion to save a targeted Villager, prolonging the game. Later, she uses her kill potion on a suspected Werewolf, shifting the game balance in favor of the Village.",
+  "doctor_protection_title": "Doctor’s Continuous Protection",
+  "doctor_protection_description": "The Doctor can protect a player each Night but cannot protect the same player on consecutive Nights. This rotating protection makes it challenging for the Werewolves to succeed in eliminations and prolongs the game by saving a key player repeatedly.",
+  "doctor_example": "The Doctor protects a crucial Villager one Night but switches to another player on the following Night, creating uncertainty and delaying the Werewolves’ plans.",
+  "example": "Example",
+
+  "rolesScreen": {
+    "rolesAbilitiesTitle": "Roles & Abilities",
+    "alphaWerewolf": {
+      "name": "Alpha Werewolf",
+      "description": "The Alpha Werewolf is a powerful leader among the Werewolves with unique abilities that can shift the balance in the game. Unlike regular Werewolves, the Alpha awakens separately and independently chooses one target to attack. He can only choose one target for the game and his ability is to make this target into a Werewolf, who will be waking up with the other Werewolves at night. He can choose to use his power at any night and he will be asked if he wants to use it every night even if he has already used it. The Alpha’s unique awakening doesn't allow the other Werewolves to know who the Alpha is and in a sense, the Werewolves may strike at the Alpha at night. This will cause the Alpha to die adding an extra layer of complexity to the Werewolf’s strategy. If the Alpha Werewolf is eliminated, the Werewolf pack loses a valuable asset, making it essential for the Alpha to remain discreet. While an influential figure, the Alpha’s power also attracts the attention of good roles like the Seer and the Witch, who may see the Alpha as a prime target.",
+      "interactions": {
+        "werewolf": "Werewolf - The Alpha Werewolf is part of the Werewolf pack but wakes up independently from the regular Werewolves. While the Werewolves collectively choose a target, the Alpha chooses a person to make into a Werewolf, allowing for flexible strategy and potentially confusing the Village. However, the Alpha should avoid targeting other Werewolves and align with the pack's goals as much as possible.",
+        "seer": "Seer - The Seer may identify the Alpha Werewolf as a threat due to their powerful role within the Werewolf faction. If the Seer reveals the Alpha’s identity to the Village, the Werewolves lose a crucial advantage.",
+        "doctor": "Doctor - If the Doctor protects a player the Alpha targets, the attack will be blocked for that night. The Alpha may need to anticipate the Doctor’s moves to ensure successful attacks.",
+        "witch": "Witch - The Witch’s killing potion is powerful enough to eliminate the Alpha Werewolf. Since the Witch is aligned with the Village, she may see the Alpha as a priority target if she suspects their identity, which could disrupt the Werewolves’ strategy.",
+        "bodyguard": "Bodyguard - If the Alpha targets a player protected by the Bodyguard, the protection remains intact, and the Alpha’s attack fails. The Alpha must strategize around the Bodyguard’s defense to be effective.",
+        "hunter": "Hunter - If the Hunter is killed and selects the Alpha as their retaliation target, the Alpha dies, weakening the Werewolf faction significantly. The Alpha must be wary of exposing their identity to avoid being selected by the Hunter in the event of their death."
+      }
+    },
+    "bodyguard": {
+      "name": "Bodyguard",
+      "description": "The Bodyguard is a steadfast protector who selects one player on the first night to shield for the rest of the game. The Bodyguard cannot choose to protect himself. This chosen player gains special protection from attacks, with the Bodyguard stepping in to save them if they are targeted. However, if the protected player is attacked a second time, the Bodyguard will sacrifice himself, dying in their place. This protection is only active as long as the Bodyguard remains in the game. The Bodyguard’s protection is a vital asset, but it is limited—certain powerful roles, such as the Hunter or the Witch, can bypass this safeguard with their lethal abilities.",
+      "interactions": {
+        "werewolf": "Werewolf - If the Werewolves target the Bodyguard’s protected player, the Bodyguard will prevent the first attack. However, if the Werewolves target this player again, the Bodyguard dies in their place, and the protection ends.",
+        "hunter": "Hunter - If the protected player is chosen by the Hunter's death revenge ability, the Bodyguard cannot prevent the attack, and the protected player will die.",
+        "doctor": "Doctor - The Bodyguard and Doctor’s protections do not conflict, meaning if the Doctor protects the same player on the same night, both protections are active. If the Werewolves target this player, both protections will work, but the priority protection is the Doctor's, so this way the Bodyguard does not use his protection or die.",
+        "witch": "Witch - If the Witch uses her killing potion on the protected player, the Bodyguard’s protection is ineffective, and the targeted player will die.",
+        "priest": "Priest - If the Priest blesses the protected player, this blessing adds another layer of defense, though the Bodyguard’s protection remains primary until he is killed in the line of duty."
+      }
+    },
+    "cupid": {
+      "name": "Cupid",
+      "description": "Cupid is a role that has the power to create a special bond between two players, linking their fates for the remainder of the game. At the beginning of the game, Cupid selects two players who will become 'bound' as lovers. This connection means that if one of the lovers dies, the other immediately dies of heartbreak. Cupid’s selection is pivotal because the linked players must navigate their new loyalty carefully. This bond can serve as a powerful tool to complicate the game and requires strategic consideration, as it can affect alliances and shift player priorities. Even if the Cupid dies, the bond stays for the rest of the game.",
+      "interactions": {
+        "werewolf": "If one of Cupid’s bonded players is targeted and killed by the Werewolves, the other lover dies as well, fulfilling the bond’s tragic outcome.",
+        "doctor": "If the Doctor protects one of the bonded players and the Werewolves attempt to kill them, the protection will prevent both players from dying that night.",
+        "seer": "If the Seer reveals one of the bonded lovers, they are displayed as a good role if they are a good role and a bad role if they are a bad role. Only the player selected by the Seer is told what's his role in the game.",
+        "hunter": "If the Hunter dies and selects one of the bonded lovers to die with them, the other lover will also perish as part of the bond’s effect.",
+        "witch": "If the Witch uses her potion to kill one of the bonded players, the other will also die due to the connection forged by Cupid. If the Witch uses her safe potion on one of the Players, both of the players will be saved.",
+        "priest": "If the Priest blesses one of the lovers, this protection will still hold even if the other lover is targeted by an attack, unless that attack is powerful enough to bypass protection, as in the case of the Witch’s killing potion."
+      }
+    },
+    "cursedVillager": {
+      "name": "Cursed Villager",
+      "description": "The Cursed Villager is an unfortunate soul who begins the game as a normal villager but harbors a dark secret. If targeted by the Werewolves during the night, the Cursed Villager transforms into a Werewolf, permanently switching allegiance to the Werewolves. Until that moment, they remain loyal to the Village. If the Cursed Villager is discovered by the Seer before transforming, they will appear as a good role, preserving their cover until the curse is triggered.",
+      "interactions": {
+        "werewolf": "If the Werewolves choose to attack the Cursed Villager, the curse activates, and the Villager permanently joins the Werewolf team, turning from ally to enemy overnight.",
+        "seer": "The Seer will see the Cursed Villager as a good role until the curse activates. This can mislead the Village into thinking they are safe, only for the Cursed Villager to later transform.",
+        "witch": "If the Witch uses her killing potion on the Cursed Villager before they are attacked by the Werewolves, they die as a normal Villager, without triggering the curse. If the curse is already triggered, the Witch’s potion will kill them as a Werewolf.",
+        "hunter": "If the Cursed Villager is killed by the Hunter before transformation, they die as a Villager, sparing the Village from adding another Werewolf to the ranks."
+      }
+    },
+    "doctor": {
+      "name": "Doctor",
+      "description": "The Doctor is a critical role in protecting the Village from nightly attacks. Each night, the Doctor selects one player to shield from harm, potentially preventing a Werewolf attack or other fatal outcome. This makes the Doctor a valuable asset to the Village's defense, as their protection can help keep key players safe and prolong the fight against the Werewolves. However, the Doctor's ability comes with a risk; if the Doctor is eliminated, their protective influence vanishes entirely. Losing the Doctor puts the Village at greater risk, making it essential to protect this role as long as possible. The Doctor must balance caution and courage, working discreetly to avoid detection by the Werewolves while ensuring the Village’s survival. The Doctor can use his protection on one player and cannot repeat a player for the next round. He can go back to protecting the same player after a night has passed again. The Doctor can use his protection on himself as well.",
+      "interactions": {
+        "werewolf": "The Doctor must avoid detection by the Werewolves, as they are likely to target the Doctor to remove his protective influence.",
+        "seer": "Works indirectly with the Seer if able to identify, as both play vital roles in safeguarding the Village. It is very good to protect the Seer if she/he uncovers their role to the other people so this way they get protected through the next night.",
+        "hunter": "If the Hunter is killed and they target a player who is protected by the Doctor, although they have a protection from him, they will still die.",
+        "witch": "If a killing potion is used to kill a player who is protected by the Doctor, the protection is inactive and this player will die even though he is protected by the Doctor.",
+        "bodyguard": "If the Werewolves target a player that is already protected by a Doctor and a Bodyguard, the Bodyguard's shield will stay protected, since they will be protected by the Doctor as a priority protection.",
+        "priest": "If the Werewolves target a player that is already blessed by the Priest and protected by the Doctor, The Priest's blessing will be intact, since they will be protected by the Doctor as a priority protection.",
+        "cupid": "If the Doctor protects one of the bonded players and the Werewolves attempt to kill them, the protection will prevent both players from dying that night."
+      }
+    },
+    "hunter": {
+      "name": "Hunter",
+      "description": "The Hunter is a fearless role within the Village, known for their last stand ability. If the Hunter is eliminated during the game, they get one final chance to take down another player of their choosing before they leave the game. This powerful ability gives the Hunter a significant impact even in death, and makes them a high-stakes target for the Werewolves and other bad roles. The Hunter must carefully observe and decide who might be most valuable to take with them if they are eliminated, potentially turning the tide of the game. However, certain protections, such as the Priest’s blessing or Doctor’s shield, can affect their final shot, making it essential for the Hunter to strategize based on the current game dynamics.",
+      "interactions": {
+        "werewolf": "If the Hunter is targeted and eliminated by the Werewolves, they will get one last chance to retaliate by choosing a player to eliminate with them. This final attack is unaffected by the Werewolves’ influence and cannot be prevented by their strategies.",
+        "doctor": "If the Hunter targets a player protected by the Doctor in their final shot, the protection is ineffective, and the targeted player will still die as the Hunter’s attack overrides the Doctor’s shield.",
+        "priest": "If the Hunter targets a blessed player, the Priest’s blessing will not protect them. The Hunter’s final attack is powerful and cannot be mitigated by the blessing.",
+        "bodyguard": "If the Hunter targets a player protected by the Bodyguard, the protection will be bypassed, meaning the target will still die regardless of the Bodyguard’s protection.",
+        "witch": "If the Hunter is killed and the Witch uses her saving potion on the Hunter, they can prevent the Hunter’s death and thereby their final shot. However, if the Witch does not use the potion, the Hunter will proceed with their last attack.",
+        "cupid": "If the Hunter is one of Cupid’s bonded lovers, and they die, the other bonded lover will die of heartbreak. In addition to this, the Hunter will decide on another player to kill. The Hunter decision will happen before revealing the Cupid's bond."
+      }
+    },
+    "lycan": {
+      "name": "Lycan",
+      "description": "The Lycan is a villager, fully aligned with the Village’s goals, yet cursed with a trait that causes them to appear as a Werewolf when viewed by the Seer. This false identity creates complex challenges, as the Seer may mistakenly identify them as a threat, casting suspicion and potentially influencing the Village’s actions against them. The Lycan must be cautious to avoid suspicion while subtly convincing others of their true allegiance to the Village. Despite their appearance in the Seer's eyes, the Lycan is still a good role, aiming to help protect the Village and defeat the Werewolves. Navigating this balance requires the Lycan to play a careful, strategic game to avoid unnecessary elimination and support the villagers in victory.",
+      "interactions": {
+        "seer": "If the Seer views the Lycan, they will perceive the Lycan as a bad role due to their curse. This misidentification may lead to suspicion from the Seer and the Village, so the Lycan should carefully navigate interactions with the Seer and consider strategies to prove their loyalty over time.",
+        "werewolf": "The Werewolves do not know the Lycan’s identity, and the Lycan appears as a regular villager to them. The Lycan’s role in the Village remains unchanged, so they must help protect the Village while also dispelling doubts about their true nature."
+      }
+    },
+    "priest": {
+      "name": "Priest",
+      "description": "The Priest is a powerful protector in the game, blessed with the ability to shield one player from harm through a divine blessing. The Priest can choose to bless one player for the game, making them immune to Werewolf attacks. This blessing remains effective only as long as the Priest is alive; if the Priest is killed, all blessings are lost, and previously blessed players become vulnerable once more. However, the blessing does not protect against certain powerful attacks, making the Priest's choices critical to the survival of key players in the Village.",
+      "interactions": {
+        "werewolf": "The Priest’s blessing protects a player from Werewolf attacks for the night. However, the Werewolves can still strategize around the Priest’s blessing to target other villagers or even plan an attack on the Priest to eliminate their protective power.",
+        "doctor": "The Doctor’s protection is independent of the Priest’s blessing. If a player is both blessed by the Priest and protected by the Doctor, they have multiple layers of defense. However, if the Priest is eliminated, the blessing is lost, leaving the Doctor’s protection as the sole shield.",
+        "seer": "While the Seer uncovers information, the Priest can use their blessing to protect the Seer if their identity is revealed, safeguarding them from attacks.",
+        "hunter": "If the Hunter is eliminated and targets a blessed player, the Priest’s blessing does not prevent the Hunter’s final attack, and the blessed player will still die.",
+        "witch": "If the Witch uses her killing potion on a blessed player, the Priest’s blessing will not prevent this death. The blessing does not extend to attacks from supernatural sources, like the Witch’s potion.",
+        "bodyguard": "The Bodyguard and Priest can both protect a player, though in different ways. If the Bodyguard is actively protecting a player blessed by the Priest, the blessing will remain, but the Bodyguard’s protection is prioritized for physical attacks."
+      }
+    },
+    "prince": {
+      "name": "Prince",
+      "description": "The Prince is a unique role that carries a special form of protection during the day. Regardless of how many times the Village attempts to vote the Prince out, he cannot be eliminated by this method. If the Village decides to vote the Prince out during the day, the Narrator simply announces that the attempt is ineffective, reinforcing the Prince’s untouchable status. However, this protection does not extend to the night, where the Prince can be vulnerable to attacks from the Werewolves or other roles. The Prince must use his influence wisely, as he plays a crucial part in leading the Village without fear of daytime elimination.",
+      "interactions": {
+        "werewolf": "The Prince is vulnerable to attacks by the Werewolves at night, and they may prioritize him due to his immunity from daytime elimination.",
+        "hunter": "If the Prince is targeted by the Hunter's death revenge ability, he will die regardless of his daytime protection.",
+        "doctor": "If the Doctor chooses to protect the Prince at night, any Werewolf attacks that night will be blocked, allowing the Prince to survive even nighttime dangers.",
+        "witch": "If the Witch uses her potion to kill the Prince, he will die, as her ability bypasses his daytime immunity.",
+        "priest": "If the Priest blesses the Prince, the blessing will further protect him from attacks, strengthening his resilience as long as the Priest’s protection is active and he is in the game."
+      }
+    },
+    "seer": {
+      "name": "Seer",
+      "description": "The Seer has the special ability to reveal the identity of one player each night. Their goal is to uncover the Werewolves and help guide the Village towards victory by identifying dangerous roles. You will be notified about the role of the player you choose to see with a thumbs up (good role), thumbs down (bad role) or flat hand (Tanner).",
+      "interactions": {
+        "villager": "Works closely with Villagers to identify Werewolves and dangerous roles.",
+        "werewolf": "Seeks to identify Werewolves to alert the Village of the threat.",
+        "tanner": "If you encounter a Tanner, make sure to effectively communicate this to your fellow Villagers, so they don't kill him and lose the game.",
+        "doctor": "May rely on the Doctor's protection if their identity becomes suspected by the Werewolves.",
+        "witch": "Could collaborate with the Witch for additional insight or protection if both identify as good roles.",
+        "lycan": "This role will be distinguished by the Seer as a bad role, but they are a Villager. Make sure to pay attention if there is a Lycan in the game.",
+        "alphaWerewolf": "The Seer’s greatest challenge is to identify the Alpha Werewolf. The Alpha will be distinguished as a bad role, the same as a regular Werewolf."
+      }
+    },
+    "tanner": {
+      "name": "Tanner",
+      "description": "The Tanner is an unusual character with a unique and counterintuitive goal: they win the game if they are eliminated by the Villagers during the day. Unlike other players who aim to survive, the Tanner actively tries to provoke suspicion and get themselves eliminated. If they succeed, they become the sole winner of the game, regardless of which other roles remain. However, if the Tanner is eliminated during the night (for example, by the Werewolves), they do not win and are simply removed from play. This role requires strategic misdirection and careful manipulation to achieve the desired outcome without revealing their intentions too overtly.",
+      "interactions": {
+        "villagers": "If the Villagers vote to eliminate the Tanner during the day, the Tanner immediately wins the game and all other players lose. This is the Tanner's primary goal, so they may attempt to appear suspicious during the day.",
+        "werewolves": "If the Werewolves target the Tanner during their nighttime attack, the Tanner is eliminated but does not win. The Werewolves should be cautious in their selection, as a night elimination of the Tanner does not fulfill the Tanner’s win condition.",
+        "seer": "The Seer may uncover the identity of the Tanner, so they should be strategic about this role and achieving their agenda without being noticed.",
+        "hunter": "If the Hunter kills the Tanner (either intentionally or as retaliation), the Tanner does not win, as their victory condition is specific to daytime elimination by Village vote.",
+        "witch": "If the Witch uses their killing potion on the Tanner, the Tanner will be eliminated but will not achieve victory, as the elimination did not occur through the Village's day vote."
+      }
+    },
+    "villager": {
+      "name": "Villager",
+      "description": "The Villager may not have special abilities, but they are essential to the Village and form the main force opposing the Werewolves. During the day, Villagers use their logic, observation, and intuition to identify suspicious behavior, detect lies, and work collaboratively to expose the Werewolves hidden among them. They contribute to the voting process, where they can steer discussions and influence decisions about who to eliminate. While Villagers rely solely on their wits, their ability to carefully observe and interpret the words and actions of others makes them the backbone of the Village’s strategy, uniting them against the forces that threaten their survival.",
+      "interactions": {
+        "werewolf": "Villagers are the primary target for Werewolves, who seek to reduce their numbers each night. Villagers should pay close attention to players who seem evasive or manipulative, as this could reveal hidden Werewolves.",
+        "seer": "Villagers work alongside the Seer and other roles, gathering information and contributing insights to support the Seer’s discoveries. However, they must also protect the Seer’s identity to prevent Werewolf attacks.",
+        "witch": "If a Villager is targeted for elimination, the Witch may choose to use her healing potion to save them, preserving the Village's strength. Villagers must identify potential Werewolf allies to guide the Witch’s decision wisely."
+      }
+    },
+    "werewolf": {
+      "name": "Werewolf",
+      "description": "The Werewolf deceives the Village during the day pretending to be innocent villagers. At night time they show their true colors and collectively choose a player to eliminate. Their goal is to eliminate all the good roles without being uncovered for their identity.",
+      "interactions": {
+        "otherWerewolves": "Collaborates with fellow Werewolves to plan nightly attacks.",
+        "seer": "Must avoid detection by the Seer, who can reveal their identity.",
+        "doctor": "Must strategize around the Doctor's protection abilities to ensure successful attacks.",
+        "tanner": "The Werewolf benefits from the Tanner’s death. Since if the Tanner gets eliminated during the day, he will win the game and not the Werewolves.",
+        "witch": "The Witch is on the side of the Village, but could be maneuvered and misled so this way it doesn't attack the Werewolves with her killing potion.",
+        "alphaWerewolf": "The Alpha Werewolf is woken up separately from the Werewolves. Investigate to see if you can find out who the Alpha is so you don't kill him at night, because he plays with you as well, just not woken up at the same time.",
+        "wolfCub": "The Cub wakes up with the Werewolves, but they don't know he is the Cub. You can intentionally target to influence the Village during the day to kill him if you know you will need an extra kill the next night in order to win the game."
+      }
+    },
+    "witch": {
+      "name": "Witch",
+      "description": "The Witch is a mysterious and powerful ally of the Village, holding both a healing potion and a killing potion, each available only once per game. During the night, the Witch learns if someone was targeted for elimination and must decide whether to save that person using the healing potion. The Witch also has the option to use the killing potion on any player, allowing her to strike a Werewolf or eliminate a player she suspects to be harmful to the Village. The Witch’s power is formidable, but her limited potion use requires careful timing and strategy. If the Witch is eliminated before using her potions, they are lost to the Village. Balancing her role as protector and potential eliminator, the Witch has a lasting impact on the outcome of the game. She cannot use her potions on herself.",
+      "interactions": {
+        "werewolf": "The Witch can counter a Werewolf attack by saving the target with her healing potion, thwarting the Werewolves' plans. However, if she uses her killing potion on a Werewolf, it eliminates the threat immediately, though it permanently consumes the potion. If targeted by the Werewolves herself, she risks losing both potions if she hasn't used them yet. She cannot use her potions on herself.",
+        "doctor": "The Witch’s healing potion works independently from the Doctor's protection; if the Doctor fails to protect a player, the Witch’s potion can still save them. If both protect the same player, the Witch essentially loses their potion since the person is already protected. They must avoid overlapping their efforts on the same player to maximize the impact of their abilities.",
+        "seer": "The Seer may wish to communicate with the Witch to advise on targets for her killing potion, particularly if the Seer identifies a Werewolf. Together, they form a powerful alliance against the Werewolves, though they must exercise caution to avoid revealing themselves too openly.",
+        "bodyguard": "The Witch’s killing potion bypasses the Bodyguard’s protection. If the Bodyguard is defending a player and the Witch uses her killing potion on that player, the Bodyguard cannot prevent their death.",
+        "hunter": "If the Witch kills the Hunter with her killing potion, the Hunter still has a chance to retaliate and take down another player with them. The Witch must use her potion strategically to avoid this potential backlash. Also if the Hunter attacks a player that the Witch used a saving potion on - the player will still die. The Hunter's death penalty is stronger.",
+        "priest": "If the Priest blesses a player, the Witch’s healing potion can still save them if the Werewolves or another attack threatens them. However, her killing potion is strong enough to bypass the Priest’s blessing, causing the player’s death regardless of the blessing."
+      }
+    },
+    "wolfCub": {
+      "name": "Wolf Cub",
+      "description": "The Wolf Cub is a younger member of the Werewolf pack, and while it doesn’t have an individual ability to attack or influence others, it plays a pivotal role in strengthening the pack. The Wolf Cub wakes up with the rest of the Werewolves at night. If the Wolf Cub is killed by the Village or another player, the Werewolf pack will seek revenge, gaining an extra kill on the following night. This makes the Wolf Cub a high-priority target for the Village but also a member the Werewolves are eager to protect. While the Cub lacks the strength of a full Werewolf, its presence is a strategic advantage to the Werewolves as long as it remains alive.",
+      "interactions": {
+        "werewolf": "The Wolf Cub is protected by the Werewolves, who seek to keep it alive. If the Wolf Cub is eliminated, the Werewolves receive an extra kill on the next night, intensifying the threat to the Village.",
+        "seer": "The Seer may identify the Wolf Cub as a Werewolf and reveal this information to the Village, making it a target. Losing the Cub could accelerate the Werewolves' attacks on the Village.",
+        "doctor": "If the Doctor protects the Wolf Cub, they may prevent the Cub’s elimination for a night, preserving the Werewolf faction’s numbers and the possibility of extra kills if the Village later eliminates the Cub.",
+        "witch": "If the Witch uses her killing potion on the Wolf Cub, the Werewolves gain their extra kill on the next night. However, if the Witch uses her healing potion on the Wolf Cub when it’s targeted, the Cub survives, and the Village misses the chance to prevent the extra kill effect.",
+        "hunter": "If the Hunter dies and selects the Wolf Cub as their retaliation target, the Wolf Cub dies, and the Werewolves receive an extra kill on the following night. The Hunter must weigh this choice carefully if they aim to avoid strengthening the Werewolves.",
+        "bodyguard": "If the Bodyguard protects the Wolf Cub and prevents its death, the Werewolves avoid losing the Cub’s beneficial influence. The Village may struggle to eliminate the Cub, especially if it gains multiple protections."
+      }
+    }
   }
 }

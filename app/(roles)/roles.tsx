@@ -1,92 +1,93 @@
 import React from "react";
 import { Text, TouchableOpacity, Image, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
 import RulesTopPane from "@/components/Rules/RulesTopPane";
 import { ScrollView } from "react-native-gesture-handler";
+import { useTranslation } from "react-i18next";
 
 const RolesAbilitiesMenu = () => {
+  const { t } = useTranslation();
+  const router = useRouter();
+
   const roles = [
     {
-      name: "Villager",
+      nameKey: "newGameScreen.roles.villager",
       path: "/villager",
       icon: require("../../assets/images/characters/villager.jpeg"),
     },
     {
-      name: "Werewolf",
+      nameKey: "newGameScreen.roles.werewolf",
       path: "/werewolf",
       icon: require("../../assets/images/characters/werewolf.jpeg"),
     },
     {
-      name: "Seer",
+      nameKey: "newGameScreen.roles.seer",
       path: "/seer",
       icon: require("../../assets/images/characters/seer.jpeg"),
     },
     {
-      name: "Doctor",
+      nameKey: "newGameScreen.roles.doctor",
       path: "/doctor",
       icon: require("../../assets/images/characters/doctor.jpg"),
     },
     {
-      name: "Tanner",
+      nameKey: "newGameScreen.roles.tanner",
       path: "/tanner",
       icon: require("../../assets/images/characters/lurker3.jpeg"),
     },
     {
-      name: "Cupid",
+      nameKey: "newGameScreen.roles.cupid",
       path: "/cupid",
       icon: require("../../assets/images/characters/cupid.jpeg"),
     },
     {
-      name: "Prince",
+      nameKey: "newGameScreen.roles.prince",
       path: "/prince",
       icon: require("../../assets/images/characters/prince.jpeg"),
     },
     {
-      name: "Bodyguard",
+      nameKey: "newGameScreen.roles.bodyguard",
       path: "/bodyguard",
       icon: require("../../assets/images/characters/bodyguard.jpeg"),
     },
     {
-      name: "Cursed Villager",
+      nameKey: "newGameScreen.roles.cursedVillager",
       path: "/cursed_villager",
       icon: require("../../assets/images/characters/cursed-villager.jpeg"),
     },
     {
-      name: "Priest",
+      nameKey: "newGameScreen.roles.priest",
       path: "/priest",
       icon: require("../../assets/images/characters/priest.jpg"),
     },
     {
-      name: "Hunter",
+      nameKey: "newGameScreen.roles.hunter",
       path: "/hunter",
       icon: require("../../assets/images/characters/hunter.jpg"),
     },
     {
-      name: "Lycan",
+      nameKey: "newGameScreen.roles.lycan",
       path: "/lycan",
       icon: require("../../assets/images/characters/lycan.jpeg"),
     },
     {
-      name: "Witch",
+      nameKey: "newGameScreen.roles.witch",
       path: "/witch",
       icon: require("../../assets/images/characters/witch.jpeg"),
     },
     {
-      name: "Alpha Werewolf",
+      nameKey: "newGameScreen.roles.alphaWerewolf",
       path: "/alpha_werewolf",
       icon: require("../../assets/images/characters/alpha-werewolf.jpg"),
     },
     {
-      name: "Wolf Cub",
+      nameKey: "newGameScreen.roles.wolfCub",
       path: "/wolf_cub",
       icon: require("../../assets/images/characters/wolf-cub.jpeg"),
     },
   ];
-
-  const router = useRouter();
 
   return (
     <SafeAreaView className="flex-1 bg-gray-900">
@@ -95,12 +96,12 @@ const RolesAbilitiesMenu = () => {
 
       <ScrollView className="p-5 bg-gray-900">
         <Text className="text-xl font-bold text-center text-white mb-5">
-          Roles & Abilities
+          {t("rolesScreen.rolesAbilitiesTitle")}
         </Text>
 
         {roles.map((role) => (
           <TouchableOpacity
-            key={role.name}
+            key={role.nameKey}
             className="p-3 mb-2 bg-gray-800 rounded-lg flex-row items-center"
             onPress={() => router.push({ pathname: role.path as any })}
           >
@@ -113,7 +114,7 @@ const RolesAbilitiesMenu = () => {
                 borderRadius: 5,
               }}
             />
-            <Text className="text-sm text-gray-300">{role.name}</Text>
+            <Text className="text-sm text-gray-300">{t(role.nameKey)}</Text>
           </TouchableOpacity>
         ))}
         <View className="bottom spacing m-4" />

@@ -218,5 +218,289 @@
   "gameMenu": {
     "quitGame": "Salir del Juego",
     "goBack": "Volver"
+  },
+
+  "rulesScreen": {
+    "title": "Reglas del Juego"
+  },
+  "Basic Overview": "Descripción Básica",
+  "Game Setup": "Configuración del Juego",
+  "Game Phases": "Fases del Juego",
+  "Elimination Rules": "Reglas de Eliminación",
+  "Winning Conditions": "Condiciones de Victoria",
+  "Special Situations": "Situaciones Especiales",
+
+  "basicOverview": {
+    "title": "Descripción General",
+    "description1": "El juego de Hombre Lobo es un juego de deducción social donde los jugadores reciben roles secretos en una aldea llena de uno o un par de hombres lobo. Cada ronda, los jugadores usan la lógica y la persuasión para identificar a los hombres lobo o para ocultar su propia identidad. El juego involucra dos equipos principales: la Aldea y los Hombres Lobo y los roles son elegidos al azar.",
+    "description2": "El juego se juega en una serie de fases alternadas de \"Noche\" y \"Día\".",
+    "duringNight": "Durante la Noche:",
+    "nightDescription1": "En la noche todos cierran los ojos y el Narrador del juego despierta a los jugadores con roles especiales para que abran los ojos sin moverse mucho para que no los detecten los demás jugadores.",
+    "nightDescription2": "Los roles especiales en un juego básico de Hombre Lobo son: Hombres Lobo, Vidente y Doctor. El Aldeano no es un rol especial, ya que no despierta (no abre los ojos) durante la noche para tomar ninguna acción.",
+    "nightDescription3": "Los Hombres Lobo serán despertados primero y, señalando, elegirán a un jugador para eliminar. Desde ahí el Narrador dirá a toda la Aldea que vuelva a dormir y despertará al siguiente rol especial del juego hasta que todos los roles hayan sido despertados y hayan tomado acción.",
+    "duringDay": "Durante el Día:",
+    "dayDescription1": "Todos los jugadores están 'despiertos' (con los ojos abiertos) y discuten sobre el jugador que murió durante la última noche, si es que hubo alguno. Deben intentar preguntarse entre sí y descubrir quiénes son los roles malos (Hombres Lobo, Hombre Lobo Alfa, Cachorro Lobo) mediante razonamiento e identificando quién está mintiendo.",
+    "dayDescription2": "El tiempo para la discusión durante el Día es de alrededor de 5 minutos, en los cuales cualquiera puede hacer preguntas a los demás para obtener más información y atrapar a alguien mintiendo. Los jugadores pueden acusar a otros de ser un hombre lobo o defenderse si se sospecha de ellos.",
+    "dayDescription3": "Al mismo tiempo, el objetivo de los Hombres Lobo y todos los demás roles malos especiales es permanecer indetectados para no ser eliminados durante la fase diurna. Deberían, por definición, mentir si se les pregunta si son un Hombre Lobo y engañar a los demás para que piensen que son los buenos.",
+    "goal": "El objetivo de la Aldea es eliminar a todos los Hombres Lobo, mientras que los Hombres Lobo intentan superar en número a los Aldeanos.",
+    "tannerRole": "Un rol especial llamado el Tánatos puede ganar independientemente el juego si es eliminado o votado fuera.",
+    "playersStrategy": "Los jugadores deben usar lógica, observación y mentiras estratégicas dependiendo de su rol. Todos deben jugar y seguir la agenda de su grupo para eliminar a los malos, los buenos o ganar independientemente según su rol asignado aleatoriamente.",
+    "narratorRole": "El Narrador guía cada fase, anunciando eventos sin revelar la identidad de los jugadores, manteniendo el juego tenso y emocionante.",
+    "eliminationRule": "El Narrador asegura que el juego fluya de manera suave guiando cada fase, haciendo cumplir las reglas y moderando las discusiones. Quien sea eliminado durante el juego, no debe decir nada ni dar pistas a los jugadores que todavía están en el juego."
+  },
+  "gameSetupTitle": "Configuración del juego",
+  "gameSetupDescription": "Para configurar un juego de Hombre Lobo, reúne a un grupo de jugadores. El número ideal es entre 6 y 20 jugadores, con al menos un Hombre Lobo entre ellos. Más jugadores permiten una mayor variedad de roles y estrategias.",
+  "step1Title": "Paso 1: Elegir roles",
+  "step1Description": "Determina los roles a incluir en el juego. Una configuración estándar incluye: 5-6 aldeanos, 2 hombres lobos, 1 vidente y 1 médico. Se pueden agregar roles adicionales como todos los demás roles disponibles para mayor complejidad y giros interesantes.",
+  "step2Title": "Paso 2: Asignar roles",
+  "step2Description": "Cada jugador debe recibir un rol secreto al azar. Para esto, el narrador, que guiará el juego, elegirá los roles y el algoritmo asignará los roles automáticamente a cada jugador. Luego, el narrador debe presentar un código QR a cada jugador para que lo escaneen y vean su rol en el juego. Asegúrate de que los jugadores no revelen sus roles a los demás, solo el narrador conoce el rol de cada jugador.",
+  "step3Title": "Paso 3: Explicar las reglas",
+  "step3Description": "Antes de comenzar, asegúrate de que todos los jugadores comprendan sus roles, habilidades y el flujo general del juego. Si algunos jugadores no conocen sus habilidades, siempre pueden ser guiados para revisar más información sobre sus habilidades en el \"Más información\" del código QR escaneado que reciben.",
+  "gameEndDescription": "El juego termina cuando se eliminan todos los Hombres Lobos y roles especiales malvados o cuando los Hombres Lobos superan en número a los Aldeanos y todos los roles especiales buenos.",
+  "finalNotes": "Finalmente, el juego de Hombre Lobo se trata de engaño, deducción y estrategia. ¡Anima a los jugadores a participar en discusiones animadas y disfrutar del aspecto social del juego!",
+  "gamePhasesTitle": "Fases del juego",
+  "gamePhasesDescription": "El juego de Hombre Lobo se divide en dos fases principales que alternan a lo largo del juego: la",
+  "nightPhase": "Fase Nocturna",
+  "dayPhase": "Fase Diurna",
+  "phasesDescription": "Estas fases determinan cuándo ciertos jugadores pueden realizar acciones y cuándo ocurren acusaciones y eliminaciones.",
+  "nightPhaseDescription": "- Durante la Noche, los jugadores con habilidades especiales pueden realizar acciones en secreto. El Narrador despertará esos roles para \"usar sus poderes\" sin revelar sus identidades llamando por ejemplo \"Ahora, que los Hombres Lobos se despierten y elijan a un jugador para eliminar durante esta noche.\" Al mismo tiempo, todos los demás jugadores tendrán los ojos cerrados, y solo los Hombres Lobos tendrán los ojos abiertos para que puedan elegir su presa. Después de que lo hagan, el narrador los pondrá de nuevo a dormir, asegurándose de que tengan los ojos cerrados.",
+  "dayPhaseDescription": "- Durante el Día, los jugadores discuten quién creen que es un Hombre Lobo y votan para eliminar a un jugador que sospechan. Para votar a un jugador, más del 50% de los aldeanos deben decidir a quién votar para eliminarlo del juego. En unos 3 a 5 minutos, todos los jugadores en el Día deben decidir eliminar a alguien, y si no pueden ponerse de acuerdo sobre a quién eliminar en este periodo de tiempo, el pueblo vuelve a dormir y espera al siguiente día para decidir a quién votar.",
+  "eliminationRulesTitle": "Reglas de Eliminación",
+  "eliminationRulesIntro": "En el juego de Hombre Lobo, la eliminación es un aspecto crítico que determina la salida de un jugador del juego. Un jugador puede ser eliminado ya sea por decisión del grupo durante la Fase de Día o por las acciones de roles específicos durante la Fase de Noche. Aquí están las reglas generales y las condiciones específicas de eliminación para cada rol en el juego.",
+  "generalEliminationRulesTitle": "Reglas Generales de Eliminación:",
+  "generalEliminationRules": "Durante la Fase de Día, los jugadores pueden acusar y votar para eliminar a un jugador sospechoso de ser un Hombre Lobo. El jugador con la mayoría de votos es eliminado. Durante la Fase de Noche, roles como los Hombres Lobo, el Cazador y la Bruja también pueden causar eliminaciones basadas en sus habilidades.",
+  "eliminationRulesByRoleTitle": "Reglas de Eliminación por Rol:",
+  "villagerTitle": "Aldeano",
+  "villagerDescription": "Los aldeanos son eliminados por votación estándar durante la Fase de Día o por los Hombres Lobo por la noche. No tienen resistencia especial a la eliminación.",
+  "werewolfTitle": "Hombre Lobo",
+  "werewolfDescription": "Los Hombres Lobo pueden ser eliminados durante el Día por un voto mayoritario de los aldeanos o ser asesinados por los roles especiales Cazador o Bruja. Ellos buscan evitar ser detectados y eliminados para asegurar la supervivencia de su equipo.",
+  "seerTitle": "Vidente",
+  "seerDescription": "El Vidente, aliado de los aldeanos, puede ser eliminado por votación o atacado por los Hombres Lobo durante la noche. Perder al Vidente debilita a la aldea al perder una fuente clave de información.",
+  "doctorTitle": "Doctor",
+  "doctorDescription": "El Doctor puede ser eliminado por votación o por ataque de los Hombres Lobo. Puede protegerse una vez, pero más allá de eso, es vulnerable a la eliminación.",
+  "tannerTitle": "Sastre",
+  "tannerDescription": "El Sastre gana el juego si es eliminado, ya sea por los aldeanos durante el Día o por los Hombres Lobo durante la noche. A diferencia de otros jugadores, el Sastre busca activamente la eliminación.",
+  "cupidTitle": "Cupido",
+  "cupidDescription": "Si Cupido es eliminado, no tiene efecto directo en otros jugadores, a menos que los Amantes, si existen, sigan en el juego. El rol de Cupido como casamentero se completa después de emparejar jugadores.",
+  "princeTitle": "Príncipe",
+  "princeDescription": "El Príncipe es inmune a ser votado fuera durante la votación de eliminación en el Día; si es votado fuera, se revela a sí mismo y sobrevive. Sin embargo, aún puede ser eliminado por los Hombres Lobo o otros roles por la noche.",
+  "bodyguardTitle": "Guardián",
+  "bodyguardDescription": "El Guardián puede ser votado fuera o asesinado por los Hombres Lobo. Sin embargo, puede defender a otros jugadores contra ataques, absorbiendo el ataque si sigue en el juego.",
+  "cursedVillagerTitle": "Aldeano Maldito",
+  "cursedVillagerDescription": "Este jugador inicialmente está en el equipo de los aldeanos pero se convierte en Hombre Lobo si es atacado por ellos durante la noche. Puede ser eliminado por votación o por los Hombres Lobo antes de convertirse.",
+  "priestTitle": "Sacerdote",
+  "priestDescription": "El Sacerdote puede bendecir a un jugador una vez, ofreciéndole protección contra una eliminación. Sin embargo, el Sacerdote también puede ser eliminado por votación o ataque.",
+  "hunterTitle": "Cazador",
+  "hunterDescription": "Si es eliminado, el Cazador puede inmediatamente atacar y eliminar a otro jugador. Esta habilidad se activa tras cualquier forma de eliminación, ya sea por votación o ataque de los Hombres Lobo.",
+  "lycanTitle": "Lican",
+  "lycanDescription": "El Lican aparece como un Hombre Lobo ante el Vidente, aumentando su riesgo de ser votado fuera. Sin embargo, realmente es un aldeano y puede ser eliminado como cualquier otro aldeano.",
+  "witchTitle": "Bruja",
+  "witchDescription": "La Bruja tiene dos pociones: una para salvar y otra para matar. Puede ser eliminada por votación o ataque de los Hombres Lobo y también puede usar sus poderes estratégicamente para controlar eliminaciones.",
+  "alphaWerewolfTitle": "Hombre Lobo Alfa",
+  "alphaWerewolfDescription": "Este Hombre Lobo puede convertir a otros Aldeanos en Hombres Lobo bajo ciertas condiciones. Es eliminado como un Hombre Lobo estándar, pero suele ser un objetivo prioritario.",
+  "wolfCubTitle": "Cachorro Lobo",
+  "wolfCubDescription": "Si el Cachorro Lobo es eliminado, los Hombres Lobo se enfurecen, ganando la habilidad de eliminar dos jugadores en la próxima noche. El Cachorro Lobo puede ser eliminado por cualquier medio normal.",
+  "winningConditions": "Condiciones de Victoria",
+  "villagersGoal": "Objetivo de los Aldeanos:",
+  "villagersGoalDesc": "Los Aldeanos ganan si eliminan a todos los Hombres Lobo. Sin embargo, el juego puede continuar si ciertos roles especiales con condiciones de victoria únicas siguen en juego.",
+  "werewolvesGoal": "Objetivo de los Hombres Lobo:",
+  "werewolvesGoalDesc": "Los Hombres Lobo ganan si superan en número o igualan a los Aldeanos restantes. En este caso, los Hombres Lobo pueden aniquilar a los Aldeanos, asegurando su victoria.",
+  "specialRolesGoal": "Roles Especiales con Objetivos Únicos:",
+  "tanner": "El Tanner:",
+  "tannerDesc": "El Tanner gana si es eliminado por los Aldeanos o los Hombres Lobo. Su único objetivo es perder la vida, terminando el juego a su favor si lo consigue.",
+  "prince": "Príncipe:",
+  "princeDesc": "El Príncipe no tiene una condición especial de victoria, pero agrega complejidad al sobrevivir a la primera votación de eliminación.",
+  "hunter": "Cazador:",
+  "hunterDesc": "El Cazador puede influir en el resultado eliminando a un jugador tras su propia eliminación.",
+  "exampleScenarios": "Escenarios de Ejemplo:",
+  "example1": "Ejemplo 1: Quedan tres jugadores: dos Aldeanos y un Hombre Lobo. En este escenario, los Aldeanos todavía pueden votar al Hombre Lobo, llevando a una victoria de los Aldeanos.",
+  "special_conditions_title": "Condiciones Especiales",
+  "prince_immunity_title": "Inmunidad del Príncipe para Eliminaciones por Votación",
+  "prince_immunity_description": "El Príncipe no puede ser eliminado durante ninguna fase del Día por votación. Si los jugadores intentan votar por eliminar al Príncipe, sus votos son anulados, y nadie es eliminado en esa ronda. Esta inmunidad dura durante todo el juego, obligando a la Villa a reconsiderar otros posibles objetivos.",
+  "prince_example": "En el Día 3, todos los jugadores votan para eliminar al Príncipe, pero él revela su inmunidad. La Villa pierde la oportunidad de eliminar a alguien esa ronda, aumentando la tensión y levantando sospechas sobre otros jugadores.",
+  "tanner_win_condition_title": "Condición Única de Victoria del Tanque",
+  "tanner_win_condition_description": "El Tanque gana si es eliminado (ya sea por los Hombres Lobo o por la Villa). Su objetivo es actuar de manera sospechosa, lo que lleva a otros a votar por su eliminación. Sin embargo, su presencia crea confusión, ya que eliminarlo termina el juego con su victoria, independientemente de otros roles en juego.",
+  "tanner_example": "Un jugador comienza a actuar de manera errática, levantando sospechas. La Villa considera votarlo, pero duda, temiendo que pueda ser el Tanque y ganar el juego si lo eliminan.",
+  "witch_dual_potions_title": "Doble Poción de la Bruja (Salvar/Matar)",
+  "witch_dual_potions_description": "La Bruja tiene dos pociones: una poción curativa para salvar a un jugador por partida y una poción mortal para eliminar a un jugador por partida. La decisión de la Bruja de salvar o eliminar a un jugador por la noche puede cambiar completamente la dirección del juego.",
+  "witch_example": "La Bruja usa su poción curativa para salvar a un aldeano objetivo, prolongando el juego. Más tarde, usa su poción de matar para eliminar a un Hombre Lobo sospechoso, cambiando el equilibrio del juego a favor de la Villa.",
+  "doctor_protection_title": "Protección Continua del Médico",
+  "doctor_protection_description": "El Médico puede proteger a un jugador cada Noche, pero no puede proteger al mismo jugador en noches consecutivas. Esta protección rotativa hace que sea difícil para los Hombres Lobo tener éxito en las eliminaciones y prolonga el juego al salvar a un jugador clave repetidamente.",
+  "doctor_example": "El Médico protege a un Aldeano crucial una noche pero cambia a otro jugador en la siguiente noche, creando incertidumbre y retrasando los planes de los Hombres Lobo.",
+  "example": "Ejemplo",
+
+  "rolesScreen": {
+    "rolesAbilitiesTitle": "Roles y Habilidades",
+    "alphaWerewolf": {
+      "name": "Hombre Lobo Alfa",
+      "description": "El Hombre Lobo Alfa es un líder poderoso entre los Hombres Lobo con habilidades únicas que pueden cambiar el equilibrio del juego. A diferencia de los Hombres Lobo regulares, el Alfa despierta por separado y elige de manera independiente un objetivo para atacar. Solo puede elegir un objetivo durante el juego y su habilidad es convertir este objetivo en un Hombre Lobo, que despertará con los otros Hombres Lobo por la noche. Puede usar su poder en cualquier noche y se le preguntará si quiere usarlo cada noche, incluso si ya lo ha usado. El despertar único del Alfa no permite que los otros Hombres Lobo sepan quién es el Alfa y, en cierto sentido, los Hombres Lobo pueden atacar al Alfa por la noche. Esto causará la muerte del Alfa, agregando una capa adicional de complejidad a la estrategia del Hombre Lobo. Si el Hombre Lobo Alfa es eliminado, el grupo de Hombres Lobo pierde un recurso valioso, lo que hace esencial que el Alfa se mantenga discreto. Aunque es una figura influyente, el poder del Alfa también atrae la atención de roles buenos como el Vidente y la Bruja, quienes pueden ver al Alfa como un objetivo prioritario.",
+      "interactions": {
+        "werewolf": "Hombre Lobo - El Hombre Lobo Alfa forma parte del grupo de Hombres Lobo pero despierta independientemente de los Hombres Lobo regulares. Mientras los Hombres Lobo eligen colectivamente un objetivo, el Alfa elige una persona para convertir en Hombre Lobo, permitiendo una estrategia flexible y potencialmente confundiendo a la Aldea. Sin embargo, el Alfa debe evitar atacar a otros Hombres Lobo y alinearse con los objetivos del grupo tanto como sea posible.",
+        "seer": "Vidente - El Vidente puede identificar al Hombre Lobo Alfa como una amenaza debido a su poderoso rol dentro de la facción de Hombres Lobo. Si el Vidente revela la identidad del Alfa a la Aldea, los Hombres Lobo pierden una ventaja crucial.",
+        "doctor": "Doctor - Si el Doctor protege a un jugador objetivo del Alfa, el ataque será bloqueado esa noche. El Alfa puede necesitar anticiparse a los movimientos del Doctor para garantizar ataques exitosos.",
+        "witch": "Bruja - La poción de muerte de la Bruja es lo suficientemente poderosa como para eliminar al Hombre Lobo Alfa. Dado que la Bruja está alineada con la Aldea, puede ver al Alfa como un objetivo prioritario si sospecha de su identidad, lo que podría interrumpir la estrategia de los Hombres Lobo.",
+        "bodyguard": "Guardaespaldas - Si el Alfa ataca a un jugador protegido por el Guardaespaldas, la protección permanece intacta y el ataque del Alfa falla. El Alfa debe planificar en torno a la defensa del Guardaespaldas para ser efectivo.",
+        "hunter": "Cazador - Si el Cazador muere y selecciona al Alfa como su objetivo de represalia, el Alfa muere, debilitando significativamente a la facción de Hombres Lobo. El Alfa debe tener cuidado de no exponer su identidad para evitar ser seleccionado por el Cazador en caso de su muerte."
+      }
+    },
+    "bodyguard": {
+      "name": "Guardaespaldas",
+      "description": "El Guardaespaldas es un protector inquebrantable que selecciona a un jugador en la primera noche para protegerlo durante el resto del juego. El Guardaespaldas no puede elegir protegerse a sí mismo. Este jugador elegido obtiene protección especial contra ataques, con el Guardaespaldas interviniendo para salvarlo si es atacado. Sin embargo, si el jugador protegido es atacado una segunda vez, el Guardaespaldas se sacrificará, muriendo en su lugar. Esta protección solo está activa mientras el Guardaespaldas permanezca en el juego. La protección del Guardaespaldas es un activo vital, pero está limitada: ciertos roles poderosos, como el Cazador o la Bruja, pueden superar esta salvaguarda con sus habilidades letales.",
+      "interactions": {
+        "werewolf": "Hombre Lobo - Si los Hombres Lobo atacan al jugador protegido por el Guardaespaldas, el Guardaespaldas evitará el primer ataque. Sin embargo, si los Hombres Lobo atacan a este jugador nuevamente, el Guardaespaldas morirá en su lugar y la protección terminará.",
+        "hunter": "Cazador - Si el jugador protegido es elegido por la habilidad de venganza de muerte del Cazador, el Guardaespaldas no puede evitar el ataque y el jugador protegido morirá.",
+        "doctor": "Doctor - Las protecciones del Guardaespaldas y el Doctor no entran en conflicto, lo que significa que si el Doctor protege al mismo jugador en la misma noche, ambas protecciones estarán activas. Si los Hombres Lobo atacan a este jugador, ambas protecciones funcionarán, pero la protección prioritaria es la del Doctor, por lo que el Guardaespaldas no usa su protección ni muere.",
+        "witch": "Bruja - Si la Bruja usa su poción de muerte en el jugador protegido, la protección del Guardaespaldas será ineficaz y el jugador objetivo morirá.",
+        "priest": "Sacerdote - Si el Sacerdote bendice al jugador protegido, esta bendición agrega otra capa de defensa, aunque la protección del Guardaespaldas sigue siendo la principal hasta que muera en el cumplimiento de su deber."
+      }
+    },
+    "cupid": {
+      "name": "Cupido",
+      "description": "Cupido es un rol que tiene el poder de crear un vínculo especial entre dos jugadores, uniendo sus destinos durante el resto del juego. Al comienzo del juego, Cupido selecciona a dos jugadores que quedarán 'unidos' como amantes. Esta conexión significa que si uno de los amantes muere, el otro muere inmediatamente de tristeza. La selección de Cupido es crucial porque los jugadores vinculados deben navegar cuidadosamente su nueva lealtad. Este vínculo puede ser una herramienta poderosa para complicar el juego y requiere una consideración estratégica, ya que puede afectar alianzas y cambiar prioridades de los jugadores. Incluso si Cupido muere, el vínculo permanece durante el resto del juego.",
+      "interactions": {
+        "werewolf": "Si los Hombres Lobo atacan y matan a uno de los jugadores vinculados por Cupido, el otro amante también morirá, cumpliendo el trágico desenlace del vínculo.",
+        "doctor": "Si el Doctor protege a uno de los jugadores vinculados y los Hombres Lobo intentan matarlo, la protección evitará que ambos jugadores mueran esa noche.",
+        "seer": "Si el Vidente revela a uno de los amantes vinculados, se mostrará como un rol bueno si es un rol bueno y como un rol malo si es un rol malo. Solo el jugador seleccionado por el Vidente sabrá cuál es su rol en el juego.",
+        "hunter": "Si el Cazador muere y selecciona a uno de los amantes vinculados para morir con él, el otro amante también perecerá como parte del efecto del vínculo.",
+        "witch": "Si la Bruja usa su poción para matar a uno de los jugadores vinculados, el otro también morirá debido a la conexión forjada por Cupido. Si la Bruja usa su poción para salvar a uno de los jugadores, ambos jugadores serán salvados.",
+        "priest": "Si el Sacerdote bendice a uno de los amantes, esta protección seguirá vigente incluso si el otro amante es atacado, a menos que el ataque sea lo suficientemente poderoso como para anular la protección, como en el caso de la poción mortal de la Bruja."
+      }
+    },
+    "cursedVillager": {
+      "name": "Aldeano Maldito",
+      "description": "El Aldeano Maldito es un alma desafortunada que comienza el juego como un aldeano normal pero guarda un oscuro secreto. Si es atacado por los Hombres Lobo durante la noche, el Aldeano Maldito se transforma en Hombre Lobo, cambiando permanentemente su lealtad hacia el equipo de los Hombres Lobo. Hasta ese momento, permanece leal a la Aldea. Si el Vidente descubre al Aldeano Maldito antes de transformarse, aparecerá como un rol bueno, manteniendo su disfraz hasta que se active la maldición.",
+      "interactions": {
+        "werewolf": "Si los Hombres Lobo eligen atacar al Aldeano Maldito, la maldición se activa, y el Aldeano se une permanentemente al equipo de los Hombres Lobo, convirtiéndose de aliado a enemigo de la noche a la mañana.",
+        "seer": "El Vidente verá al Aldeano Maldito como un rol bueno hasta que la maldición se active. Esto puede engañar a la Aldea haciéndoles creer que están a salvo, solo para que el Aldeano Maldito se transforme más tarde.",
+        "witch": "Si la Bruja usa su poción para matar al Aldeano Maldito antes de que sea atacado por los Hombres Lobo, morirá como un Aldeano normal, sin activar la maldición. Si la maldición ya está activa, la poción de la Bruja lo matará como un Hombre Lobo.",
+        "hunter": "Si el Aldeano Maldito es asesinado por el Cazador antes de transformarse, morirá como un Aldeano, evitando que la Aldea agregue otro Hombre Lobo a sus filas."
+      }
+    },
+    "doctor": {
+      "name": "Doctor",
+      "description": "El Doctor es un rol crucial para proteger al Pueblo de los ataques nocturnos. Cada noche, el Doctor selecciona a un jugador para protegerlo de cualquier daño, lo que podría prevenir un ataque de los Hombres Lobo u otro resultado fatal. Esto convierte al Doctor en un activo valioso para la defensa del Pueblo, ya que su protección puede ayudar a mantener a salvo a jugadores clave y prolongar la lucha contra los Hombres Lobo. Sin embargo, la habilidad del Doctor conlleva un riesgo; si el Doctor es eliminado, su influencia protectora desaparece por completo. Perder al Doctor pone al Pueblo en mayor peligro, por lo que es esencial proteger este rol el mayor tiempo posible. El Doctor debe equilibrar la cautela y el coraje, trabajando de manera discreta para evitar ser detectado por los Hombres Lobo mientras asegura la supervivencia del Pueblo. El Doctor puede usar su protección en un jugador y no puede proteger al mismo jugador en rondas consecutivas. Puede volver a proteger al mismo jugador después de que pase una noche. También puede usar su protección en sí mismo.",
+      "interactions": {
+        "werewolf": "El Doctor debe evitar ser detectado por los Hombres Lobo, ya que probablemente lo atacarán para eliminar su influencia protectora.",
+        "seer": "Trabaja indirectamente con el Vidente si logra identificarlo, ya que ambos desempeñan roles vitales para proteger al Pueblo. Es muy beneficioso proteger al Vidente si revela su rol a otros jugadores, asegurando su protección durante la próxima noche.",
+        "hunter": "Si el Cazador muere y elige como objetivo a un jugador que está protegido por el Doctor, aunque esté protegido, aún morirá.",
+        "witch": "Si se usa la poción mortal de la Bruja para matar a un jugador protegido por el Doctor, la protección queda inactiva y este jugador morirá incluso si estaba protegido.",
+        "bodyguard": "Si los Hombres Lobo atacan a un jugador que ya está protegido por el Doctor y el Guardaespaldas, el escudo del Guardaespaldas permanecerá intacto, ya que el Doctor tiene prioridad en la protección.",
+        "priest": "Si los Hombres Lobo atacan a un jugador que ya está bendecido por el Sacerdote y protegido por el Doctor, la bendición del Sacerdote permanecerá intacta, ya que el Doctor tiene prioridad en la protección.",
+        "cupid": "Si el Doctor protege a uno de los jugadores vinculados por Cupido y los Hombres Lobo intentan matarlo, la protección evitará que ambos jugadores mueran esa noche."
+      }
+    },
+    "hunter": {
+      "name": "Cazador",
+      "description": "El Cazador es un rol valiente dentro del Pueblo, conocido por su habilidad de última resistencia. Si el Cazador es eliminado durante el juego, tendrá una última oportunidad de eliminar a otro jugador de su elección antes de salir del juego. Esta habilidad poderosa le da al Cazador un impacto significativo incluso en la muerte, y lo convierte en un objetivo de alto riesgo para los hombres lobo y otros roles malos. El Cazador debe observar cuidadosamente y decidir quién podría ser más valioso para llevarse con él si es eliminado, lo que podría cambiar el rumbo del juego. Sin embargo, ciertas protecciones, como la bendición del Sacerdote o el escudo del Doctor, pueden afectar su disparo final, lo que hace esencial que el Cazador se maneje estratégicamente según la dinámica actual del juego.",
+      "interactions": {
+        "werewolf": "Si el Cazador es objetivo y eliminado por los Hombres Lobo, tendrá una última oportunidad de vengarse eligiendo a un jugador para eliminar con él. Este ataque final no se ve afectado por la influencia de los Hombres Lobo y no puede ser evitado por sus estrategias.",
+        "doctor": "Si el Cazador apunta a un jugador protegido por el Doctor en su disparo final, la protección es ineficaz, y el jugador objetivo aún morirá, ya que el ataque del Cazador anula el escudo del Doctor.",
+        "priest": "Si el Cazador apunta a un jugador bendecido, la bendición del Sacerdote no lo protegerá. El disparo final del Cazador es poderoso y no puede ser mitigado por la bendición.",
+        "bodyguard": "Si el Cazador apunta a un jugador protegido por el Cuerpo de Guardia, la protección será eludida, lo que significa que el objetivo aún morirá independientemente de la protección del Cuerpo de Guardia.",
+        "witch": "Si el Cazador es asesinado y la Bruja usa su poción salvadora sobre el Cazador, puede evitar la muerte del Cazador y, por lo tanto, su disparo final. Sin embargo, si la Bruja no usa la poción, el Cazador procederá con su último ataque.",
+        "cupid": "Si el Cazador es uno de los amantes unidos por Cupido, y muere, el otro amante unido morirá de tristeza. Además de esto, el Cazador decidirá sobre otro jugador a matar. La decisión del Cazador se tomará antes de revelar el vínculo de Cupido."
+      }
+    },
+    "lycan": {
+      "name": "Lycán",
+      "description": "El Lycán es un aldeano, completamente alineado con los objetivos del Pueblo, pero maldito con un rasgo que hace que parezca un Hombre Lobo cuando es visto por el Vidente. Esta falsa identidad crea desafíos complejos, ya que el Vidente puede identificarlo erróneamente como una amenaza, generando sospechas e influyendo potencialmente en las acciones del Pueblo en su contra. El Lycán debe ser cauteloso para evitar sospechas mientras convence sutilmente a otros de su verdadera lealtad al Pueblo. A pesar de su apariencia a los ojos del Vidente, el Lycán sigue siendo un rol bueno, cuyo objetivo es ayudar a proteger al Pueblo y derrotar a los Hombres Lobo. Navegar este equilibrio requiere que el Lycán juegue de manera cuidadosa y estratégica para evitar una eliminación innecesaria y apoyar la victoria de los aldeanos.",
+      "interactions": {
+        "seer": "Si el Vidente ve al Lycán, lo percibirá como un rol malo debido a su maldición. Esta mala identificación puede generar sospechas tanto del Vidente como del Pueblo, por lo que el Lycán debe navegar cuidadosamente sus interacciones con el Vidente y considerar estrategias para demostrar su lealtad con el tiempo.",
+        "werewolf": "Los Hombres Lobo no conocen la identidad del Lycán, y el Lycán aparece como un aldeano común ante ellos. El rol del Lycán en el Pueblo permanece sin cambios, por lo que debe ayudar a proteger al Pueblo mientras disipa dudas sobre su verdadera naturaleza."
+      }
+    },
+    "priest": {
+      "name": "Sacerdote",
+      "description": "El Sacerdote es un protector poderoso en el juego, bendecido con la capacidad de proteger a un jugador del daño mediante una bendición divina. El Sacerdote puede elegir bendecir a un jugador durante el juego, haciéndolo inmune a los ataques de los Hombres Lobo. Esta bendición permanece activa mientras el Sacerdote siga vivo; si el Sacerdote muere, todas las bendiciones se pierden y los jugadores previamente bendecidos se vuelven vulnerables nuevamente. Sin embargo, la bendición no protege contra ciertos ataques poderosos, lo que hace que las decisiones del Sacerdote sean cruciales para la supervivencia de los jugadores clave en el Pueblo.",
+      "interactions": {
+        "werewolf": "La bendición del Sacerdote protege a un jugador de los ataques de los Hombres Lobo durante la noche. Sin embargo, los Hombres Lobo aún pueden idear estrategias para eludir la bendición del Sacerdote, atacando a otros aldeanos o incluso planeando un ataque al Sacerdote para eliminar su poder protector.",
+        "doctor": "La protección del Doctor es independiente de la bendición del Sacerdote. Si un jugador está tanto bendecido por el Sacerdote como protegido por el Doctor, tendrá múltiples capas de defensa. Sin embargo, si el Sacerdote es eliminado, se pierde la bendición, dejando la protección del Doctor como el único escudo.",
+        "seer": "Mientras el Vidente descubre información, el Sacerdote puede usar su bendición para proteger al Vidente si su identidad es revelada, salvaguardándolo de los ataques.",
+        "hunter": "Si el Cazador es eliminado y apunta a un jugador bendecido, la bendición del Sacerdote no impide el ataque final del Cazador, y el jugador bendecido aún morirá.",
+        "witch": "Si la Bruja usa su poción mortal sobre un jugador bendecido, la bendición del Sacerdote no impedirá esta muerte. La bendición no se extiende a los ataques de fuentes sobrenaturales, como la poción de la Bruja.",
+        "bodyguard": "El Cuerpo de Guardia y el Sacerdote pueden proteger a un jugador, aunque de diferentes maneras. Si el Cuerpo de Guardia está protegiendo activamente a un jugador bendecido por el Sacerdote, la bendición permanecerá, pero la protección del Cuerpo de Guardia tiene prioridad para los ataques físicos."
+      }
+    },
+    "prince": {
+      "name": "Príncipe",
+      "description": "El Príncipe es un rol único que lleva una forma especial de protección durante el día. Independientemente de cuántas veces el Pueblo intente votar al Príncipe, no puede ser eliminado por este método. Si el Pueblo decide votar al Príncipe durante el día, el Narrador simplemente anuncia que el intento es ineficaz, reforzando el estatus intocable del Príncipe. Sin embargo, esta protección no se extiende a la noche, donde el Príncipe puede ser vulnerable a ataques de los Hombres Lobo u otros roles. El Príncipe debe usar su influencia sabiamente, ya que juega un papel crucial en liderar al Pueblo sin temor a la eliminación durante el día.",
+      "interactions": {
+        "werewolf": "El Príncipe es vulnerable a los ataques de los Hombres Lobo durante la noche, y pueden priorizarlo debido a su inmunidad a la eliminación durante el día.",
+        "hunter": "Si el Príncipe es objetivo de la habilidad de venganza por muerte del Cazador, morirá independientemente de su protección diurna.",
+        "doctor": "Si el Doctor elige proteger al Príncipe durante la noche, cualquier ataque de los Hombres Lobo esa noche será bloqueado, lo que permitirá que el Príncipe sobreviva incluso a los peligros nocturnos.",
+        "witch": "Si la Bruja usa su poción para matar al Príncipe, él morirá, ya que su habilidad ignora su inmunidad durante el día.",
+        "priest": "Si el Sacerdote bendice al Príncipe, la bendición lo protegerá aún más de los ataques, fortaleciendo su resistencia mientras la protección del Sacerdote esté activa y él siga en el juego."
+      }
+    },
+    "seer": {
+      "name": "Vidente",
+      "description": "El Vidente tiene la habilidad especial de revelar la identidad de un jugador cada noche. Su objetivo es descubrir a los Hombres Lobo y ayudar a guiar al Pueblo hacia la victoria identificando roles peligrosos. Serás notificado sobre el rol del jugador que elijas ver con un pulgar arriba (rol bueno), pulgar abajo (rol malo) o mano plana (Tanner).",
+      "interactions": {
+        "villager": "Trabaja de cerca con los Villagers para identificar a los Hombres Lobo y roles peligrosos.",
+        "werewolf": "Busca identificar a los Hombres Lobo para alertar al Pueblo sobre la amenaza.",
+        "tanner": "Si te encuentras con un Tanner, asegúrate de comunicar esto efectivamente a tus compañeros Villagers, para que no lo maten y pierdan el juego.",
+        "doctor": "Puede depender de la protección del Doctor si su identidad se ve sospechada por los Hombres Lobo.",
+        "witch": "Podría colaborar con la Bruja para obtener información adicional o protección si ambos se identifican como roles buenos.",
+        "lycan": "Este rol será distinguido por el Vidente como un rol malo, pero en realidad es un Villager. Asegúrate de prestar atención si hay un Lycan en el juego.",
+        "alphaWerewolf": "El mayor desafío del Vidente es identificar al Alfa Hombre Lobo. El Alfa será distinguido como un rol malo, igual que un Hombre Lobo regular."
+      }
+    },
+    "tanner": {
+      "name": "Tanner",
+      "description": "El Tanner es un personaje inusual con un objetivo único y contrintuitivo: gana el juego si es eliminado por los Villagers durante el día. A diferencia de otros jugadores que buscan sobrevivir, el Tanner trata activamente de provocar sospechas y ser eliminado. Si lo logra, se convierte en el único ganador del juego, independientemente de qué otros roles queden. Sin embargo, si el Tanner es eliminado durante la noche (por ejemplo, por los Hombres Lobo), no gana y simplemente es eliminado del juego. Este rol requiere de una desinformación estratégica y manipulación cuidadosa para lograr el objetivo deseado sin revelar sus intenciones de forma demasiado evidente.",
+      "interactions": {
+        "villagers": "Si los Villagers votan para eliminar al Tanner durante el día, el Tanner gana inmediatamente el juego y todos los demás jugadores pierden. Este es el objetivo principal del Tanner, por lo que puede intentar parecer sospechoso durante el día.",
+        "werewolves": "Si los Hombres Lobo atacan al Tanner durante su ataque nocturno, el Tanner será eliminado pero no ganará. Los Hombres Lobo deben ser cautelosos en su selección, ya que una eliminación nocturna del Tanner no cumple con la condición de victoria del Tanner.",
+        "seer": "El Vidente puede descubrir la identidad del Tanner, por lo que debe ser estratégico en cuanto a este rol y lograr su objetivo sin ser notado.",
+        "hunter": "Si el Cazador mata al Tanner (ya sea intencionalmente o como represalia), el Tanner no gana, ya que su condición de victoria es específica a la eliminación durante el día por votación del Pueblo.",
+        "witch": "Si la Bruja utiliza su poción para matar al Tanner, el Tanner será eliminado pero no logrará la victoria, ya que la eliminación no ocurrió a través de la votación del Pueblo durante el día."
+      }
+    },
+    "villager": {
+      "name": "Aldeano",
+      "description": "El Aldeano puede no tener habilidades especiales, pero es esencial para el Pueblo y forma la principal fuerza que se opone a los Hombres Lobo. Durante el día, los Aldeanos usan su lógica, observación e intuición para identificar comportamientos sospechosos, detectar mentiras y trabajar de manera colaborativa para exponer a los Hombres Lobo escondidos entre ellos. Contribuyen al proceso de votación, donde pueden dirigir las discusiones e influir en las decisiones sobre quién eliminar. Aunque los Aldeanos dependen únicamente de su ingenio, su capacidad para observar y interpretar cuidadosamente las palabras y acciones de los demás los convierte en la columna vertebral de la estrategia del Pueblo, uniéndolos contra las fuerzas que amenazan su supervivencia.",
+      "interactions": {
+        "werewolf": "Los Aldeanos son el objetivo principal de los Hombres Lobo, quienes buscan reducir su número cada noche. Los Aldeanos deben prestar mucha atención a los jugadores que parecen evasivos o manipuladores, ya que esto podría revelar a los Hombres Lobo ocultos.",
+        "seer": "Los Aldeanos trabajan junto al Vidente y otros roles, reuniendo información y contribuyendo con ideas para apoyar los descubrimientos del Vidente. Sin embargo, también deben proteger la identidad del Vidente para evitar los ataques de los Hombres Lobo.",
+        "witch": "Si un Aldeano es elegido para ser eliminado, la Bruja puede optar por usar su poción curativa para salvarlo, preservando la fuerza del Pueblo. Los Aldeanos deben identificar a los posibles aliados de los Hombres Lobo para guiar sabiamente la decisión de la Bruja."
+      }
+    },
+    "werewolf": {
+      "name": "Hombre Lobo",
+      "description": "El Hombre Lobo engaña al Pueblo durante el día fingiendo ser aldeanos inocentes. Por la noche, muestra su verdadera identidad y elige colectivamente a un jugador para eliminar. Su objetivo es eliminar a todos los roles buenos sin ser descubiertos en su identidad.",
+      "interactions": {
+        "otherWerewolves": "Colabora con otros Hombres Lobo para planificar los ataques nocturnos.",
+        "seer": "Debe evitar ser detectado por el Vidente, quien puede revelar su identidad.",
+        "doctor": "Debe planificar estrategias alrededor de las habilidades de protección del Doctor para garantizar ataques exitosos.",
+        "tanner": "El Hombre Lobo se beneficia de la muerte del Tanner. Si el Tanner es eliminado durante el día, él ganará el juego y no los Hombres Lobo.",
+        "witch": "La Bruja está del lado del Pueblo, pero podría ser manipulada y engañada para que no ataque a los Hombres Lobo con su poción de muerte.",
+        "alphaWerewolf": "El Alfa Hombre Lobo se despierta por separado de los Hombres Lobo. Investiga para ver si puedes descubrir quién es el Alfa para no matarlo por la noche, ya que juega contigo también, solo que no se despierta al mismo tiempo.",
+        "wolfCub": "El Cachorro se despierta con los Hombres Lobo, pero ellos no saben que es el Cachorro. Puedes intentar influir en el Pueblo durante el día para que lo maten si sabes que necesitarás una muerte adicional la próxima noche para ganar el juego."
+      }
+    },
+    "witch": {
+      "name": "Bruja",
+      "description": "La Bruja es una aliada misteriosa y poderosa del Pueblo, que posee tanto una poción curativa como una poción de muerte, cada una disponible solo una vez por juego. Durante la noche, la Bruja sabe si alguien ha sido blanco de eliminación y debe decidir si salvar a esa persona utilizando la poción curativa. La Bruja también tiene la opción de usar la poción de muerte en cualquier jugador, permitiéndole atacar a un Hombre Lobo o eliminar a un jugador que sospeche que está perjudicando al Pueblo. El poder de la Bruja es formidable, pero el uso limitado de sus pociones requiere un momento y estrategia cuidadosa. Si la Bruja es eliminada antes de usar sus pociones, estas se pierden para el Pueblo. Al equilibrar su rol como protectora y posible eliminadora, la Bruja tiene un impacto duradero en el resultado del juego. No puede usar sus pociones sobre sí misma.",
+      "interactions": {
+        "werewolf": "La Bruja puede contrarrestar un ataque de Hombre Lobo salvando al objetivo con su poción curativa, frustrando los planes de los Hombres Lobo. Sin embargo, si usa su poción de muerte en un Hombre Lobo, elimina la amenaza inmediatamente, aunque consume permanentemente la poción. Si ella misma es atacada por los Hombres Lobo, corre el riesgo de perder ambas pociones si no las ha usado aún. No puede usar sus pociones sobre sí misma.",
+        "doctor": "La poción curativa de la Bruja funciona independientemente de la protección del Doctor; si el Doctor no logra proteger a un jugador, la poción de la Bruja aún puede salvarlo. Si ambos protegen al mismo jugador, la Bruja esencialmente pierde su poción ya que la persona ya está protegida. Debe evitar superponer sus esfuerzos sobre el mismo jugador para maximizar el impacto de sus habilidades.",
+        "seer": "El Vidente puede desear comunicarse con la Bruja para aconsejar sobre los objetivos para su poción de muerte, particularmente si el Vidente identifica a un Hombre Lobo. Juntos forman una poderosa alianza contra los Hombres Lobo, aunque deben tener cuidado de no revelarse demasiado abiertamente.",
+        "bodyguard": "La poción de muerte de la Bruja bypassa la protección del Cuerpo. Si el Cuerpo está defendiendo a un jugador y la Bruja usa su poción de muerte sobre ese jugador, el Cuerpo no puede evitar su muerte.",
+        "hunter": "Si la Bruja mata al Cazador con su poción de muerte, el Cazador aún tiene la oportunidad de vengarse y eliminar a otro jugador con él. La Bruja debe usar su poción estratégicamente para evitar esta posible represalia. También, si el Cazador ataca a un jugador al que la Bruja utilizó una poción curativa, el jugador aún morirá. La penalización por la muerte del Cazador es más fuerte.",
+        "priest": "Si el Sacerdote bendice a un jugador, la poción curativa de la Bruja aún puede salvarlo si los Hombres Lobo u otro ataque lo amenazan. Sin embargo, su poción de muerte es lo suficientemente fuerte como para pasar por encima de la bendición del Sacerdote, causando la muerte del jugador independientemente de la bendición."
+      }
+    },
+    "wolfCub": {
+      "name": "Cachorro Lobo",
+      "description": "El Cachorro Lobo es un miembro más joven de la manada de los Hombres Lobo, y aunque no tiene una habilidad individual para atacar o influir en otros, desempeña un papel crucial en el fortalecimiento de la manada. El Cachorro Lobo despierta junto con el resto de los Hombres Lobo por la noche. Si el Cachorro Lobo es asesinado por el Pueblo o por otro jugador, la manada de Hombres Lobo buscará venganza, ganando una muerte extra en la siguiente noche. Esto hace que el Cachorro Lobo sea un objetivo prioritario para el Pueblo, pero también un miembro que los Hombres Lobo están ansiosos por proteger. Aunque el Cachorro Lobo carece de la fuerza de un Hombre Lobo completo, su presencia es una ventaja estratégica para los Hombres Lobo mientras siga vivo.",
+      "interactions": {
+        "werewolf": "El Cachorro Lobo está protegido por los Hombres Lobo, quienes buscan mantenerlo con vida. Si el Cachorro Lobo es eliminado, los Hombres Lobo recibirán una muerte extra en la siguiente noche, intensificando la amenaza al Pueblo.",
+        "seer": "El Vidente puede identificar al Cachorro Lobo como un Hombre Lobo y revelar esta información al Pueblo, convirtiéndolo en un objetivo. Perder al Cachorro Lobo podría acelerar los ataques de los Hombres Lobo contra el Pueblo.",
+        "doctor": "Si el Doctor protege al Cachorro Lobo, puede evitar su eliminación por una noche, preservando los números de la facción de los Hombres Lobo y la posibilidad de muertes extra si el Pueblo más tarde elimina al Cachorro Lobo.",
+        "witch": "Si la Bruja usa su poción de muerte en el Cachorro Lobo, los Hombres Lobo ganan su muerte extra en la siguiente noche. Sin embargo, si la Bruja usa su poción curativa en el Cachorro Lobo cuando es atacado, el Cachorro sobrevive, y el Pueblo pierde la oportunidad de evitar el efecto de la muerte extra.",
+        "hunter": "Si el Cazador muere y selecciona al Cachorro Lobo como su objetivo de represalia, el Cachorro Lobo muere, y los Hombres Lobo reciben una muerte extra en la siguiente noche. El Cazador debe sopesar cuidadosamente esta opción si desea evitar fortalecer a los Hombres Lobo.",
+        "bodyguard": "Si el Cuerpo protege al Cachorro Lobo y evita su muerte, los Hombres Lobo evitan perder la influencia beneficiosa del Cachorro. El Pueblo podría tener dificultades para eliminar al Cachorro Lobo, especialmente si recibe múltiples protecciones."
+      }
+    }
   }
 }

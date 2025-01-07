@@ -11,6 +11,7 @@ import {
   MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 type NavigationItem = {
   title: string;
@@ -59,6 +60,7 @@ const navigationData: NavigationItem[] = [
 
 const RulesMenu = () => {
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <SafeAreaView className="flex-1 bg-gray-900">
@@ -67,7 +69,7 @@ const RulesMenu = () => {
 
       <View className="p-5 bg-gray-900">
         <Text className="text-xl font-bold text-center text-white mb-5">
-          Game Rules
+          {t("rulesScreen.title")}
         </Text>
 
         {navigationData.map((item, index) => (
@@ -77,7 +79,7 @@ const RulesMenu = () => {
             onPress={() => router.push(item.route)}
           >
             {item.icon}
-            <Text className="text-sm text-gray-300 ml-3">{item.title}</Text>
+            <Text className="text-sm text-gray-300 ml-3">{t(item.title)}</Text>
           </TouchableOpacity>
         ))}
       </View>
