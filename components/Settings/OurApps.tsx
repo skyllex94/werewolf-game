@@ -1,6 +1,7 @@
 import { View, Text, Image, TouchableOpacity, Linking } from "react-native";
 import React from "react";
 import { ScrollView } from "react-native-gesture-handler";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 type AppInfo = {
   name: string;
@@ -31,6 +32,8 @@ const appData: AppInfo[] = [
 ];
 
 const OurApps: React.FC = () => {
+  const { t } = useTranslation();
+
   const openURL = (url: string) => {
     Linking.openURL(url).catch((err) =>
       console.error("Failed to open URL:", err)
@@ -39,7 +42,9 @@ const OurApps: React.FC = () => {
 
   return (
     <View className="gap-y-2 pt-4">
-      <Text className="text-white text-[15px] font-light ml-2">Our Apps</Text>
+      <Text className="text-white text-[15px] font-light ml-2">
+        {t("ourApps")}
+      </Text>
 
       <ScrollView
         className="bg-slate-800 mt-5 rounded-2xl w-full"
@@ -58,9 +63,9 @@ const OurApps: React.FC = () => {
                     className="h-16 w-16 rounded-xl"
                     source={app.imageSource}
                   />
-                  <Text className="text-white mt-2">{app.name}</Text>
+                  <Text className="text-white mt-2">{t(app.name)}</Text>
                   <Text className="text-gray-500 text-[10px] text-center w-20 mt-[.5px]">
-                    {app.description}
+                    {t(app.description)}
                   </Text>
                 </View>
               </TouchableOpacity>

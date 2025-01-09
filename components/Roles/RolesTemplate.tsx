@@ -3,6 +3,7 @@ import { Text, View, ScrollView, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import RulesTopPane from "../Rules/RulesTopPane";
+import { useTranslation } from "react-i18next";
 
 type RoleTemplateProps = {
   name: string;
@@ -19,6 +20,8 @@ const RoleTemplate: React.FC<RoleTemplateProps> = ({
   interactions,
   imagePath,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <SafeAreaView className="flex-1 bg-gray-900">
       <StatusBar style="light" />
@@ -43,7 +46,7 @@ const RoleTemplate: React.FC<RoleTemplateProps> = ({
         {/* Role Description */}
         <View className="mb-4">
           <Text className="text-lg font-semibold text-gray-300 mb-2">
-            Description
+            {t("rolesScreen.description")}
           </Text>
           <Text className="text-sm text-gray-400">{description}</Text>
         </View>
@@ -51,7 +54,7 @@ const RoleTemplate: React.FC<RoleTemplateProps> = ({
         {/* Role Type */}
         <View className="mb-4">
           <Text className="text-lg font-semibold text-gray-300 mb-2">
-            Role Type
+            {t("rolesScreen.roleType")}
           </Text>
           <Text
             className={`text-sm font-bold ${
@@ -62,14 +65,14 @@ const RoleTemplate: React.FC<RoleTemplateProps> = ({
                 : "text-yellow-400"
             }`}
           >
-            {roleType.charAt(0).toUpperCase() + roleType.slice(1)}
+            {t(`rolesScreen.roleTypes.${roleType}`)}
           </Text>
         </View>
 
         {/* Interactions with Other Roles */}
         <View className="mb-10">
           <Text className="text-lg font-semibold text-gray-300 mb-2">
-            Interaction with Other Roles
+            {t("rolesScreen.interactions")}
           </Text>
           {interactions.map((interaction, index) => (
             <View key={index} className="flex-row items-start mb-2 mr-4">

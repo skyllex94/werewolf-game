@@ -7,17 +7,17 @@ const SeerRole = () => {
 
   return (
     <RoleTemplate
-      name={t("roles.seer.name")}
-      description={t("roles.seer.description")}
+      name={t("rolesScreen.seer.name")}
+      description={t("rolesScreen.seer.description")}
       roleType="good"
       interactions={[
-        t("roles.seer.interactions.villager"),
-        t("roles.seer.interactions.werewolf"),
-        t("roles.seer.interactions.tanner"),
-        t("roles.seer.interactions.doctor"),
-        t("roles.seer.interactions.witch"),
-        t("roles.seer.interactions.lycan"),
-        t("roles.seer.interactions.alphaWerewolf"),
+        t("rolesScreen.seer.interactions.villager"),
+        t("rolesScreen.seer.interactions.werewolf"),
+        t("rolesScreen.seer.interactions.tanner"),
+        t("rolesScreen.seer.interactions.doctor"),
+        t("rolesScreen.seer.interactions.witch"),
+        t("rolesScreen.seer.interactions.lycan"),
+        t("rolesScreen.seer.interactions.alphaWerewolf"),
       ]}
       imagePath={require("../../assets/images/characters/seer.jpeg")}
     />

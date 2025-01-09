@@ -7,16 +7,16 @@ const WolfCubRole = () => {
 
   return (
     <RoleTemplate
-      name={t("roles.wolfCub.name")}
-      description={t("roles.wolfCub.description")}
+      name={t("rolesScreen.wolfCub.name")}
+      description={t("rolesScreen.wolfCub.description")}
       roleType="bad"
       interactions={[
-        t("roles.wolfCub.interactions.werewolf"),
-        t("roles.wolfCub.interactions.seer"),
-        t("roles.wolfCub.interactions.doctor"),
-        t("roles.wolfCub.interactions.witch"),
-        t("roles.wolfCub.interactions.hunter"),
-        t("roles.wolfCub.interactions.bodyguard"),
+        t("rolesScreen.wolfCub.interactions.werewolf"),
+        t("rolesScreen.wolfCub.interactions.seer"),
+        t("rolesScreen.wolfCub.interactions.doctor"),
+        t("rolesScreen.wolfCub.interactions.witch"),
+        t("rolesScreen.wolfCub.interactions.hunter"),
+        t("rolesScreen.wolfCub.interactions.bodyguard"),
       ]}
       imagePath={require("../../assets/images/characters/wolf-cub.jpeg")}
     />

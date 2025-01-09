@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { View, Animated, TouchableOpacity, Text } from "react-native";
 import * as StoreReview from "expo-store-review";
 import { showMessage } from "react-native-flash-message";
+import { useTranslation } from "react-i18next";
 
 // Define the types for the props
 type ContinueButtonProps = {
@@ -24,6 +25,8 @@ export default function ContinueButton({
   const center = size / 2;
   const radius = size / 2 - strokeWidth / 2;
   const circumference = 2 * Math.PI * radius;
+
+  const { t } = useTranslation();
 
   const progressAnimation = useRef(new Animated.Value(0)).current;
   const progressRef = useRef<any>(null);
@@ -79,8 +82,8 @@ export default function ContinueButton({
     <View className="items-center justify-center">
       {currSlide === 4 && (
         <Text className="font-light text-sm bottom-12 absolute py-2 text-white">
-          Try 3 days free, then {currentOffering?.weekly?.product.priceString}
-          /week
+          {t("trialTextStart")} {currentOffering?.weekly?.product.priceString}/
+          {t("week")}
         </Text>
       )}
 
@@ -95,7 +98,9 @@ export default function ContinueButton({
           start={[0, 0]}
           end={[1, 1]}
         >
-          <Text className="text-center font-light text-[16px]">Next</Text>
+          <Text className="text-center font-light text-[16px]">
+            {t("playersScanScreen.nextButton")}
+          </Text>
         </LinearGradient>
       </TouchableOpacity>
     </View>

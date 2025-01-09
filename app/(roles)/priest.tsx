@@ -7,16 +7,16 @@ const PriestRole = () => {
 
   return (
     <RoleTemplate
-      name={t("roles.priest.name")}
-      description={t("roles.priest.description")}
+      name={t("rolesScreen.priest.name")}
+      description={t("rolesScreen.priest.description")}
       roleType="good"
       interactions={[
-        t("roles.priest.interactions.werewolf"),
-        t("roles.priest.interactions.doctor"),
-        t("roles.priest.interactions.seer"),
-        t("roles.priest.interactions.hunter"),
-        t("roles.priest.interactions.witch"),
-        t("roles.priest.interactions.bodyguard"),
+        t("rolesScreen.priest.interactions.werewolf"),
+        t("rolesScreen.priest.interactions.doctor"),
+        t("rolesScreen.priest.interactions.seer"),
+        t("rolesScreen.priest.interactions.hunter"),
+        t("rolesScreen.priest.interactions.witch"),
+        t("rolesScreen.priest.interactions.bodyguard"),
       ]}
       imagePath={require("../../assets/images/characters/priest.jpg")}
     />

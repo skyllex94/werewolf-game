@@ -7,17 +7,17 @@ const WerewolfRole = () => {
 
   return (
     <RoleTemplate
-      name={t("roles.werewolf.name")}
-      description={t("roles.werewolf.description")}
+      name={t("rolesScreen.werewolf.name")}
+      description={t("rolesScreen.werewolf.description")}
       roleType="bad"
       interactions={[
-        t("roles.werewolf.interactions.otherWerewolves"),
-        t("roles.werewolf.interactions.seer"),
-        t("roles.werewolf.interactions.doctor"),
-        t("roles.werewolf.interactions.tanner"),
-        t("roles.werewolf.interactions.witch"),
-        t("roles.werewolf.interactions.alphaWerewolf"),
-        t("roles.werewolf.interactions.wolfCub"),
+        t("rolesScreen.werewolf.interactions.otherWerewolves"),
+        t("rolesScreen.werewolf.interactions.seer"),
+        t("rolesScreen.werewolf.interactions.doctor"),
+        t("rolesScreen.werewolf.interactions.tanner"),
+        t("rolesScreen.werewolf.interactions.witch"),
+        t("rolesScreen.werewolf.interactions.alphaWerewolf"),
+        t("rolesScreen.werewolf.interactions.wolfCub"),
       ]}
       imagePath={require("../../assets/images/characters/werewolf.jpeg")}
     />

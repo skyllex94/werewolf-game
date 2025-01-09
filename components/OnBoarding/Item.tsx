@@ -17,18 +17,20 @@ import {
 } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import AllPlans from "./AllPlans";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 // Define the type for item prop
 type OnBoardingItemProps = {
   item: {
     id: number;
     title: string;
-    description?: string;
+    description: string;
     image: any;
   };
 };
 
 export default function OnBoardingItem({ item }: OnBoardingItemProps) {
+  const { t } = useTranslation(); // Use the translation hook
   const router = useRouter();
   const { width } = useWindowDimensions();
   const [isModalVisible, setModalVisible] = useState(false);
@@ -63,14 +65,14 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
             />
             <View className="absolute bottom-0 py-1 px-8 rounded-xl bg-slate-800">
               <Text className="font-bold text-center text-[28px] text-slate-200">
-                {item.title}
+                {t(item.title)}
               </Text>
             </View>
           </View>
 
           <TouchableOpacity className="pt-2" onPress={toggleModal}>
             <Text className="text-center underline text-[14px] text-slate-200">
-              View All Plans
+              {t("viewAllPlans")}
             </Text>
           </TouchableOpacity>
 
@@ -83,11 +85,10 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
                 <FontAwesome5 name="users" size={26} color="white" />
                 <View className="flex-1 gap-y-1 pr-4">
                   <Text className="text-slate-200 text-[15px] font-semibold">
-                    14+ Different Roles
+                    {t("differentRoles")}
                   </Text>
                   <Text className="text-slate-300 font-light">
-                    Play with all Roles in the game and more to come for
-                    exciting outcomes and scenarios.
+                    {t("rolesDescription")}
                   </Text>
                 </View>
               </View>
@@ -100,11 +101,10 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
                 />
                 <View className="flex-1 gap-y-1 pr-4">
                   <Text className="text-slate-200 text-[15px] font-semibold">
-                    Narrator Assistance
+                    {t("narratorAssistance")}
                   </Text>
                   <Text className="text-slate-300 font-light">
-                    Built-in voice guidance for all roles and easy navigation
-                    through the night. Additional languages to be added.
+                    {t("narratorDescription")}
                   </Text>
                 </View>
               </View>
@@ -113,11 +113,10 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
                 <FontAwesome6 name="ranking-star" size={26} color="white" />
                 <View className="flex-1 gap-y-1 pr-4">
                   <Text className="text-slate-200 text-[15px] font-semibold">
-                    More Game Outcomes
+                    {t("moreOutcomes")}
                   </Text>
                   <Text className="text-slate-300 font-light">
-                    Allows for deeper strategic thinking and a wider range of
-                    outcomes with different winners.
+                    {t("outcomesDescription")}
                   </Text>
                 </View>
               </View>
@@ -139,14 +138,12 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
 
           <View>
             <Text className="font-bold text-center text-[28px] px-6 mb-3 text-slate-200">
-              {item.title}
+              {t(item.title)}
             </Text>
 
             <Text className="font-light text-center px-8 text-slate-300">
-              Before embarking on your journey,{" "}
-              <Text className="font-bold">please consider supporting us</Text>.
-              This goes a long way and help us continue improving and innovating
-              the game as we continue introducing new features.
+              {t("beforeJourney")}
+              <Text className="">{t("help_us_grow_description")}</Text>
             </Text>
           </View>
         </View>
@@ -162,10 +159,10 @@ export default function OnBoardingItem({ item }: OnBoardingItemProps) {
 
           <View>
             <Text className="font-bold text-center text-[28px] px-6 mb-3 text-slate-200">
-              {item.title}
+              {t(item.title)}
             </Text>
             <Text className="font-light text-center px-8 text-slate-300">
-              {item.description}
+              {t(item.description)}
             </Text>
           </View>
         </View>

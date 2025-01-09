@@ -9,7 +9,6 @@ import {
 import React, { useEffect, useState } from "react";
 import {
   AntDesign,
-  Entypo,
   FontAwesome5,
   FontAwesome6,
   MaterialCommunityIcons,
@@ -25,6 +24,7 @@ import Spinner from "react-native-loading-spinner-overlay/lib";
 import { ScrollView } from "react-native-gesture-handler";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
 
 export default function Paywall() {
   const router = useRouter();
@@ -34,6 +34,8 @@ export default function Paywall() {
   const [purchaseSpinner, setPurchaseSpinner] = useState(false);
 
   const [showOtherPlans, setShowOtherPlans] = useState(false);
+
+  const { t } = useTranslation();
 
   // Fetch all pricing data before displaying paywall
   useEffect(() => {
@@ -123,7 +125,7 @@ export default function Paywall() {
             <View className="mb-10" />
 
             <Text className="text-white font-light text-[20px] mb-3">
-              Full Access to All Features
+              {t("fullAccessToFeatures")}
             </Text>
           </View>
 
@@ -134,11 +136,10 @@ export default function Paywall() {
 
                 <View className="flex-1 gap-y-1">
                   <Text className="text-white text-[16px] font-semibold">
-                    14+ Different Roles
+                    {t("differentRoles")}
                   </Text>
                   <Text className="text-white text-[14px] font-light">
-                    Play with all Roles in the game and more to come for
-                    exciting outcomes and scenarios.
+                    {t("differentRolesDescription")}
                   </Text>
                 </View>
               </View>
@@ -151,11 +152,10 @@ export default function Paywall() {
                 />
                 <View className="flex-1 gap-y-1">
                   <Text className="text-white text-[16px] font-semibold">
-                    Narrator Assistance
+                    {t("narratorAssistance")}
                   </Text>
                   <Text className="text-white text-[14px] font-light">
-                    Built-in voice guidance for all roles and easy navigation
-                    through the night. Additional languages to be added.
+                    {t("narratorAssistanceDescription")}
                   </Text>
                 </View>
               </View>
@@ -164,11 +164,10 @@ export default function Paywall() {
                 <FontAwesome6 name="ranking-star" size={32} color="white" />
                 <View className="flex-1 gap-y-1">
                   <Text className="text-white text-[16px] font-semibold">
-                    More Game Outcomes
+                    {t("moreGameOutcomes")}
                   </Text>
                   <Text className="text-white text-[14px] font-light">
-                    Allows for deeper strategic thinking and a wider range of
-                    outcomes with different winners.
+                    {t("moreGameOutcomesDescription")}
                   </Text>
                 </View>
               </View>
@@ -187,11 +186,12 @@ export default function Paywall() {
                     end={[1, 1]}
                   >
                     <Text className="font-semibold text-[15px]">
-                      Weekly Plan
+                      {t("weeklyPlan")}
                     </Text>
                     <Text>
-                      3-day Free Trial, and then{" "}
-                      {currentOffering?.weekly?.product?.priceString}/week
+                      {t("freeTrial")}, {t("andThen")}{" "}
+                      {currentOffering?.weekly?.product?.priceString}/
+                      {t("week")}
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -207,11 +207,12 @@ export default function Paywall() {
                     end={[1, 1]}
                   >
                     <Text className="font-semibold text-[15px]">
-                      Monthly Plan
+                      {t("monthlyPlan")}
                     </Text>
                     <Text>
-                      3-day Free Trial, and then{" "}
-                      {currentOffering?.monthly?.product?.priceString}/month
+                      {t("freeTrial")}, {t("andThen")}{" "}
+                      {currentOffering?.monthly?.product?.priceString}/
+                      {t("month")}
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -227,11 +228,12 @@ export default function Paywall() {
                     end={[1, 1]}
                   >
                     <Text className="font-semibold text-[15px]">
-                      Yearly Plan
+                      {t("yearlyPlan")}
                     </Text>
-                    <Text className="">
-                      3-day Free Trial, and then{" "}
-                      {currentOffering?.annual?.product?.priceString}/year
+                    <Text>
+                      {t("freeTrial")}, {t("andThen")}{" "}
+                      {currentOffering?.annual?.product?.priceString}/
+                      {t("year")}
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -247,11 +249,12 @@ export default function Paywall() {
                     end={[1, 1]}
                   >
                     <Text className="font-semibold text-[15px]">
-                      Lifetime Plan
+                      {t("lifetimePlan")}
                     </Text>
-                    <Text className="">
-                      Lifetime Plan for just{" "}
-                      {currentOffering?.lifetime?.product?.priceString} once
+                    <Text>
+                      {t("lifetimePlanDescription")}{" "}
+                      {currentOffering?.lifetime?.product?.priceString}{" "}
+                      {t("lifetimePayment")}
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -260,11 +263,12 @@ export default function Paywall() {
               <View className="paywall-buttons mt-6">
                 <View className="items-center mb-2">
                   <Text className="text-white font-light">
-                    Get 3 days for Free
+                    {t("callToTrial")}
                   </Text>
                   <Text className="text-white font-semibold">
-                    Then {currentOffering?.weekly?.product?.priceString} per
-                    week. Cancel any time.
+                    {t("weeklyPrice", {
+                      price: currentOffering?.weekly?.product?.priceString,
+                    })}
                   </Text>
                 </View>
 
@@ -279,7 +283,9 @@ export default function Paywall() {
                       start={[0, 0]}
                       end={[1, 1]}
                     >
-                      <Text className="text-[20px] font-light">Continue</Text>
+                      <Text className="text-[20px] font-light">
+                        {t("continue")}
+                      </Text>
                     </LinearGradient>
                   </TouchableOpacity>
 
@@ -288,7 +294,7 @@ export default function Paywall() {
                     onPress={() => setShowOtherPlans(true)}
                   >
                     <Text className="text-white text-[20px] font-light">
-                      View All Plans
+                      {t("viewAllPlans")}
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -307,14 +313,14 @@ export default function Paywall() {
                     }
                   >
                     <Text className="text-white text-[13px]">
-                      Privacy Policy
+                      {t("privacyPolicy")}
                     </Text>
                   </TouchableOpacity>
                   <Text className="text-white mx-2">|</Text>
 
                   <TouchableOpacity onPress={restorePurchase}>
                     <Text className="text-white text-[13px]">
-                      Restore Purchase
+                      {t("restorePurchase")}
                     </Text>
                   </TouchableOpacity>
                   <Text className="text-white mx-2">|</Text>
@@ -327,7 +333,9 @@ export default function Paywall() {
                       })
                     }
                   >
-                    <Text className="text-white text-[13px]">Terms of Use</Text>
+                    <Text className="text-white text-[13px]">
+                      {t("termsOfUse")}
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>

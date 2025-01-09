@@ -1,0 +1,595 @@
+{
+  "title": "Werwolf:",
+  "subtitle": "Rette das Dorf",
+
+  "mainMenu": {
+    "newGame": "Neues Spiel",
+    "gameRules": "Spielregeln",
+    "rolesAbilities": "Rollen & Fähigkeiten",
+    "goPro": "Pro-Version",
+    "settings": "Einstellungen"
+  },
+
+  "newGameScreen": {
+    "title": "Rollen",
+    "totalPlayers": "Spieleranzahl",
+    "roles": {
+      "villager": "Dorfbewohner",
+      "werewolf": "Werwolf",
+      "seer": "Seher",
+      "doctor": "Doktor",
+      "bodyguard": "Leibwächter",
+      "hunter": "Jäger",
+      "priest": "Priester",
+      "prince": "Prinz",
+      "witch": "Hexe",
+      "tanner": "Lederer",
+      "alphaWerewolf": "Alpha-Werwolf",
+      "lycan": "Lykanthrop",
+      "cursedVillager": "Verfluchter Dorfbewohner",
+      "cupid": "Amor",
+      "wolfCub": "Wolfjunges"
+    },
+    "continue": "Weiter"
+  },
+
+  "playersNamesScreen": {
+    "title": "Spieler",
+    "player": "Spieler",
+    "continue": "Weiter",
+    "warningEmptyList": "Spielerliste ist leer oder ungültig.",
+    "messagePlayerNameMissed": "Du hast keinen Namen für Spieler eingegeben",
+    "errorConfirmingPlayers": "Fehler beim Bestätigen der Spieler. Bitte versuche es erneut."
+  },
+
+  "scanningIntroductionScreen": {
+    "title": "Einführung Scannen",
+    "firstMessage": "Auf den nächsten Bildschirmen sollte der Spielleiter jedem Spieler einzeln einen Scan-Code zeigen.",
+    "secondMessage": "Damit können die Spieler ihre Rollen im Spiel individuell anzeigen lassen, mit weiteren Erklärungen falls nötig.",
+    "showCodes": "Codes anzeigen"
+  },
+
+  "playersScanScreen": {
+    "title": "Rolle jedes Spielers",
+    "subtitle": "Wischen, um jedem Spieler zu ermöglichen, seinen QR-Code mit seinem Telefon zu scannen",
+    "player": "Spieler",
+    "cardDescription": ", scanne diesen Code und sehe deine Rolle im Spiel auf deinem Telefon.",
+    "nextButton": "Weiter",
+    "startGameButton": "Spiel starten"
+  },
+
+  "viewRolesScreen": {
+    "title": "Bereit für die erste Nacht",
+    "subtitle": "Als Spielleiter bereitest du das Dorf auf die erste Nacht vor. Sieh dir unten die Rollen der Spieler an.",
+    "playerColumn": "Spieler",
+    "roleColumn": "Rolle",
+    "viewRolesButton": "Rollen anzeigen",
+    "continue": "Weiter"
+  },
+
+  "nightTimeScreen": {
+    "title": "Nachtzeit",
+    "subtitle": "Führe das Dorf durch die Nacht. Wecke jede unten angezeigte Rolle auf, auch wenn die Rolle während der Nächte eliminiert wurde. Hier sind die Rollen, die geweckt werden müssen:",
+    "continue": "Weiter"
+  },
+
+  "choosePlayerButton": "Spieler wählen",
+  "attackedButton": "Angegriffen",
+  "choosePlayerToAttackLabel": "Wähle einen Spieler zum Angriff",
+  "cancelButton": "Abbrechen",
+  "yesButton": "Ja",
+  "noButton": "Nein",
+  "continueButton": "Weiter",
+
+  "UIWerewolf": {
+    "title": "Rolle Werwolf",
+    "description": "- Wecke die Werwölfe und lasse sie gemeinsam entscheiden, wen sie in dieser Nacht eliminieren wollen."
+  },
+  "UISeer": {
+    "title": "Rolle Seher",
+    "description": "- Wecke den Seher und lasse ihn jemanden aus dem Dorf auswählen. Du wirst dem Seher mitteilen, ob die gewählte Person eine gute oder böse Rolle hat.",
+    "viewRolesButton": "Rollen anzeigen"
+  },
+  "UIDoctor": {
+    "doctorRoleTitle": "Rolle Doktor",
+    "doctorRoleDescription": "- Wecke den Doktor und lasse ihn eine Person wählen, die er beschützen möchte, einschließlich sich selbst. Kann nicht dieselbe Person zweimal hintereinander beschützen.",
+    "choosePlayerToProtect": "Wähle einen Spieler zum Beschützen",
+    "choosePlayerDescription": "Wähle einen Spieler, der vom Doktor beschützt werden soll",
+    "protectedByDoctor": "Beschützt"
+  },
+  "UIBodyguard": {
+    "bodyguardRoleTitle": "Rolle des Leibwächters",
+    "bodyguardRoleDescription": "Wecke den Leibwächter auf. Er wählt in der ersten Nacht einen Spieler, den er für den Rest des Spiels beschützen wird. Wenn dieser Spieler zweimal angegriffen wird, stirbt der Leibwächter an seiner Stelle.",
+    "choosePlayerToProtect": "Wähle einen Spieler zum Beschützen",
+    "choosePlayerDescription": "Wähle einen Spieler aus",
+    "protectedByBodyguard": "Geschützt"
+  },
+  "UIPriest": {
+    "priestRoleTitle": "Rolle des Priesters",
+    "priestRoleDescription": "Der Priester kann einen Spieler segnen und so vor einem Werwolfangriff schützen.",
+    "choosePlayerToBless": "Wähle einen Spieler zum Segnen",
+    "choosePlayerDescription": "Wähle einen Spieler, den du segnen und schützen möchtest.",
+    "blessed": "Gesegnet"
+  },
+  "UIWitch": {
+    "roleTitle": "Rolle der Hexe",
+    "roleDescription": "Die Hexe kann einen Spieler vor dem Tod retten oder einmal pro Spiel einen Spieler töten.",
+    "saveButtonDefault": "Rette einen Spieler",
+    "killButtonDefault": "Töte einen Spieler",
+    "savedButtonText": "Gerettet",
+    "attackedButtonText": "Angegriffen",
+    "chooseSaveTitle": "Wähle einen Spieler zum Retten",
+    "chooseSaveDescription": "Wähle einen Spieler, den du vor dem Tod retten möchtest.",
+    "chooseKillTitle": "Wähle einen Spieler zum Töten",
+    "chooseKillDescription": "Wähle einen Spieler, den du angreifen möchtest."
+  },
+  "UIAlphaWerewolf": {
+    "roleTitle": "Rolle des Alpha-Werwolfs",
+    "roleDescription": "Der Alpha-Werwolf kann jede Nacht einen Dorfbewohner in einen Werwolf verwandeln.",
+    "chooseTitle": "Wähle einen Spieler zum Verwandeln",
+    "chooseDescription": "Wähle einen Spieler, der in einen Werwolf verwandelt werden soll.",
+    "chooseButtonText": "Wähle einen Spieler",
+    "convertedText": "Verwandelt: {{playerName}}",
+    "confirmTitle": "In Werwolf verwandeln",
+    "confirmDescription": "Möchtest du {{playerName}} wirklich in einen Werwolf verwandeln?",
+    "successTitle": "Erfolg!",
+    "successDescription": "{{playerName}} wurde in einen Werwolf verwandelt!"
+  },
+  "UICupid": {
+    "roleTitle": "Rolle des Amor",
+    "roleDescription": "Wecke Amor auf. Wähle zwei Spieler, die miteinander verbunden werden. Wenn einer stirbt, stirbt der andere auch.",
+    "chooseFirstTitle": "Wähle den ersten Spieler",
+    "chooseFirstDescription": "Wähle den ersten Spieler, der verbunden wird.",
+    "chooseSecondTitle": "Wähle den zweiten Spieler",
+    "chooseSecondDescription": "Wähle den zweiten Spieler, der verbunden wird.",
+    "confirmTitle": "Bindung bestätigen",
+    "confirmDescription": "Möchtest du {{player1}} und {{player2}} verbinden?",
+    "successTitle": "Bindung erstellt",
+    "successDescription": "{{player1}} und {{player2}} sind nun für den Rest des Spiels durch Amor verbunden!",
+    "bondedText": "Verbunden: {{player1}} & {{player2}}",
+    "chooseButtonText": "Wähle Spieler"
+  },
+  "confirmButton": "Bestätigen",
+  "showAllButton": "Alle anzeigen",
+  "showLessButton": "Weniger anzeigen",
+  "NightBottomSheet": {
+    "anyoneEliminated": "Wurde diese Nacht jemand eliminiert?",
+    "noRoleEliminated": "Keine Rolle eliminiert",
+    "cupidTitle": "Amors Bindung",
+    "cupidMessage": "{{playerName}} ist durch Amor mit {{bondedName}} verbunden. Beide wurden zur Eliminierung ausgewählt.",
+    "hunterTitle": "Jäger wurde eliminiert!",
+    "hunterMessage": "Der Jäger darf einen anderen Spieler eliminieren.",
+    "playerSelected": "{{playerName}} wurde zur Eliminierung ausgewählt.",
+    "confirmElimination": {
+      "title": "Bereit für den Tag?",
+      "message": "Spieler: {{names}} werden aus dem Spiel entfernt.",
+      "noElimination": "Es werden keine Spieler aus dem Spiel entfernt.",
+      "confirm": "Ja",
+      "cancel": "Nein",
+      "cursedVillagerTitle": "Verfluchter Dorfbewohner verwandelt",
+      "cursedVillagerMessage": "{{name}} war ein verfluchter Dorfbewohner und hat sich nun in einen Werwolf verwandelt!"
+    }
+  },
+  "dayTime": {
+    "title": "Tagzeit",
+    "description1": "Das Dorf hat 5 Minuten Zeit, um sich darauf zu einigen, ob sie einen Spieler auswählen wollen.",
+    "description2": "Mindestens die Hälfte des Dorfes muss sich auf eine Person einigen, damit diese abgestimmt wird.",
+    "hunterEliminatedTitle": "Jäger wurde eliminiert!",
+    "hunterEliminatedMessage": "Der Jäger darf einen anderen Spieler eliminieren.",
+    "playerSelected": "{{name}} wurde zur Eliminierung ausgewählt.",
+    "cancel": "Abbrechen",
+    "princeProtectedTitle": "Prinz geschützt",
+    "princeProtectedMessage": "Der Prinz kann während des Tages nicht entfernt werden, da das Dorf ihn nicht abwählen kann.",
+    "confirmElimination": {
+      "readyForNight": "Bereit für die Nacht?",
+      "willBeRemoved": "wird aus dem Spiel entfernt.",
+      "noPlayersRemoved": "Es werden keine Spieler aus dem Spiel entfernt.",
+      "yes": "Ja",
+      "no": "Nein",
+      "player": "Spieler",
+      "players": "Spieler",
+      "wolfCubKilled": "Wolfskind getötet",
+      "wolfCubMessage": "Das Wolfskind wurde getötet. Die Werwölfe erhalten in der nächsten Nacht einen zusätzlichen Angriff. Lass das Dorf nicht wissen, dass ein Wolfskind getötet wurde; lass die Werwölfe einfach einen weiteren Spieler eliminieren."
+    },
+    "eliminatedThisDay": "Wurde heute jemand eliminiert?",
+    "noRoleEliminated": "Keine Rolle eliminiert"
+  },
+  "winningScreen": {
+    "villageWins": "Das Dorf gewinnt!",
+    "werewolvesWin": "Die Werwölfe gewinnen!",
+    "tannerWins": "Der Gerber gewinnt!",
+    "villageVictoryDescription": "Herzlichen Glückwunsch an das gesamte Dorf, dass ihr die Bösewichte erkannt habt. Ihr habt es geschafft, sie alle erfolgreich zu eliminieren.",
+    "werewolvesVictoryDescription": "Gut gemacht, Werwölfe! Ihr habt es geschafft, das Dorf zu eliminieren und dabei unentdeckt zu bleiben.",
+    "tannerVictoryDescription": "Der Gerber wurde eliminiert! Der Gerber gewinnt, da er sein Ziel erreicht hat, vom Dorf gewählt zu werden.",
+    "viewAllRoles": "Alle Rollen ansehen",
+    "mainMenu": "Hauptmenü"
+  },
+
+  "viewRolesModal": {
+    "rolesOfPlayers": "Rollen der Spieler",
+    "player": "Spieler",
+    "role": "Rolle",
+    "back": "Zurück"
+  },
+
+  "gameMenu": {
+    "quitGame": "Spiel beenden",
+    "goBack": "Zurückgehen"
+  },
+
+  "rulesScreen": {
+    "title": "Spielregeln"
+  },
+  "Basic Overview": "Grundlegender Überblick",
+  "Game Setup": "Spielaufbau",
+  "Game Phases": "Spielphasen",
+  "Elimination Rules": "Eliminierungsregeln",
+  "Winning Conditions": "Siegbedingungen",
+  "Special Situations": "Sondersituationen",
+
+  "basicOverview": {
+    "title": "Grundlegender Überblick",
+    "description1": "Das Spiel Werwolf ist ein soziales Deduktionsspiel, bei dem die Spieler geheime Rollen in einem Dorf mit einem oder mehreren Werwölfen zugewiesen bekommen. In jeder Runde nutzen die Spieler Logik und Überzeugung, um Werwölfe zu identifizieren oder ihre eigene Identität zu verbergen. Das Spiel besteht aus zwei Hauptteams: dem Dorf und den Werwölfen, und die Rollen werden zufällig ausgewählt.",
+    "description2": "Das Spiel wird in einer Abfolge von abwechselnden \"Nacht\"- und \"Tag\"-Phasen gespielt.",
+    "duringNight": "Während der Nacht:",
+    "nightDescription1": "In der Nacht schließen alle ihre Augen, und der Spielleiter weckt die Spieler mit speziellen Rollen, damit sie ihre Augen öffnen, ohne sich zu sehr zu bewegen, um von den anderen nicht entdeckt zu werden.",
+    "nightDescription2": "Alle Sonderrollen in einem Grundspiel von Werwolf sind: Werwölfe, Seher und Arzt. Der Dorfbewohner ist keine Sonderrolle, da er nachts nicht aufwacht (die Augen öffnet), um Aktionen auszuführen.",
+    "nightDescription3": "Die Werwölfe werden zuerst geweckt und wählen durch Zeigen einen Spieler aus, den sie eliminieren möchten. Anschließend sagt der Spielleiter dem Dorf, dass es wieder schlafen soll, und weckt die nächste Sonderrolle im Spiel, bis alle Rollen geweckt wurden und gehandelt haben.",
+    "duringDay": "Während des Tages:",
+    "dayDescription1": "Alle Spieler sind 'wach' (mit offenen Augen) und diskutieren, welcher Spieler in der letzten Nacht gestorben ist, falls überhaupt jemand. Sie sollten versuchen, durch Fragen und logisches Denken herauszufinden, wer die bösen Rollen sind (Werwölfe, Alpha-Werwolf, Wolfsjunge).",
+    "dayDescription2": "Die Diskussionszeit während des Tages beträgt etwa 5 Minuten, in denen jeder Fragen stellen kann, um mehr Informationen zu erhalten und jemanden bei einer Lüge zu ertappen. Spieler können andere beschuldigen, Werwölfe zu sein, oder sich selbst verteidigen, wenn sie verdächtigt werden.",
+    "dayDescription3": "Gleichzeitig besteht das Ziel der Werwölfe und anderer böser Rollen darin, unentdeckt zu bleiben, damit sie während der Tagphase nicht herausgewählt werden. Sie sollten daher lügen und die anderen denken lassen, dass sie zu den Guten gehören.",
+    "goal": "Das Ziel des Dorfes ist es, alle Werwölfe zu eliminieren, während die Werwölfe versuchen, die Dorfbewohner zu überzahlen.",
+    "tannerRole": "Eine spezielle Rolle, der Gerber, kann das Spiel unabhängig gewinnen, wenn er eliminiert oder herausgewählt wird.",
+    "playersStrategy": "Die Spieler sollten Logik, Beobachtung und strategisches Lügen je nach ihrer Rolle einsetzen. Sie sollten der Agenda ihrer Gruppe folgen, um entweder alle Bösen oder alle Guten zu eliminieren oder basierend auf ihrer Rolle unabhängig zu gewinnen.",
+    "narratorRole": "Der Spielleiter führt jede Phase durch, kündigt Ereignisse an, ohne die Identität eines Spielers preiszugeben, und hält das Spiel spannend.",
+    "eliminationRule": "Der Spielleiter sorgt für einen reibungslosen Spielverlauf, indem er jede Phase leitet, die Regeln durchsetzt und Diskussionen moderiert. Wer während des Spiels eliminiert wird, darf nichts mehr sagen oder Hinweise geben."
+  },
+
+  "gameSetupTitle": "Spielsetup",
+  "gameSetupDescription": "Um ein Spiel Werwolf vorzubereiten, versammelt eine Gruppe von Spielern. Die ideale Spieleranzahl liegt zwischen 6 und 20 Spielern, wobei mindestens ein Werwolf dabei sein sollte. Mehr Spieler ermöglichen eine größere Vielfalt an Rollen und Strategien.",
+  "step1Title": "Schritt 1: Rollen auswählen",
+  "step1Description": "Legt die Rollen fest, die im Spiel enthalten sein sollen. Eine Standardaufstellung umfasst: 5–6 Dorfbewohner, 2 Werwölfe, 1 Seher und 1 Arzt. Zusätzliche Rollen wie die anderen verfügbaren Rollen können für mehr Komplexität und interessante Wendungen hinzugefügt werden.",
+  "step2Title": "Schritt 2: Rollen zuweisen",
+  "step2Description": "Jeder Spieler sollte zufällig eine geheime Rolle zugewiesen bekommen. Dafür wählt der Erzähler, der das Spiel leitet, die Rollen aus, und der Algorithmus weist sie automatisch den Spielern zu. Der Erzähler sollte dann jedem Spieler den QR-Code präsentieren, damit diese ihn scannen und ihre Rolle für das Spiel erfahren können. Achtet darauf, dass die Spieler ihre Rollen nicht preisgeben; nur der Erzähler kennt die Rolle jedes Spielers.",
+  "step3Title": "Schritt 3: Regeln erklären",
+  "step3Description": "Bevor das Spiel beginnt, stellt sicher, dass alle Spieler ihre Rollen, Fähigkeiten und den Spielablauf verstehen. Wenn einige Spieler ihre Fähigkeiten nicht kennen, können sie durch \"Mehr Info\" im gescannten QR-Code weitere Informationen abrufen.",
+  "gameEndDescription": "Das Spiel endet, wenn entweder alle Werwölfe und bösen Spezialrollen eliminiert wurden oder die Werwölfe zahlenmäßig die Dorfbewohner und guten Spezialrollen übertreffen.",
+  "finalNotes": "Werwolf ist ein Spiel voller Täuschung, Deduktion und Strategie. Ermutigt die Spieler, sich lebhaft zu unterhalten und den sozialen Aspekt des Spiels zu genießen!",
+  "gamePhasesTitle": "Spielphasen",
+  "gamePhasesDescription": "Das Spiel Werwolf ist in zwei Hauptphasen unterteilt, die sich während des Spiels abwechseln:",
+  "nightPhase": "Nachtphase",
+  "dayPhase": "Tagphase",
+  "phasesDescription": "Diese Phasen bestimmen, wann bestimmte Spieler Aktionen ausführen können und wann Anschuldigungen und Eliminierungen stattfinden.",
+  "nightPhaseDescription": "- Während der Nacht können Spieler mit speziellen Fähigkeiten heimlich Aktionen ausführen. Der Erzähler wird diese Rollen wecken, damit sie \"ihre Kräfte nutzen\", ohne ihre Identität zu enthüllen. Zum Beispiel könnte der Erzähler sagen: \"Nun, lasst die Werwölfe aufwachen und einen Spieler auswählen, den sie in dieser Nacht eliminieren wollen.\" Währenddessen haben alle anderen Spieler ihre Augen geschlossen, und nur die Werwölfe öffnen ihre Augen, um ihre Beute auszuwählen. Danach schickt der Erzähler die Werwölfe wieder schlafen und stellt sicher, dass alle ihre Augen geschlossen haben.",
+  "dayPhaseDescription": "- Während des Tages diskutieren die Spieler, wen sie für einen Werwolf halten, und stimmen darüber ab, einen verdächtigen Spieler zu eliminieren. Um einen Spieler zu eliminieren, muss mehr als 50 % des Dorfes zustimmen. Innerhalb von 3 bis 5 Minuten sollten sich die Spieler in der Tagphase auf jemanden zur Eliminierung einigen. Können sie sich in dieser Zeit nicht einigen, schläft das Dorf erneut ein und wartet auf den nächsten Tag, um eine Entscheidung zu treffen.",
+  "eliminationRulesTitle": "Eliminierungsregeln",
+  "eliminationRulesIntro": "In Werwolf ist die Eliminierung ein entscheidender Aspekt, der über den Ausstieg eines Spielers aus dem Spiel entscheidet. Ein Spieler kann entweder durch die Gruppenentscheidung während der Tagphase oder durch die Aktionen bestimmter Rollen in der Nachtphase eliminiert werden. Hier sind die allgemeinen Regeln und spezifischen Eliminierungsbedingungen für jede Rolle im Spiel.",
+  "generalEliminationRulesTitle": "Allgemeine Eliminierungsregeln:",
+  "generalEliminationRules": "Während der Tagphase können Spieler Anschuldigungen vorbringen und über die Eliminierung eines verdächtigen Spielers abstimmen. Der Spieler mit den meisten Stimmen wird eliminiert. Während der Nachtphase können Rollen wie Werwölfe, Jäger und Hexen basierend auf ihren Fähigkeiten ebenfalls Eliminierungen bewirken.",
+  "eliminationRulesByRoleTitle": "Eliminierungsregeln nach Rolle:",
+  "villagerTitle": "Dorfbewohner",
+  "villagerDescription": "Dorfbewohner werden entweder durch eine Abstimmung während der Tagphase oder durch die Werwölfe in der Nacht eliminiert. Sie haben keinen speziellen Schutz vor Eliminierung.",
+  "werewolfTitle": "Werwolf",
+  "werewolfDescription": "Werwölfe können während des Tages durch eine Mehrheitsabstimmung der Dorfbewohner eliminiert oder durch spezielle Rollen wie Jäger oder Hexe getötet werden. Ihr Ziel ist es, unentdeckt zu bleiben und die Eliminierung zu vermeiden, um das Überleben ihres Teams zu sichern.",
+  "seerTitle": "Seher",
+  "seerDescription": "Der Seher, ein Verbündeter der Dorfbewohner, kann durch eine Abstimmung oder einen Angriff der Werwölfe in der Nacht eliminiert werden. Der Verlust des Sehers schwächt das Dorf, da sie eine wichtige Informationsquelle verlieren.",
+  "doctorTitle": "Arzt",
+  "doctorDescription": "Der Arzt kann durch Abstimmung oder Werwolfangriff eliminiert werden. Sie können sich einmal selbst schützen, sind danach aber verwundbar.",
+  "tannerTitle": "Gerber",
+  "tannerDescription": "Der Gerber gewinnt das Spiel, wenn er eliminiert wird, sei es durch die Dorfbewohner während des Tages oder durch die Werwölfe in der Nacht. Im Gegensatz zu anderen Spielern strebt der Gerber aktiv danach, eliminiert zu werden.",
+  "cupidTitle": "Amor",
+  "cupidDescription": "Wenn Amor eliminiert wird, hat dies keinen direkten Einfluss auf andere Spieler, es sei denn, die Liebenden sind noch im Spiel. Amors Rolle als Kuppler ist abgeschlossen, nachdem er Spieler verbunden hat.",
+  "princeTitle": "Prinz",
+  "princeDescription": "Der Prinz ist immun gegen die Abstimmung im Tageseliminierungs-Votum; wenn er herausgewählt wird, enthüllt er sich und überlebt. Er kann jedoch weiterhin von Werwölfen oder anderen Rollen in der Nacht eliminiert werden.",
+  "bodyguardTitle": "Bodyguard",
+  "bodyguardDescription": "Der Bodyguard kann durch Abstimmung herausgewählt oder von Werwölfen getötet werden. Er kann jedoch andere Spieler vor Angriffen schützen und den Angriff absorbieren, wenn er noch im Spiel ist.",
+  "cursedVillagerTitle": "Verfluchter Dorfbewohner",
+  "cursedVillagerDescription": "Dieser Spieler gehört anfänglich zum Dorfbewohner-Team, wird aber ein Werwolf, wenn er in der Nacht von Werwölfen angegriffen wird. Er kann durch Abstimmung oder von Werwölfen eliminiert werden, bevor er sich verwandelt.",
+  "priestTitle": "Priester",
+  "priestDescription": "Der Priester kann einen Spieler einmal segnen und ihm Schutz vor einer Eliminierung gewähren. Der Priester selbst kann jedoch durch Abstimmung oder Angriff eliminiert werden.",
+  "hunterTitle": "Jäger",
+  "hunterDescription": "Wenn der Jäger eliminiert wird, kann er sofort einen anderen Spieler auswählen und eliminieren. Diese Fähigkeit wird bei jeder Form der Eliminierung aktiviert, sei es durch Abstimmung oder Werwolf-Angriff.",
+  "lycanTitle": "Lykaner",
+  "lycanDescription": "Der Lykaner erscheint für den Seher als Werwolf und erhöht damit das Risiko, herausgewählt zu werden. Er ist jedoch tatsächlich ein Dorfbewohner und kann wie jeder andere Dorfbewohner eliminiert werden.",
+  "witchTitle": "Hexe",
+  "witchDescription": "Die Hexe hat zwei Tränke: einen zum Retten und einen zum Töten. Sie kann durch Abstimmung oder Werwolf-Angriff eliminiert werden und kann ihre Kräfte strategisch einsetzen, um Eliminierungen zu kontrollieren.",
+  "alphaWerewolfTitle": "Alpha-Werwolf",
+  "alphaWerewolfDescription": "Dieser Werwolf kann unter bestimmten Bedingungen andere Dorfbewohner in Werwölfe verwandeln. Er wird wie ein normaler Werwolf eliminiert, ist jedoch oft ein Hochprioritätsziel.",
+  "wolfCubTitle": "Wolfjunge",
+  "wolfCubDescription": "Wenn das Wolfjunge eliminiert wird, geraten die Werwölfe in Wut und erhalten die Fähigkeit, zwei Spieler in der nächsten Nacht zu eliminieren. Das Wolfjunge kann auf normale Weise eliminiert werden.",
+  "winningConditions": "Gewinnbedingungen",
+  "villagersGoal": "Ziel der Dorfbewohner:",
+  "villagersGoalDesc": "Die Dorfbewohner gewinnen, wenn sie alle Werwölfe eliminieren. Das Spiel kann jedoch fortgesetzt werden, wenn bestimmte spezielle Rollen mit einzigartigen Gewinnbedingungen noch im Spiel sind.",
+  "werewolvesGoal": "Ziel der Werwölfe:",
+  "werewolvesGoalDesc": "Die Werwölfe gewinnen, wenn sie die verbleibenden Dorfbewohner übertreffen oder gleichauf sind. In diesem Fall können die Werwölfe die Dorfbewohner überwältigen und ihren Sieg sichern.",
+  "specialRolesGoal": "Spezielle Rollen mit einzigartigen Zielen:",
+  "tanner": "Tanner:",
+  "tannerDesc": "Der Tanner gewinnt, wenn er von den Dorfbewohnern oder den Werwölfen eliminiert wird. Sein einziges Ziel ist es, sein Leben zu verlieren, wodurch er das Spiel zu seinen Gunsten beendet, wenn er erfolgreich ist.",
+  "prince": "Prinz:",
+  "princeDesc": "Der Prinz hat keine speziellen Gewinnbedingungen, fügt jedoch Komplexität hinzu, indem er die erste Eliminierungsabstimmung überlebt.",
+  "hunter": "Jäger:",
+  "hunterDesc": "Der Jäger kann das Ergebnis beeinflussen, indem er einen Spieler bei seiner eigenen Eliminierung eliminiert.",
+  "exampleScenarios": "Beispielszenarien:",
+  "example1": "Beispiel 1: Es bleiben noch drei Spieler: zwei Dorfbewohner und ein Werwolf. In diesem Szenario können die Dorfbewohner den Werwolf noch herauswählen, was zu einem Dorfbewohner-Sieg führt.",
+  "special_conditions_title": "Besondere Bedingungen",
+  "prince_immunity_title": "Prinzens Immunität gegen Abstimmungs-Eliminierungen",
+  "prince_immunity_description": "Der Prinz kann während der Tagesphase nicht durch Abstimmung eliminiert werden. Wenn die Spieler versuchen, den Prinzen herauszuwählen, werden ihre Stimmen annulliert, und niemand wird in dieser Runde eliminiert. Diese Immunität gilt während des gesamten Spiels, was das Dorf dazu zwingt, andere potenzielle Ziele zu überdenken.",
+  "prince_example": "Am dritten Tag stimmen alle Spieler ab, um den Prinzen zu eliminieren, aber er enthüllt seine Immunität. Das Dorf verliert seine Eliminierungsmöglichkeit für die Runde, was Spannung aufbaut und Misstrauen gegenüber anderen Spielern schürt.",
+  "tanner_win_condition_title": "Tanners einzigartige Gewinnbedingung",
+  "tanner_win_condition_description": "Der Tanner gewinnt, wenn er eliminiert wird (entweder von den Werwölfen oder vom Dorf). Sein Ziel ist es, verdächtig zu handeln, um die anderen dazu zu bringen, ihn zu eliminieren. Sein Vorhandensein schafft jedoch Verwirrung, da seine Eliminierung das Spiel mit seinem Sieg beendet, unabhängig von anderen im Spiel befindlichen Rollen.",
+  "tanner_example": "Ein Spieler beginnt, sich unberechenbar zu verhalten und erregt Verdacht. Das Dorf erwägt, ihn herauszuwählen, zögert jedoch, da sie befürchten, dass er der Tanner sein könnte, der das Spiel gewinnt, wenn er eliminiert wird.",
+  "witch_dual_potions_title": "Die zwei Tränke der Hexe (Heilen/Töten)",
+  "witch_dual_potions_description": "Die Hexe hat zwei Tränke—einen Heiltrank, um einen Spieler pro Spiel zu retten, und einen tödlichen Trank, um einen Spieler pro Spiel zu eliminieren. Die Entscheidung der Hexe, einen Spieler in der Nacht zu retten oder zu eliminieren, kann den Verlauf des Spiels völlig verändern.",
+  "witch_example": "Die Hexe verwendet ihren Heiltrank, um einen angegriffenen Dorfbewohner zu retten, was das Spiel verlängert. Später setzt sie ihren tödlichen Trank auf einen verdächtigen Werwolf ein, was das Spielgleichgewicht zugunsten des Dorfes verschiebt.",
+  "doctor_protection_title": "Kontinuierlicher Schutz des Arztes",
+  "doctor_protection_description": "Der Arzt kann jede Nacht einen Spieler schützen, aber nicht denselben Spieler an aufeinanderfolgenden Nächten. Dieser wechselnde Schutz erschwert es den Werwölfen, erfolgreich zu eliminieren, und verlängert das Spiel, indem er immer wieder einen Schlüsselspieler rettet.",
+  "doctor_example": "Der Arzt schützt einen wichtigen Dorfbewohner in einer Nacht, wechselt jedoch in der folgenden Nacht zu einem anderen Spieler, was Unsicherheit schafft und die Pläne der Werwölfe verzögert.",
+  "example": "Beispiel",
+
+  "rolesScreen": {
+    "rolesAbilitiesTitle": "Rollen & Fähigkeiten",
+    "description": "Beschreibung",
+    "roleType": "Rollen-Typ",
+    "roleTypes": {
+      "good": "Gut",
+      "bad": "Böse",
+      "independent": "Unabhängig"
+    },
+    "interactions": "Interaktionen mit anderen Rollen",
+
+    "alphaWerewolf": {
+      "name": "Alpha-Werwolf",
+      "description": "Der Alpha-Werwolf ist ein mächtiger Anführer unter den Werwölfen mit einzigartigen Fähigkeiten, die das Gleichgewicht im Spiel verändern können. Im Gegensatz zu normalen Werwölfen erwacht der Alpha separat und wählt unabhängig ein Ziel zum Angriff aus. Er kann nur ein Ziel im Spiel wählen und seine Fähigkeit ist es, dieses Ziel in einen Werwolf zu verwandeln, der in der Nacht zusammen mit den anderen Werwölfen erwacht. Er kann seine Macht jede Nacht nutzen, und es wird ihm jede Nacht angeboten, sie zu verwenden, auch wenn er sie bereits benutzt hat. Das einzigartige Erwachen des Alpha verhindert, dass die anderen Werwölfe wissen, wer der Alpha ist, und die Werwölfe könnten den Alpha in der Nacht angreifen. Dies würde den Tod des Alpha verursachen und eine zusätzliche Komplexität in die Strategie der Werwölfe einführen. Wenn der Alpha-Werwolf eliminiert wird, verliert das Werwolf-Team eine wertvolle Ressource, was es für den Alpha wichtig macht, diskret zu bleiben. Obwohl eine einflussreiche Figur, zieht die Macht des Alpha auch die Aufmerksamkeit guter Rollen wie dem Seher und der Hexe an, die den Alpha möglicherweise als Hauptziel sehen.",
+      "interactions": {
+        "werewolf": "Werwolf - Der Alpha-Werwolf ist Teil des Werwolf-Teams, erwacht aber unabhängig von den normalen Werwölfen. Während die Werwölfe kollektiv ein Ziel wählen, wählt der Alpha eine Person aus, um sie in einen Werwolf zu verwandeln, was eine flexible Strategie ermöglicht und möglicherweise das Dorf verwirrt. Der Alpha sollte jedoch vermeiden, andere Werwölfe als Ziel auszuwählen und sollte sich so gut wie möglich mit den Zielen des Teams abstimmen.",
+        "seer": "Seher - Der Seher könnte den Alpha-Werwolf aufgrund seiner mächtigen Rolle innerhalb des Werwolf-Teams als Bedrohung identifizieren. Wenn der Seher die Identität des Alpha dem Dorf offenbart, verlieren die Werwölfe einen wichtigen Vorteil.",
+        "doctor": "Doktor - Wenn der Doktor einen Spieler schützt, den der Alpha als Ziel auswählt, wird der Angriff in dieser Nacht blockiert. Der Alpha muss die Züge des Doktors vorausschauend planen, um erfolgreiche Angriffe sicherzustellen.",
+        "witch": "Hexe - Das tödliche Trankrezept der Hexe ist mächtig genug, um den Alpha-Werwolf zu eliminieren. Da die Hexe mit dem Dorf verbündet ist, könnte sie den Alpha als vorrangiges Ziel sehen, wenn sie seine Identität vermutet, was die Strategie der Werwölfe durcheinanderbringen könnte.",
+        "bodyguard": "Bodyguard - Wenn der Alpha einen Spieler als Ziel auswählt, der vom Bodyguard geschützt wird, bleibt der Schutz intakt, und der Angriff des Alpha scheitert. Der Alpha muss die Verteidigung des Bodyguards in seine Strategie einbeziehen, um effektiv zu sein.",
+        "hunter": "Jäger - Wenn der Jäger getötet wird und der Alpha als Ziel für seine Rache auswählt, stirbt der Alpha, was das Werwolf-Team erheblich schwächt. Der Alpha muss vorsichtig sein, seine Identität zu offenbaren, um nicht vom Jäger als Ziel ausgewählt zu werden."
+      }
+    },
+    "bodyguard": {
+      "name": "Bodyguard",
+      "description": "Der Bodyguard ist ein treuer Beschützer, der in der ersten Nacht einen Spieler auswählt, den er während des gesamten Spiels schützt. Der Bodyguard kann sich nicht selbst schützen. Dieser ausgewählte Spieler erhält speziellen Schutz vor Angriffen, wobei der Bodyguard einspringt, um ihn zu retten, wenn er angegriffen wird. Wenn der geschützte Spieler jedoch ein zweites Mal angegriffen wird, opfert sich der Bodyguard und stirbt an seiner Stelle. Dieser Schutz ist nur aktiv, solange der Bodyguard im Spiel bleibt. Der Schutz des Bodyguards ist eine wichtige Ressource, aber er ist begrenzt – bestimmte mächtige Rollen, wie der Jäger oder die Hexe, können diese Absicherung mit ihren tödlichen Fähigkeiten umgehen.",
+      "interactions": {
+        "werewolf": "Werwolf - Wenn die Werwölfe den vom Bodyguard geschützten Spieler auswählen, wird der erste Angriff abgewehrt. Wenn die Werwölfe jedoch diesen Spieler erneut angreifen, stirbt der Bodyguard an seiner Stelle und der Schutz endet.",
+        "hunter": "Jäger - Wenn der geschützte Spieler vom Jäger für seine Todesräche ausgewählt wird, kann der Bodyguard den Angriff nicht verhindern, und der geschützte Spieler wird sterben.",
+        "doctor": "Doktor - Der Schutz des Bodyguards und des Doktors kollidieren nicht, was bedeutet, dass, wenn der Doktor denselben Spieler in derselben Nacht schützt, beide Schutzmaßnahmen aktiv sind. Wenn die Werwölfe diesen Spieler angreifen, wirken beide Schutzmaßnahmen, aber der vorrangige Schutz ist der des Doktors, sodass der Bodyguard seinen Schutz nicht nutzt oder stirbt.",
+        "witch": "Hexe - Wenn die Hexe ihren tödlichen Trank auf den geschützten Spieler anwendet, ist der Schutz des Bodyguards wirkungslos, und der angegriffene Spieler wird sterben.",
+        "priest": "Priester - Wenn der Priester den geschützten Spieler segnet, fügt dieser Segen eine zusätzliche Schutzschicht hinzu, wobei der Schutz des Bodyguards weiterhin vorrangig bleibt, bis er in der Ausübung seiner Pflicht stirbt."
+      }
+    },
+    "cupid": {
+      "name": "Cupido",
+      "description": "Cupido ist eine Rolle, die die Macht hat, eine besondere Verbindung zwischen zwei Spielern zu schaffen, die ihr Schicksal für den Rest des Spiels miteinander verbinden. Zu Beginn des Spiels wählt Cupido zwei Spieler aus, die als 'verbunden' gelten und als Liebende agieren. Diese Verbindung bedeutet, dass, wenn einer der Liebenden stirbt, der andere sofort aus Liebeskummer stirbt. Cupidos Auswahl ist entscheidend, da die verbundenen Spieler ihre neue Loyalität sorgfältig navigieren müssen. Diese Bindung kann als mächtiges Werkzeug dienen, um das Spiel zu verkomplizieren und erfordert strategische Überlegungen, da sie Allianzen beeinflussen und die Prioritäten der Spieler verschieben kann. Selbst wenn Cupido stirbt, bleibt die Bindung für den Rest des Spiels bestehen.",
+      "interactions": {
+        "werewolf": "Wenn einer von Cupidos verbundenen Spielern von den Werwölfen ausgewählt und getötet wird, stirbt der andere Liebende ebenfalls und erfüllt so das tragische Ende der Verbindung.",
+        "doctor": "Wenn der Doktor einen der verbundenen Spieler schützt und die Werwölfe versuchen, ihn zu töten, wird der Schutz beide Spieler vor dem Tod in dieser Nacht bewahren.",
+        "seer": "Wenn der Seher einen der verbundenen Liebenden enthüllt, wird dieser als gute Rolle angezeigt, wenn er eine gute Rolle hat, und als böse Rolle, wenn er eine böse Rolle hat. Nur der Spieler, den der Seher ausgewählt hat, erfährt, welche Rolle er im Spiel hat.",
+        "hunter": "Wenn der Jäger stirbt und einen der verbundenen Liebenden auswählt, um mit ihm zu sterben, wird auch der andere Liebende als Teil der Bindung sterben.",
+        "witch": "Wenn die Hexe ihren Trank verwendet, um einen der verbundenen Spieler zu töten, wird der andere ebenfalls sterben, aufgrund der Verbindung, die Cupido geschaffen hat. Wenn die Hexe ihren schützenden Trank auf einen der Spieler verwendet, werden beide Spieler gerettet.",
+        "priest": "Wenn der Priester einen der Liebenden segnet, bleibt dieser Schutz auch bestehen, wenn der andere Liebende von einem Angriff betroffen ist, es sei denn, dieser Angriff ist mächtig genug, um den Schutz zu durchdringen, wie bei der tödlichen Hexentrank."
+      }
+    },
+    "cursedVillager": {
+      "name": "Verfluchter Dorfbewohner",
+      "description": "Der verfluchte Dorfbewohner ist eine unglückliche Seele, die zu Beginn des Spiels als normaler Dorfbewohner startet, aber ein dunkles Geheimnis in sich trägt. Wenn er in der Nacht von den Werwölfen angegriffen wird, verwandelt sich der verfluchte Dorfbewohner in einen Werwolf und wechselt dauerhaft die Seite zu den Werwölfen. Bis zu diesem Moment bleibt er dem Dorf treu. Wenn der verfluchte Dorfbewohner vor der Verwandlung vom Seher entdeckt wird, wird er als gute Rolle erscheinen, um seine Tarnung bis zur Auslösung des Fluchs zu bewahren.",
+      "interactions": {
+        "werewolf": "Wenn die Werwölfe den verfluchten Dorfbewohner angreifen, wird der Fluch ausgelöst, und der Dorfbewohner schließt sich dauerhaft den Werwölfen an, indem er von einem Verbündeten zu einem Feind wird.",
+        "seer": "Der Seher wird den verfluchten Dorfbewohner als gute Rolle sehen, bis der Fluch aktiviert wird. Dies kann das Dorf in die Irre führen und ihnen vorgaukeln, dass sie sicher sind, nur damit der verfluchte Dorfbewohner später transformiert wird.",
+        "witch": "Wenn die Hexe ihren tödlichen Trank auf den verfluchten Dorfbewohner anwendet, bevor er von den Werwölfen angegriffen wird, stirbt er als normaler Dorfbewohner, ohne den Fluch auszulösen. Wenn der Fluch jedoch bereits aktiviert wurde, wird der Trank ihn als Werwolf töten.",
+        "hunter": "Wenn der verfluchte Dorfbewohner vom Jäger getötet wird, bevor er sich verwandelt, stirbt er als Dorfbewohner, und das Dorf wird vor der Hinzufügung eines weiteren Werwolfs bewahrt."
+      }
+    },
+    "doctor": {
+      "name": "Doktor",
+      "description": "Der Doktor ist eine entscheidende Rolle zum Schutz des Dorfes vor nächtlichen Angriffen. Jede Nacht wählt der Doktor einen Spieler aus, den er vor Schaden schützt, und verhindert damit möglicherweise einen Werwolf-Angriff oder ein anderes tödliches Ereignis. Dadurch ist der Doktor eine wertvolle Ressource für die Verteidigung des Dorfes, da sein Schutz wichtige Spieler sicher halten und den Kampf gegen die Werwölfe verlängern kann. Der Doktor muss jedoch ein Risiko eingehen; wird der Doktor eliminiert, verliert der Dorf das schützende Element vollständig. Der Verlust des Doktors erhöht das Risiko für das Dorf erheblich, was es entscheidend macht, diesen so lange wie möglich zu schützen. Der Doktor muss vorsichtig und mutig sein und diskret arbeiten, um nicht von den Werwölfen entdeckt zu werden, während er gleichzeitig das Überleben des Dorfes sichert. Der Doktor kann seinen Schutz auf einen Spieler anwenden und diesen im nächsten Zug nicht wieder wählen. Nach einer Nacht kann er jedoch wieder denselben Spieler schützen. Der Doktor kann sich auch selbst schützen.",
+      "interactions": {
+        "werewolf": "Der Doktor muss vermeiden, von den Werwölfen entdeckt zu werden, da sie wahrscheinlich versuchen werden, den Doktor zu eliminieren, um seine Schutzkraft zu beseitigen.",
+        "seer": "Arbeitet indirekt mit dem Seher zusammen, wenn er in der Lage ist, ihn zu identifizieren, da beide eine entscheidende Rolle beim Schutz des Dorfes spielen. Es ist sehr wichtig, den Seher zu schützen, wenn er seine Rolle den anderen offenbart, damit dieser auch in der nächsten Nacht geschützt bleibt.",
+        "hunter": "Wenn der Jäger getötet wird und einen geschützten Spieler als Ziel auswählt, wird dieser trotz Schutz durch den Doktor sterben.",
+        "witch": "Wenn ein tödlicher Trank verwendet wird, um einen geschützten Spieler zu töten, wird der Schutz des Doktors inaktiv und der Spieler wird trotz seines Schutzes sterben.",
+        "bodyguard": "Wenn die Werwölfe einen Spieler angreifen, der sowohl vom Doktor als auch vom Bodyguard geschützt wird, dann wird der Angriff blockiert, es sei denn, beide Spieler sind gleichzeitig gezielt. In diesem Fall könnte es zu einer Verzögerung kommen, je nachdem, welcher Schutz zuerst greift."
+      }
+    },
+    "hunter": {
+      "name": "Jäger",
+      "description": "Der Jäger ist eine furchtlose Rolle innerhalb des Dorfs, bekannt für seine Fähigkeit des letzten Aufstands. Wenn der Jäger im Spiel eliminiert wird, erhält er eine letzte Chance, einen anderen Spieler seiner Wahl mit in den Tod zu nehmen. Diese mächtige Fähigkeit verleiht dem Jäger auch im Tod einen signifikanten Einfluss und macht ihn zu einem hochriskanten Ziel für die Werwölfe und andere böse Rollen. Der Jäger muss sorgfältig beobachten und entscheiden, welcher Spieler für ihn am wertvollsten ist, um ihn mit in den Tod zu nehmen, was den Spielverlauf entscheidend beeinflussen kann. Bestimmte Schutzmechanismen, wie der Segen des Priesters oder der Schild des Arztes, können jedoch seinen letzten Schuss beeinflussen, was es dem Jäger ermöglicht, strategisch basierend auf den aktuellen Spielbedingungen zu handeln.",
+      "interactions": {
+        "werewolf": "Wenn der Jäger von den Werwölfen ins Visier genommen und eliminiert wird, erhält er eine letzte Chance, zurückzuschlagen, indem er einen Spieler auswählt, den er mitnehmen möchte. Dieser letzte Angriff wird nicht von den Werwölfen beeinflusst und kann nicht durch ihre Strategien verhindert werden.",
+        "doctor": "Wenn der Jäger einen Spieler ins Visier nimmt, der vom Arzt geschützt ist, wird dieser Schutz unwirksam und der Zielspieler wird trotzdem sterben, da der Angriff des Jägers den Schild des Arztes überschreibt.",
+        "priest": "Wenn der Jäger einen gesegneten Spieler ins Visier nimmt, schützt der Segen des Priesters diesen nicht. Der letzte Angriff des Jägers ist mächtig und kann nicht durch den Segen gemildert werden.",
+        "bodyguard": "Wenn der Jäger einen vom Bodyguard geschützten Spieler ins Visier nimmt, wird der Schutz umgangen, was bedeutet, dass das Ziel trotzdem stirbt, unabhängig vom Schutz des Bodyguards.",
+        "witch": "Wenn der Jäger getötet wird und die Hexe ihren rettenden Trank auf ihn anwendet, kann sie den Tod des Jägers verhindern und somit seinen letzten Angriff stoppen. Wenn die Hexe jedoch den Trank nicht einsetzt, wird der Jäger mit seinem letzten Angriff fortfahren.",
+        "cupid": "Wenn der Jäger einer der von Amor verbundenen Liebenden ist und stirbt, wird der andere verbundene Liebhaber vor Kummer sterben. Zusätzlich wird der Jäger entscheiden, einen weiteren Spieler zu töten. Diese Entscheidung des Jägers erfolgt, bevor die Verbindung von Amor enthüllt wird."
+      }
+    },
+    "lycan": {
+      "name": "Lykan",
+      "description": "Der Lykan ist ein Dorfbewohner, der vollständig mit den Zielen des Dorfs übereinstimmt, jedoch mit einem Fluch belegt ist, der ihn dem Seher als Werwolf erscheinen lässt. Diese falsche Identität schafft komplexe Herausforderungen, da der Seher ihn möglicherweise fälschlicherweise als Bedrohung identifiziert, was Misstrauen erzeugt und möglicherweise die Handlungen des Dorfs gegen ihn beeinflusst. Der Lykan muss vorsichtig sein, um Verdacht zu vermeiden, während er andere subtile Überzeugungsstrategien entwickelt, um seine wahre Loyalität zum Dorf zu beweisen. Trotz seiner Erscheinung im Blick des Sehers bleibt der Lykan eine gute Rolle, die darauf abzielt, das Dorf zu schützen und die Werwölfe zu besiegen. Es erfordert eine sorgfältige und strategische Spielweise, um unnötige Eliminierungen zu vermeiden und das Dorf zum Sieg zu führen.",
+      "interactions": {
+        "seer": "Wenn der Seher den Lykan betrachtet, wird er ihn aufgrund seines Fluchs als böse Rolle wahrnehmen. Diese Fehleinschätzung kann Misstrauen vom Seher und dem Dorf hervorrufen, weshalb der Lykan die Interaktionen mit dem Seher sorgfältig navigieren und Strategien entwickeln sollte, um seine Loyalität im Laufe der Zeit zu beweisen.",
+        "werewolf": "Die Werwölfe kennen die Identität des Lykans nicht und sehen ihn als normalen Dorfbewohner. Die Rolle des Lykans im Dorf bleibt unverändert, also muss er das Dorf unterstützen, während er gleichzeitig Zweifeln an seiner wahren Natur begegnet."
+      }
+    },
+    "priest": {
+      "name": "Priester",
+      "description": "Der Priester ist ein mächtiger Beschützer im Spiel, gesegnet mit der Fähigkeit, einen Spieler vor Schaden zu bewahren. Der Priester kann einen Spieler im Spiel segnen, wodurch dieser gegen Werwolf-Angriffe immun wird. Dieser Segen bleibt nur wirksam, solange der Priester am Leben ist; wenn der Priester getötet wird, gehen alle Segnungen verloren und zuvor gesegnete Spieler werden wieder verwundbar. Der Segen schützt jedoch nicht vor bestimmten mächtigen Angriffen, was die Entscheidungen des Priesters für das Überleben der Schlüsselspieler im Dorf entscheidend macht.",
+      "interactions": {
+        "werewolf": "Der Segen des Priesters schützt einen Spieler vor Werwolf-Angriffen für die Nacht. Allerdings können die Werwölfe weiterhin um den Segen des Priesters herum strategisieren, um andere Dorfbewohner anzugreifen oder sogar einen Angriff auf den Priester zu planen, um seine Schutzkraft zu eliminieren.",
+        "doctor": "Der Schutz des Arztes ist unabhängig vom Segen des Priesters. Wenn ein Spieler sowohl vom Priester gesegnet als auch vom Arzt geschützt wird, hat er mehrere Schutzebenen. Wenn jedoch der Priester eliminiert wird, geht der Segen verloren, sodass der Schutz des Arztes als einziger verbleibender Schutz bleibt.",
+        "seer": "Während der Seher Informationen aufdeckt, kann der Priester seinen Segen verwenden, um den Seher zu schützen, wenn dessen Identität aufgedeckt wird, und ihn vor Angriffen zu bewahren.",
+        "hunter": "Wenn der Jäger eliminiert wird und einen gesegneten Spieler ins Visier nimmt, verhindert der Segen des Priesters den letzten Angriff des Jägers nicht, und der gesegnete Spieler wird trotzdem sterben.",
+        "witch": "Wenn die Hexe ihren tödlichen Trank auf einen gesegneten Spieler anwendet, wird der Segen des Priesters den Tod nicht verhindern. Der Segen schützt nicht vor Angriffen von übernatürlichen Quellen, wie dem Trank der Hexe.",
+        "bodyguard": "Der Bodyguard und der Priester können beide einen Spieler schützen, jedoch auf unterschiedliche Weise. Wenn der Bodyguard einen vom Priester gesegneten Spieler schützt, bleibt der Segen erhalten, aber der Schutz des Bodyguards hat Priorität bei physischen Angriffen."
+      }
+    },
+    "prince": {
+      "name": "Prinz",
+      "description": "Der Prinz ist eine einzigartige Rolle, die eine besondere Form des Schutzes während des Tages bietet. Unabhängig davon, wie oft das Dorf versucht, den Prinzen abzustimmen, kann er auf diese Weise nicht eliminiert werden. Wenn das Dorf den Prinzen während des Tages abwählen möchte, kündigt der Erzähler einfach an, dass der Versuch erfolglos war, was den Prinzen unantastbar macht. Dieser Schutz erstreckt sich jedoch nicht auf die Nacht, in der der Prinz anfällig für Angriffe der Werwölfe oder anderer Rollen sein kann. Der Prinz muss seinen Einfluss weise nutzen, da er eine entscheidende Rolle bei der Führung des Dorfes spielt, ohne Angst vor der Eliminierung während des Tages zu haben.",
+      "interactions": {
+        "werewolf": "Der Prinz ist in der Nacht anfällig für Angriffe der Werwölfe, die ihn möglicherweise bevorzugen, da er tagsüber nicht eliminiert werden kann.",
+        "hunter": "Wenn der Prinz vom Jäger während dessen Rachefähigkeit ins Visier genommen wird, stirbt er unabhängig von seinem Schutz während des Tages.",
+        "doctor": "Wenn der Arzt den Prinzen in der Nacht schützt, werden alle Werwolf-Angriffe in dieser Nacht abgewehrt, sodass der Prinz auch bei nächtlichen Gefahren überlebt.",
+        "witch": "Wenn die Hexe ihren Trank auf den Prinzen anwendet, wird er sterben, da ihre Fähigkeit seinen Tagesschutz umgeht.",
+        "priest": "Wenn der Priester den Prinzen segnet, bietet dieser Segen zusätzlichen Schutz vor Angriffen, solange der Schutz des Priesters aktiv ist und der Prinz im Spiel ist."
+      }
+    },
+    "seer": {
+      "name": "Seher",
+      "description": "Der Seher hat die besondere Fähigkeit, jede Nacht die Identität eines Spielers zu enthüllen. Sein Ziel ist es, die Werwölfe zu entlarven und das Dorf zum Sieg zu führen, indem er gefährliche Rollen identifiziert. Du wirst über die Rolle des Spielers, den du wählen möchtest, informiert, mit einem Daumen hoch (gute Rolle), Daumen runter (schlechte Rolle) oder flacher Hand (Tanner).",
+      "interactions": {
+        "villager": "Arbeitet eng mit Dorfbewohnern zusammen, um Werwölfe und gefährliche Rollen zu identifizieren.",
+        "werewolf": "Versucht, Werwölfe zu identifizieren, um das Dorf vor der Bedrohung zu warnen.",
+        "tanner": "Wenn du auf einen Tanner triffst, stelle sicher, dass du dies effektiv an die anderen Dorfbewohner kommunizierst, damit sie ihn nicht töten und das Spiel verlieren.",
+        "doctor": "Kann sich auf den Schutz des Arztes verlassen, wenn ihre Identität von den Werwölfen verdächtigt wird.",
+        "witch": "Könnte mit der Hexe zusammenarbeiten, um zusätzliche Einblicke oder Schutz zu erhalten, wenn beide als gute Rollen identifiziert werden.",
+        "lycan": "Diese Rolle wird vom Seher als schlechte Rolle erkannt, ist jedoch ein Dorfbewohner. Achte darauf, wenn ein Lykan im Spiel ist.",
+        "alphaWerewolf": "Die größte Herausforderung des Sehers besteht darin, den Alpha-Werwolf zu identifizieren. Der Alpha wird als schlechte Rolle erkannt, ebenso wie ein gewöhnlicher Werwolf."
+      }
+    },
+    "tanner": {
+      "name": "Tanner",
+      "description": "Der Tanner ist ein ungewöhnlicher Charakter mit einem einzigartigen und kontraintuitiven Ziel: Er gewinnt das Spiel, wenn er tagsüber von den Dorfbewohnern eliminiert wird. Anders als andere Spieler, die darauf abzielen zu überleben, versucht der Tanner aktiv, Verdacht zu erregen und sich eliminieren zu lassen. Wenn er erfolgreich ist, wird er der einzige Gewinner des Spiels, unabhängig davon, welche anderen Rollen noch im Spiel sind. Wenn der Tanner jedoch nachts eliminiert wird (zum Beispiel von den Werwölfen), gewinnt er nicht und wird einfach aus dem Spiel entfernt. Diese Rolle erfordert strategische Täuschung und sorgfältige Manipulation, um das gewünschte Ergebnis zu erzielen, ohne seine Absichten zu offensichtlich zu machen.",
+      "interactions": {
+        "villagers": "Wenn die Dorfbewohner den Tanner tagsüber zur Eliminierung wählen, gewinnt der Tanner sofort das Spiel und alle anderen Spieler verlieren. Dies ist das Hauptziel des Tanners, daher könnte er versuchen, tagsüber verdächtig zu wirken.",
+        "werewolves": "Wenn die Werwölfe den Tanner während ihres nächtlichen Angriffs ins Visier nehmen, wird der Tanner eliminiert, gewinnt jedoch nicht. Die Werwölfe sollten vorsichtig bei ihrer Auswahl sein, da eine nächtliche Eliminierung des Tanners dessen Gewinnbedingung nicht erfüllt.",
+        "seer": "Der Seher könnte die Identität des Tanners enthüllen, daher sollte der Tanner strategisch mit dieser Rolle umgehen und sein Ziel erreichen, ohne erkannt zu werden.",
+        "hunter": "Wenn der Jäger den Tanner tötet (absichtlich oder aus Rache), gewinnt der Tanner nicht, da seine Gewinnbedingung auf der Eliminierung während der Tagesabstimmung durch das Dorf basiert.",
+        "witch": "Wenn die Hexe ihren Tötungstrank auf den Tanner anwendet, wird der Tanner eliminiert, gewinnt jedoch nicht, da die Eliminierung nicht durch die Tagesabstimmung des Dorfes erfolgte."
+      }
+    },
+    "villager": {
+      "name": "Dorfbewohner",
+      "description": "Der Dorfbewohner hat keine besonderen Fähigkeiten, ist jedoch unerlässlich für das Dorf und bildet die Hauptkraft im Kampf gegen die Werwölfe. Tagsüber verwenden Dorfbewohner ihre Logik, Beobachtung und Intuition, um verdächtiges Verhalten zu erkennen, Lügen zu entlarven und gemeinsam zu arbeiten, um die Werwölfe, die sich unter ihnen verbergen, aufzudecken. Sie tragen zur Abstimmung bei, bei der sie Diskussionen lenken und Entscheidungen beeinflussen können, wer eliminiert werden soll. Während Dorfbewohner nur auf ihren Verstand angewiesen sind, macht ihre Fähigkeit, sorgfältig die Worte und Handlungen anderer zu beobachten und zu interpretieren, sie zum Rückgrat der Strategie des Dorfes, das sich gegen die Kräfte vereint, die ihre Existenz bedrohen.",
+      "interactions": {
+        "werewolf": "Dorfbewohner sind das Hauptziel der Werwölfe, die in jeder Nacht versuchen, ihre Zahl zu verringern. Dorfbewohner sollten besonders auf Spieler achten, die ausweichend oder manipulativ wirken, da dies versteckte Werwölfe entlarven könnte.",
+        "seer": "Dorfbewohner arbeiten mit dem Seher und anderen Rollen zusammen, um Informationen zu sammeln und Erkenntnisse zu liefern, die die Entdeckungen des Sehers unterstützen. Sie müssen jedoch auch die Identität des Sehers schützen, um Werwolf-Angriffe zu verhindern.",
+        "witch": "Wenn ein Dorfbewohner für die Eliminierung ausgewählt wird, könnte die Hexe ihren Heiltrank verwenden, um ihn zu retten und die Stärke des Dorfes zu erhalten. Dorfbewohner müssen potenzielle Werwolf-Verbündete identifizieren, um der Hexe bei ihrer Entscheidung zu helfen."
+      }
+    },
+    "werewolf": {
+      "name": "Werwolf",
+      "description": "Der Werwolf täuscht das Dorf tagsüber, indem er vorgibt, ein unschuldiger Dorfbewohner zu sein. Nachts zeigt er sein wahres Gesicht und wählt gemeinsam mit anderen Werwölfen ein Opfer aus, um es zu eliminieren. Ihr Ziel ist es, alle guten Rollen zu eliminieren, ohne ihre Identität preiszugeben.",
+      "interactions": {
+        "otherWerewolves": "Arbeitet mit anderen Werwölfen zusammen, um nächtliche Angriffe zu planen.",
+        "seer": "Muss vermeiden, vom Seher erkannt zu werden, der ihre Identität enthüllen kann.",
+        "doctor": "Muss die Schutzfähigkeiten des Arztes berücksichtigen, um erfolgreiche Angriffe zu gewährleisten.",
+        "tanner": "Der Werwolf profitiert vom Tod des Tanners, da dieser das Spiel gewinnt, wenn er tagsüber eliminiert wird, und nicht die Werwölfe.",
+        "witch": "Die Hexe steht auf der Seite des Dorfes, könnte aber so beeinflusst und getäuscht werden, dass sie die Werwölfe nicht mit ihrem Tötungstrank angreift.",
+        "alphaWerewolf": "Der Alpha-Werwolf wird separat von den Werwölfen geweckt. Versuche herauszufinden, wer der Alpha ist, um ihn nachts nicht versehentlich zu töten, da er mit dir spielt, nur nicht zur gleichen Zeit geweckt wird.",
+        "wolfCub": "Das Wolfsjunges wird mit den Werwölfen geweckt, aber sie wissen nicht, dass er es ist. Du kannst absichtlich versuchen, das Dorf tagsüber zu beeinflussen, ihn zu töten, wenn du weißt, dass du in der nächsten Nacht ein zusätzliches Opfer für den Sieg benötigst."
+      }
+    },
+    "witch": {
+      "name": "Hexe",
+      "description": "Die Hexe ist eine geheimnisvolle und mächtige Verbündete des Dorfes, die sowohl einen Heiltrank als auch einen Gifttrank besitzt, die jeweils nur einmal pro Spiel verwendet werden können. In der Nacht erfährt die Hexe, ob jemand für die Eliminierung angegriffen wurde, und muss entscheiden, ob sie diese Person mit dem Heiltrank retten möchte. Die Hexe hat auch die Möglichkeit, den Gifttrank auf einen beliebigen Spieler anzuwenden, um einen Werwolf oder einen Spieler zu eliminieren, den sie als Bedrohung für das Dorf vermutet. Die Macht der Hexe ist gewaltig, aber ihre begrenzte Nutzung der Tränke erfordert ein sorgfältiges Timing und strategisches Vorgehen. Wenn die Hexe eliminiert wird, bevor sie ihre Tränke verwendet, gehen diese verloren. Die Hexe hat einen bleibenden Einfluss auf den Ausgang des Spiels, indem sie sowohl als Beschützerin als auch als potenzielle Eliminatorin agiert. Sie kann ihre Tränke nicht auf sich selbst anwenden.",
+      "interactions": {
+        "werewolf": "Die Hexe kann einen Werwolfangriff durch das Retten des Ziels mit ihrem Heiltrank vereiteln und damit die Pläne der Werwölfe durchkreuzen. Wenn sie jedoch ihren Gifttrank auf einen Werwolf anwendet, eliminiert sie die Bedrohung sofort, verbraucht jedoch den Trank dauerhaft. Wenn sie von den Werwölfen selbst angegriffen wird, riskiert sie, beide Tränke zu verlieren, falls sie diese noch nicht benutzt hat. Sie kann ihre Tränke nicht auf sich selbst anwenden.",
+        "doctor": "Der Heiltrank der Hexe funktioniert unabhängig vom Schutz des Arztes. Wenn der Arzt einen Spieler nicht schützt, kann der Heiltrank der Hexe ihn immer noch retten. Wenn beide denselben Spieler schützen, verliert die Hexe ihren Trank, da die Person bereits geschützt ist. Sie muss darauf achten, ihre Bemühungen nicht auf denselben Spieler zu konzentrieren, um den Einfluss ihrer Fähigkeiten zu maximieren.",
+        "seer": "Der Seher möchte sich möglicherweise mit der Hexe absprechen, um Ziele für ihren Gifttrank zu empfehlen, insbesondere wenn der Seher einen Werwolf identifiziert. Zusammen bilden sie eine starke Allianz gegen die Werwölfe, müssen jedoch vorsichtig sein, um sich nicht zu offen zu verraten.",
+        "bodyguard": "Der Gifttrank der Hexe übergeht den Schutz des Bodyguards. Wenn der Bodyguard einen Spieler schützt und die Hexe ihren Gifttrank auf diesen Spieler anwendet, kann der Bodyguard dessen Tod nicht verhindern.",
+        "hunter": "Wenn die Hexe den Jäger mit ihrem Gifttrank tötet, hat der Jäger noch die Möglichkeit, sich zu rächen und einen weiteren Spieler mit in den Tod zu reißen. Die Hexe muss ihren Trank strategisch einsetzen, um diese mögliche Reaktion zu vermeiden. Wenn der Jäger jedoch einen Spieler angreift, den die Hexe mit einem Heiltrank gerettet hat, stirbt der Spieler trotzdem. Der Todesstrafe des Jägers ist stärker.",
+        "priest": "Wenn der Priester einen Spieler segnet, kann der Heiltrank der Hexe diesen Spieler immer noch retten, falls er von den Werwölfen oder einem anderen Angriff bedroht wird. Ihr Gifttrank ist jedoch stark genug, um den Segen des Priesters zu durchbrechen, was den Tod des Spielers unabhängig vom Segen bewirken würde."
+      }
+    },
+    "wolfCub": {
+      "name": "Wolf-Welpe",
+      "description": "Der Wolf-Welpe ist ein jüngeres Mitglied des Werwolf-Packs und hat keine eigene Fähigkeit, anzugreifen oder andere zu beeinflussen, spielt jedoch eine entscheidende Rolle bei der Verstärkung des Pakts. Der Wolf-Welpe wacht in der Nacht zusammen mit den anderen Werwölfen auf. Wenn der Wolf-Welpe vom Dorf oder einem anderen Spieler getötet wird, wird das Werwolf-Paket Rache suchen und in der folgenden Nacht einen zusätzlichen Kill erhalten. Dies macht den Wolf-Welpen zu einem Hauptziel für das Dorf, aber auch ein Mitglied, das die Werwölfe zu schützen suchen. Obwohl der Welpe nicht die Stärke eines vollen Werwolfs hat, ist seine Präsenz ein strategischer Vorteil für die Werwölfe, solange er am Leben bleibt.",
+      "interactions": {
+        "werewolf": "Der Wolf-Welpe wird von den Werwölfen geschützt, die ihn am Leben erhalten wollen. Wenn der Wolf-Welpe eliminiert wird, erhalten die Werwölfe in der nächsten Nacht einen zusätzlichen Kill, was die Bedrohung für das Dorf verstärkt.",
+        "seer": "Der Seher kann den Wolf-Welpen als Werwolf identifizieren und diese Information dem Dorf mitteilen, was ihn zu einem Ziel macht. Wenn der Welpe verloren geht, könnten die Werwölfe ihre Angriffe auf das Dorf beschleunigen.",
+        "doctor": "Wenn der Arzt den Wolf-Welpen schützt, kann er seine Eliminierung für eine Nacht verhindern, wodurch die Zahl der Werwölfe erhalten bleibt und die Möglichkeit für zusätzliche Kills, falls der Welpe später vom Dorf eliminiert wird.",
+        "witch": "Wenn die Hexe ihren Gifttrank auf den Wolf-Welpen anwendet, erhalten die Werwölfe ihren zusätzlichen Kill in der nächsten Nacht. Wenn die Hexe jedoch ihren Heiltrank auf den Wolf-Welpen anwendet, wenn dieser angegriffen wird, überlebt der Welpe und das Dorf verpasst die Chance, den zusätzlichen Kill-Effekt zu verhindern.",
+        "hunter": "Wenn der Jäger stirbt und der Wolf-Welpen als Ziel für seine Vergeltung auswählt, stirbt der Wolf-Welpe und die Werwölfe erhalten einen zusätzlichen Kill in der nächsten Nacht. Der Jäger muss diese Wahl sorgfältig abwägen, wenn er verhindern möchte, dass die Werwölfe gestärkt werden.",
+        "bodyguard": "Wenn der Bodyguard den Wolf-Welpen schützt und dessen Tod verhindert, vermeiden die Werwölfe, den vorteilhaften Einfluss des Welpen zu verlieren. Das Dorf könnte Schwierigkeiten haben, den Welpen zu eliminieren, insbesondere wenn er mehrere Schutzmaßnahmen erhält."
+      }
+    }
+  },
+
+  "fullAccessToFeatures": "Vollständiger Zugriff auf alle Funktionen",
+  "differentRoles": "14+ verschiedene Rollen",
+  "differentRolesDescription": "Spiele mit allen Rollen im Spiel und mehr, um spannende Ergebnisse und Szenarien zu erleben.",
+  "narratorAssistance": "Erzählerhilfe",
+  "narratorAssistanceDescription": "Integrierte Sprachführung für alle Rollen und einfache Navigation durch die Nacht.",
+  "moreGameOutcomes": "Mehr Spielausgänge",
+  "moreGameOutcomesDescription": "Ermöglicht tiefere strategische Überlegungen und eine größere Vielfalt an Ergebnissen.",
+  "privacy_policy": "Datenschutzrichtlinie",
+  "restore_purchase": "Kauf wiederherstellen",
+  "terms_of_use": "Nutzungsbedingungen",
+  "callToTrial": "Starte deine 3-tägige kostenlose Probeversion",
+  "weeklyPrice": "Dann {{price}} pro Woche. Jederzeit kündbar.",
+  "continue": "Fortfahren",
+  "viewAllPlans": "Alle Pläne anzeigen",
+  "privacyPolicy": "Datenschutzrichtlinie",
+  "restorePurchase": "Kauf wiederherstellen",
+  "termsOfUse": "Nutzungsbedingungen",
+  "weeklyPlan": "Wöchentlicher Plan",
+  "monthlyPlan": "Monatlicher Plan",
+  "yearlyPlan": "Jährlicher Plan",
+  "lifetimePlan": "Lebenszeitplan",
+  "freeTrial": "3-tägige kostenlose Probeversion",
+  "lifetimePlanDescription": "Lebenszeitplan für nur",
+  "lifetimePayment": "einmalig",
+  "andThen": "und dann",
+  "week": "Woche",
+  "month": "Monat",
+  "year": "Jahr",
+  "restorePurchaseMessage": "Suche nach einem Kauf zum Wiederherstellen...",
+  "success": "Erfolg",
+  "purchaseRestored": "Dein Kauf wurde wiederhergestellt",
+  "failure": "Fehler",
+  "noPurchasesToRestore": "Es gibt keine Käufe zum Wiederherstellen",
+  "rateAppMessage": "App Store Bewertung öffnen...",
+  "errorOccurred": "Es ist ein Fehler aufgetreten",
+  "reviewError": "Es gab einen Fehler beim Laden des Bewertungsfensters.",
+  "getAllRoles": "Alle Rollen erhalten",
+  "unlockNewRoles": "10+ neue Rollen freischalten & mehr",
+  "werewolfPro": "Werewolf Pro",
+  "rateApp": "Bewerte die App",
+  "general": "Allgemein",
+  "termsConditions": "Allgemeine Geschäftsbedingungen",
+  "contactUs": "Kontaktiere uns",
+  "feedbackSubject": "Feedback zur Werewolf Game App",
+  "feedbackBody": "Hallo, ich möchte dich bezüglich Werewolf - Save the Village kontaktieren:",
+  "yourMessageHere": "[Deine Nachricht hier]",
+  "reportBug": "Fehler melden",
+  "ourApps": "Unsere Apps",
+  "Fast VPN & Adblocker": "Schnelles VPN & Adblocker",
+  "Remove water from speakers": "Wasser aus Lautsprechern entfernen",
+  "eSign & Scan Documents": "Dokumente unterschreiben & scannen",
+  "about": "Über",
+  "tellAFriend": "Erzähle einem Freund",
+  "appVersion": "App-Version",
+  "shareMessage": "Hey, wenn du dieses soziale Spiel ausprobieren möchtest, das ich spiele, heißt es Werewolf: Save the Village im App Store.",
+
+  "rolesDescription": "Spiele mit allen Rollen im Spiel und mehr, um spannende Ergebnisse und Szenarien zu erleben.",
+  "narratorDescription": "Integrierte Sprachführung für alle Rollen und einfache Navigation durch die Nacht. Weitere Sprachen werden hinzugefügt.",
+  "moreOutcomes": "Mehr Spielausgänge",
+  "outcomesDescription": "Ermöglicht tiefere strategische Überlegungen und eine größere Vielfalt an Ergebnissen mit verschiedenen Gewinnern.",
+  "beforeJourney": "Bevor du deine Reise beginnst,",
+  "pleaseSupport": "bitte überlege, uns zu unterstützen",
+  "trialTextStart": "Probiere 3 Tage kostenlos, dann",
+  "werewolf_game_title": "Werwolf: \n Rette das Dorf",
+  "werewolf_game_description": "Erlebe das nächste Level des sozialen Spiels Werwolf. Mit benutzerfreundlichem Design und Funktionen kannst du das Spiel komplett offline genießen.",
+  "no_need_for_cards_title": "Keine Karten nötig",
+  "no_need_for_cards_description": "Mit dieser App kannst du automatisch QR-Codes für die Rollen generieren, die du für jedes Spiel wählst. So kann jeder Spieler den QR-Code scannen und seine Rolle im Spiel über sein Handy erhalten, ohne die App installieren zu müssen.",
+  "game_assistance_title": "Spielhilfe",
+  "game_assistance_description": "Beim Starten des Spiels erhältst du eine Sprachassistenz sowie eine Anleitung, welche Rolle als nächstes in der Nacht geweckt werden muss. Alle Aktionen, die in der Nacht gemacht werden, werden aufgezeichnet, damit der Erzähler das Dorf leicht führen kann. Tagsüber gibt es einen Timer für die Diskussion unter den Spielern mit einer begrenzten Zeit, bis sie wieder schlafen müssen, was die Arbeit des Erzählers erleichtert.",
+  "help_us_grow_title": "Hilf uns zu wachsen",
+  "help_us_grow_description": "Bevor du deine Reise beginnst, überlege bitte, uns zu unterstützen. Dies hilft uns sehr und ermöglicht es uns, das Spiel weiterhin zu verbessern und neue Funktionen einzuführen.",
+  "premium_trial_title": "Premium-Testversion",
+  "premium_trial_description": "✓ - Schalte alle Bearbeitungswerkzeuge frei: einschließlich Datum, Initialen, Bilder, Texte, Checkboxen \n ✓ - Kamerascannen & Dokumentenorganisation \n ✓ - Erhalte alle Vorlagen zur direkten Bearbeitung",
+
+  "choose_plan_title": "Wähle deinen Plan",
+  "weekly_plan": "Wöchentlich",
+  "monthly_plan": "Monatlich",
+  "annual_plan": "Jährlich",
+  "lifetime_plan": "Lebenszeit",
+  "trial_offer": "3-Tage-Testversion",
+  "one_time_purchase": "Einmaliger Kauf",
+  "once": "einmal",
+  "chooseLanguage": "Sprache wählen"
+}

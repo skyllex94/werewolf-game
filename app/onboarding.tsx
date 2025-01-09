@@ -1,5 +1,6 @@
-import { FlatList, Animated, View, ListRenderItemInfo } from "react-native";
 import React, { useRef, useState } from "react";
+import { FlatList, Animated, View, ListRenderItemInfo } from "react-native";
+import { useTranslation } from "react-i18next"; // Importing useTranslation
 import slides from "../constants/OnBoardingSlides";
 import OnBoardingItem from "../components/OnBoarding/Item";
 import Indicator from "../components/OnBoarding/Indicator";
@@ -24,6 +25,7 @@ interface Slide {
 }
 
 export default function OnBoarding() {
+  const { t } = useTranslation(); // Initialize translation hook
   const router = useRouter();
 
   const [currSlide, setCurrSlide] = useState<number>(0);
@@ -64,10 +66,6 @@ export default function OnBoarding() {
           ?.werewolf_subscriptions
       ) {
         await AsyncStorage.setItem("isFirstOpen", "false");
-
-        // Analytics - actived_subscription event
-        // const price = currentOffering?.weekly?.product?.priceString ?? null;
-        // analyticsSubscriptionEvent("weekly", "onboarding", price);
       }
     } catch (e: any) {
       if (!e.userCancelled) setPurchaseSpinner(false);

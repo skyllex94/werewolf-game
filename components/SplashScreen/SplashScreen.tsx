@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, Animated, Dimensions, View } from "react-native";
 import LottieView from "lottie-react-native";
+import { useTranslation } from "react-i18next";
 
 type SplashScreenProps = {
   fadeAnim: Animated.Value;
@@ -8,6 +9,7 @@ type SplashScreenProps = {
 
 export default function SplashScreen({ fadeAnim }: SplashScreenProps) {
   const { width, height } = Dimensions.get("window");
+  const { t } = useTranslation();
 
   return (
     <Animated.View
@@ -36,13 +38,13 @@ export default function SplashScreen({ fadeAnim }: SplashScreenProps) {
           style={{ fontFamily: "Bronzetti_SC_Condensed", fontSize: 34 }}
           className="text-[24px] text-slate-300 font-bold my-1"
         >
-          Werewolf:
+          {t("title")}
         </Text>
         <Text
           style={{ fontFamily: "Bronzetti_SC_Condensed", fontSize: 26 }}
           className="text-[24px] font-bold text-gray-400"
         >
-          Save the Village
+          {t("subtitle")}
         </Text>
       </View>
     </Animated.View>

@@ -7,16 +7,16 @@ const WitchRole = () => {
 
   return (
     <RoleTemplate
-      name={t("roles.witch.name")}
-      description={t("roles.witch.description")}
+      name={t("rolesScreen.witch.name")}
+      description={t("rolesScreen.witch.description")}
       roleType="good"
       interactions={[
-        t("roles.witch.interactions.werewolf"),
-        t("roles.witch.interactions.doctor"),
-        t("roles.witch.interactions.seer"),
-        t("roles.witch.interactions.bodyguard"),
-        t("roles.witch.interactions.hunter"),
-        t("roles.witch.interactions.priest"),
+        t("rolesScreen.witch.interactions.werewolf"),
+        t("rolesScreen.witch.interactions.doctor"),
+        t("rolesScreen.witch.interactions.seer"),
+        t("rolesScreen.witch.interactions.bodyguard"),
+        t("rolesScreen.witch.interactions.hunter"),
+        t("rolesScreen.witch.interactions.priest"),
       ]}
       imagePath={require("../../assets/images/characters/witch.jpeg")}
     />

@@ -1,12 +1,12 @@
 import useRevenueCat from "@/hooks/RevenueCat";
 import { AntDesign } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import { router } from "expo-router";
 import React, { useState } from "react";
 import { View, Text, Modal, TouchableOpacity } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
 import Purchases from "react-native-purchases";
+import { useTranslation } from "react-i18next"; // Import useTranslation hook
 
 type AllPlansTypes = {
   isModalVisible: boolean;
@@ -17,6 +17,7 @@ export default function AllPlans({
   isModalVisible,
   toggleModal,
 }: AllPlansTypes) {
+  const { t } = useTranslation(); // Initialize useTranslation hook for localization
   const { currentOffering } = useRevenueCat();
   const [purchaseSpinner, setPurchaseSpinner] = useState(false);
 
@@ -76,7 +77,7 @@ export default function AllPlans({
             <View className="p-3"></View>
 
             <Text className="text-lg font-bold text-center text-white">
-              Choose Your Plan
+              {t("choose_plan_title")} {/* Using translated text for title */}
             </Text>
 
             <TouchableOpacity
@@ -94,12 +95,14 @@ export default function AllPlans({
             >
               <View className="flex-row justify-between items-center p-3 bg-slate-800 rounded-xl">
                 <Text className="font-semibold text-slate-200 text-[15px] px-3">
-                  Weekly
+                  {t("weekly_plan")}
                 </Text>
                 <View className="items-end">
-                  <Text className="text-slate-300 text-xs">3-Day Trial</Text>
+                  <Text className="text-slate-300 text-xs">
+                    {t("trial_offer")}
+                  </Text>
                   <Text className="text-slate-300">
-                    {currentOffering?.weekly?.product?.priceString}/week
+                    {currentOffering?.weekly?.product?.priceString}/{t("week")}
                   </Text>
                 </View>
               </View>
@@ -111,12 +114,15 @@ export default function AllPlans({
             >
               <View className="flex-row justify-between items-center p-3 bg-slate-800 rounded-xl">
                 <Text className="font-semibold text-slate-200 text-[15px] px-3">
-                  Monthly
+                  {t("monthly_plan")}
                 </Text>
                 <View className="items-end">
-                  <Text className="text-slate-300 text-xs">3-Day Trial</Text>
+                  <Text className="text-slate-300 text-xs">
+                    {t("trial_offer")}
+                  </Text>
                   <Text className="text-slate-300">
-                    {currentOffering?.monthly?.product?.priceString}/month
+                    {currentOffering?.monthly?.product?.priceString}/
+                    {t("month")}
                   </Text>
                 </View>
               </View>
@@ -128,12 +134,14 @@ export default function AllPlans({
             >
               <View className="flex-row justify-between items-center p-3 bg-slate-800 rounded-xl">
                 <Text className="font-semibold text-slate-200 text-[15px] px-3">
-                  Yearly
+                  {t("annual_plan")}
                 </Text>
                 <View className="items-end">
-                  <Text className="text-slate-300 text-xs">3-Day Trial</Text>
+                  <Text className="text-slate-300 text-xs">
+                    {t("trial_offer")}
+                  </Text>
                   <Text className="text-slate-300">
-                    {currentOffering?.annual?.product?.priceString}/year
+                    {currentOffering?.annual?.product?.priceString}/{t("year")}
                   </Text>
                 </View>
               </View>
@@ -145,14 +153,15 @@ export default function AllPlans({
             >
               <View className="flex-row justify-between items-center p-3 bg-slate-800 rounded-xl">
                 <Text className="font-semibold text-slate-200 text-[15px] px-3">
-                  Lifetime
+                  {t("lifetime_plan")}
                 </Text>
                 <View className="items-end">
                   <Text className="text-slate-300 text-xs">
-                    One-time Purchase
+                    {t("one_time_purchase")}
                   </Text>
                   <Text className="text-slate-300">
-                    {currentOffering?.lifetime?.product?.priceString} once
+                    {currentOffering?.lifetime?.product?.priceString}{" "}
+                    {t("once")}
                   </Text>
                 </View>
               </View>

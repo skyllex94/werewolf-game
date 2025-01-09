@@ -7,16 +7,16 @@ const HunterRole = () => {
 
   return (
     <RoleTemplate
-      name={t("roles.hunter.name")}
-      description={t("roles.hunter.description")}
+      name={t("rolesScreen.hunter.name")}
+      description={t("rolesScreen.hunter.description")}
       roleType="good"
       interactions={[
-        t("roles.hunter.interactions.werewolf"),
-        t("roles.hunter.interactions.doctor"),
-        t("roles.hunter.interactions.priest"),
-        t("roles.hunter.interactions.bodyguard"),
-        t("roles.hunter.interactions.witch"),
-        t("roles.hunter.interactions.cupid"),
+        t("rolesScreen.hunter.interactions.werewolf"),
+        t("rolesScreen.hunter.interactions.doctor"),
+        t("rolesScreen.hunter.interactions.priest"),
+        t("rolesScreen.hunter.interactions.bodyguard"),
+        t("rolesScreen.hunter.interactions.witch"),
+        t("rolesScreen.hunter.interactions.cupid"),
       ]}
       imagePath={require("../../assets/images/characters/hunter.jpg")}
     />

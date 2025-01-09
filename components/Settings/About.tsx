@@ -1,13 +1,15 @@
 import { View, Text, TouchableOpacity, Share, Alert } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 export default function About() {
-  // Make sure you insert URL to to game after finished
+  const { t } = useTranslation(); // Use the hook for translations
+
+  // Make sure you insert URL to the game after finished
   const tellFriends = async () => {
     try {
       const result = await Share.share({
-        message:
-          "Hey, if you want check this social game I've been playing called Werewolf: Save the Village on the App Store.",
+        message: t("shareMessage"),
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -25,18 +27,18 @@ export default function About() {
 
   return (
     <View className="gap-y-2 pt-4">
-      <Text className="text-white text-[15px] font-light ml-2">About</Text>
-
+      <Text className="text-white text-[15px] font-light ml-2">
+        {t("about")}
+      </Text>
       <TouchableOpacity
         onPress={tellFriends}
         className="flex-row items-center justify-between bg-slate-800 w-full rounded-lg p-3"
       >
-        <Text className="text-white">Tell a Friend</Text>
+        <Text className="text-white">{t("tellAFriend")}</Text>
         <AntDesign name="right" size={14} color="white" />
       </TouchableOpacity>
-
       <View className="flex-row items-center justify-between bg-slate-800 w-full rounded-lg p-3">
-        <Text className="text-white">App Version</Text>
+        <Text className="text-white">{t("appVersion")}</Text>
         <Text className="text-white">1.0.4</Text>
       </View>
     </View>

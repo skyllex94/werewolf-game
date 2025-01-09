@@ -7,15 +7,15 @@ const TannerRole = () => {
 
   return (
     <RoleTemplate
-      name={t("roles.tanner.name")}
-      description={t("roles.tanner.description")}
+      name={t("rolesScreen.tanner.name")}
+      description={t("rolesScreen.tanner.description")}
       roleType="independent"
       interactions={[
-        t("roles.tanner.interactions.villagers"),
-        t("roles.tanner.interactions.werewolves"),
-        t("roles.tanner.interactions.seer"),
-        t("roles.tanner.interactions.hunter"),
-        t("roles.tanner.interactions.witch"),
+        t("rolesScreen.tanner.interactions.villagers"),
+        t("rolesScreen.tanner.interactions.werewolves"),
+        t("rolesScreen.tanner.interactions.seer"),
+        t("rolesScreen.tanner.interactions.hunter"),
+        t("rolesScreen.tanner.interactions.witch"),
       ]}
       imagePath={require("../../assets/images/characters/lurker3.jpeg")}
     />

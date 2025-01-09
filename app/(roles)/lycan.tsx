@@ -7,12 +7,12 @@ const LycanRole = () => {
 
   return (
     <RoleTemplate
-      name={t("roles.lycan.name")}
-      description={t("roles.lycan.description")}
+      name={t("rolesScreen.lycan.name")}
+      description={t("rolesScreen.lycan.description")}
       roleType="good"
       interactions={[
-        t("roles.lycan.interactions.seer"),
-        t("roles.lycan.interactions.werewolf"),
+        t("rolesScreen.lycan.interactions.seer"),
+        t("rolesScreen.lycan.interactions.werewolf"),
       ]}
       imagePath={require("../../assets/images/characters/lycan.jpeg")}
     />

@@ -7,13 +7,13 @@ const VillagerRole = () => {
 
   return (
     <RoleTemplate
-      name={t("roles.villager.name")}
-      description={t("roles.villager.description")}
+      name={t("rolesScreen.villager.name")}
+      description={t("rolesScreen.villager.description")}
       roleType="good"
       interactions={[
-        t("roles.villager.interactions.werewolf"),
-        t("roles.villager.interactions.seer"),
-        t("roles.villager.interactions.witch"),
+        t("rolesScreen.villager.interactions.werewolf"),
+        t("rolesScreen.villager.interactions.seer"),
+        t("rolesScreen.villager.interactions.witch"),
       ]}
       imagePath={require("../../assets/images/characters/villager.jpeg")}
     />

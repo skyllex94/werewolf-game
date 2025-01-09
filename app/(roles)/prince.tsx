@@ -7,15 +7,15 @@ const PrinceRole = () => {
 
   return (
     <RoleTemplate
-      name={t("roles.prince.name")}
-      description={t("roles.prince.description")}
+      name={t("rolesScreen.prince.name")}
+      description={t("rolesScreen.prince.description")}
       roleType="good"
       interactions={[
-        t("roles.prince.interactions.werewolf"),
-        t("roles.prince.interactions.hunter"),
-        t("roles.prince.interactions.doctor"),
-        t("roles.prince.interactions.witch"),
-        t("roles.prince.interactions.priest"),
+        t("rolesScreen.prince.interactions.werewolf"),
+        t("rolesScreen.prince.interactions.hunter"),
+        t("rolesScreen.prince.interactions.doctor"),
+        t("rolesScreen.prince.interactions.witch"),
+        t("rolesScreen.prince.interactions.priest"),
       ]}
       imagePath={require("../../assets/images/characters/prince.jpeg")}
     />
