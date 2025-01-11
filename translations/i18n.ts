@@ -6,6 +6,7 @@ import es from "./locales/es.json";
 import de from "./locales/de.json";
 import jp from "./locales/jp.json";
 import ru from "./locales/ru.json";
+import fr from "./locales/fr.json";
 
 const LANGUAGE_KEY = "user-selected-language";
 
@@ -41,6 +42,7 @@ i18n
     resources: {
       en: { translation: en },
       es: { translation: es },
+      fr: { translation: fr },
       de: { translation: de },
       jp: { translation: jp },
       ru: { translation: ru },

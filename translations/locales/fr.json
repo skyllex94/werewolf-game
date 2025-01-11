@@ -1,0 +1,595 @@
+{
+  "title": "Loup-Garou:",
+  "subtitle": "Sauvez le Village",
+
+  "mainMenu": {
+    "newGame": "Nouvelle Partie",
+    "gameRules": "Règles du Jeu",
+    "rolesAbilities": "Rôles & Capacités",
+    "goPro": "Passer Pro",
+    "settings": "Paramètres"
+  },
+
+  "newGameScreen": {
+    "title": "Rôles",
+    "totalPlayers": "Joueurs Totaux",
+    "roles": {
+      "villager": "Villageois",
+      "werewolf": "Loup-Garou",
+      "seer": "Voyante",
+      "doctor": "Médecin",
+      "bodyguard": "Garde du Corps",
+      "hunter": "Chasseur",
+      "priest": "Prêtre",
+      "prince": "Prince",
+      "witch": "Sorcière",
+      "tanner": "Tanneur",
+      "alphaWerewolf": "Loup-Garou Alpha",
+      "lycan": "Lycan",
+      "cursedVillager": "Villageois Maudit",
+      "cupid": "Cupidon",
+      "wolfCub": "Louveteau"
+    },
+    "continue": "Continuer"
+  },
+
+  "playersNamesScreen": {
+    "title": "Joueurs",
+    "player": "Joueur",
+    "continue": "Continuer",
+    "warningEmptyList": "La liste des noms des joueurs est vide ou invalide.",
+    "messagePlayerNameMissed": "Vous n'avez pas saisi un nom pour le joueur",
+    "errorConfirmingPlayers": "Une erreur est survenue lors de la confirmation des joueurs. Veuillez réessayer."
+  },
+
+  "scanningIntroductionScreen": {
+    "title": "Introduction au Scan",
+    "firstMessage": "Sur les écrans suivants, le narrateur du jeu devra présenter individuellement un code de scan à chaque joueur.",
+    "secondMessage": "Avec celui-ci, les joueurs pourront consulter individuellement leurs rôles dans le jeu, accompagnés d'explications si nécessaire.",
+    "showCodes": "Afficher les Codes"
+  },
+
+  "playersScanScreen": {
+    "title": "Rôle de Chaque Joueur",
+    "subtitle": "Faites défiler pour permettre à chaque joueur de scanner leur code QR avec leur téléphone",
+    "player": "Joueur",
+    "cardDescription": ", scannez ce code et consultez votre rôle dans le jeu sur votre téléphone.",
+    "nextButton": "Suivant",
+    "startGameButton": "Démarrer la Partie"
+  },
+
+  "viewRolesScreen": {
+    "title": "Préparez-vous pour la Première Nuit",
+    "subtitle": "En tant qu'opérateur, préparez le village pour leur première nuit. Consultez le rôle de chaque joueur ci-dessous.",
+    "playerColumn": "Joueur",
+    "roleColumn": "Rôle",
+    "viewRolesButton": "Voir les Rôles",
+    "continue": "Continuer"
+  },
+
+  "nightTimeScreen": {
+    "title": "La Nuit",
+    "subtitle": "Guidez le village à travers la nuit. Réveillez chaque rôle affiché ci-dessous, même si le rôle est éliminé au cours des nuits. Voici les rôles à réveiller :",
+    "continue": "Continuer"
+  },
+
+  "choosePlayerButton": "Choisir un Joueur",
+  "attackedButton": "Attaqué",
+  "choosePlayerToAttackLabel": "Choisir un joueur à attaquer",
+  "cancelButton": "Annuler",
+  "yesButton": "Oui",
+  "noButton": "Non",
+  "continueButton": "Continuer",
+
+  "UIWerewolf": {
+    "title": "Rôle du Loup-Garou",
+    "description": "- Réveillez les Loups-Garous et laissez-les décider collectivement qui éliminer cette nuit."
+  },
+  "UISeer": {
+    "title": "Rôle de la Voyante",
+    "description": "- Réveillez la Voyante et laissez-la choisir quelqu'un du village. Vous lui indiquerez si la personne choisie est un bon ou un mauvais rôle.",
+    "viewRolesButton": "Voir les Rôles"
+  },
+  "UIDoctor": {
+    "doctorRoleTitle": "Rôle du Médecin",
+    "doctorRoleDescription": "- Réveillez le Médecin et laissez-le choisir une personne à protéger, y compris lui-même. Ne peut pas protéger la même personne 2 nuits consécutives.",
+    "choosePlayerToProtect": "Choisir un Joueur à Protéger",
+    "choosePlayerDescription": "Sélectionnez un joueur à protéger par le Médecin",
+    "protectedByDoctor": "Protégé"
+  },
+  "UIBodyguard": {
+    "bodyguardRoleTitle": "Rôle du Garde du Corps",
+    "bodyguardRoleDescription": "Réveillez le Garde du Corps. Il choisira un joueur lors de la première nuit à protéger pour le reste du jeu. Si ce joueur est attaqué deux fois, le Garde du Corps mourra à sa place.",
+    "choosePlayerToProtect": "Choisir un Joueur à Protéger",
+    "choosePlayerDescription": "Sélectionnez un joueur",
+    "protectedByBodyguard": "Protégé"
+  },
+  "UIPriest": {
+    "priestRoleTitle": "Rôle du Prêtre",
+    "priestRoleDescription": "- Le Prêtre peut bénir un joueur, le protégeant d'une attaque de loup-garou.",
+    "choosePlayerToBless": "Choisir un Joueur à Bénir",
+    "choosePlayerDescription": "Sélectionnez un joueur à bénir pour le protéger.",
+    "blessed": "Béni"
+  },
+  "UIWitch": {
+    "roleTitle": "Rôle de la Sorcière",
+    "roleDescription": "La Sorcière peut sauver un joueur de la mort ou choisir de tuer un joueur une fois par partie.",
+    "saveButtonDefault": "Sauver un Joueur",
+    "killButtonDefault": "Tuer un Joueur",
+    "savedButtonText": "Sauvé",
+    "attackedButtonText": "Attaqué",
+    "chooseSaveTitle": "Choisir un Joueur à Sauver",
+    "chooseSaveDescription": "Sélectionnez un joueur à sauver de la mort.",
+    "chooseKillTitle": "Choisir un Joueur à Tuer",
+    "chooseKillDescription": "Sélectionnez un joueur à attaquer."
+  },
+  "UIAlphaWerewolf": {
+    "roleTitle": "Rôle du Loup-Garou Alpha",
+    "roleDescription": "Le Loup-Garou Alpha peut convertir un villageois en loup-garou chaque nuit.",
+    "chooseTitle": "Choisir un Joueur à Convertir",
+    "chooseDescription": "Sélectionnez un joueur à convertir en loup-garou.",
+    "chooseButtonText": "Choisir un Joueur",
+    "convertedText": "Converti : {{playerName}}",
+    "confirmTitle": "Convertir en Loup-Garou",
+    "confirmDescription": "Êtes-vous sûr de vouloir convertir {{playerName}} en loup-garou ?",
+    "successTitle": "Succès !",
+    "successDescription": "{{playerName}} a été converti en loup-garou !"
+  },
+  "UICupid": {
+    "roleTitle": "Rôle de Cupidon",
+    "roleDescription": "Réveillez Cupidon. Choisissez deux joueurs à lier entre eux. Si l'un meurt, l'autre meurt également.",
+    "chooseFirstTitle": "Choisir le Premier Joueur",
+    "chooseFirstDescription": "Sélectionnez le premier joueur à lier.",
+    "chooseSecondTitle": "Choisir le Deuxième Joueur",
+    "chooseSecondDescription": "Sélectionnez le deuxième joueur à lier.",
+    "confirmTitle": "Confirmer le Lien",
+    "confirmDescription": "Voulez-vous lier {{player1}} et {{player2}} ?",
+    "successTitle": "Lien Créé",
+    "successDescription": "{{player1}} et {{player2}} sont maintenant liés par Cupidon pour le reste du jeu !",
+    "bondedText": "Liés : {{player1}} & {{player2}}",
+    "chooseButtonText": "Choisir des Joueurs"
+  },
+
+  "confirmButton": "Confirmer",
+  "showAllButton": "Tout Montrer",
+  "showLessButton": "Réduire",
+  "NightBottomSheet": {
+    "anyoneEliminated": "Quelqu'un a-t-il été éliminé cette nuit ?",
+    "noRoleEliminated": "Aucun Rôle Éliminé",
+    "cupidTitle": "Lien de Cupidon",
+    "cupidMessage": "{{playerName}} est lié par Cupidon avec {{bondedName}}. Les deux ont été sélectionnés pour l'élimination.",
+    "hunterTitle": "Le Chasseur a été éliminé !",
+    "hunterMessage": "Le Chasseur peut éliminer un autre joueur.",
+    "playerSelected": "{{playerName}} a été sélectionné pour l'élimination.",
+    "confirmElimination": {
+      "title": "Prêt pour le Jour ?",
+      "message": "Joueurs : {{names}} seront retirés du jeu.",
+      "noElimination": "Aucun joueur ne sera retiré du jeu.",
+      "confirm": "Oui",
+      "cancel": "Non",
+      "cursedVillagerTitle": "Villageois Maudit Transformé",
+      "cursedVillagerMessage": "{{name}} était un Villageois Maudit et s'est maintenant transformé en Loup-Garou !"
+    }
+  },
+
+  "dayTime": {
+    "title": "Le Jour",
+    "description1": "Le Village dispose de 5 minutes pour décider s'ils peuvent s'accorder sur un joueur à éliminer.",
+    "description2": "Au moins la moitié du Village doit être d'accord sur une seule personne pour que cette personne soit éliminée.",
+    "hunterEliminatedTitle": "Le Chasseur a été éliminé !",
+    "hunterEliminatedMessage": "Le Chasseur peut éliminer un autre joueur.",
+    "playerSelected": "{{name}} a été sélectionné pour l'élimination.",
+    "cancel": "Annuler",
+    "princeProtectedTitle": "Prince Protégé",
+    "princeProtectedMessage": "Le Prince ne peut pas être retiré pendant la journée car le Village ne peut pas voter contre lui.",
+    "confirmElimination": {
+      "readyForNight": "Prêt pour la Nuit ?",
+      "willBeRemoved": "sera retiré du jeu.",
+      "noPlayersRemoved": "Aucun joueur ne sera retiré du jeu.",
+      "yes": "Oui",
+      "no": "Non",
+      "player": "Joueur",
+      "players": "Joueurs",
+      "wolfCubKilled": "Louveteau Tué",
+      "wolfCubMessage": "Le Louveteau a été tué. Les Loups-Garous ont droit à une élimination supplémentaire la nuit prochaine. Ne laissez pas le Village savoir qu'un Louveteau a été tué, laissez simplement les Loups-Garous éliminer un autre joueur."
+    },
+    "eliminatedThisDay": "Quelqu'un a-t-il été éliminé aujourd'hui ?",
+    "noRoleEliminated": "Aucun Rôle Éliminé"
+  },
+  "winningScreen": {
+    "villageWins": "Le Village Gagne !",
+    "werewolvesWin": "Les Loups-Garous Gagnent !",
+    "tannerWins": "Le Tanneur Gagne !",
+    "villageVictoryDescription": "Félicitations à tout le Village pour avoir découvert qui sont les méchants. Vous avez réussi à les éliminer tous dans ce jeu.",
+    "werewolvesVictoryDescription": "Bravo aux Loups-Garous, vous avez réussi à éliminer le Village et à rester méconnaissables.",
+    "tannerVictoryDescription": "Le Tanneur a été éliminé ! Le Tanneur gagne pour avoir atteint son objectif d'être voté hors du Village.",
+    "viewAllRoles": "Voir Tous les Rôles",
+    "mainMenu": "Menu Principal"
+  },
+
+  "viewRolesModal": {
+    "rolesOfPlayers": "Rôles de Chaque Joueur",
+    "player": "Joueur",
+    "role": "Rôle",
+    "back": "Retour"
+  },
+
+  "gameMenu": {
+    "quitGame": "Quitter la Partie",
+    "goBack": "Retour"
+  },
+
+  "rulesScreen": {
+    "title": "Règles du Jeu"
+  },
+  "Basic Overview": "Vue d'Ensemble",
+  "Game Setup": "Configuration du Jeu",
+  "Game Phases": "Phases du Jeu",
+  "Elimination Rules": "Règles d'Élimination",
+  "Winning Conditions": "Conditions de Victoire",
+  "Special Situations": "Situations Spéciales",
+
+  "basicOverview": {
+    "title": "Vue d'Ensemble",
+    "description1": "Le jeu du Loup-Garou est un jeu de déduction sociale où les joueurs se voient attribuer des rôles secrets dans un village infesté d'un ou de plusieurs loups-garous. À chaque tour, les joueurs utilisent la logique et la persuasion pour identifier les loups-garous ou dissimuler leur propre identité. Le jeu implique deux équipes principales : le Village et les Loups-Garous, et les rôles sont choisis aléatoirement.",
+    "description2": "Le jeu se déroule en une série de phases alternantes \"Nuit\" et \"Jour\".",
+    "duringNight": "Pendant la Nuit :",
+    "nightDescription1": "La nuit, tout le monde ferme les yeux, et le Narrateur du jeu réveille les joueurs ayant des rôles spéciaux pour qu'ils ouvrent les yeux discrètement sans se faire remarquer par les autres.",
+    "nightDescription2": "Tous les rôles spéciaux dans un jeu basique de Loup-Garou sont : Loups-Garous, Voyante et Médecin. Le Villageois n'est pas un rôle spécial, car il ne se réveille pas (n'ouvre pas les yeux) pendant la nuit pour agir.",
+    "nightDescription3": "Les Loups-Garous sont réveillés en premier et, en pointant, ils choisissent un joueur à éliminer. Ensuite, le Narrateur demande à tout le Village de se rendormir et réveille le rôle spécial suivant du jeu, jusqu'à ce que tous les rôles soient réveillés et aient agi.",
+    "duringDay": "Pendant le Jour :",
+    "dayDescription1": "Tous les joueurs sont \"réveillés\" (avec les yeux ouverts) et discutent du joueur qui est mort pendant la nuit précédente, le cas échéant. Ils doivent poser des questions aux autres et essayer de deviner qui sont les rôles méchants (Loups-Garous, Loup-Garou Alpha, Louveteau) en raisonnant et en identifiant les menteurs.",
+    "dayDescription2": "La discussion pendant le jour dure environ 5 minutes, où chacun peut poser des questions aux autres pour obtenir des informations et attraper quelqu'un en flagrant délit de mensonge. Les joueurs peuvent accuser les autres d'être des loups-garous ou se défendre s'ils sont suspectés.",
+    "dayDescription3": "En même temps, l'objectif des Loups-Garous et des autres rôles méchants est de rester non identifiés pour ne pas être votés pendant la phase de jour. Ils doivent, par définition, mentir s'ils sont interrogés sur leur rôle et tromper les autres en leur faisant croire qu'ils sont des gentils.",
+    "goal": "Le but du Village est d'éliminer tous les Loups-Garous, tandis que les Loups-Garous visent à surpasser en nombre les Villageois.",
+    "tannerRole": "Un rôle spécial appelé Tanneur peut gagner indépendamment si le Village ou les Loups-Garous le tuent.",
+    "playersStrategy": "Les joueurs doivent utiliser la logique, l'observation et des mensonges stratégiques en fonction de leur rôle. Ils doivent suivre l'agenda de leur groupe pour éliminer soit les méchants, soit les gentils, ou gagner indépendamment en fonction de leur rôle attribué aléatoirement.",
+    "narratorRole": "Le Narrateur guide chaque phase, annonçant les événements sans révéler l'identité des joueurs, rendant le jeu tendu et excitant.",
+    "eliminationRule": "Le Narrateur veille à la fluidité du jeu en guidant chaque phase, en appliquant les règles et en modérant les discussions. Ceux qui sont éliminés ne doivent rien dire ni donner d'indices aux joueurs encore en jeu."
+  },
+  "gameSetupTitle": "Configuration du Jeu",
+  "gameSetupDescription": "Pour organiser une partie de Loup-Garou, réunissez un groupe de joueurs. Le nombre idéal est compris entre 6 et 20 joueurs, avec au moins un Loup-Garou parmi eux. Plus il y a de joueurs, plus les rôles et stratégies peuvent être variés.",
+  "step1Title": "Étape 1 : Choisir les Rôles",
+  "step1Description": "Déterminez les rôles à inclure dans le jeu. Une configuration standard comprend : 5-6 Villageois, 2 Loups-Garous, 1 Voyante et 1 Médecin. Des rôles supplémentaires, comme tous les autres rôles disponibles, peuvent être ajoutés pour plus de complexité et des rebondissements intéressants.",
+  "step2Title": "Étape 2 : Attribuer les Rôles",
+  "step2Description": "Chaque joueur doit se voir attribuer un rôle secret de manière aléatoire. Pour cela, le narrateur, qui guidera le jeu, choisira les rôles et l'algorithme attribuera automatiquement un rôle à chaque joueur. Ensuite, le narrateur devra présenter un code QR à chaque joueur pour qu'ils puissent le scanner et découvrir leur rôle dans le jeu. Assurez-vous que les joueurs ne révèlent pas leurs rôles aux autres, seul le narrateur connaît le rôle de chaque joueur.",
+  "step3Title": "Étape 3 : Expliquer les Règles",
+  "step3Description": "Avant de commencer, assurez-vous que tous les joueurs comprennent leurs rôles, leurs capacités et le déroulement général du jeu. Si certains joueurs ne connaissent pas leurs capacités, ils peuvent consulter des informations supplémentaires à ce sujet en utilisant l'option \"Plus d'infos\" depuis le code QR qu'ils ont scanné.",
+  "gameEndDescription": "Le jeu se termine lorsque tous les Loups-Garous et rôles spéciaux méchants sont éliminés ou lorsque les Loups-Garous surpassent les Villageois et tous les rôles spéciaux gentils en nombre.",
+  "finalNotes": "Enfin, Loup-Garou est un jeu de tromperie, de déduction et de stratégie. Encouragez les joueurs à participer activement aux discussions et à apprécier l'aspect social du jeu !",
+
+  "gamePhasesTitle": "Phases du Jeu",
+  "gamePhasesDescription": "Le jeu de Loup-Garou est divisé en deux phases principales qui alternent tout au long du jeu :",
+  "nightPhase": "Phase de Nuit",
+  "dayPhase": "Phase de Jour",
+  "phasesDescription": "Ces phases déterminent quand certains joueurs peuvent agir et quand les accusations et éliminations ont lieu.",
+  "nightPhaseDescription": "- Pendant la Nuit, les joueurs ayant des capacités spéciales peuvent agir en secret. Le Narrateur réveille ces rôles pour leur permettre d'utiliser leurs pouvoirs sans révéler leur identité en disant, par exemple : \"Maintenant, les Loups-Garous se réveillent et choisissent un joueur à éliminer cette nuit.\" Pendant ce temps, tous les autres joueurs ont les yeux fermés, et seuls les Loups-Garous ont les yeux ouverts pour choisir leur cible. Une fois leur choix fait, le narrateur les rendort, en s'assurant que leurs yeux sont fermés.",
+  "dayPhaseDescription": "- Pendant la Journée, les joueurs discutent pour déterminer qui, selon eux, est un Loup-Garou, puis votent pour éliminer un joueur suspect. Pour éliminer un joueur, au moins 50 % du Village doit être d'accord sur un choix. En environ 3 à 5 minutes, tous les joueurs doivent se mettre d'accord. Si aucun consensus n'est atteint, le Village retourne dormir et attend le lendemain pour décider d'une élimination.",
+  "eliminationRulesTitle": "Règles d'Élimination",
+  "eliminationRulesIntro": "Dans le jeu du Loup-Garou, l'élimination est un aspect crucial qui détermine la sortie d'un joueur du jeu. Un joueur peut être éliminé soit par la décision du groupe pendant la Phase de Jour, soit par les actions de rôles spécifiques pendant la Phase de Nuit. Voici les règles générales et les conditions spécifiques d'élimination pour chaque rôle dans le jeu.",
+  "generalEliminationRulesTitle": "Règles Générales d'Élimination :",
+  "generalEliminationRules": "Pendant la Phase de Jour, les joueurs peuvent accuser et voter pour éliminer un joueur suspecté d'être un Loup-Garou. Le joueur ayant la majorité des votes est éliminé. Pendant la Phase de Nuit, des rôles comme les Loups-Garous, le Chasseur et la Sorcière peuvent également provoquer des éliminations selon leurs capacités.",
+  "eliminationRulesByRoleTitle": "Règles d'Élimination par Rôle :",
+  "villagerTitle": "Villageois",
+  "villagerDescription": "Les Villageois peuvent être éliminés par un vote pendant la Phase de Jour ou par les Loups-Garous la nuit. Ils n'ont aucune résistance spéciale à l'élimination.",
+  "werewolfTitle": "Loup-Garou",
+  "werewolfDescription": "Les Loups-Garous peuvent être éliminés pendant le Jour par un vote de la majorité des Villageois ou tués par les rôles spéciaux comme le Chasseur ou la Sorcière. Ils doivent éviter d'être détectés pour assurer la survie de leur équipe.",
+  "seerTitle": "Voyante",
+  "seerDescription": "La Voyante, alliée des Villageois, peut être éliminée par un vote ou attaquée par les Loups-Garous pendant la nuit. La perte de la Voyante affaiblit le Village, car ils perdent une source clé d'informations.",
+  "doctorTitle": "Médecin",
+  "doctorDescription": "Le Médecin peut être éliminé par un vote ou une attaque de Loup-Garou. Il peut se protéger une fois, mais au-delà, il reste vulnérable à l'élimination.",
+  "tannerTitle": "Tanneur",
+  "tannerDescription": "Le Tanneur gagne la partie s'il est éliminé, soit par les Villageois pendant la Journée, soit par les Loups-Garous pendant la Nuit. Contrairement aux autres joueurs, le Tanneur cherche activement à être éliminé.",
+  "cupidTitle": "Cupidon",
+  "cupidDescription": "Si Cupidon est éliminé, cela n'a pas d'effet direct sur les autres joueurs, sauf si les Amoureux, le cas échéant, sont encore en jeu. Le rôle de Cupidon en tant que marieur est terminé après avoir lié les joueurs.",
+  "princeTitle": "Prince",
+  "princeDescription": "Le Prince est immunisé contre le vote d'élimination pendant la Journée ; s'il est voté, il se révèle et survit. Cependant, il peut encore être éliminé par les Loups-Garous ou d'autres rôles pendant la Nuit.",
+  "bodyguardTitle": "Garde du Corps",
+  "bodyguardDescription": "Le Garde du Corps peut être voté ou tué par les Loups-Garous. Cependant, il peut défendre d'autres joueurs contre des attaques, en absorbant l'attaque si le joueur protégé est ciblé.",
+  "cursedVillagerTitle": "Villageois Maudit",
+  "cursedVillagerDescription": "Ce joueur commence dans l'équipe des Villageois mais devient un Loup-Garou s'il est attaqué par eux la nuit. Il peut être éliminé par un vote ou par les Loups-Garous avant sa transformation.",
+  "priestTitle": "Prêtre",
+  "priestDescription": "Le Prêtre peut bénir un joueur une fois, offrant une protection contre une élimination. Cependant, le Prêtre lui-même peut être éliminé par un vote ou une attaque.",
+  "hunterTitle": "Chasseur",
+  "hunterDescription": "S'il est éliminé, le Chasseur peut immédiatement viser et éliminer un autre joueur. Cette capacité s'active lors de toute forme d'élimination, que ce soit par un vote ou une attaque de Loup-Garou.",
+  "lycanTitle": "Lycan",
+  "lycanDescription": "Le Lycan apparaît comme un Loup-Garou aux yeux de la Voyante, augmentant ainsi son risque d'être voté. Cependant, il est réellement un Villageois et peut être éliminé comme n'importe quel autre Villageois.",
+  "witchTitle": "Sorcière",
+  "witchDescription": "La Sorcière dispose de deux potions : une pour sauver et une pour tuer. Elle peut être éliminée par un vote ou une attaque de Loup-Garou et peut également utiliser ses pouvoirs stratégiquement pour contrôler les éliminations.",
+  "alphaWerewolfTitle": "Loup-Garou Alpha",
+  "alphaWerewolfDescription": "Ce Loup-Garou peut transformer un Villageois en Loup-Garou sous certaines conditions. Il est éliminé comme un Loup-Garou classique mais constitue souvent une cible prioritaire.",
+  "wolfCubTitle": "Louveteau",
+  "wolfCubDescription": "Si le Louveteau est éliminé, les Loups-Garous deviennent enragés et gagnent la capacité d'éliminer deux joueurs la nuit suivante. Le Louveteau peut être éliminé par des moyens normaux.",
+  "winningConditions": "Conditions de Victoire",
+  "villagersGoal": "Objectif des Villageois :",
+  "villagersGoalDesc": "Les Villageois gagnent s'ils éliminent tous les Loups-Garous. Cependant, le jeu peut continuer si certains rôles spéciaux avec des conditions de victoire uniques sont encore en jeu.",
+  "werewolvesGoal": "Objectif des Loups-Garous :",
+  "werewolvesGoalDesc": "Les Loups-Garous gagnent s'ils surpassent ou égalent le nombre de Villageois restants. Dans ce cas, ils peuvent dominer les Villageois, garantissant leur victoire.",
+  "specialRolesGoal": "Rôles Spéciaux avec des Objectifs Uniques :",
+  "tanner": "Tanneur :",
+  "tannerDesc": "Le Tanneur gagne s'il est éliminé par les Villageois ou les Loups-Garous. Son unique but est de perdre sa vie, mettant fin au jeu à son avantage s'il réussit.",
+  "prince": "Prince :",
+  "princeDesc": "Le Prince n'a pas de condition de victoire spéciale mais ajoute de la complexité en survivant au premier vote d'élimination.",
+  "hunter": "Chasseur :",
+  "hunterDesc": "Le Chasseur peut influencer le résultat en éliminant un joueur lors de son propre élimination.",
+  "exampleScenarios": "Exemples de Scénarios :",
+  "example1": "Exemple 1 : Il reste trois joueurs : deux Villageois et un Loup-Garou. Dans ce scénario, les Villageois peuvent encore voter pour éliminer le Loup-Garou, ce qui mène à une victoire des Villageois.",
+
+  "special_conditions_title": "Conditions Spéciales",
+  "prince_immunity_title": "Immunité du Prince contre les Votes d'Élimination",
+  "prince_immunity_description": "Le Prince ne peut pas être éliminé pendant la phase de Jour par un vote. Si les joueurs tentent de voter contre le Prince, leurs votes sont annulés et personne n'est éliminé ce tour. Cette immunité dure tout au long du jeu, obligeant le Village à reconsidérer d'autres cibles potentielles.",
+  "prince_example": "Au Jour 3, tous les joueurs votent pour éliminer le Prince, mais il révèle son immunité. Le Village perd son opportunité d'élimination pour ce tour, augmentant la tension et la suspicion envers d'autres joueurs.",
+  "tanner_win_condition_title": "Condition de Victoire Unique du Tanneur",
+  "tanner_win_condition_description": "Le Tanneur gagne s'il est éliminé (soit par les Loups-Garous, soit par le Village). Son but est d'agir de manière suspecte, incitant les autres à voter pour son élimination. Cependant, sa présence crée de la confusion, car l'éliminer met fin au jeu à son avantage, quel que soit le rôle restant.",
+  "tanner_example": "Un joueur commence à agir de manière erratique, suscitant des soupçons. Le Village envisage de voter contre lui, mais hésite, craignant qu'il ne soit le Tanneur et remporte la partie s'il est éliminé.",
+  "witch_dual_potions_title": "Potions Doubles de la Sorcière (Sauver/Tuer)",
+  "witch_dual_potions_description": "La Sorcière possède deux potions : une potion de guérison pour sauver un joueur par partie et une potion mortelle pour éliminer un joueur par partie. La décision de la Sorcière de sauver ou d'éliminer un joueur pendant la Nuit peut complètement changer la direction du jeu.",
+  "witch_example": "La Sorcière utilise sa potion de guérison pour sauver un Villageois ciblé, prolongeant le jeu. Plus tard, elle utilise sa potion mortelle sur un Loup-Garou suspecté, modifiant l'équilibre du jeu en faveur du Village.",
+  "doctor_protection_title": "Protection Continue du Médecin",
+  "doctor_protection_description": "Le Médecin peut protéger un joueur chaque nuit, mais ne peut pas protéger le même joueur deux nuits consécutives. Cette protection alternante complique les plans des Loups-Garous et prolonge le jeu en sauvant un joueur clé à plusieurs reprises.",
+  "doctor_example": "Le Médecin protège un Villageois crucial une nuit, puis passe à un autre joueur la nuit suivante, créant de l'incertitude et retardant les plans des Loups-Garous.",
+
+  "rolesScreen": {
+    "rolesAbilitiesTitle": "Rôles & Capacités",
+    "description": "Description",
+    "roleType": "Type de Rôle",
+    "roleTypes": {
+      "good": "Bon",
+      "bad": "Mauvais",
+      "independent": "Indépendant"
+    },
+    "interactions": "Interactions avec d'autres Rôles",
+
+    "alphaWerewolf": {
+      "name": "Loup-Garou Alpha",
+      "description": "Le Loup-Garou Alpha est un leader puissant parmi les Loups-Garous avec des capacités uniques qui peuvent changer l'équilibre du jeu. Contrairement aux Loups-Garous classiques, l'Alpha se réveille séparément et choisit indépendamment une cible pour l'attaquer. Il peut convertir cette cible en Loup-Garou, qui se réveillera avec les autres Loups-Garous les nuits suivantes. Une fois son pouvoir utilisé, il ne peut plus l'utiliser. Si l'Alpha est éliminé, le groupe des Loups-Garous perd un atout précieux, rendant discrétion et stratégie essentielles pour sa survie.",
+      "interactions": {
+        "werewolf": "Loup-Garou : L'Alpha fait partie du groupe des Loups-Garous mais se réveille séparément. Il choisit une cible pour la convertir, ajoutant de la flexibilité stratégique et potentiellement de la confusion pour le Village.",
+        "seer": "Voyante : L'Alpha est une cible prioritaire pour la Voyante, car sa capacité de conversion peut fortement nuire au Village.",
+        "doctor": "Médecin : Si le Médecin protège une cible de l'Alpha, la conversion échoue pour cette nuit.",
+        "witch": "Sorcière : La potion mortelle de la Sorcière peut éliminer l'Alpha immédiatement, ce qui est une priorité stratégique pour le Village.",
+        "bodyguard": "Garde du Corps : Si la cible de l'Alpha est protégée par le Garde du Corps, la conversion échoue et la cible reste intacte.",
+        "hunter": "Chasseur : Si le Chasseur élimine l'Alpha lors de sa mort, cela affaiblit considérablement les Loups-Garous."
+      }
+    },
+    "bodyguard": {
+      "name": "Garde du Corps",
+      "description": "Le Garde du Corps protège un joueur sélectionné pendant la première nuit pour le reste du jeu. Si le joueur protégé est attaqué une deuxième fois, le Garde du Corps se sacrifie et meurt à sa place. La protection reste active tant que le Garde du Corps est en vie.",
+      "interactions": {
+        "werewolf": "Loup-Garou : Le Garde du Corps bloque la première attaque sur le joueur protégé. Une deuxième attaque conduit à son sacrifice.",
+        "hunter": "Chasseur : Si le joueur protégé est éliminé par le Chasseur, la protection ne fonctionne pas.",
+        "doctor": "Médecin : Si le Médecin et le Garde du Corps protègent le même joueur, la priorité est donnée au Médecin.",
+        "witch": "Sorcière : La potion mortelle de la Sorcière contourne la protection du Garde du Corps.",
+        "priest": "Prêtre : Une bénédiction du Prêtre renforce la protection, mais le Garde du Corps reste actif tant qu'il est vivant."
+      }
+    },
+    "cupid": {
+      "name": "Cupidon",
+      "description": "Cupidon lie deux joueurs pour le reste de la partie. Si l'un meurt, l'autre meurt aussi. Ce lien affecte les alliances et la stratégie, ajoutant une dynamique complexe au jeu.",
+      "interactions": {
+        "werewolf": "Loup-Garou : Si un joueur lié est tué par les Loups-Garous, l'autre meurt également.",
+        "doctor": "Médecin : Le Médecin peut protéger un joueur lié, empêchant les deux de mourir cette nuit.",
+        "seer": "Voyante : La Voyante peut identifier un joueur lié mais ne voit pas le lien lui-même.",
+        "hunter": "Chasseur : Si le Chasseur élimine un joueur lié, l'autre meurt également.",
+        "witch": "Sorcière : La potion mortelle de la Sorcière peut tuer un joueur lié, entraînant la mort de l'autre."
+      }
+    },
+    "cursedVillager": {
+      "name": "Villageois Maudit",
+      "description": "Le Villageois Maudit commence en tant que membre du Village mais porte une malédiction. Si les Loups-Garous l'attaquent pendant la nuit, il se transforme en Loup-Garou, changeant définitivement d'allégeance. Tant que la transformation n'a pas eu lieu, il reste loyal au Village.",
+      "interactions": {
+        "werewolf": "Loup-Garou : Si les Loups-Garous attaquent le Villageois Maudit, il rejoint leur camp. Sinon, il reste un Villageois loyal.",
+        "seer": "Voyante : Avant sa transformation, le Villageois Maudit apparaît comme un rôle bon. Après sa transformation, il est détecté comme un Loup-Garou.",
+        "witch": "Sorcière : Si la Sorcière utilise sa potion mortelle sur le Villageois Maudit avant sa transformation, il meurt comme un Villageois normal.",
+        "hunter": "Chasseur : S'il est tué par le Chasseur avant sa transformation, il reste un Villageois et ne devient pas une menace."
+      }
+    },
+    "doctor": {
+      "name": "Médecin",
+      "description": "Le Médecin joue un rôle vital dans la protection du Village. Chaque nuit, il choisit un joueur à protéger, évitant une attaque fatale. Cependant, il ne peut pas protéger le même joueur deux nuits consécutives, ce qui le force à des choix stratégiques.",
+      "interactions": {
+        "werewolf": "Loup-Garou : Le Médecin bloque les attaques des Loups-Garous sur la cible protégée, ce qui peut contrecarrer leurs plans.",
+        "seer": "Voyante : Si la Voyante est identifiée par les Loups-Garous, le Médecin peut la protéger pour maintenir un avantage pour le Village.",
+        "hunter": "Chasseur : Si le Chasseur vise un joueur protégé par le Médecin, la protection échoue, et le joueur mourra.",
+        "witch": "Sorcière : Si la Sorcière utilise sa potion mortelle sur un joueur protégé, la protection ne s'applique pas, et le joueur mourra.",
+        "bodyguard": "Garde du Corps : Si le Médecin et le Garde du Corps protègent la même cible, la protection du Médecin prévaut."
+      }
+    },
+    "hunter": {
+      "name": "Chasseur",
+      "description": "Le Chasseur est un rôle puissant qui peut influencer le jeu même après sa mort. Lorsqu'il est éliminé, il peut choisir un autre joueur à éliminer immédiatement. Cela lui permet d'avoir un impact significatif sur l'issue de la partie.",
+      "interactions": {
+        "werewolf": "Loup-Garou : Si le Chasseur est tué par les Loups-Garous, il peut utiliser sa capacité pour éliminer l'un d'eux.",
+        "doctor": "Médecin : Si le Chasseur cible un joueur protégé par le Médecin, la protection ne fonctionne pas.",
+        "priest": "Prêtre : Une bénédiction ne protège pas un joueur ciblé par le Chasseur.",
+        "bodyguard": "Garde du Corps : La protection du Garde du Corps est contournée si le Chasseur cible un joueur protégé.",
+        "witch": "Sorcière : Si la Sorcière sauve le Chasseur avant qu'il n'utilise sa capacité, il reste en jeu."
+      }
+    },
+    "lycan": {
+      "name": "Lycan",
+      "description": "Le Lycan est un Villageois loyal mais maudit. Aux yeux de la Voyante, il apparaît comme un Loup-Garou, ce qui peut provoquer des accusations injustifiées. Le Lycan doit convaincre les autres de sa loyauté malgré cette perception.",
+      "interactions": {
+        "seer": "Voyante : Le Lycan est vu comme un rôle mauvais, ce qui peut induire la Voyante et le Village en erreur.",
+        "werewolf": "Loup-Garou : Les Loups-Garous ne connaissent pas l'identité du Lycan et peuvent l'attaquer comme n'importe quel autre Villageois."
+      }
+    },
+    "priest": {
+      "name": "Prêtre",
+      "description": "Le Prêtre peut bénir un joueur, offrant une protection contre les attaques des Loups-Garous. Cette bénédiction reste active tant que le Prêtre est en vie. Cependant, elle ne protège pas contre certains rôles puissants, comme la Sorcière.",
+      "interactions": {
+        "werewolf": "Loup-Garou : La bénédiction protège un joueur des attaques nocturnes des Loups-Garous.",
+        "doctor": "Médecin : La bénédiction et la protection du Médecin peuvent coexister, renforçant la défense.",
+        "hunter": "Chasseur : Une bénédiction ne protège pas un joueur ciblé par le Chasseur.",
+        "witch": "Sorcière : La potion mortelle de la Sorcière contourne la bénédiction du Prêtre.",
+        "bodyguard": "Garde du Corps : La bénédiction ajoute une couche de protection, mais le Garde du Corps reste actif pour protéger physiquement."
+      }
+    },
+    "prince": {
+      "name": "Prince",
+      "description": "Le Prince est immunisé contre l'élimination par vote pendant la journée. Si le Village tente de le voter, il révèle son rôle et survit. Cependant, il reste vulnérable aux attaques nocturnes et à certains rôles spéciaux.",
+      "interactions": {
+        "werewolf": "Loup-Garou : Le Prince est une cible stratégique pour les Loups-Garous pendant la nuit, car il ne peut pas être éliminé par vote.",
+        "hunter": "Chasseur : Si le Chasseur cible le Prince après sa mort, le Prince mourra malgré son immunité diurne.",
+        "doctor": "Médecin : Si le Médecin protège le Prince la nuit, il peut survivre à une attaque des Loups-Garous.",
+        "witch": "Sorcière : La potion mortelle de la Sorcière peut tuer le Prince, contournant son immunité diurne.",
+        "priest": "Prêtre : Une bénédiction du Prêtre peut fournir une protection supplémentaire au Prince contre les attaques nocturnes."
+      }
+    },
+    "seer": {
+      "name": "Voyante",
+      "description": "La Voyante a la capacité spéciale de révéler l'identité d'un joueur chaque nuit. Son objectif est d'identifier les Loups-Garous et d'aider le Village à prendre les bonnes décisions.",
+      "interactions": {
+        "villager": "Villageois : Travaille étroitement avec les Villageois pour identifier les rôles dangereux.",
+        "werewolf": "Loup-Garou : Cherche à révéler les Loups-Garous pour alerter le Village.",
+        "tanner": "Tanneur : Si la Voyante découvre le Tanneur, elle doit informer discrètement le Village pour éviter qu'il ne soit éliminé.",
+        "doctor": "Médecin : Peut compter sur la protection du Médecin si son identité est découverte par les Loups-Garous.",
+        "witch": "Sorcière : Peut collaborer avec la Sorcière pour identifier des cibles ou obtenir une protection si leurs rôles s'identifient comme alliés.",
+        "lycan": "Lycan : Le Lycan apparaît comme un rôle mauvais pour la Voyante, bien qu'il soit un Villageois loyal.",
+        "alphaWerewolf": "Loup-Garou Alpha : L'identification de l'Alpha est cruciale pour la Voyante, car il représente une grande menace pour le Village."
+      }
+    },
+    "tanner": {
+      "name": "Tanneur",
+      "description": "Le Tanneur a un objectif unique et contre-intuitif : il gagne la partie s'il est éliminé par les Villageois pendant la journée. Contrairement aux autres, il cherche à attirer la suspicion tout en évitant de révéler ses véritables intentions.",
+      "interactions": {
+        "villagers": "Villageois : Si les Villageois votent pour éliminer le Tanneur pendant la journée, le Tanneur gagne immédiatement, et tous les autres joueurs perdent.",
+        "werewolves": "Loups-Garous : Si les Loups-Garous éliminent le Tanneur pendant la nuit, il est éliminé sans remporter la victoire.",
+        "seer": "Voyante : La Voyante peut identifier le Tanneur et avertir le Village pour éviter une victoire accidentelle.",
+        "hunter": "Chasseur : Si le Chasseur élimine le Tanneur, celui-ci ne gagne pas, car sa condition de victoire dépend d'une élimination par vote du Village.",
+        "witch": "Sorcière : Si la Sorcière utilise sa potion mortelle sur le Tanneur, il meurt sans atteindre son objectif, car l'élimination ne provient pas d'un vote."
+      }
+    },
+    "villager": {
+      "name": "Villageois",
+      "description": "Le Villageois n'a pas de capacités spéciales mais est essentiel pour découvrir et éliminer les Loups-Garous. Pendant la journée, les Villageois utilisent leur logique et leur intuition pour identifier les comportements suspects et voter correctement.",
+      "interactions": {
+        "werewolf": "Loup-Garou : Les Villageois sont la cible principale des Loups-Garous, qui cherchent à réduire leur nombre chaque nuit.",
+        "seer": "Voyante : Les Villageois collaborent avec la Voyante pour analyser les découvertes et protéger son identité.",
+        "witch": "Sorcière : Si un Villageois est ciblé pour élimination, la Sorcière peut utiliser sa potion de guérison pour le sauver, préservant ainsi la force du Village."
+      }
+    },
+    "werewolf": {
+      "name": "Loup-Garou",
+      "description": "Le Loup-Garou se cache parmi les Villageois pendant la journée et révèle sa vraie nature la nuit pour choisir collectivement une cible à éliminer. Leur objectif est d'éliminer tous les bons rôles sans se faire découvrir.",
+      "interactions": {
+        "otherWerewolves": "Autres Loups-Garous : Collabore avec les autres Loups-Garous pour planifier des attaques nocturnes.",
+        "seer": "Voyante : Doit éviter d'être identifié par la Voyante, qui peut révéler leur identité.",
+        "doctor": "Médecin : Doit contourner les protections du Médecin pour réussir les attaques.",
+        "tanner": "Tanneur : La mort du Tanneur peut détourner l'attention du Village, mais cela ne profite pas directement aux Loups-Garous.",
+        "witch": "Sorcière : Peut tenter de manipuler ou tromper la Sorcière pour éviter qu'elle ne les cible avec sa potion mortelle.",
+        "alphaWerewolf": "Loup-Garou Alpha : Collabore avec l'Alpha pour renforcer l'équipe des Loups-Garous.",
+        "wolfCub": "Louveteau : Protège le Louveteau, car sa mort donne un avantage stratégique aux Loups-Garous en offrant une élimination supplémentaire."
+      }
+    },
+    "witch": {
+      "name": "Sorcière",
+      "description": "La Sorcière est une alliée puissante du Village, dotée de deux potions uniques : une potion de guérison pour sauver un joueur et une potion mortelle pour éliminer un joueur. Chaque potion ne peut être utilisée qu'une seule fois dans la partie. Ses décisions stratégiques peuvent profondément influencer l'issue du jeu.",
+      "interactions": {
+        "werewolf": "Loup-Garou : La Sorcière peut contrer une attaque des Loups-Garous en utilisant sa potion de guérison sur la cible visée. Sa potion mortelle peut également éliminer un Loup-Garou suspect.",
+        "doctor": "Médecin : La protection du Médecin et la potion de guérison de la Sorcière sont indépendantes. Si les deux protègent la même cible, la potion de la Sorcière sera utilisée inutilement.",
+        "seer": "Voyante : La Sorcière peut collaborer avec la Voyante pour cibler les Loups-Garous ou protéger les rôles essentiels.",
+        "bodyguard": "Garde du Corps : La potion mortelle de la Sorcière contourne la protection du Garde du Corps.",
+        "hunter": "Chasseur : Si la Sorcière élimine le Chasseur avec sa potion, celui-ci peut encore utiliser sa capacité pour se venger.",
+        "priest": "Prêtre : La potion de guérison peut sauver un joueur béni par le Prêtre d'une attaque. Cependant, la potion mortelle est suffisamment puissante pour contourner la bénédiction du Prêtre."
+      }
+    },
+    "wolfCub": {
+      "name": "Louveteau",
+      "description": "Le Louveteau est un jeune membre de la meute des Loups-Garous. Bien qu'il ne possède pas de capacités individuelles, sa mort déclenche une vengeance des Loups-Garous, leur permettant d'éliminer deux joueurs la nuit suivante. Sa présence ajoute un enjeu stratégique pour les deux camps.",
+      "interactions": {
+        "werewolf": "Loup-Garou : Le Louveteau est protégé par les Loups-Garous, car sa mort peut déclencher une vengeance stratégique.",
+        "seer": "Voyante : Le Louveteau apparaît comme un Loup-Garou à la Voyante, ce qui peut en faire une cible prioritaire pour le Village.",
+        "doctor": "Médecin : Si le Médecin protège le Louveteau, il empêche sa mort, maintenant l'équilibre dans la partie.",
+        "witch": "Sorcière : La potion mortelle de la Sorcière peut éliminer le Louveteau, activant la vengeance des Loups-Garous.",
+        "hunter": "Chasseur : Si le Louveteau est tué par le Chasseur, cela renforce les Loups-Garous en leur donnant une élimination supplémentaire.",
+        "bodyguard": "Garde du Corps : Si le Louveteau est protégé par le Garde du Corps, sa mort peut être retardée, compliquant la stratégie du Village."
+      }
+    }
+  },
+
+  "fullAccessToFeatures": "Accès Complet à Toutes les Fonctionnalités",
+  "differentRoles": "14+ Rôles Différents",
+  "differentRolesDescription": "Jouez avec tous les rôles disponibles dans le jeu, et davantage à venir pour des scénarios et des résultats excitants.",
+  "narratorAssistance": "Assistance pour le Narrateur",
+  "narratorAssistanceDescription": "Guidage vocal intégré pour tous les rôles et navigation facile pendant la nuit.",
+  "moreGameOutcomes": "Plus de Scénarios de Jeu",
+  "moreGameOutcomesDescription": "Permet une réflexion stratégique plus profonde et une gamme plus large de résultats.",
+  "privacy_policy": "Politique de Confidentialité",
+  "restore_purchase": "Restaurer les Achats",
+  "terms_of_use": "Conditions d'Utilisation",
+  "callToTrial": "Commencez votre essai gratuit de 3 jours",
+  "weeklyPrice": "Puis {{price}} par semaine. Annulez à tout moment.",
+  "continue": "Continuer",
+  "viewAllPlans": "Voir Tous les Plans",
+  "privacyPolicy": "Politique de Confidentialité",
+  "restorePurchase": "Restaurer les Achats",
+  "termsOfUse": "Conditions d'Utilisation",
+  "weeklyPlan": "Plan Hebdomadaire",
+  "monthlyPlan": "Plan Mensuel",
+  "yearlyPlan": "Plan Annuel",
+  "lifetimePlan": "Plan à Vie",
+  "freeTrial": "Essai Gratuit de 3 Jours",
+  "lifetimePlanDescription": "Plan à Vie pour seulement",
+  "lifetimePayment": "paiement unique",
+  "andThen": "et ensuite",
+  "week": "semaine",
+  "month": "mois",
+  "year": "an",
+
+  "restorePurchaseMessage": "Recherche d'un achat à restaurer...",
+  "success": "Succès",
+  "purchaseRestored": "Votre achat a été restauré",
+  "failure": "Échec",
+  "noPurchasesToRestore": "Aucun achat à restaurer",
+  "rateAppMessage": "Ouverture de l'évaluation de l'application sur l'App Store...",
+  "errorOccurred": "Une erreur est survenue",
+  "reviewError": "Une erreur s'est produite lors du chargement du module d'évaluation.",
+  "getAllRoles": "Débloquez Tous les Rôles",
+  "unlockNewRoles": "Débloquez 10+ Nouveaux Rôles et Plus",
+  "werewolfPro": "Loup-Garou Pro",
+  "rateApp": "Évaluer l'Application",
+  "general": "Général",
+  "termsConditions": "Termes & Conditions",
+  "contactUs": "Contactez-nous",
+  "feedbackSubject": "Retour pour l'application Werewolf Game",
+  "feedbackBody": "Bonjour, je voudrais vous contacter concernant Werewolf - Save the Village :",
+  "yourMessageHere": "[Votre message ici]",
+  "reportBug": "Signaler un bug",
+  "ourApps": "Nos applications",
+  "Fast VPN & Adblocker": "VPN rapide & Adblocker",
+  "Remove water from speakers": "Enlever l'eau des haut-parleurs",
+  "eSign & Scan Documents": "Signer électroniquement & Scanner des documents",
+  "about": "À propos",
+  "tellAFriend": "Parlez-en à un ami",
+  "appVersion": "Version de l'application",
+  "shareMessage": "Hé, si tu veux, vérifie ce jeu social auquel je joue, appelé Werewolf: Save the Village sur l'App Store.",
+
+  "rolesDescription": "Jouez avec tous les rôles du jeu et d'autres à venir pour des résultats et scénarios passionnants.",
+  "narratorDescription": "Guidage vocal intégré pour tous les rôles et navigation facile pendant la nuit. D'autres langues seront ajoutées.",
+  "moreOutcomes": "Plus de résultats de jeu",
+  "outcomesDescription": "Permet une réflexion stratégique plus approfondie et une plus grande variété de résultats avec différents gagnants.",
+  "beforeJourney": "Avant de commencer votre aventure,",
+  "pleaseSupport": "merci de bien vouloir nous soutenir",
+  "trialTextStart": "Essayez gratuitement pendant 3 jours, puis",
+  "werewolf_game_title": "Loup-Garou: \n Sauvez le Village",
+  "werewolf_game_description": "Découvrez la prochaine étape du jeu social Loup-Garou. Avec un design facile à utiliser et des fonctionnalités, vous pourrez profiter pleinement du jeu en mode hors ligne.",
+  "no_need_for_cards_title": "Pas besoin de cartes",
+  "no_need_for_cards_description": "Avec cette application, vous pouvez générer automatiquement des codes QR pour les rôles que vous choisissez pour chaque partie. Ainsi, chaque joueur pourra scanner le code QR et recevoir son rôle dans le jeu via son téléphone sans avoir besoin d'installer l'application.",
+  "game_assistance_title": "Assistance au jeu",
+  "game_assistance_description": "Lors du lancement du jeu, vous disposez d'une assistance vocale ainsi que des indications sur le rôle à réveiller pendant la nuit. Définissez chaque action effectuée pendant la nuit pour faciliter le travail du narrateur et guider le Village. Pendant la journée, vous avez un minuteur pour la discussion entre les joueurs, avec un temps limité avant qu'ils ne doivent retourner dormir, ce qui facilite le travail du narrateur.",
+  "help_us_grow_title": "Aidez-nous à grandir",
+  "help_us_grow_description": "Avant de commencer votre aventure, merci de bien vouloir nous soutenir. Cela nous aide beaucoup et nous permet de continuer à améliorer et innover le jeu, tout en ajoutant de nouvelles fonctionnalités.",
+  "premium_trial_title": "Essai Premium",
+  "premium_trial_description": "✓ - Débloquez tous les outils d'édition : y compris la date, les initiales, les images, les textes, les cases à cocher \n ✓ - Numérisation de documents et organisation \n ✓ - Obtenez tous les modèles pour une édition directe",
+
+  "choose_plan_title": "Choisissez votre plan",
+  "weekly_plan": "Hebdomadaire",
+  "monthly_plan": "Mensuel",
+  "annual_plan": "Annuel",
+  "lifetime_plan": "À vie",
+  "trial_offer": "Essai de 3 jours",
+  "one_time_purchase": "Achat unique",
+  "once": "une fois",
+  "chooseLanguage": "Choisir la langue"
+}
