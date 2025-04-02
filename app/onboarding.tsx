@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { FlatList, Animated, View, ListRenderItemInfo } from "react-native";
-import { useTranslation } from "react-i18next"; // Importing useTranslation
+import { useTranslation } from "react-i18next";
 import slides from "../constants/OnBoardingSlides";
 import OnBoardingItem from "../components/OnBoarding/Item";
 import Indicator from "../components/OnBoarding/Indicator";
@@ -25,7 +25,6 @@ interface Slide {
 }
 
 export default function OnBoarding() {
-  const { t } = useTranslation(); // Initialize translation hook
   const router = useRouter();
 
   const [currSlide, setCurrSlide] = useState<number>(0);

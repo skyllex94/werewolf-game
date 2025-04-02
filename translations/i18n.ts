@@ -7,6 +7,7 @@ import de from "./locales/de.json";
 import jp from "./locales/jp.json";
 import ru from "./locales/ru.json";
 import fr from "./locales/fr.json";
+import ko from "./locales/ko.json";
 
 const LANGUAGE_KEY = "user-selected-language";
 
@@ -46,6 +47,7 @@ i18n
       de: { translation: de },
       jp: { translation: jp },
       ru: { translation: ru },
+      ko: { translation: ko },
     },
     fallbackLng: "en",
     interpolation: {

@@ -1,11 +1,10 @@
 import { View, Text, TouchableOpacity, Share, Alert } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import { useTranslation } from "react-i18next"; // Import useTranslation
+import { useTranslation } from "react-i18next";
 
 export default function About() {
-  const { t } = useTranslation(); // Use the hook for translations
+  const { t } = useTranslation();
 
-  // Make sure you insert URL to the game after finished
   const tellFriends = async () => {
     try {
       const result = await Share.share({
@@ -39,7 +38,7 @@ export default function About() {
       </TouchableOpacity>
       <View className="flex-row items-center justify-between bg-slate-800 w-full rounded-lg p-3">
         <Text className="text-white">{t("appVersion")}</Text>
-        <Text className="text-white">1.0.6</Text>
+        <Text className="text-white">1.0.7</Text>
       </View>
     </View>
   );

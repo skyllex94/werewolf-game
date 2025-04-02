@@ -20,6 +20,7 @@ export default function TopPane({ iconColor = "black" }: TopPaneProps) {
     { code: "de", label: t("Deutsch") },
     { code: "jp", label: t("日本語") },
     { code: "ru", label: t("Pусский") },
+    { code: "ko", label: t("한국어 ") },
   ];
 
   const switchLanguage = async (language: string) => {

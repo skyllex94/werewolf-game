@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 
 export default function ChooseRoles() {
   const { isProMember } = useRevenueCat();
+  console.log("isProMember:", isProMember);
   const router = useRouter();
 
   // Translation state
@@ -243,12 +244,12 @@ export default function ChooseRoles() {
         className="mt-4 mb-20 rounded-2xl"
         showsVerticalScrollIndicator={false}
       >
-        <View className="characters bg-gray-900 flex-row flex-wrap pt-4 px-2">
+        <View className="characters bg-gray-900 flex-row flex-wrap items-center justify-center pt-4">
           {characters.map((character, idx) => (
             <View
               key={idx}
               style={{
-                width: "47%", // Dynamically adjust to ensure two items fit.
+                width: "44%", // Dynamically adjust to ensure two items fit.
                 marginHorizontal: "1.5%",
               }}
               className="bg-gray-700 h-[280px] rounded-2xl relative mb-3"

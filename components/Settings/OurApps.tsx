@@ -1,7 +1,7 @@
 import { View, Text, Image, TouchableOpacity, Linking } from "react-native";
 import React from "react";
 import { ScrollView } from "react-native-gesture-handler";
-import { useTranslation } from "react-i18next"; // Import useTranslation
+import { useTranslation } from "react-i18next";
 
 type AppInfo = {
   name: string;
