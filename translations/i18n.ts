@@ -8,6 +8,8 @@ import jp from "./locales/jp.json";
 import ru from "./locales/ru.json";
 import fr from "./locales/fr.json";
 import ko from "./locales/ko.json";
+import id from "./locales/id.json";
+import nl from "./locales/nl.json";
 
 const LANGUAGE_KEY = "user-selected-language";
 
@@ -48,6 +50,8 @@ i18n
       jp: { translation: jp },
       ru: { translation: ru },
       ko: { translation: ko },
+      id: { translation: id },
+      nl: { translation: nl },
     },
     fallbackLng: "en",
     interpolation: {

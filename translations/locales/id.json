@@ -1,0 +1,600 @@
+{
+  "title": "Werewolf:",
+  "subtitle": "Selamatkan Desa",
+
+  "mainMenu": {
+    "newGame": "Permainan Baru",
+    "gameRules": "Aturan Permainan",
+    "rolesAbilities": "Peran & Kemampuan",
+    "goPro": "Jadi Pro",
+    "settings": "Pengaturan"
+  },
+
+  "newGameScreen": {
+    "title": "Peran",
+    "totalPlayers": "Total Pemain",
+    "roles": {
+      "villager": "Penduduk Desa",
+      "werewolf": "Werewolf",
+      "seer": "Peramal",
+      "doctor": "Dokter",
+      "bodyguard": "Pengawal",
+      "hunter": "Pemburu",
+      "priest": "Pendeta",
+      "prince": "Pangeran",
+      "witch": "Penyihir",
+      "tanner": "Tanner",
+      "alphaWerewolf": "Werewolf Alfa",
+      "lycan": "Lycan",
+      "cursedVillager": "Penduduk Desa Terkutuk",
+      "cupid": "Cupid",
+      "wolfCub": "Anak Serigala"
+    },
+    "continue": "Lanjutkan"
+  },
+
+  "playersNamesScreen": {
+    "title": "Pemain",
+    "player": "Pemain",
+    "continue": "Lanjutkan",
+    "warningEmptyList": "Daftar nama pemain kosong atau tidak valid.",
+    "messagePlayerNameMissed": "Anda belum memasukkan nama untuk Pemain",
+    "errorConfirmingPlayers": "Terjadi kesalahan saat mengonfirmasi pemain. Silakan coba lagi."
+  },
+
+  "scanningIntroductionScreen": {
+    "title": "Pengantar Pemindaian",
+    "firstMessage": "Di layar berikutnya, narator permainan harus secara individual memberikan kode pindai kepada setiap pemain.",
+    "secondMessage": "Dengan itu, para pemain akan dapat melihat peran mereka dalam permainan secara individual, beserta penjelasan lebih lanjut jika diperlukan.",
+    "showCodes": "Tampilkan Kode"
+  },
+
+  "playersScanScreen": {
+    "title": "Peran Setiap Pemain",
+    "subtitle": "Geser agar setiap pemain memindai kode QR mereka dengan ponsel mereka",
+    "player": "Pemain",
+    "cardDescription": ", pindai kode ini dan lihat peran Anda dalam permainan melalui ponsel Anda.",
+    "nextButton": "Berikutnya",
+    "startGameButton": "Mulai Permainan"
+  },
+
+  "viewRolesScreen": {
+    "title": "Bersiap untuk Malam Pertama",
+    "subtitle": "Sebagai operator, Anda akan menyiapkan desa untuk malam pertama mereka. Lihat peran setiap pemain di bawah ini.",
+    "playerColumn": "Pemain",
+    "roleColumn": "Peran",
+    "viewRolesButton": "Lihat Peran",
+    "continue": "Lanjutkan"
+  },
+
+  "nightTimeScreen": {
+    "title": "Waktu Malam",
+    "subtitle": "Pandu desa melewati malam. Bangunkan setiap peran yang ditampilkan di bawah, bahkan jika peran tersebut terbunuh sepanjang malam. Berikut adalah peran yang harus dibangunkan:",
+    "continue": "Lanjutkan"
+  },
+
+  "choosePlayerButton": "Pilih Pemain",
+  "attackedButton": "Diserang",
+  "choosePlayerToAttackLabel": "Pilih pemain untuk diserang",
+  "cancelButton": "Batal",
+  "yesButton": "Ya",
+  "noButton": "Tidak",
+  "continueButton": "Lanjutkan",
+
+  "UIWerewolf": {
+    "title": "Peran Werewolf",
+    "description": "- Bangunkan para Werewolf dan biarkan mereka memutuskan secara kolektif siapa yang akan dieliminasi malam ini."
+  },
+  "UISeer": {
+    "title": "Peran Peramal",
+    "description": "- Bangunkan Peramal dan biarkan mereka memilih seseorang dari desa. Anda akan memberi tahu Peramal apakah orang yang dipilih adalah peran baik atau buruk.",
+    "viewRolesButton": "Lihat Peran"
+  },
+  "UIDoctor": {
+    "doctorRoleTitle": "Peran Dokter",
+    "doctorRoleDescription": "- Bangunkan Dokter dan biarkan mereka memilih orang untuk dilindungi, termasuk diri mereka sendiri. Tidak dapat mengulangi orang yang sama 2 kali berturut-turut.",
+    "choosePlayerToProtect": "Pilih Pemain untuk Dilindungi",
+    "choosePlayerDescription": "Pilih satu pemain untuk dilindungi oleh Dokter",
+    "protectedByDoctor": "Dilindungi"
+  },
+  "UIBodyguard": {
+    "bodyguardRoleTitle": "Peran Pengawal",
+    "bodyguardRoleDescription": "Bangunkan Pengawal. Dia akan memilih seorang pemain pada malam pertama untuk dilindungi selama sisa permainan. Jika pemain ini diserang dua kali, Pengawal akan mati menggantikan mereka.",
+    "choosePlayerToProtect": "Pilih Pemain untuk Dilindungi",
+    "choosePlayerDescription": "Pilih satu pemain",
+    "protectedByBodyguard": "Dilindungi"
+  },
+  "UIPriest": {
+    "priestRoleTitle": "Peran Pendeta",
+    "priestRoleDescription": "- Pendeta dapat memberkati satu pemain, melindungi mereka dari satu serangan werewolf.",
+    "choosePlayerToBless": "Pilih Pemain untuk Diberkati",
+    "choosePlayerDescription": "Pilih satu pemain untuk diberkati dan dilindungi.",
+    "blessed": "Diberkati"
+  },
+  "UIWitch": {
+    "roleTitle": "Peran Penyihir",
+    "roleDescription": "Penyihir dapat menyelamatkan pemain dari kematian atau memilih untuk membunuh pemain sekali per permainan.",
+    "saveButtonDefault": "Selamatkan Pemain",
+    "killButtonDefault": "Bunuh Pemain",
+    "savedButtonText": "Diselamatkan",
+    "attackedButtonText": "Diserang",
+    "chooseSaveTitle": "Pilih Pemain untuk Diselamatkan",
+    "chooseSaveDescription": "Pilih satu pemain untuk diselamatkan dari kematian.",
+    "chooseKillTitle": "Pilih Pemain untuk Dibunuh",
+    "chooseKillDescription": "Pilih satu pemain untuk diserang."
+  },
+  "UIAlphaWerewolf": {
+    "roleTitle": "Peran Werewolf Alfa",
+    "roleDescription": "Werewolf Alfa dapat mengubah satu penduduk desa menjadi Werewolf setiap malam.",
+    "chooseTitle": "Pilih Pemain untuk Diubah",
+    "chooseDescription": "Pilih satu pemain untuk diubah menjadi Werewolf.",
+    "chooseButtonText": "Pilih Pemain",
+    "convertedText": "Diubah: {{playerName}}",
+    "confirmTitle": "Ubah menjadi Werewolf",
+    "confirmDescription": "Apakah Anda yakin ingin mengubah {{playerName}} menjadi Werewolf?",
+    "successTitle": "Berhasil!",
+    "successDescription": "{{playerName}} telah diubah menjadi Werewolf!"
+  },
+  "UICupid": {
+    "roleTitle": "Peran Cupid",
+    "roleDescription": "Bangunkan Cupid. Pilih dua pemain untuk diikat satu sama lain. Jika satu mati, yang lain juga mati.",
+    "chooseFirstTitle": "Pilih Pemain Pertama",
+    "chooseFirstDescription": "Pilih pemain pertama untuk diikat.",
+    "chooseSecondTitle": "Pilih Pemain Kedua",
+    "chooseSecondDescription": "Pilih pemain kedua untuk diikat.",
+    "confirmTitle": "Konfirmasi Ikatan",
+    "confirmDescription": "Apakah Anda ingin mengikat {{player1}} dan {{player2}}?",
+    "successTitle": "Ikatan Dibuat",
+    "successDescription": "{{player1}} dan {{player2}} sekarang terikat oleh Cupid selama sisa permainan!",
+    "bondedText": "Terikat: {{player1}} & {{player2}}",
+    "chooseButtonText": "Pilih Pemain"
+  },
+
+  "confirmButton": "Konfirmasi",
+  "showAllButton": "Tampilkan Semua",
+  "showLessButton": "Tampilkan Lebih Sedikit",
+  "NightBottomSheet": {
+    "anyoneEliminated": "Ada yang tereliminasi malam ini?",
+    "noRoleEliminated": "Tidak Ada Peran yang Tereliminasi",
+    "cupidTitle": "Ikatan Cupid",
+    "cupidMessage": "{{playerName}} terikat oleh Cupid dengan {{bondedName}}. Keduanya telah dipilih untuk eliminasi.",
+    "hunterTitle": "Pemburu tereliminasi!",
+    "hunterMessage": "Pemburu dapat mengeliminasi pemain lain.",
+    "playerSelected": "{{playerName}} telah dipilih untuk eliminasi.",
+    "confirmElimination": {
+      "title": "Siap untuk Siang Hari?",
+      "message": "Pemain: {{names}} akan dihapus dari permainan.",
+      "noElimination": "Tidak ada pemain yang akan dihapus dari permainan.",
+      "confirm": "Ya",
+      "cancel": "Tidak",
+      "cursedVillagerTitle": "Penduduk Desa Terkutuk Berubah",
+      "cursedVillagerMessage": "{{name}} adalah Penduduk Desa Terkutuk dan sekarang telah berubah menjadi Werewolf!"
+    }
+  },
+
+  "dayTime": {
+    "title": "Waktu Siang",
+    "description1": "Desa memiliki 5 menit untuk memutuskan apakah mereka dapat menyetujui seorang pemain untuk dipilih keluar.",
+    "description2": "Perlu setidaknya setengah dari Desa untuk menyetujui satu orang agar orang tersebut dapat dipilih keluar.",
+    "hunterEliminatedTitle": "Pemburu tereliminasi!",
+    "hunterEliminatedMessage": "Pemburu dapat mengeliminasi pemain lain.",
+    "playerSelected": "{{name}} telah dipilih untuk eliminasi.",
+    "cancel": "Batal",
+    "princeProtectedTitle": "Pangeran Dilindungi",
+    "princeProtectedMessage": "Pangeran tidak dapat dieliminasi pada siang hari karena Desa tidak dapat memilihnya keluar.",
+    "confirmElimination": {
+      "readyForNight": "Siap untuk Malam Hari?",
+      "willBeRemoved": "akan dihapus dari permainan.",
+      "noPlayersRemoved": "Tidak ada pemain yang akan dihapus dari permainan.",
+      "yes": "Ya",
+      "no": "Tidak",
+      "player": "Pemain",
+      "players": "Pemain",
+      "wolfCubKilled": "Anak Serigala Terbunuh",
+      "wolfCubMessage": "Anak Serigala telah terbunuh. Werewolf mendapatkan satu pembunuhan ekstra malam berikutnya. Jangan biarkan Desa tahu bahwa ada Anak Serigala yang terbunuh, cukup biarkan Werewolf mengeliminasi pemain lain."
+    },
+    "eliminatedThisDay": "Ada yang tereliminasi hari ini?",
+    "noRoleEliminated": "Tidak Ada Peran yang Tereliminasi"
+  },
+
+  "winningScreen": {
+    "villageWins": "Desa Menang!",
+    "werewolvesWin": "Werewolf Menang!",
+    "tannerWins": "Tanner Menang!",
+    "villageVictoryDescription": "Selamat kepada seluruh Desa karena telah berhasil mengungkap siapa penjahatnya. Anda berhasil mengeliminasi mereka semua dalam permainan ini.",
+    "werewolvesVictoryDescription": "Kerja bagus Werewolf, Anda berhasil mengeliminasi Desa dan tidak dikenali saat melakukannya.",
+    "tannerVictoryDescription": "Tanner telah tereliminasi! Tanner menang karena mencapai tujuannya untuk dipilih keluar oleh Desa.",
+    "viewAllRoles": "Lihat Semua Peran",
+    "mainMenu": "Menu Utama"
+  },
+
+  "viewRolesModal": {
+    "rolesOfPlayers": "Peran Setiap Pemain",
+    "player": "Pemain",
+    "role": "Peran",
+    "back": "Kembali"
+  },
+
+  "gameMenu": {
+    "quitGame": "Keluar dari Permainan",
+    "goBack": "Kembali"
+  },
+
+  "rulesScreen": {
+    "title": "Aturan Permainan"
+  },
+  "Basic Overview": "Gambaran Umum Dasar",
+  "Game Setup": "Pengaturan Permainan",
+  "Game Phases": "Fase Permainan",
+  "Elimination Rules": "Aturan Eliminasi",
+  "Winning Conditions": "Kondisi Kemenangan",
+  "Special Situations": "Situasi Khusus",
+
+  "basicOverview": {
+    "title": "Gambaran Umum Dasar",
+    "description1": "Permainan Werewolf adalah permainan deduksi sosial di mana pemain diberi peran rahasia di sebuah desa yang dihuni oleh satu atau beberapa werewolf. Setiap putaran, pemain menggunakan logika dan persuasi untuk mengidentifikasi werewolf atau menyembunyikan identitas mereka sendiri. Permainan ini melibatkan dua tim utama: Desa dan Werewolf, dan peran dipilih secara acak.",
+    "description2": "Permainan dimainkan dalam serangkaian fase \"Malam\" dan \"Siang\" yang bergantian.",
+    "duringNight": "Selama Malam:",
+    "nightDescription1": "Di malam hari, semua orang menutup mata mereka dan Narator permainan membangunkan pemain dengan peran khusus sehingga mereka membuka mata tanpa banyak bergerak agar tidak dirasakan oleh orang lain di sekitar mereka.",
+    "nightDescription2": "Semua peran khusus dalam permainan dasar Werewolf adalah: Werewolf, Peramal, dan Dokter. Penduduk Desa bukanlah peran khusus, karena dia tidak bangun (membuka matanya) pada malam hari untuk melakukan tindakan apa pun.",
+    "nightDescription3": "Werewolf akan dibangunkan terlebih dahulu dan dengan menunjuk, mereka akan memilih pemain untuk dieliminasi. Dari sana Narator akan memberitahu seluruh Desa untuk kembali tidur dan dia akan membangunkan peran khusus berikutnya dalam permainan sampai semua peran terbangun dan telah mengambil tindakan.",
+    "duringDay": "Selama Siang:",
+    "dayDescription1": "Semua pemain 'terbangun' (dengan mata terbuka) dan mereka mendiskusikan pemain yang meninggal pada malam terakhir jika ada. Mereka harus mencoba bertanya satu sama lain dan mencari tahu siapa peran jahat (Werewolf, Werewolf Alfa, Anak Serigala) dengan cara penalaran dan mengidentifikasi siapa yang berbohong.",
+    "dayDescription2": "Waktu diskusi selama Siang hari sekitar 5 menit di mana siapa pun bebas bertanya kepada orang lain pertanyaan apa pun untuk mendapatkan informasi lebih lanjut dan menangkap seseorang yang berbohong. Pemain dapat menuduh orang lain sebagai werewolf atau membela diri jika dicurigai.",
+    "dayDescription3": "Pada saat yang sama, tujuan Werewolf dan semua peran jahat khusus lainnya adalah tetap tidak terdeteksi sehingga mereka tidak dipilih keluar selama fase Siang. Mereka seharusnya berbohong jika ditanya apakah mereka Werewolf dan menipu orang agar berpikir mereka adalah orang baik.",
+    "goal": "Tujuan Desa adalah mengeliminasi semua Werewolf, sementara Werewolf bertujuan untuk melebihi jumlah Penduduk Desa.",
+    "tannerRole": "Peran khusus bernama Tanner, dapat memenangkan permainan secara independen jika dia dieliminasi atau dipilih keluar.",
+    "playersStrategy": "Pemain harus menggunakan logika, observasi, dan kebohongan strategis tergantung pada peran mereka. Mereka semua harus bermain dan mengikuti agenda kelompok mereka untuk mengeliminasi semua penjahat, atau orang baik, atau menang secara independen berdasarkan peran yang ditugaskan secara acak dalam permainan.",
+    "narratorRole": "Narator memandu setiap fase, mengumumkan peristiwa tanpa mengungkapkan identitas pemain mana pun, menjaga permainan tetap tegang dan seru.",
+    "eliminationRule": "Narator memastikan permainan berjalan lancar dengan memandu setiap fase, menegakkan aturan, dan memoderasi diskusi. Siapa pun yang tereliminasi sepanjang permainan, tidak boleh mengatakan apa pun atau memberikan petunjuk apa pun kepada orang-orang yang masih dalam permainan."
+  },
+  "gameSetupTitle": "Pengaturan Permainan",
+  "gameSetupDescription": "Untuk mengatur permainan Werewolf, kumpulkan sekelompok pemain. Jumlah ideal adalah antara 6 hingga 20 pemain, dengan setidaknya satu Werewolf di antara mereka. Lebih banyak pemain memungkinkan variasi peran dan strategi yang lebih besar.",
+  "step1Title": "Langkah 1: Pilih Peran",
+  "step1Description": "Tentukan peran yang akan dimasukkan dalam permainan. Pengaturan standar meliputi: 5-6 Penduduk Desa, 2 Werewolf, 1 Peramal, dan 1 Dokter. Peran tambahan seperti semua peran lain yang tersedia dapat ditambahkan untuk kompleksitas dan kejutan yang menarik.",
+  "step2Title": "Langkah 2: Tetapkan Peran",
+  "step2Description": "Setiap pemain harus diberi peran rahasia secara acak. Untuk ini, narator yang akan memandu permainan, akan memilih peran dan algoritma akan secara otomatis menetapkan peran untuk setiap pemain. Kemudian narator harus menunjukkan setiap kode QR kepada setiap pemain sehingga mereka dapat memindai dan melihat peran mereka untuk permainan. Pastikan pemain tidak mengungkapkan peran mereka kepada orang lain, hanya narator yang tahu peran setiap pemain.",
+  "step3Title": "Langkah 3: Jelaskan Aturan",
+  "step3Description": "Sebelum memulai, pastikan semua pemain memahami peran, kemampuan, dan alur permainan secara keseluruhan. Jika beberapa pemain tidak mengetahui kemampuan mereka, mereka selalu dapat diarahkan untuk meninjau informasi lebih lanjut tentang kemampuan mereka dari \"Info lebih lanjut\" dari kode QR yang dipindai yang mereka terima.",
+  "gameEndDescription": "Permainan berakhir ketika semua Werewolf dan peran Khusus jahat dieliminasi atau Werewolf melebihi jumlah Penduduk Desa dan semua peran Khusus baik.",
+  "finalNotes": "Terakhir, Werewolf adalah tentang penipuan, deduksi, dan strategi. Dorong mereka untuk terlibat dalam diskusi yang hidup dan menikmati aspek sosial dari permainan!",
+  "gamePhasesTitle": "Fase Permainan",
+  "gamePhasesDescription": "Permainan Werewolf dibagi menjadi dua fase utama yang bergantian sepanjang permainan:",
+  "nightPhase": "Fase Malam",
+  "dayPhase": "Fase Siang",
+  "phasesDescription": "Fase-fase ini menentukan kapan pemain tertentu dapat melakukan tindakan dan kapan tuduhan serta eliminasi terjadi.",
+  "nightPhaseDescription": "- Selama Malam, pemain dengan kemampuan khusus dapat melakukan tindakan secara rahasia. Narator akan membangunkan peran-peran tersebut untuk \"menggunakan kekuatan mereka\" tanpa mengungkapkan identitas mereka dengan memanggil contohnya \"Sekarang, biarkan Werewolf bangun dan memilih pemain untuk dieliminasi malam ini.\" Pada saat yang sama, semua pemain lain akan menutup mata mereka, dan hanya Werewolf yang akan membuka mata sehingga mereka dapat memilih mangsa mereka. Setelah mereka melakukannya, narator akan menyuruh mereka tidur kembali, memastikan mereka dengan mata tertutup.",
+  "dayPhaseDescription": "- Selama Siang, pemain mendiskusikan siapa yang mereka yakini sebagai Werewolf dan memberikan suara untuk mengeliminasi pemain yang mereka curigai. Untuk memilih keluar seorang pemain, 50%+ Desa perlu memutuskan seorang pemain untuk dipilih keluar dari permainan. Dalam waktu sekitar 3 hingga 5 menit, semua pemain di Waktu Siang harus memutuskan untuk mengeliminasi seseorang, dan jika mereka tidak dapat menyetujui siapa pun untuk dieliminasi dalam periode waktu ini, Desa kembali tidur dan menunggu hari berikutnya untuk memutuskan seseorang untuk dipilih keluar.",
+  "eliminationRulesTitle": "Aturan Eliminasi",
+  "eliminationRulesIntro": "Dalam permainan Werewolf, eliminasi adalah aspek kritis yang menentukan keluarnya pemain dari permainan. Seorang pemain dapat dieliminasi baik melalui keputusan kelompok selama Fase Siang atau oleh tindakan peran tertentu selama Fase Malam. Berikut adalah aturan umum dan kondisi eliminasi spesifik untuk setiap peran dalam permainan.",
+  "generalEliminationRulesTitle": "Aturan Eliminasi Umum:",
+  "generalEliminationRules": "Selama Fase Siang, pemain dapat menuduh dan memberikan suara untuk mengeliminasi pemain yang dicurigai sebagai Werewolf. Pemain dengan suara mayoritas dieliminasi. Selama Fase Malam, peran seperti Werewolf, Pemburu, dan Penyihir juga dapat menyebabkan eliminasi berdasarkan kemampuan mereka.",
+  "eliminationRulesByRoleTitle": "Aturan Eliminasi berdasarkan Peran:",
+  "villagerTitle": "Penduduk Desa",
+  "villagerDescription": "Penduduk Desa dieliminasi melalui pemungutan suara standar selama Fase Siang atau oleh Werewolf di malam hari. Mereka tidak memiliki resistensi khusus terhadap eliminasi.",
+  "werewolfTitle": "Werewolf",
+  "werewolfDescription": "Werewolf dapat dieliminasi selama Siang hari oleh suara mayoritas dari Penduduk Desa atau dibunuh oleh peran khusus Pemburu atau Penyihir. Mereka bertujuan untuk menghindari deteksi dan eliminasi untuk memastikan kelangsungan hidup tim mereka.",
+  "seerTitle": "Peramal",
+  "seerDescription": "Peramal, sekutu Penduduk Desa, dapat dieliminasi melalui pemungutan suara atau diserang oleh Werewolf di malam hari. Kehilangan Peramal melemahkan Desa karena mereka kehilangan sumber informasi utama.",
+  "doctorTitle": "Dokter",
+  "doctorDescription": "Dokter dapat dieliminasi melalui pemungutan suara atau serangan Werewolf. Mereka dapat melindungi diri mereka sendiri sekali, tetapi di luar itu, mereka rentan terhadap eliminasi.",
+  "tannerTitle": "Tanner",
+  "tannerDescription": "Tanner memenangkan permainan jika mereka dieliminasi, baik oleh Penduduk Desa selama Siang hari atau oleh Werewolf di malam hari. Tidak seperti pemain lain, Tanner secara aktif mencari eliminasi.",
+  "cupidTitle": "Cupid",
+  "cupidDescription": "Jika Cupid dieliminasi, itu tidak berpengaruh langsung pada pemain lain kecuali Pasangan Kekasih, jika ada, masih dalam permainan. Peran Cupid sebagai mak comblang selesai setelah memasangkan pemain.",
+  "princeTitle": "Pangeran",
+  "princeDescription": "Pangeran kebal dari pemungutan suara eliminasi Siang hari; jika dipilih keluar, mereka mengungkapkan diri dan bertahan hidup. Namun, mereka masih bisa dieliminasi oleh Werewolf atau peran lain di malam hari.",
+  "bodyguardTitle": "Pengawal",
+  "bodyguardDescription": "Pengawal dapat dipilih keluar atau dibunuh oleh Werewolf. Namun, mereka dapat membela pemain lain terhadap serangan, menyerap serangan jika mereka masih dalam permainan.",
+  "cursedVillagerTitle": "Penduduk Desa Terkutuk",
+  "cursedVillagerDescription": "Pemain ini awalnya berada di tim Penduduk Desa tetapi menjadi Werewolf jika diserang oleh mereka di malam hari. Mereka dapat dieliminasi melalui pemungutan suara atau oleh Werewolf sebelum berubah.",
+  "priestTitle": "Pendeta",
+  "priestDescription": "Pendeta dapat memberkati seorang pemain sekali, menawarkan perlindungan dari satu eliminasi. Namun, Pendeta sendiri dapat dieliminasi melalui pemungutan suara atau serangan.",
+  "hunterTitle": "Pemburu",
+  "hunterDescription": "Jika dieliminasi, Pemburu dapat segera menargetkan dan mengeliminasi pemain lain. Kemampuan ini aktif pada segala bentuk eliminasi, baik melalui pemungutan suara atau serangan Werewolf.",
+  "lycanTitle": "Lycan",
+  "lycanDescription": "Lycan tampak sebagai Werewolf bagi Peramal, meningkatkan risiko mereka dipilih keluar. Namun, mereka sebenarnya adalah Penduduk Desa dan dapat dieliminasi seperti Penduduk Desa lainnya.",
+  "witchTitle": "Penyihir",
+  "witchDescription": "Penyihir memiliki dua ramuan: satu untuk menyelamatkan dan satu untuk membunuh. Mereka dapat dieliminasi melalui pemungutan suara atau serangan Werewolf dan juga dapat menggunakan kekuatan mereka secara strategis untuk mengendalikan eliminasi.",
+  "alphaWerewolfTitle": "Werewolf Alfa",
+  "alphaWerewolfDescription": "Werewolf ini dapat mengubah Penduduk Desa lain menjadi Werewolf dalam kondisi tertentu. Mereka dieliminasi seperti Werewolf standar tetapi sering menjadi target prioritas tinggi.",
+  "wolfCubTitle": "Anak Serigala",
+  "wolfCubDescription": "Jika Anak Serigala dieliminasi, Werewolf menjadi marah, mendapatkan kemampuan untuk mengeliminasi dua pemain pada malam berikutnya. Anak Serigala dapat dieliminasi dengan cara normal apa pun.",
+  "winningConditions": "Kondisi Kemenangan",
+  "villagersGoal": "Tujuan Penduduk Desa:",
+  "villagersGoalDesc": "Penduduk Desa menang jika mereka mengeliminasi semua Werewolf. Namun, permainan dapat berlanjut jika peran khusus tertentu dengan kondisi kemenangan unik masih dimainkan.",
+  "werewolvesGoal": "Tujuan Werewolf:",
+  "werewolvesGoalDesc": "Werewolf menang jika jumlah mereka melebihi atau menyamai sisa Penduduk Desa. Dalam skenario ini, Werewolf dapat mengalahkan Penduduk Desa, memastikan kemenangan mereka.",
+  "specialRolesGoal": "Peran Khusus dengan Tujuan Unik:",
+  "tanner": "Tanner:",
+  "tannerDesc": "Tanner menang jika mereka dieliminasi oleh Penduduk Desa atau Werewolf. Tujuan satu-satunya mereka adalah kehilangan nyawa mereka, mengakhiri permainan demi keuntungan mereka jika berhasil.",
+  "prince": "Pangeran:",
+  "princeDesc": "Pangeran tidak memiliki kondisi kemenangan khusus tetapi menambah kompleksitas dengan selamat dari pemungutan suara eliminasi pertama.",
+  "hunter": "Pemburu:",
+  "hunterDesc": "Pemburu dapat mempengaruhi hasil dengan mengeliminasi pemain setelah eliminasi mereka sendiri.",
+  "exampleScenarios": "Contoh Skenario:",
+  "example1": "Contoh 1: Ada tiga pemain tersisa: dua Penduduk Desa dan satu Werewolf. Dalam skenario ini, Penduduk Desa masih dapat memilih keluar Werewolf, yang mengarah pada kemenangan Penduduk Desa.",
+  "special_conditions_title": "Kondisi Khusus",
+  "prince_immunity_title": "Kekebalan Pangeran dari Eliminasi Pemungutan Suara",
+  "prince_immunity_description": "Pangeran tidak dapat dieliminasi selama fase Siang mana pun melalui pemungutan suara. Jika pemain mencoba memilih keluar Pangeran, suara mereka dibatalkan, dan tidak ada yang dieliminasi putaran itu. Kekebalan ini berlangsung sepanjang permainan, memaksa Desa untuk mempertimbangkan kembali target potensial lainnya.",
+  "prince_example": "Pada Hari ke-3, semua pemain memberikan suara untuk mengeliminasi Pangeran, tetapi dia mengungkapkan kekebalannya. Desa kehilangan kesempatan eliminasi untuk putaran itu, menambah ketegangan dan meningkatkan kecurigaan terhadap pemain lain.",
+  "tanner_win_condition_title": "Kondisi Kemenangan Unik Tanner",
+  "tanner_win_condition_description": "Tanner menang jika dia dieliminasi (baik oleh Werewolf atau oleh Desa). Tujuannya adalah bertindak mencurigakan, mendorong orang lain untuk memilih eliminasinya. Namun, kehadirannya menciptakan kebingungan, karena mengeliminasinya mengakhiri permainan dengan kemenangannya, terlepas dari peran lain yang dimainkan.",
+  "tanner_example": "Seorang pemain mulai bertingkah aneh, menimbulkan kecurigaan. Desa mempertimbangkan untuk memilih mereka keluar tetapi ragu-ragu, takut bahwa mereka mungkin adalah Tanner dan akan memenangkan permainan jika dieliminasi.",
+  "witch_dual_potions_title": "Ramuan Ganda Penyihir (Selamatkan/Bunuh)",
+  "witch_dual_potions_description": "Penyihir memiliki dua ramuan—ramuan penyembuhan untuk menyelamatkan satu pemain per permainan dan ramuan mematikan untuk mengeliminasi satu pemain per permainan. Keputusan Penyihir untuk menyelamatkan atau mengeliminasi pemain di Malam hari dapat sepenuhnya mengubah arah permainan.",
+  "witch_example": "Penyihir menggunakan ramuan penyembuhannya untuk menyelamatkan Penduduk Desa yang ditargetkan, memperpanjang permainan. Kemudian, dia menggunakan ramuan pembunuhnya pada Werewolf yang dicurigai, menggeser keseimbangan permainan demi Desa.",
+  "doctor_protection_title": "Perlindungan Berkelanjutan Dokter",
+  "doctor_protection_description": "Dokter dapat melindungi pemain setiap Malam tetapi tidak dapat melindungi pemain yang sama pada Malam berturut-turut. Perlindungan bergilir ini menyulitkan Werewolf untuk berhasil dalam eliminasi dan memperpanjang permainan dengan menyelamatkan pemain kunci berulang kali.",
+  "doctor_example": "Dokter melindungi Penduduk Desa yang krusial suatu Malam tetapi beralih ke pemain lain pada Malam berikutnya, menciptakan ketidakpastian dan menunda rencana Werewolf.",
+  "example": "Contoh",
+
+  "rolesScreen": {
+    "rolesAbilitiesTitle": "Peran & Kemampuan",
+    "description": "Deskripsi",
+    "roleType": "Tipe Peran",
+    "roleTypes": {
+      "good": "Baik",
+      "bad": "Jahat",
+      "independent": "Independen"
+    },
+    "interactions": "Interaksi dengan Peran Lain",
+
+    "alphaWerewolf": {
+      "name": "Werewolf Alfa",
+      "description": "Werewolf Alfa adalah pemimpin kuat di antara para Werewolf dengan kemampuan unik yang dapat mengubah keseimbangan dalam permainan. Tidak seperti Werewolf biasa, Alfa bangun secara terpisah dan secara independen memilih satu target untuk diserang. Dia hanya dapat memilih satu target untuk permainan dan kemampuannya adalah mengubah target ini menjadi Werewolf, yang akan bangun bersama Werewolf lain di malam hari. Dia dapat memilih untuk menggunakan kekuatannya pada malam apa pun dan dia akan ditanya apakah dia ingin menggunakannya setiap malam bahkan jika dia sudah menggunakannya. Kebangkitan unik Alfa tidak memungkinkan Werewolf lain mengetahui siapa Alfa dan dalam arti tertentu, Werewolf mungkin menyerang Alfa di malam hari. Ini akan menyebabkan Alfa mati menambah lapisan kompleksitas ekstra pada strategi Werewolf. Jika Werewolf Alfa dieliminasi, kelompok Werewolf kehilangan aset berharga, sehingga penting bagi Alfa untuk tetap bijaksana. Meskipun merupakan sosok yang berpengaruh, kekuatan Alfa juga menarik perhatian peran baik seperti Peramal dan Penyihir, yang mungkin melihat Alfa sebagai target utama.",
+      "interactions": {
+        "werewolf": "Werewolf - Werewolf Alfa adalah bagian dari kelompok Werewolf tetapi bangun secara independen dari Werewolf biasa. Sementara Werewolf secara kolektif memilih target, Alfa memilih orang untuk diubah menjadi Werewolf, memungkinkan strategi yang fleksibel dan berpotensi membingungkan Desa. Namun, Alfa harus menghindari menargetkan Werewolf lain dan selaras dengan tujuan kelompok sebanyak mungkin.",
+        "seer": "Peramal - Peramal dapat mengidentifikasi Werewolf Alfa sebagai ancaman karena peran kuat mereka dalam faksi Werewolf. Jika Peramal mengungkapkan identitas Alfa kepada Desa, Werewolf kehilangan keuntungan krusial.",
+        "doctor": "Dokter - Jika Dokter melindungi pemain yang ditargetkan Alfa, serangan akan diblokir untuk malam itu. Alfa mungkin perlu mengantisipasi gerakan Dokter untuk memastikan serangan yang berhasil.",
+        "witch": "Penyihir - Ramuan pembunuh Penyihir cukup kuat untuk mengeliminasi Werewolf Alfa. Karena Penyihir berpihak pada Desa, dia mungkin melihat Alfa sebagai target prioritas jika dia mencurigai identitas mereka, yang dapat mengganggu strategi Werewolf.",
+        "bodyguard": "Pengawal - Jika Alfa menargetkan pemain yang dilindungi oleh Pengawal, perlindungan tetap utuh, dan serangan Alfa gagal. Alfa harus menyusun strategi di sekitar pertahanan Pengawal agar efektif.",
+        "hunter": "Pemburu - Jika Pemburu terbunuh dan memilih Alfa sebagai target pembalasannya, Alfa mati, melemahkan faksi Werewolf secara signifikan. Alfa harus berhati-hati dalam mengekspos identitasnya untuk menghindari dipilih oleh Pemburu jika terjadi kematian mereka."
+      }
+    },
+    "bodyguard": {
+      "name": "Pengawal",
+      "description": "Pengawal adalah pelindung setia yang memilih satu pemain pada malam pertama untuk dilindungi selama sisa permainan. Pengawal tidak dapat memilih untuk melindungi dirinya sendiri. Pemain yang dipilih ini mendapatkan perlindungan khusus dari serangan, dengan Pengawal turun tangan untuk menyelamatkan mereka jika mereka ditargetkan. Namun, jika pemain yang dilindungi diserang untuk kedua kalinya, Pengawal akan mengorbankan dirinya, mati menggantikan mereka. Perlindungan ini hanya aktif selama Pengawal tetap dalam permainan. Perlindungan Pengawal adalah aset vital, tetapi terbatas—peran kuat tertentu, seperti Pemburu atau Penyihir, dapat melewati perlindungan ini dengan kemampuan mematikan mereka.",
+      "interactions": {
+        "werewolf": "Werewolf - Jika Werewolf menargetkan pemain yang dilindungi Pengawal, Pengawal akan mencegah serangan pertama. Namun, jika Werewolf menargetkan pemain ini lagi, Pengawal mati menggantikan mereka, dan perlindungan berakhir.",
+        "hunter": "Pemburu - Jika pemain yang dilindungi dipilih oleh kemampuan balas dendam kematian Pemburu, Pengawal tidak dapat mencegah serangan itu, dan pemain yang dilindungi akan mati.",
+        "doctor": "Dokter - Perlindungan Pengawal dan Dokter tidak bertentangan, artinya jika Dokter melindungi pemain yang sama pada malam yang sama, kedua perlindungan aktif. Jika Werewolf menargetkan pemain ini, kedua perlindungan akan bekerja, tetapi perlindungan prioritas adalah milik Dokter, sehingga Pengawal tidak menggunakan perlindungannya atau mati.",
+        "witch": "Penyihir - Jika Penyihir menggunakan ramuan pembunuhnya pada pemain yang dilindungi, perlindungan Pengawal tidak efektif, dan pemain yang ditargetkan akan mati.",
+        "priest": "Pendeta - Jika Pendeta memberkati pemain yang dilindungi, berkat ini menambah lapisan pertahanan lain, meskipun perlindungan Pengawal tetap utama sampai dia terbunuh dalam tugas."
+      }
+    },
+    "cupid": {
+      "name": "Cupid",
+      "description": "Cupid adalah peran yang memiliki kekuatan untuk menciptakan ikatan khusus antara dua pemain, menghubungkan nasib mereka selama sisa permainan. Di awal permainan, Cupid memilih dua pemain yang akan menjadi 'terikat' sebagai kekasih. Hubungan ini berarti jika salah satu kekasih meninggal, yang lain segera meninggal karena patah hati. Pilihan Cupid sangat penting karena pemain yang terhubung harus menavigasi loyalitas baru mereka dengan hati-hati. Ikatan ini dapat berfungsi sebagai alat yang kuat untuk mempersulit permainan dan membutuhkan pertimbangan strategis, karena dapat mempengaruhi aliansi dan mengubah prioritas pemain. Bahkan jika Cupid mati, ikatan tetap ada selama sisa permainan.",
+      "interactions": {
+        "werewolf": "Jika salah satu pemain yang terikat oleh Cupid ditargetkan dan dibunuh oleh Werewolf, kekasih lainnya juga mati, memenuhi hasil tragis ikatan tersebut.",
+        "doctor": "Jika Dokter melindungi salah satu pemain yang terikat dan Werewolf mencoba membunuh mereka, perlindungan akan mencegah kedua pemain meninggal malam itu.",
+        "seer": "Jika Peramal mengungkapkan salah satu kekasih yang terikat, mereka ditampilkan sebagai peran baik jika mereka peran baik dan peran jahat jika mereka peran jahat. Hanya pemain yang dipilih oleh Peramal yang diberitahu apa perannya dalam permainan.",
+        "hunter": "Jika Pemburu mati dan memilih salah satu kekasih yang terikat untuk mati bersamanya, kekasih lainnya juga akan binasa sebagai bagian dari efek ikatan.",
+        "witch": "Jika Penyihir menggunakan ramuannya untuk membunuh salah satu pemain yang terikat, yang lain juga akan mati karena hubungan yang ditempa oleh Cupid. Jika Penyihir menggunakan ramuan amannya pada salah satu Pemain, kedua pemain akan diselamatkan.",
+        "priest": "Jika Pendeta memberkati salah satu kekasih, perlindungan ini akan tetap berlaku bahkan jika kekasih lainnya ditargetkan oleh serangan, kecuali serangan itu cukup kuat untuk melewati perlindungan, seperti dalam kasus ramuan pembunuh Penyihir."
+      }
+    },
+    "cursedVillager": {
+      "name": "Penduduk Desa Terkutuk",
+      "description": "Penduduk Desa Terkutuk adalah jiwa malang yang memulai permainan sebagai penduduk desa biasa tetapi menyimpan rahasia kelam. Jika ditargetkan oleh Werewolf pada malam hari, Penduduk Desa Terkutuk berubah menjadi Werewolf, secara permanen beralih kesetiaan kepada Werewolf. Sampai saat itu, mereka tetap setia kepada Desa. Jika Penduduk Desa Terkutuk ditemukan oleh Peramal sebelum berubah, mereka akan muncul sebagai peran baik, menjaga penyamaran mereka sampai kutukan dipicu.",
+      "interactions": {
+        "werewolf": "Jika Werewolf memilih untuk menyerang Penduduk Desa Terkutuk, kutukan aktif, dan Penduduk Desa secara permanen bergabung dengan tim Werewolf, berubah dari sekutu menjadi musuh dalam semalam.",
+        "seer": "Peramal akan melihat Penduduk Desa Terkutuk sebagai peran baik sampai kutukan aktif. Ini dapat menyesatkan Desa untuk berpikir bahwa mereka aman, hanya untuk Penduduk Desa Terkutuk kemudian berubah.",
+        "witch": "Jika Penyihir menggunakan ramuan pembunuhnya pada Penduduk Desa Terkutuk sebelum mereka diserang oleh Werewolf, mereka mati sebagai Penduduk Desa biasa, tanpa memicu kutukan. Jika kutukan sudah dipicu, ramuan Penyihir akan membunuh mereka sebagai Werewolf.",
+        "hunter": "Jika Penduduk Desa Terkutuk dibunuh oleh Pemburu sebelum transformasi, mereka mati sebagai Penduduk Desa, menyelamatkan Desa dari penambahan Werewolf lain ke barisan."
+      }
+    },
+    "doctor": {
+      "name": "Dokter",
+      "description": "Dokter adalah peran penting dalam melindungi Desa dari serangan malam hari. Setiap malam, Dokter memilih satu pemain untuk dilindungi dari bahaya, berpotensi mencegah serangan Werewolf atau hasil fatal lainnya. Ini menjadikan Dokter aset berharga untuk pertahanan Desa, karena perlindungan mereka dapat membantu menjaga pemain kunci tetap aman dan memperpanjang pertarungan melawan Werewolf. Namun, kemampuan Dokter datang dengan risiko; jika Dokter dieliminasi, pengaruh pelindungnya lenyap seluruhnya. Kehilangan Dokter menempatkan Desa pada risiko yang lebih besar, sehingga penting untuk melindungi peran ini selama mungkin. Dokter harus menyeimbangkan kehati-hatian dan keberanian, bekerja secara diam-diam untuk menghindari deteksi oleh Werewolf sambil memastikan kelangsungan hidup Desa. Dokter dapat menggunakan perlindungannya pada satu pemain dan tidak dapat mengulangi pemain untuk putaran berikutnya. Dia dapat kembali melindungi pemain yang sama setelah satu malam berlalu lagi. Dokter juga dapat menggunakan perlindungannya pada dirinya sendiri.",
+      "interactions": {
+        "werewolf": "Dokter harus menghindari deteksi oleh Werewolf, karena mereka kemungkinan akan menargetkan Dokter untuk menghilangkan pengaruh pelindungnya.",
+        "seer": "Bekerja secara tidak langsung dengan Peramal jika dapat mengidentifikasi, karena keduanya memainkan peran penting dalam menjaga Desa. Sangat baik untuk melindungi Peramal jika dia mengungkap perannya kepada orang lain sehingga mereka terlindungi pada malam berikutnya.",
+        "hunter": "Jika Pemburu terbunuh dan mereka menargetkan pemain yang dilindungi oleh Dokter, meskipun mereka memiliki perlindungan darinya, mereka akan tetap mati.",
+        "witch": "Jika ramuan pembunuh digunakan untuk membunuh pemain yang dilindungi oleh Dokter, perlindungan tidak aktif dan pemain ini akan mati meskipun dilindungi oleh Dokter.",
+        "bodyguard": "Jika Werewolf menargetkan pemain yang sudah dilindungi oleh Dokter dan Pengawal, perisai Pengawal akan tetap terlindungi, karena mereka akan dilindungi oleh Dokter sebagai perlindungan prioritas.",
+        "priest": "Jika Werewolf menargetkan pemain yang sudah diberkati oleh Pendeta dan dilindungi oleh Dokter, berkat Pendeta akan tetap utuh, karena mereka akan dilindungi oleh Dokter sebagai perlindungan prioritas.",
+        "cupid": "Jika Dokter melindungi salah satu pemain yang terikat dan Werewolf mencoba membunuh mereka, perlindungan akan mencegah kedua pemain meninggal malam itu."
+      }
+    },
+    "hunter": {
+      "name": "Pemburu",
+      "description": "Pemburu adalah peran pemberani di dalam Desa, dikenal karena kemampuan pertahanan terakhirnya. Jika Pemburu dieliminasi selama permainan, mereka mendapatkan satu kesempatan terakhir untuk menjatuhkan pemain lain pilihan mereka sebelum meninggalkan permainan. Kemampuan kuat ini memberi Pemburu dampak signifikan bahkan dalam kematian, dan menjadikan mereka target berisiko tinggi bagi Werewolf dan peran jahat lainnya. Pemburu harus mengamati dengan cermat dan memutuskan siapa yang mungkin paling berharga untuk dibawa bersama mereka jika mereka dieliminasi, berpotensi membalikkan keadaan permainan. Namun, perlindungan tertentu, seperti berkat Pendeta atau perisai Dokter, dapat mempengaruhi tembakan terakhir mereka, sehingga penting bagi Pemburu untuk menyusun strategi berdasarkan dinamika permainan saat ini.",
+      "interactions": {
+        "werewolf": "Jika Pemburu ditargetkan dan dieliminasi oleh Werewolf, mereka akan mendapatkan satu kesempatan terakhir untuk membalas dengan memilih pemain untuk dieliminasi bersama mereka. Serangan terakhir ini tidak terpengaruh oleh pengaruh Werewolf dan tidak dapat dicegah oleh strategi mereka.",
+        "doctor": "Jika Pemburu menargetkan pemain yang dilindungi oleh Dokter dalam tembakan terakhirnya, perlindungan tidak efektif, dan pemain yang ditargetkan akan tetap mati karena serangan Pemburu mengesampingkan perisai Dokter.",
+        "priest": "Jika Pemburu menargetkan pemain yang diberkati, berkat Pendeta tidak akan melindungi mereka. Serangan terakhir Pemburu kuat dan tidak dapat dimitigasi oleh berkat.",
+        "bodyguard": "Jika Pemburu menargetkan pemain yang dilindungi oleh Pengawal, perlindungan akan dilewati, artinya target akan tetap mati terlepas dari perlindungan Pengawal.",
+        "witch": "Jika Pemburu terbunuh dan Penyihir menggunakan ramuan penyelamatnya pada Pemburu, mereka dapat mencegah kematian Pemburu dan dengan demikian tembakan terakhirnya. Namun, jika Penyihir tidak menggunakan ramuan tersebut, Pemburu akan melanjutkan serangan terakhirnya.",
+        "cupid": "Jika Pemburu adalah salah satu kekasih yang terikat oleh Cupid, dan mereka mati, kekasih terikat lainnya akan mati karena patah hati. Selain itu, Pemburu akan memutuskan pemain lain untuk dibunuh. Keputusan Pemburu akan terjadi sebelum mengungkapkan ikatan Cupid."
+      }
+    },
+    "lycan": {
+      "name": "Lycan",
+      "description": "Lycan adalah penduduk desa, sepenuhnya selaras dengan tujuan Desa, namun dikutuk dengan sifat yang menyebabkan mereka tampak sebagai Werewolf ketika dilihat oleh Peramal. Identitas palsu ini menciptakan tantangan kompleks, karena Peramal mungkin salah mengidentifikasi mereka sebagai ancaman, menimbulkan kecurigaan dan berpotensi mempengaruhi tindakan Desa terhadap mereka. Lycan harus berhati-hati untuk menghindari kecurigaan sambil secara halus meyakinkan orang lain tentang kesetiaan sejati mereka kepada Desa. Meskipun penampilan mereka di mata Peramal, Lycan masih merupakan peran baik, bertujuan untuk membantu melindungi Desa dan mengalahkan Werewolf. Menavigasi keseimbangan ini mengharuskan Lycan memainkan permainan yang hati-hati dan strategis untuk menghindari eliminasi yang tidak perlu dan mendukung penduduk desa meraih kemenangan.",
+      "interactions": {
+        "seer": "Jika Peramal melihat Lycan, mereka akan menganggap Lycan sebagai peran jahat karena kutukan mereka. Kesalahan identifikasi ini dapat menyebabkan kecurigaan dari Peramal dan Desa, jadi Lycan harus hati-hati menavigasi interaksi dengan Peramal dan mempertimbangkan strategi untuk membuktikan kesetiaan mereka dari waktu ke waktu.",
+        "werewolf": "Werewolf tidak mengetahui identitas Lycan, dan Lycan tampak sebagai penduduk desa biasa bagi mereka. Peran Lycan di Desa tetap tidak berubah, jadi mereka harus membantu melindungi Desa sambil juga menghilangkan keraguan tentang sifat asli mereka."
+      }
+    },
+    "priest": {
+      "name": "Pendeta",
+      "description": "Pendeta adalah pelindung kuat dalam permainan, diberkati dengan kemampuan untuk melindungi satu pemain dari bahaya melalui berkat ilahi. Pendeta dapat memilih untuk memberkati satu pemain untuk permainan, membuat mereka kebal terhadap serangan Werewolf. Berkat ini tetap efektif hanya selama Pendeta masih hidup; jika Pendeta terbunuh, semua berkat hilang, dan pemain yang sebelumnya diberkati menjadi rentan sekali lagi. Namun, berkat tidak melindungi terhadap serangan kuat tertentu, membuat pilihan Pendeta kritis untuk kelangsungan hidup pemain kunci di Desa.",
+      "interactions": {
+        "werewolf": "Berkat Pendeta melindungi pemain dari serangan Werewolf untuk malam itu. Namun, Werewolf masih bisa menyusun strategi di sekitar berkat Pendeta untuk menargetkan penduduk desa lain atau bahkan merencanakan serangan terhadap Pendeta untuk menghilangkan kekuatan pelindungnya.",
+        "doctor": "Perlindungan Dokter independen dari berkat Pendeta. Jika seorang pemain diberkati oleh Pendeta dan dilindungi oleh Dokter, mereka memiliki beberapa lapisan pertahanan. Namun, jika Pendeta dieliminasi, berkat hilang, meninggalkan perlindungan Dokter sebagai satu-satunya perisai.",
+        "seer": "Sementara Peramal mengungkap informasi, Pendeta dapat menggunakan berkatnya untuk melindungi Peramal jika identitas mereka terungkap, melindungi mereka dari serangan.",
+        "hunter": "Jika Pemburu dieliminasi dan menargetkan pemain yang diberkati, berkat Pendeta tidak mencegah serangan terakhir Pemburu, dan pemain yang diberkati akan tetap mati.",
+        "witch": "Jika Penyihir menggunakan ramuan pembunuhnya pada pemain yang diberkati, berkat Pendeta tidak akan mencegah kematian ini. Berkat tidak berlaku untuk serangan dari sumber supernatural, seperti ramuan Penyihir.",
+        "bodyguard": "Pengawal dan Pendeta keduanya dapat melindungi pemain, meskipun dengan cara yang berbeda. Jika Pengawal secara aktif melindungi pemain yang diberkati oleh Pendeta, berkat akan tetap ada, tetapi perlindungan Pengawal diprioritaskan untuk serangan fisik."
+      }
+    },
+    "prince": {
+      "name": "Pangeran",
+      "description": "Pangeran adalah peran unik yang membawa bentuk perlindungan khusus di siang hari. Terlepas dari berapa kali Desa mencoba memilih Pangeran keluar, dia tidak dapat dieliminasi dengan metode ini. Jika Desa memutuskan untuk memilih Pangeran keluar di siang hari, Narator hanya mengumumkan bahwa upaya tersebut tidak efektif, memperkuat status tak tersentuh Pangeran. Namun, perlindungan ini tidak berlaku di malam hari, di mana Pangeran bisa rentan terhadap serangan dari Werewolf atau peran lain. Pangeran harus menggunakan pengaruhnya dengan bijak, karena ia memainkan peran penting dalam memimpin Desa tanpa takut eliminasi di siang hari.",
+      "interactions": {
+        "werewolf": "Pangeran rentan terhadap serangan oleh Werewolf di malam hari, dan mereka mungkin memprioritaskannya karena kekebalannya dari eliminasi siang hari.",
+        "hunter": "Jika Pangeran ditargetkan oleh kemampuan balas dendam kematian Pemburu, dia akan mati terlepas dari perlindungan siangnya.",
+        "doctor": "Jika Dokter memilih untuk melindungi Pangeran di malam hari, setiap serangan Werewolf malam itu akan diblokir, memungkinkan Pangeran untuk bertahan hidup bahkan dari bahaya malam hari.",
+        "witch": "Jika Penyihir menggunakan ramuannya untuk membunuh Pangeran, dia akan mati, karena kemampuannya melewati kekebalan siangnya.",
+        "priest": "Jika Pendeta memberkati Pangeran, berkat tersebut akan lebih melindunginya dari serangan, memperkuat ketahanannya selama perlindungan Pendeta aktif dan dia masih dalam permainan."
+      }
+    },
+    "seer": {
+      "name": "Peramal",
+      "description": "Peramal memiliki kemampuan khusus untuk mengungkap identitas satu pemain setiap malam. Tujuannya adalah mengungkap Werewolf dan membantu memandu Desa menuju kemenangan dengan mengidentifikasi peran berbahaya. Anda akan diberitahu tentang peran pemain yang Anda pilih untuk dilihat dengan jempol ke atas (peran baik), jempol ke bawah (peran jahat), atau tangan datar (Tanner).",
+      "interactions": {
+        "villager": "Bekerja sama erat dengan Penduduk Desa untuk mengidentifikasi Werewolf dan peran berbahaya.",
+        "werewolf": "Berusaha mengidentifikasi Werewolf untuk memperingatkan Desa tentang ancaman.",
+        "tanner": "Jika Anda bertemu Tanner, pastikan untuk mengkomunikasikannya secara efektif kepada sesama Penduduk Desa, agar mereka tidak membunuhnya dan kalah dalam permainan.",
+        "doctor": "Mungkin bergantung pada perlindungan Dokter jika identitas mereka dicurigai oleh Werewolf.",
+        "witch": "Bisa berkolaborasi dengan Penyihir untuk wawasan atau perlindungan tambahan jika keduanya teridentifikasi sebagai peran baik.",
+        "lycan": "Peran ini akan dibedakan oleh Peramal sebagai peran jahat, tetapi mereka adalah Penduduk Desa. Pastikan untuk memperhatikan jika ada Lycan dalam permainan.",
+        "alphaWerewolf": "Tantangan terbesar Peramal adalah mengidentifikasi Werewolf Alfa. Alfa akan dibedakan sebagai peran jahat, sama seperti Werewolf biasa."
+      }
+    },
+    "tanner": {
+      "name": "Tanner",
+      "description": "Tanner adalah karakter yang tidak biasa dengan tujuan unik dan berlawanan dengan intuisi: mereka memenangkan permainan jika mereka dieliminasi oleh Penduduk Desa di siang hari. Tidak seperti pemain lain yang bertujuan untuk bertahan hidup, Tanner secara aktif mencoba memprovokasi kecurigaan dan membuat diri mereka dieliminasi. Jika berhasil, mereka menjadi satu-satunya pemenang permainan, terlepas dari peran lain yang tersisa. Namun, jika Tanner dieliminasi pada malam hari (misalnya, oleh Werewolf), mereka tidak menang dan hanya dikeluarkan dari permainan. Peran ini membutuhkan penyesatan strategis dan manipulasi yang cermat untuk mencapai hasil yang diinginkan tanpa mengungkapkan niat mereka terlalu terang-terangan.",
+      "interactions": {
+        "villagers": "Jika Penduduk Desa memilih untuk mengeliminasi Tanner di siang hari, Tanner segera memenangkan permainan dan semua pemain lain kalah. Ini adalah tujuan utama Tanner, jadi mereka mungkin mencoba tampil mencurigakan di siang hari.",
+        "werewolves": "Jika Werewolf menargetkan Tanner selama serangan malam mereka, Tanner dieliminasi tetapi tidak menang. Werewolf harus berhati-hati dalam pemilihan mereka, karena eliminasi malam Tanner tidak memenuhi kondisi kemenangan Tanner.",
+        "seer": "Peramal dapat mengungkap identitas Tanner, jadi mereka harus strategis tentang peran ini dan mencapai agenda mereka tanpa diketahui.",
+        "hunter": "Jika Pemburu membunuh Tanner (baik sengaja atau sebagai pembalasan), Tanner tidak menang, karena kondisi kemenangannya spesifik untuk eliminasi siang hari oleh suara Desa.",
+        "witch": "Jika Penyihir menggunakan ramuan pembunuhnya pada Tanner, Tanner akan dieliminasi tetapi tidak akan mencapai kemenangan, karena eliminasi tidak terjadi melalui suara siang Desa."
+      }
+    },
+    "villager": {
+      "name": "Penduduk Desa",
+      "description": "Penduduk Desa mungkin tidak memiliki kemampuan khusus, tetapi mereka penting bagi Desa dan membentuk kekuatan utama yang menentang Werewolf. Di siang hari, Penduduk Desa menggunakan logika, observasi, dan intuisi mereka untuk mengidentifikasi perilaku mencurigakan, mendeteksi kebohongan, dan bekerja secara kolaboratif untuk mengungkap Werewolf yang tersembunyi di antara mereka. Mereka berkontribusi pada proses pemungutan suara, di mana mereka dapat mengarahkan diskusi dan mempengaruhi keputusan tentang siapa yang akan dieliminasi. Meskipun Penduduk Desa hanya mengandalkan kecerdasan mereka, kemampuan mereka untuk mengamati dan menafsirkan kata-kata dan tindakan orang lain dengan cermat menjadikan mereka tulang punggung strategi Desa, menyatukan mereka melawan kekuatan yang mengancam kelangsungan hidup mereka.",
+      "interactions": {
+        "werewolf": "Penduduk Desa adalah target utama Werewolf, yang berusaha mengurangi jumlah mereka setiap malam. Penduduk Desa harus memperhatikan pemain yang tampak mengelak atau manipulatif, karena ini bisa mengungkap Werewolf yang tersembunyi.",
+        "seer": "Penduduk Desa bekerja bersama Peramal dan peran lain, mengumpulkan informasi dan menyumbangkan wawasan untuk mendukung penemuan Peramal. Namun, mereka juga harus melindungi identitas Peramal untuk mencegah serangan Werewolf.",
+        "witch": "Jika seorang Penduduk Desa ditargetkan untuk eliminasi, Penyihir dapat memilih untuk menggunakan ramuan penyembuhannya untuk menyelamatkan mereka, menjaga kekuatan Desa. Penduduk Desa harus mengidentifikasi sekutu Werewolf potensial untuk memandu keputusan Penyihir dengan bijak."
+      }
+    },
+    "werewolf": {
+      "name": "Werewolf",
+      "description": "Werewolf menipu Desa di siang hari dengan berpura-pura menjadi penduduk desa yang tidak bersalah. Pada malam hari mereka menunjukkan warna asli mereka dan secara kolektif memilih pemain untuk dieliminasi. Tujuan mereka adalah mengeliminasi semua peran baik tanpa terungkap identitasnya.",
+      "interactions": {
+        "otherWerewolves": "Berkolaborasi dengan sesama Werewolf untuk merencanakan serangan malam.",
+        "seer": "Harus menghindari deteksi oleh Peramal, yang dapat mengungkapkan identitas mereka.",
+        "doctor": "Harus menyusun strategi di sekitar kemampuan perlindungan Dokter untuk memastikan serangan yang berhasil.",
+        "tanner": "Werewolf mendapat keuntungan dari kematian Tanner. Karena jika Tanner dieliminasi di siang hari, dia akan memenangkan permainan dan bukan Werewolf.",
+        "witch": "Penyihir berada di pihak Desa, tetapi bisa dimanipulasi dan disesatkan sehingga tidak menyerang Werewolf dengan ramuan pembunuhnya.",
+        "alphaWerewolf": "Werewolf Alfa dibangunkan secara terpisah dari Werewolf. Selidiki untuk melihat apakah Anda dapat mengetahui siapa Alfa sehingga Anda tidak membunuhnya di malam hari, karena dia juga bermain dengan Anda, hanya saja tidak dibangunkan pada saat yang sama.",
+        "wolfCub": "Anak Serigala bangun bersama Werewolf, tetapi mereka tidak tahu dia adalah Anak Serigala. Anda dapat dengan sengaja menargetkan untuk mempengaruhi Desa di siang hari untuk membunuhnya jika Anda tahu Anda akan membutuhkan pembunuhan ekstra malam berikutnya untuk memenangkan permainan."
+      }
+    },
+    "witch": {
+      "name": "Penyihir",
+      "description": "Penyihir adalah sekutu misterius dan kuat dari Desa, memegang ramuan penyembuhan dan ramuan pembunuh, masing-masing hanya tersedia sekali per permainan. Pada malam hari, Penyihir mengetahui jika seseorang ditargetkan untuk eliminasi dan harus memutuskan apakah akan menyelamatkan orang itu menggunakan ramuan penyembuhan. Penyihir juga memiliki pilihan untuk menggunakan ramuan pembunuh pada pemain mana pun, memungkinkannya untuk menyerang Werewolf atau mengeliminasi pemain yang dicurigainya berbahaya bagi Desa. Kekuatan Penyihir sangat hebat, tetapi penggunaan ramuannya yang terbatas membutuhkan waktu dan strategi yang cermat. Jika Penyihir dieliminasi sebelum menggunakan ramuannya, ramuan itu hilang bagi Desa. Menyeimbangkan perannya sebagai pelindung dan potensi eliminator, Penyihir memiliki dampak yang langgeng pada hasil permainan. Dia tidak dapat menggunakan ramuannya pada dirinya sendiri.",
+      "interactions": {
+        "werewolf": "Penyihir dapat melawan serangan Werewolf dengan menyelamatkan target dengan ramuan penyembuhannya, menggagalkan rencana Werewolf. Namun, jika dia menggunakan ramuan pembunuhnya pada Werewolf, itu menghilangkan ancaman segera, meskipun itu secara permanen menghabiskan ramuan. Jika ditargetkan oleh Werewolf sendiri, dia berisiko kehilangan kedua ramuan jika belum menggunakannya. Dia tidak dapat menggunakan ramuannya pada dirinya sendiri.",
+        "doctor": "Ramuan penyembuhan Penyihir bekerja secara independen dari perlindungan Dokter; jika Dokter gagal melindungi pemain, ramuan Penyihir masih dapat menyelamatkan mereka. Jika keduanya melindungi pemain yang sama, Penyihir pada dasarnya kehilangan ramuannya karena orang tersebut sudah dilindungi. Mereka harus menghindari tumpang tindih upaya mereka pada pemain yang sama untuk memaksimalkan dampak kemampuan mereka.",
+        "seer": "Peramal mungkin ingin berkomunikasi dengan Penyihir untuk memberi saran tentang target ramuan pembunuhnya, terutama jika Peramal mengidentifikasi Werewolf. Bersama-sama, mereka membentuk aliansi kuat melawan Werewolf, meskipun mereka harus berhati-hati agar tidak mengungkapkan diri terlalu terbuka.",
+        "bodyguard": "Ramuan pembunuh Penyihir melewati perlindungan Pengawal. Jika Pengawal membela pemain dan Penyihir menggunakan ramuan pembunuhnya pada pemain itu, Pengawal tidak dapat mencegah kematian mereka.",
+        "hunter": "Jika Penyihir membunuh Pemburu dengan ramuan pembunuhnya, Pemburu masih memiliki kesempatan untuk membalas dan menjatuhkan pemain lain bersamanya. Penyihir harus menggunakan ramuannya secara strategis untuk menghindari potensi serangan balik ini. Juga jika Pemburu menyerang pemain yang diberi ramuan penyelamat oleh Penyihir - pemain itu akan tetap mati. Hukuman mati Pemburu lebih kuat.",
+        "priest": "Jika Pendeta memberkati pemain, ramuan penyembuhan Penyihir masih dapat menyelamatkan mereka jika Werewolf atau serangan lain mengancam mereka. Namun, ramuan pembunuhnya cukup kuat untuk melewati berkat Pendeta, menyebabkan kematian pemain terlepas dari berkat tersebut."
+      }
+    },
+    "wolfCub": {
+      "name": "Anak Serigala",
+      "description": "Anak Serigala adalah anggota yang lebih muda dari kelompok Werewolf, dan meskipun tidak memiliki kemampuan individu untuk menyerang atau mempengaruhi orang lain, ia memainkan peran penting dalam memperkuat kelompok. Anak Serigala bangun bersama Werewolf lainnya di malam hari. Jika Anak Serigala dibunuh oleh Desa atau pemain lain, kelompok Werewolf akan membalas dendam, mendapatkan pembunuhan ekstra pada malam berikutnya. Ini menjadikan Anak Serigala target prioritas tinggi bagi Desa tetapi juga anggota yang ingin dilindungi oleh Werewolf. Meskipun Anak Serigala kekurangan kekuatan Werewolf penuh, kehadirannya adalah keuntungan strategis bagi Werewolf selama ia tetap hidup.",
+      "interactions": {
+        "werewolf": "Anak Serigala dilindungi oleh Werewolf, yang berusaha menjaganya tetap hidup. Jika Anak Serigala dieliminasi, Werewolf menerima pembunuhan ekstra pada malam berikutnya, mengintensifkan ancaman bagi Desa.",
+        "seer": "Peramal dapat mengidentifikasi Anak Serigala sebagai Werewolf dan mengungkapkan informasi ini kepada Desa, menjadikannya target. Kehilangan Anak Serigala dapat mempercepat serangan Werewolf ke Desa.",
+        "doctor": "Jika Dokter melindungi Anak Serigala, mereka mungkin mencegah eliminasi Anak Serigala untuk satu malam, menjaga jumlah faksi Werewolf dan kemungkinan pembunuhan ekstra jika Desa kemudian mengeliminasi Anak Serigala.",
+        "witch": "Jika Penyihir menggunakan ramuan pembunuhnya pada Anak Serigala, Werewolf mendapatkan pembunuhan ekstra mereka pada malam berikutnya. Namun, jika Penyihir menggunakan ramuan penyembuhannya pada Anak Serigala saat ditargetkan, Anak Serigala bertahan hidup, dan Desa kehilangan kesempatan untuk mencegah efek pembunuhan ekstra.",
+        "hunter": "Jika Pemburu mati dan memilih Anak Serigala sebagai target pembalasannya, Anak Serigala mati, dan Werewolf menerima pembunuhan ekstra pada malam berikutnya. Pemburu harus mempertimbangkan pilihan ini dengan hati-hati jika mereka bertujuan untuk menghindari penguatan Werewolf.",
+        "bodyguard": "Jika Pengawal melindungi Anak Serigala dan mencegah kematiannya, Werewolf menghindari kehilangan pengaruh menguntungkan Anak Serigala. Desa mungkin kesulitan untuk mengeliminasi Anak Serigala, terutama jika ia mendapatkan banyak perlindungan."
+      }
+    }
+  },
+
+  "fullAccessToFeatures": "Akses Penuh ke Semua Fitur",
+  "differentRoles": "14+ Peran Berbeda",
+  "differentRolesDescription": "Bermain dengan semua Peran dalam permainan dan lebih banyak lagi yang akan datang untuk hasil dan skenario yang menarik.",
+  "narratorAssistance": "Bantuan Narator",
+  "narratorAssistanceDescription": "Panduan suara bawaan untuk semua peran dan navigasi mudah sepanjang malam.",
+  "moreGameOutcomes": "Lebih Banyak Hasil Permainan",
+  "moreGameOutcomesDescription": "Memungkinkan pemikiran strategis yang lebih dalam dan rentang hasil yang lebih luas.",
+  "privacy_policy": "Kebijakan Privasi",
+  "restore_purchase": "Pulihkan Pembelian",
+  "terms_of_use": "Ketentuan Penggunaan",
+  "callToTrial": "Mulai uji coba gratis 3 hari Anda",
+  "weeklyPrice": "Kemudian {{price}} per minggu. Batalkan kapan saja.",
+  "continue": "Lanjutkan",
+  "viewAllPlans": "Lihat Semua Paket",
+  "privacyPolicy": "Kebijakan Privasi",
+  "restorePurchase": "Pulihkan Pembelian",
+  "termsOfUse": "Ketentuan Penggunaan",
+  "weeklyPlan": "Paket Mingguan",
+  "monthlyPlan": "Paket Bulanan",
+  "yearlyPlan": "Paket Tahunan",
+  "lifetimePlan": "Paket Seumur Hidup",
+  "freeTrial": "Uji Coba Gratis 3 Hari",
+  "lifetimePlanDescription": "Paket Seumur Hidup hanya",
+  "lifetimePayment": "sekali",
+  "andThen": "dan kemudian",
+  "week": "minggu",
+  "month": "bulan",
+  "year": "tahun",
+
+  "restorePurchaseMessage": "Mencari untuk memulihkan pembelian...",
+  "success": "Berhasil",
+  "purchaseRestored": "Pembelian Anda telah dipulihkan",
+  "failure": "Gagal",
+  "noPurchasesToRestore": "Tidak ada pembelian untuk dipulihkan",
+  "rateAppMessage": "Membuka Ulasan App Store...",
+  "errorOccurred": "Terjadi kesalahan",
+  "reviewError": "Terjadi kesalahan saat memuat modal ulasan.",
+  "getAllRoles": "Dapatkan Semua Peran",
+  "unlockNewRoles": "Buka 10+ Peran Baru & Lainnya",
+  "werewolfPro": "Werewolf Pro",
+  "rateApp": "Beri Nilai Aplikasi",
+  "general": "Umum",
+  "termsConditions": "Syarat & Ketentuan",
+  "contactUs": "Hubungi Kami",
+  "feedbackSubject": "Umpan Balik untuk Aplikasi Game Werewolf",
+  "feedbackBody": "Halo, saya ingin menghubungi Anda mengenai Werewolf - Selamatkan Desa:",
+  "yourMessageHere": "[Pesan Anda di sini]",
+  "reportBug": "Laporkan Bug",
+  "ourApps": "Aplikasi Kami",
+  "Fast VPN & Adblocker": "VPN Cepat & Pemblokir Iklan",
+  "Remove water from speakers": "Hilangkan air dari speaker",
+  "eSign & Scan Documents": "Tanda Tangan Elektronik & Pindai Dokumen",
+  "about": "Tentang",
+  "tellAFriend": "Beritahu Teman",
+  "appVersion": "Versi Aplikasi",
+  "shareMessage": "Hei, jika kamu mau coba game sosial yang aku mainkan ini namanya Werewolf: Selamatkan Desa di App Store. https://apps.apple.com/us/app/id6738326023",
+
+  "rolesDescription": "Bermain dengan semua Peran dalam permainan dan lebih banyak lagi yang akan datang untuk hasil dan skenario yang menarik.",
+  "narratorDescription": "Panduan suara bawaan untuk semua peran dan navigasi mudah sepanjang malam. Bahasa tambahan akan ditambahkan.",
+  "moreOutcomes": "Lebih Banyak Hasil Permainan",
+  "outcomesDescription": "Memungkinkan pemikiran strategis yang lebih dalam dan rentang hasil yang lebih luas dengan pemenang yang berbeda.",
+  "beforeJourney": "Sebelum memulai perjalanan Anda,",
+  "pleaseSupport": "mohon pertimbangkan untuk mendukung kami",
+  "trialTextStart": "Coba gratis 3 hari, lalu",
+  "werewolf_game_title": "Werewolf: \n Selamatkan Desa",
+  "werewolf_game_description": "Rasakan level selanjutnya dalam memainkan game sosial Werewolf. Dengan desain dan fitur yang mudah digunakan, Anda akan dapat menikmati permainan sepenuhnya secara offline.",
+  "no_need_for_cards_title": "Tidak Perlu Kartu",
+  "no_need_for_cards_description": "Dengan aplikasi ini, Anda dapat secara otomatis menghasilkan kode pindai untuk peran yang Anda pilih untuk setiap permainan. Dengan cara ini setiap pemain akan dapat memindai kode QR dan menerima perannya dalam permainan melalui ponselnya tanpa perlu menginstal aplikasi.",
+  "game_assistance_title": "Bantuan Permainan",
+  "game_assistance_description": "Saat memulai permainan, Anda memiliki bantuan suara plus panduan tentang peran mana yang harus dibangunkan berikutnya di malam hari. Atur setiap tindakan yang dilakukan sepanjang malam sehingga mudah bagi narator untuk memandu Desa. Di siang hari, Anda memiliki timer untuk diskusi di antara para pemain dengan jumlah waktu terbatas sampai mereka harus kembali tidur, membuat pekerjaan narator menjadi mudah.",
+  "help_us_grow_title": "Bantu Kami Berkembang",
+  "help_us_grow_description": "Sebelum memulai perjalanan Anda, mohon pertimbangkan untuk mendukung kami. Ini sangat membantu dan membantu kami terus meningkatkan dan berinovasi dalam permainan seiring kami terus memperkenalkan fitur-fitur baru.",
+  "premium_trial_title": "Uji Coba Premium",
+  "premium_trial_description": "✓ - Buka kunci semua alat pengeditan: termasuk tanggal, inisial, gambar, teks, kotak centang \n ✓ - Pemindaian Kamera & Pengorganisasian Dokumen \n ✓ - Dapatkan Semua Templat untuk Pengeditan Langsung",
+
+  "choose_plan_title": "Pilih Paket Anda",
+  "weekly_plan": "Mingguan",
+  "monthly_plan": "Bulanan",
+  "annual_plan": "Tahunan",
+  "lifetime_plan": "Seumur Hidup",
+  "trial_offer": "Uji Coba 3 Hari",
+  "one_time_purchase": "Pembelian Sekali",
+  "once": "sekali",
+  "chooseLanguage": "Pilih Bahasa"
+}

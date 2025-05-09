@@ -15,6 +15,9 @@
       "autoIncrement": true,
       "env": {
         "EXPO_PUBLIC_REVENUECAT_API_KEY": "appl_WQgrZsidEmZMonKCpAAtZVJApGW"
+      },
+      "ios": {
+        "image": "macos-sonoma-14.6-xcode-16.1"
       }
     }
   },

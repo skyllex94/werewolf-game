@@ -2,7 +2,7 @@
   "expo": {
     "name": "Werewolf",
     "slug": "werewolf-game",
-    "version": "1.0.7",
+    "version": "1.0.9",
     "orientation": "portrait",
     "icon": "./assets/icon/werewolf.jpeg",
     "scheme": "myapp",
@@ -16,7 +16,8 @@
       "appStoreUrl": "https://apps.apple.com/us/app/id6738326023",
       "infoPlist": {
         "NSCameraUsageDescription": "Werewolf uses the camera to take photos of people to set as avatar photos.",
-        "NSPhotoLibraryUsageDescription": "Allow Werewolf to access your photos."
+        "NSPhotoLibraryUsageDescription": "Allow Werewolf to access your photos.",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
